@@ -20,8 +20,7 @@ class TextPickerInputTextField: UITextField {
     
     // MARK: - Public Interface 
     
-    var rowContents = [String]()
-    
+    var rowContents = Set<String>() 
     private(set) var value: String! {
         willSet {
            text = newValue 
@@ -68,12 +67,12 @@ extension TextPickerInputTextField: UIPickerViewDelegate, UIPickerViewDataSource
      
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
-        return rowContents[row]
+        return rowContents.sorted()[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        pickerDelegate?.didSelectedRowWith(title: rowContents[row])
-        value = rowContents[row]
+        pickerDelegate?.didSelectedRowWith(title: rowContents.sorted()[row])
+        value = rowContents.sorted()[row]
     }
     
 }

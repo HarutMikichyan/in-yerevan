@@ -26,10 +26,15 @@ class DataManager {
     }
     
     // MARK: - Event
-    func saveEvent(title: String, date: Date, category: String, pictureURLs: [String], details: String, coordinates: (lat: Double, long: Double)) {
-        let fireBaseEvent = FirebaseEvent(date: date, details: details, pictureURLs: pictureURLs, title: title, company: User.email, visitorsCount: 0, latitude: coordinates.lat, longitude: coordinates.long, category: category)
-        saveEventsInServer(event: fireBaseEvent)
-        fetchEventsFromServerSide()
+    func saveEvent(title: String, date: Date, category: String, pictures: [UIImage], details: String, coordinates: (lat: Double, long: Double)) {
+        
+        saveEventImages(pictures, title: title) { (urls) in
+            guard let urls = urls else {return}
+            let fireBaseEvent = FirebaseEvent(date: date, details: details, pictureURLs: urls, title: title, company: User.email, visitorsCount: 0, latitude: coordinates.lat, longitude: coordinates.long, category: category)
+            saveEventsInServer(event: fireBaseEvent)
+            fetchEventsFromServerSide()
+        }
+        
     }
     
     func fetchAllEventsFromNowTill(date: Date, for category: Category) -> [Event] {
@@ -85,6 +90,7 @@ class DataManager {
         }
         let category = Category(context: context)
         category.name = name 
+        persistentController.saveContext(context)
         return category
     }
     
@@ -145,40 +151,32 @@ class DataManager {
         persistentController.viewContext.refreshAllObjects()
     }
     
-    private func saveEventImages(_ images: [UIImage], event: Event, completion: ([String]?) -> Void ) {
+    private func saveEventImages(_ images: [UIImage], title: String, completion: ([String]?) -> Void ) {
         let storageReferance = Storage.storage().reference().child("event/\(User.email)")
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpeg"
-        let urls: [String]
+        var urls = [String]()
         
-        for image in images {
-            guard let scaledImage = image.scaledToSafeUploadSize,
+        for index in 0..<images.count {
+            guard let scaledImage = images[index].scaledToSafeUploadSize,
                 let data = scaledImage.jpegData(compressionQuality: 0.4) else {
                     completion(nil)
                     return
             }
-//            let imageName = [UUID().uuidString, String(Date().timeIntervalSince1970)].joined()
-            storageReferance.child(event.title!).putData(data, metadata: metadata) { meta, error in
-                if let error = error {
+            storageReferance.child(title).child("\(index)").putData(data, metadata: metadata) { (metadata, error) in
+                if error == nil {
+                    storageReferance.downloadURL { (url, error) in
+                        guard let downloadURL = url else {
+                            return
+                        }
+                        urls.append(downloadURL.absoluteString)
+                    }
+                } else {
                     print(error)
-                }
-                
-            }
-                
-//           storageReferance.child(event.title!).downloadURL(completion: { (url, error) in
-//                if error != nil {
-//                    print(error as Any)
-//                } else {
-//                    guard let imageURL = url?.absoluteURL else { return }
-//                    completion(imageURL)
-//                }
-//                
-//            })
-//        
-        
-                        
+                }   
+            }           
         }
-        
+        completion(urls)
     }
     
     private func eraseLocalCache() {
@@ -203,6 +201,6 @@ class DataManager {
             print("Error while erasing data DataManager row 134")
         }
     }
-
+    
     
 }

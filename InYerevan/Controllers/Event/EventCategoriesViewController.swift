@@ -19,6 +19,7 @@ class EventCategoiresViewController: UIViewController {
     
     }
     
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if !User.isAdministration {
@@ -37,9 +38,10 @@ class EventCategoiresViewController: UIViewController {
         for category in categories {
             if category.events!.count > 0 {
                 eventCategories.append(category)
-                collectionView.reloadData()
+               
             }
         } 
+         collectionView.reloadData()
        
     }
     

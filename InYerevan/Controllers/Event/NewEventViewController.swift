@@ -38,9 +38,8 @@ class NewEventViewController: UIViewController {
         if let categories = UIApplication.dataManager.fetchCategories() {
             categoryField.rowContents.removeAll()
             for category in categories {
-                categoryField.rowContents.append(category.name!)
+                categoryField.rowContents.insert(category.name!)
             }
-            categoryField.rowContents.sort {$0 > $1}
         }
         
     }
@@ -77,9 +76,9 @@ class NewEventViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (_) in
             if !textField.text!.isEmpty {
                 UIApplication.dataManager.newCategoryWith(name: textField.text!, completion: { (category) in
-                    self.categoryField.rowContents.append(category.name!)
+                    self.categoryField.rowContents.insert(category.name!)
                     self.categoryField.text = category.name!
-                    self.categoryField.rowContents.sort {$0 > $1}
+                   
                 })  
             }
         }))
@@ -91,7 +90,7 @@ class NewEventViewController: UIViewController {
     }
     
     @IBAction func saveAction() {
-        UIApplication.dataManager.saveEvent(title: titleField.text!, date: dateFIeld.getValue(), category: categoryField.text!, pictureURLs: ["array of strings"], details: descriptionTextView.text!, coordinates: locationFIeld.getCoordinatesAsTuple())
+        UIApplication.dataManager.saveEvent(title: titleField.text!, date: dateFIeld.getValue(), category: categoryField.text!, pictures: images , details: descriptionTextView.text!, coordinates: locationFIeld.getCoordinatesAsTuple())
         navigationController?.popViewController(animated: true)
     }
         
