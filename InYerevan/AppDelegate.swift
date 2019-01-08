@@ -9,7 +9,6 @@
 import UIKit
 import Firebase
 
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -17,17 +16,56 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var dataManager: DataManager!
     var persistentController: PersistentController!
 
+    override init() {
+        FirebaseApp.configure()
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        ///---------subject to change----------///
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(userStateDidChange),
+            name: Notification.Name.AuthStateDidChange,
+            object: nil
+        )
+        ///-----------------------------------///
+        
         persistentController = PersistentController()
         dataManager = DataManager(persistentController)
-        FirebaseApp.configure()
+        if FirebaseApp.app() == nil {
+            FirebaseApp.configure()
+        }
         return true
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
        persistentController.saveViewContext()
     }
+    
+    
+    // MARK:- HELPER FUNCTIONS
+    
+    @objc internal func userStateDidChange() {
+        DispatchQueue.main.async {
+            self.handleAppState()
+        }
+    }
+    
+    ///---------subject to change----------///
+    private func handleAppState() {
+        let sb = UIStoryboard.init(name: "CustomerSupport", bundle: nil)
+        if let user = Auth.auth().currentUser {
+            //            let vc = sb.instantiateViewController(withIdentifier: "userlist") as! UserListViewController
+            //            vc.currentUser = user
+            //            window?.rootViewController = vc
+        } else {
+            let vc = sb.instantiateViewController(withIdentifier: "login")
+            window?.rootViewController = vc
+        }
+    }
+    ///-----------------------------------///
+    
 }
 
 extension UIApplication {

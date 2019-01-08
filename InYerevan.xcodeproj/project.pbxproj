@@ -64,6 +64,17 @@
 		86D1EF9E21E4D00400738187 /* PersistentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D1EF9D21E4D00300738187 /* PersistentController.swift */; };
 		86D1EFA121E4D06700738187 /* In_Yerevan.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 86D1EF9F21E4D06600738187 /* In_Yerevan.xcdatamodeld */; };
 		98E1B5C4496047B6E7761DDF /* Pods_InYerevan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DABF38CD586899DF4A2D30E /* Pods_InYerevan.framework */; };
+		D4C8F9D421E4DAD400EF213C /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C8F9D121E4DAD300EF213C /* Message.swift */; };
+		D4C8F9D521E4DAD400EF213C /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C8F9D221E4DAD300EF213C /* Channel.swift */; };
+		D4C8F9D621E4DAD400EF213C /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C8F9D321E4DAD300EF213C /* Image.swift */; };
+		D4C8F9DA21E4DB1500EF213C /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C8F9D721E4DB1400EF213C /* ChatViewController.swift */; };
+		D4C8F9DB21E4DB1500EF213C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C8F9D821E4DB1400EF213C /* LoginViewController.swift */; };
+		D4C8F9DC21E4DB1500EF213C /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C8F9D921E4DB1400EF213C /* UserListViewController.swift */; };
+		D4C8F9DE21E4DBA400EF213C /* ChatSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C8F9DD21E4DBA400EF213C /* ChatSettings.swift */; };
+		D4C8F9E221E4DBFE00EF213C /* UIScrollView+Bottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C8F9DF21E4DBFD00EF213C /* UIScrollView+Bottom.swift */; };
+		D4C8F9E321E4DBFE00EF213C /* String+Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C8F9E021E4DBFE00EF213C /* String+Emoji.swift */; };
+		D4C8F9E421E4DBFE00EF213C /* UIImage+Scaling.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C8F9E121E4DBFE00EF213C /* UIImage+Scaling.swift */; };
+		D4C8F9E621E4DC3700EF213C /* CustomerSupport.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4C8F9E521E4DC3700EF213C /* CustomerSupport.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -128,6 +139,17 @@
 		86D1EF9C21E4CF5400738187 /* InYerevan-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "InYerevan-Bridging-Header.h"; sourceTree = "<group>"; };
 		86D1EF9D21E4D00300738187 /* PersistentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentController.swift; sourceTree = "<group>"; };
 		86D1EFA021E4D06600738187 /* In_Yerevan.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = In_Yerevan.xcdatamodel; sourceTree = "<group>"; };
+		D4C8F9D121E4DAD300EF213C /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		D4C8F9D221E4DAD300EF213C /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
+		D4C8F9D321E4DAD300EF213C /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		D4C8F9D721E4DB1400EF213C /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		D4C8F9D821E4DB1400EF213C /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		D4C8F9D921E4DB1400EF213C /* UserListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
+		D4C8F9DD21E4DBA400EF213C /* ChatSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatSettings.swift; sourceTree = "<group>"; };
+		D4C8F9DF21E4DBFD00EF213C /* UIScrollView+Bottom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Bottom.swift"; sourceTree = "<group>"; };
+		D4C8F9E021E4DBFE00EF213C /* String+Emoji.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Emoji.swift"; sourceTree = "<group>"; };
+		D4C8F9E121E4DBFE00EF213C /* UIImage+Scaling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Scaling.swift"; sourceTree = "<group>"; };
+		D4C8F9E521E4DC3700EF213C /* CustomerSupport.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CustomerSupport.storyboard; sourceTree = "<group>"; };
 		FB310A817D54909FA5104329 /* Pods-InYerevan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InYerevan.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InYerevan/Pods-InYerevan.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -202,6 +224,7 @@
 				86D1EEFE21E4AEBD00738187 /* Main.storyboard */,
 				86D1EF2121E4B67A00738187 /* Home.storyboard */,
 				86D1EF2321E4B6F600738187 /* Events.storyboard */,
+				D4C8F9E521E4DC3700EF213C /* CustomerSupport.storyboard */,
 				86D1EF2521E4B73700738187 /* HotelsAndRestaurants.storyboard */,
 				86D1EF2921E4B7AF00738187 /* Xib files */,
 			);
@@ -211,6 +234,7 @@
 		86D1EF0D21E4B48E00738187 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D4C8F9D021E4DA8E00EF213C /* Customer Support */,
 				86D1EF8221E4C4AD00738187 /* Hotels & Restaurants */,
 				86D1EF7B21E4C3FC00738187 /* Event */,
 				86D1EF7021E4C27F00738187 /* Home */,
@@ -222,6 +246,9 @@
 			isa = PBXGroup;
 			children = (
 				86D1EF9D21E4D00300738187 /* PersistentController.swift */,
+				D4C8F9D221E4DAD300EF213C /* Channel.swift */,
+				D4C8F9D321E4DAD300EF213C /* Image.swift */,
+				D4C8F9D121E4DAD300EF213C /* Message.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -232,6 +259,9 @@
 				86D1EF3721E4B82F00738187 /* CLLocationManager+ AuthRequest.swift */,
 				86D1EF3621E4B82F00738187 /* Date+String.swift */,
 				86D1EF3521E4B82F00738187 /* PHPhotoLibrary+ AuthRequest.swift */,
+				D4C8F9E021E4DBFE00EF213C /* String+Emoji.swift */,
+				D4C8F9E121E4DBFE00EF213C /* UIImage+Scaling.swift */,
+				D4C8F9DF21E4DBFD00EF213C /* UIScrollView+Bottom.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -239,6 +269,7 @@
 		86D1EF1121E4B4E400738187 /* Custom Classes */ = {
 			isa = PBXGroup;
 			children = (
+				D4C8F9DD21E4DBA400EF213C /* ChatSettings.swift */,
 				86D1EF6821E4C08100738187 /* CollectionViewCells */,
 				86D1EF6021E4C01700738187 /* TableViewCell */,
 				86D1EF9721E4C75F00738187 /* TextField */,
@@ -483,6 +514,16 @@
 			path = UiVIew;
 			sourceTree = "<group>";
 		};
+		D4C8F9D021E4DA8E00EF213C /* Customer Support */ = {
+			isa = PBXGroup;
+			children = (
+				D4C8F9D721E4DB1400EF213C /* ChatViewController.swift */,
+				D4C8F9D821E4DB1400EF213C /* LoginViewController.swift */,
+				D4C8F9D921E4DB1400EF213C /* UserListViewController.swift */,
+			);
+			path = "Customer Support";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -545,6 +586,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4C8F9E621E4DC3700EF213C /* CustomerSupport.storyboard in Resources */,
 				86D1EF2621E4B73700738187 /* HotelsAndRestaurants.storyboard in Resources */,
 				86D1EF5721E4BEB500738187 /* HotelMapTableViewCell.xib in Resources */,
 				86D1EF4821E4BD4A00738187 /* HotelsTableViewCell.xib in Resources */,
@@ -670,8 +712,10 @@
 				86D1EF1F21E4B5CA00738187 /* DataManager.swift in Sources */,
 				86D1EF3A21E4B83000738187 /* CLLocationManager+ AuthRequest.swift in Sources */,
 				86D1EF9521E4C69A00738187 /* TopRestaurantTableViewCell.swift in Sources */,
+				D4C8F9D621E4DAD400EF213C /* Image.swift in Sources */,
 				86D1EF7921E4C31400738187 /* EventViewController.swift in Sources */,
 				86D1EF1A21E4B57100738187 /* DatePickerInputTextField.swift in Sources */,
+				D4C8F9DC21E4DB1500EF213C /* UserListViewController.swift in Sources */,
 				86D1EF1C21E4B57100738187 /* GradientView.swift in Sources */,
 				86D1EF6521E4C05800738187 /* UpcomingTableViewCell.swift in Sources */,
 				86D1EF6621E4C05800738187 /* EventTableViewCell.swift in Sources */,
@@ -681,19 +725,25 @@
 				86D1EF8021E4C41300738187 /* ProfileViewController.swift in Sources */,
 				86D1EF7721E4C31400738187 /* UpcomingEventViewController.swift in Sources */,
 				86D1EFA121E4D06700738187 /* In_Yerevan.xcdatamodeld in Sources */,
+				D4C8F9D521E4DAD400EF213C /* Channel.swift in Sources */,
 				86D1EF6E21E4C0B500738187 /* NewEventCollectionViewCellWithPicture.swift in Sources */,
 				86D1EF5621E4BEB500738187 /* HotelMapTableViewCell.swift in Sources */,
 				86D1EF5D21E4BF4200738187 /* HotelsTableViewCell.swift in Sources */,
 				86D1EF5321E4BE7400738187 /* RestaurantsTableViewCell.swift in Sources */,
+				D4C8F9DB21E4DB1500EF213C /* LoginViewController.swift in Sources */,
+				D4C8F9E221E4DBFE00EF213C /* UIScrollView+Bottom.swift in Sources */,
 				86D1EF3221E4B7F200738187 /* ImagePickerCollectionViewCell.swift in Sources */,
+				D4C8F9E421E4DBFE00EF213C /* UIImage+Scaling.swift in Sources */,
 				86D1EF3921E4B83000738187 /* Date+String.swift in Sources */,
 				86D1EF7F21E4C41300738187 /* HomeViewController.swift in Sources */,
+				D4C8F9D421E4DAD400EF213C /* Message.swift in Sources */,
 				86D1EF8921E4C4D800738187 /* RestaurantDescriptionViewController.swift in Sources */,
 				86D1EF6C21E4C0B500738187 /* EventCategoryCollectionViewCell.swift in Sources */,
 				86D1EF7621E4C31400738187 /* EventsViewController.swift in Sources */,
 				86D1EF7A21E4C31400738187 /* EventCategoriesViewController.swift in Sources */,
 				86D1EF9E21E4D00400738187 /* PersistentController.swift in Sources */,
 				86D1EF6D21E4C0B500738187 /* EventPictureCollectionViewCell.swift in Sources */,
+				D4C8F9E321E4DBFE00EF213C /* String+Emoji.swift in Sources */,
 				86D1EF5021E4BE0F00738187 /* HotelOverviewTableViewCell.swift in Sources */,
 				86D1EF8B21E4C4D800738187 /* RestaurantsViewController.swift in Sources */,
 				86D1EF8421E4C4C300738187 /* MainReserveViewController.swift in Sources */,
@@ -701,6 +751,8 @@
 				86D1EF2C21E4B7D500738187 /* ImagePickerViewController.swift in Sources */,
 				86D1EF5A21E4BEF200738187 /* HotelReviewsTableViewCell.swift in Sources */,
 				86D1EF8121E4C41300738187 /* LoginRegistrationViewController.swift in Sources */,
+				D4C8F9DA21E4DB1500EF213C /* ChatViewController.swift in Sources */,
+				D4C8F9DE21E4DBA400EF213C /* ChatSettings.swift in Sources */,
 				86D1EF4E21E4BDBD00738187 /* CategoryTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
