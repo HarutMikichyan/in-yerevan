@@ -1,3 +1,20 @@
+Skip to content
+ 
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ @GevorgDar Sign out
+0
+0 0 vtadevosian/in-yerevan Private
+ Code  Issues 0  Pull requests 0  Projects 0  Wiki  Insights
+aca-project/.gitignore
+f726b44  9 minutes ago
+ Gev Darbinyan move .gitignore
+     
+76 lines (62 sloc)  1.5 KB
 # Xcode
 #
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
@@ -32,6 +49,10 @@ xcuserdata/
 timeline.xctimeline
 playground.xcworkspace
 
+##
+.DS_Store
+../
+
 # Swift Package Manager
 #
 # Add this line if you want to avoid checking in source code from Swift Package Manager dependencies.
@@ -46,7 +67,10 @@ playground.xcworkspace
 # you should judge for yourself, the pros and cons are mentioned at:
 # https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
 #
-# Pods/
+Pods/
+
+#IgnoreGoogle Plist
+GoogleService-Info.plist
 
 # Carthage
 #
@@ -66,3 +90,16 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
+© 2018 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
+Press h to open a hovercard with more details.
