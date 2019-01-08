@@ -69,8 +69,8 @@ playground.xcworkspace
 #
 Pods/
 
-#IgnoreGoogle Plist
-GoogleService-Info.plist
+#IgnoreGoogle Plist #####################
+#GoogleService-Info.plist
 
 # Carthage
 #

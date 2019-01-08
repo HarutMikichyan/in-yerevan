@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aqb-7k-GPQ">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Tab Bar Controller-->
+        <scene sceneID="zSf-ej-pHp">
+            <objects>
+                <tabBarController id="aqb-7k-GPQ" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="VEM-iV-Ytd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.58916455509999999" green="0.64601045850000005" blue="0.69420760869999998" alpha="0.38014603029999999" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" red="0.58039215690000001" green="0.19215686269999999" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="qop-pj-YfA" kind="relationship" relationship="viewControllers" id="W5W-2U-pOC"/>
+                        <segue destination="yBV-Gv-41h" kind="relationship" relationship="viewControllers" id="skO-c0-0MK"/>
+                        <segue destination="yEt-I8-Yfv" kind="relationship" relationship="viewControllers" id="nqI-3J-gMc"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gkI-Yh-7sb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="948" y="125"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="Wgt-9U-b8s">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="Home" storyboardName="Home" id="qop-pj-YfA" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Home" image="HomeRPG-Compact" id="5Xk-bd-VQx"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jiu-O8-RRK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1745" y="-156"/>
+        </scene>
+        <!--Events-->
+        <scene sceneID="5XF-kx-gWx">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Events" id="yBV-Gv-41h" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="AllEvents" image="EventRPG-Compact" id="g7S-3r-9A8"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l7k-cz-sMz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1745" y="42"/>
+        </scene>
+        <!--HotelsAndRestaurants-->
+        <scene sceneID="885-gC-YzC">
+            <objects>
+                <viewControllerPlaceholder storyboardName="HotelsAndRestaurants" id="yEt-I8-Yfv" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="AdditionalAbilities" image="AdditionalAbilitiesRPG-Compact" id="tiL-L2-MDG"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="New-eF-gW4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1745" y="223"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="AdditionalAbilitiesRPG-Compact" width="34" height="34"/>
+        <image name="EventRPG-Compact" width="34" height="34"/>
+        <image name="HomeRPG-Compact" width="34" height="34"/>
+    </resources>
+</document>
