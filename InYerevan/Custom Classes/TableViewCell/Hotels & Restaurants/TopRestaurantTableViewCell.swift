@@ -9,7 +9,7 @@
 import UIKit
 
 class TopRestaurantTableViewCell: UITableViewCell {
-
+    
     static let id = "TopRestaurantTableViewCell"
     
     @IBOutlet weak var topRestaurantCollectionView: UICollectionView!
