@@ -30,15 +30,15 @@ class LoginRegistrationViewController: UIViewController, GIDSignInUIDelegate {
     @IBOutlet weak var resetErrorLabel: UILabel!
     @IBOutlet weak var GSignIn: GIDSignInButton!
     @IBOutlet weak var resetEmailTextField: UITextField!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
+    private var isFirstLoad: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         homeImage.layer.cornerRadius = 12
         homeImage.layer.masksToBounds = true
-        
-        uIView.addSubview(loginView)
-        loginView.frame = uIView.bounds
         
         GIDSignIn.sharedInstance().uiDelegate = self
         // GIDSignIn.sharedInstance()?.signInSilently()
@@ -47,18 +47,28 @@ class LoginRegistrationViewController: UIViewController, GIDSignInUIDelegate {
         // GIDSignIn.sharedInstance()?.signOut()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        if isFirstLoad {
+            uIView.addSubview(loginView)
+            loginView.frame = uIView.bounds
+            isFirstLoad = !isFirstLoad
+        }
+    }
+    
     @IBAction func loginAction() {
         Auth.auth().signIn(withEmail: loginEmailTextField.text!, password: loginPasswordTextField.text!, completion: {(user, error) in
             if let firebaseError = error {
                 self.loginErrorLabel.text = firebaseError.localizedDescription
                 return
             }
-            self.logIn(userEmail: self.loginEmailTextField.text!, isAdministration: false)
+            self.logIn(userEmail: self.loginEmailTextField.text!)
         })
     }
     
     @IBAction func scipForNowAction() {
-        logIn(userEmail: "guest", isAdministration: false)
+        logIn(userEmail: "guest")
     }
     
     @IBAction func registrationAction() {
@@ -71,19 +81,8 @@ class LoginRegistrationViewController: UIViewController, GIDSignInUIDelegate {
                 self.registrationErrorLabel.text = firebaseError.localizedDescription
                 return
             }
-            self.logIn(userEmail: self.loginEmailTextField.text!, isAdministration: false)
+            self.logIn(userEmail: self.loginEmailTextField.text!)
         })
-    }
-    
-    @IBAction func signInWithMailAction() {
-        //        Auth.auth().signInAndRetrieveData(with: signInButton!, completion: {(authResult, error) in
-        //            if let error = error {
-        //                // ...
-        //                return
-        //            }
-        //            // User is signed in
-        //            // ...
-        //        })
     }
     
     @IBAction func changePasswordAction() {
@@ -136,14 +135,22 @@ class LoginRegistrationViewController: UIViewController, GIDSignInUIDelegate {
         resetView.removeFromSuperview()
     }
     
-    func logIn(userEmail: String, isAdministration: Bool) {
+    func logIn(userEmail: String) {
+        var isAdministration: Bool = false
+        
+        for item in User.administration {
+            if item == userEmail {
+                isAdministration = true
+                break
+            }
+        }
+        
         UserDefaults.standard.set(userEmail, forKey: "userEmail")
         UserDefaults.standard.set(isAdministration, forKey: "isAdministration")
         
-        let storyboard = UIStoryboard(name: "Home", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "TabBarController")
         
-        self.navigationController?.pushViewController(vc, animated: true)
-        self.navigationController?.viewControllers = [vc]
+        self.show(vc, sender: nil)
     }
 }

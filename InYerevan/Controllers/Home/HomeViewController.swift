@@ -12,7 +12,7 @@ import FirebaseFirestore
 
 class HomeViewController: UIViewController {
 
-    public var name: String!
+    private var name = User.email
     
     private let db = Firestore.firestore()
     private var channels = [Channel]()
@@ -44,7 +44,6 @@ class HomeViewController: UIViewController {
         channels.sort()
     }
     
-    
     private func handleDocumentChange(_ change: DocumentChange) {
         guard let channel = Channel(document: change.document) else { ///-------
             return
@@ -60,28 +59,27 @@ class HomeViewController: UIViewController {
     @IBAction func onlineSupportAction() {
         ChatSettings.displayName = name
         let sb = UIStoryboard(name: "Home", bundle: nil)
-        // TO DO: user or sopport .. login
-        if name != "host" {
+        
+        if User.isAdministration {
+            let vc = sb.instantiateViewController(withIdentifier: "userlist") as! UserListViewController
+            navigationController?.pushViewController(vc, animated: true)
+        } else {
             let vc = sb.instantiateViewController(withIdentifier: "chatvc") as! ChatViewController
             if channels.contains(Channel(name: name)) {
                 let index = channels.index(of: Channel(name: name))
                 vc.channel = channels[index!]
                 // vc.user = Auth.auth().currentUser
-                navigationController?.setViewControllers([vc], animated: true)
+                navigationController?.pushViewController(vc, animated: true)
             } else {
                 channelReference.addDocument(data: Channel(name: name).representation) { error in
                     if let e = error {
                         print("Error saving channel: \(e.localizedDescription)")
                     }
                 }
-                
             }
             vc.title = "Customer Support"
             //            vc.newlyCreatedChannelName = name
             //            vc.shouldOpenChatInstantly = true
-        } else {
-            let vc = sb.instantiateViewController(withIdentifier: "userlist") as! UserListViewController
-            navigationController?.setViewControllers([vc], animated: true)
         }
     }
     
