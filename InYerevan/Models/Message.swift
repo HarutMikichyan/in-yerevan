@@ -41,23 +41,23 @@ struct Message: MessageType {
     
     // MARK:- INITIALIZERS
     
-    init(user: User, content: String) {
-        sender = Sender(id: user.uid, displayName: ChatSettings.displayName)
+    init(content: String) {
+        sender = Sender(id: User.email, displayName: ChatSettings.displayName)
         self.content = content
         sentDate = Date()
         id = nil
     }
     
-    init(user: User, image: UIImage) {
-        sender = Sender(id: user.uid, displayName: ChatSettings.displayName)
+    init(image: UIImage) {
+        sender = Sender(id: User.email, displayName: ChatSettings.displayName)
         self.image = image
         content = ""
         sentDate = Date()
         id = nil
     }
     
-    init(user: User, emoji: String) {
-        sender = Sender(id: user.uid, displayName: ChatSettings.displayName)
+    init(emoji: String) {
+        sender = Sender(id: User.email, displayName: ChatSettings.displayName)
         self.emoji = emoji
         content = emoji
         sentDate = Date()

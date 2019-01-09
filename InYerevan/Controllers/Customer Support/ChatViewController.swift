@@ -17,7 +17,6 @@ final class ChatViewController: MessagesViewController {
     
     // MARK:- MAIN PROPERTIES
     
-    var user: User!
     var channel: Channel!
     
     private let db = Firestore.firestore()
@@ -147,7 +146,7 @@ final class ChatViewController: MessagesViewController {
                 return
             }
             
-            var message = Message(user: self.user, image: image)
+            var message = Message(image: image)
             message.downloadURL = url
             self.save(message)
             self.messagesCollectionView.scrollToBottom()
@@ -310,7 +309,7 @@ extension ChatViewController: MessagesDataSource {
     }
     
     func currentSender() -> Sender {
-        return Sender(id: user.uid, displayName: ChatSettings.displayName)
+        return Sender(id: User.email, displayName: ChatSettings.displayName)
     }
     
     func numberOfMessages(in messagesCollectionView: MessagesCollectionView) -> Int {
@@ -334,9 +333,9 @@ extension ChatViewController: MessagesDataSource {
 extension ChatViewController: MessageInputBarDelegate {
     func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
         if text.containsOnlyEmoji {
-            save(Message(user: user, emoji: text))
+            save(Message(emoji: text))
         } else {
-            save(Message(user: user, content: text))
+            save(Message(content: text))
         }
         inputBar.inputTextView.text = ""
     }
