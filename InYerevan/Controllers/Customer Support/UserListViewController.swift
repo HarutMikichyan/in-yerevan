@@ -165,7 +165,7 @@ extension UserListViewController {
 // MARK:- TABLE VIEW DELEGATE
 extension UserListViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let sb = UIStoryboard(name: "CustomerSupport", bundle: nil)
+        let sb = UIStoryboard(name: "Home", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "chatvc") as! ChatViewController
         vc.channel = channels[indexPath.row]
         vc.title = vc.channel.name

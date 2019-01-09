@@ -603,28 +603,26 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-        86D1EEF521E4AEBD00738187 /* Resources */ = {
-            isa = PBXResourcesBuildPhase;
-            buildActionMask = 2147483647;
-            files = (
-
-                708A692221E5421900932BFA /* HotelRestaurantMapTableViewCell.xib in Resources */,
-                D4C8F9E621E4DC3700EF213C /* CustomerSupport.storyboard in Resources */,
-                86D1EF2621E4B73700738187 /* HotelsAndRestaurants.storyboard in Resources */,
-                86D1EF0521E4AECF00738187 /* LaunchScreen.storyboard in Resources */,
-                86D1EF0221E4AECF00738187 /* Assets.xcassets in Resources */,
-                86D1EF4221E4BD2400738187 /* CategoryTableViewCell.xib in Resources */,
-                86D1EF9B21E4C9BD00738187 /* GoogleService-Info.plist in Resources */,
-                86D1EF0021E4AEBD00738187 /* Main.storyboard in Resources */,
-                86D1EF2221E4B67A00738187 /* Home.storyboard in Resources */,
-                86D1EF2D21E4B7D500738187 /* ImagePickerViewController.xib in Resources */,
-                86D1EF3121E4B7F200738187 /* ImagePickerCollectionViewCell.xib in Resources */,
-                86D1EF2421E4B6F700738187 /* Events.storyboard in Resources */,
-                708A691221E4E6A200932BFA /* ReserveRegistrationTableViewCell.xib in Resources */,
-                708A691E21E521C700932BFA /* HotelOverviewTableViewCell.xib in Resources */,
-            );
-            runOnlyForDeploymentPostprocessing = 0;
-        };
+		86D1EEF521E4AEBD00738187 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				708A692221E5421900932BFA /* HotelRestaurantMapTableViewCell.xib in Resources */,
+				86D1EF2621E4B73700738187 /* HotelsAndRestaurants.storyboard in Resources */,
+				86D1EF0521E4AECF00738187 /* LaunchScreen.storyboard in Resources */,
+				86D1EF0221E4AECF00738187 /* Assets.xcassets in Resources */,
+				86D1EF4221E4BD2400738187 /* CategoryTableViewCell.xib in Resources */,
+				86D1EF9B21E4C9BD00738187 /* GoogleService-Info.plist in Resources */,
+				86D1EF0021E4AEBD00738187 /* Main.storyboard in Resources */,
+				86D1EF2221E4B67A00738187 /* Home.storyboard in Resources */,
+				86D1EF2D21E4B7D500738187 /* ImagePickerViewController.xib in Resources */,
+				86D1EF3121E4B7F200738187 /* ImagePickerCollectionViewCell.xib in Resources */,
+				86D1EF2421E4B6F700738187 /* Events.storyboard in Resources */,
+				708A691221E4E6A200932BFA /* ReserveRegistrationTableViewCell.xib in Resources */,
+				708A691E21E521C700932BFA /* HotelOverviewTableViewCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -723,70 +721,66 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-        86D1EEF321E4AEBD00738187 /* Sources */ = {
-            isa = PBXSourcesBuildPhase;
-            buildActionMask = 2147483647;
-            files = (
-                708A690E21E4E66100932BFA /* ReserveRegistrationViewController.swift in Sources */,
-                86AFF76E21E4D22800990FA8 /* TopRestaurantCollectionViewCell.swift in Sources */,
-                86D1EF9621E4C69A00738187 /* TopHotelTableViewCell.swift in Sources */,
-                86D1EF2021E4B5CA00738187 /* AppDelegate.swift in Sources */,
-                86AFF76C21E4D1D100990FA8 /* TopHotelCollectionViewCell.swift in Sources */,
-                708A692621E557F600932BFA /* RestaurantTableViewCell.swift in Sources */,
-                86D1EF1B21E4B57100738187 /* MapInputTextField.swift in Sources */,
-                86D1EF3821E4B83000738187 /* PHPhotoLibrary+ AuthRequest.swift in Sources */,
-                86D1EF1F21E4B5CA00738187 /* DataManager.swift in Sources */,
-                86D1EF3A21E4B83000738187 /* CLLocationManager+ AuthRequest.swift in Sources */,
-                86D1EF9521E4C69A00738187 /* TopRestaurantTableViewCell.swift in Sources */,
-                D4C8F9D621E4DAD400EF213C /* Image.swift in Sources */,
-                86D1EF7921E4C31400738187 /* EventViewController.swift in Sources */,
-                708A691121E4E6A200932BFA /* ReserveRegistrationTableViewCell.swift in Sources */,
-                86D1EF1A21E4B57100738187 /* DatePickerInputTextField.swift in Sources */,
-                D4C8F9DC21E4DB1500EF213C /* UserListViewController.swift in Sources */,
-                86D1EF1C21E4B57100738187 /* GradientView.swift in Sources */,
-                86D1EF6521E4C05800738187 /* UpcomingTableViewCell.swift in Sources */,
-                86D1EF6621E4C05800738187 /* EventTableViewCell.swift in Sources */,
-                86D1EF1921E4B57100738187 /* DoneButton.swift in Sources */,
-                86D1EF8A21E4C4D800738187 /* HotelsViewController.swift in Sources */,
-                86D1EF7821E4C31400738187 /* NewEventViewController.swift in Sources */,
-                86D1EF8021E4C41300738187 /* ProfileViewController.swift in Sources */,
-                86D1EF7721E4C31400738187 /* UpcomingEventViewController.swift in Sources */,
-                86D1EFA121E4D06700738187 /* In_Yerevan.xcdatamodeld in Sources */,
-                D4C8F9D521E4DAD400EF213C /* Channel.swift in Sources */,
-                86D1EF6E21E4C0B500738187 /* NewEventCollectionViewCellWithPicture.swift in Sources */,
-                708A691D21E521C700932BFA /* HotelOverviewTableViewCell.swift in Sources */,
-				86D1EF5621E4BEB500738187 /* HotelMapTableViewCell.swift in Sources */,
-				86D1EF5D21E4BF4200738187 /* HotelsTableViewCell.swift in Sources */,
-				86D1EF5321E4BE7400738187 /* RestaurantsTableViewCell.swift in Sources */,
-                D4C8F9E221E4DBFE00EF213C /* UIScrollView+Bottom.swift in Sources */,
-                86D1EF3221E4B7F200738187 /* ImagePickerCollectionViewCell.swift in Sources */,
-                D4C8F9E421E4DBFE00EF213C /* UIImage+Scaling.swift in Sources */,
-                86D1EF3921E4B83000738187 /* Date+String.swift in Sources */,
-                86D1EF7F21E4C41300738187 /* HomeViewController.swift in Sources */,
-                D4C8F9D421E4DAD400EF213C /* Message.swift in Sources */,
-                86D1EF8921E4C4D800738187 /* RestaurantDescriptionViewController.swift in Sources */,
-                86D1EF6C21E4C0B500738187 /* EventCategoryCollectionViewCell.swift in Sources */,
-                86D1EF7621E4C31400738187 /* EventsViewController.swift in Sources */,
-                86D1EF7A21E4C31400738187 /* EventCategoriesViewController.swift in Sources */,
-                86D1EF9E21E4D00400738187 /* PersistentController.swift in Sources */,
-                708A690C21E4E62400932BFA /* ReserveModel.swift in Sources */,
-                86D1EF6D21E4C0B500738187 /* EventPictureCollectionViewCell.swift in Sources */,
-                D4C8F9E321E4DBFE00EF213C /* String+Emoji.swift in Sources */,
-                86D1EF5021E4BE0F00738187 /* HotelOverviewTableViewCell.swift in Sources */,
-                F9E58D8F21E604F700D0A88C /* User.swift in Sources */,
-                86D1EF8B21E4C4D800738187 /* RestaurantsViewController.swift in Sources */,
-                86D1EF8421E4C4C300738187 /* MainReserveViewController.swift in Sources */,
-                86D1EF8C21E4C4D800738187 /* HotelDescriptionViewController.swift in Sources */,
-                86D1EF2C21E4B7D500738187 /* ImagePickerViewController.swift in Sources */,
-                708A692121E5421900932BFA /* HotelRestaurantMapTableViewCell.swift in Sources */,
-                86D1EF8121E4C41300738187 /* LoginRegistrationViewController.swift in Sources */,
-                708A692421E551FC00932BFA /* HotelTableViewCell.swift in Sources */,
-                D4C8F9DA21E4DB1500EF213C /* ChatViewController.swift in Sources */,
-                D4C8F9DE21E4DBA400EF213C /* ChatSettings.swift in Sources */,
-                86D1EF4E21E4BDBD00738187 /* CategoryTableViewCell.swift in Sources */,
-            );
-            runOnlyForDeploymentPostprocessing = 0;
-        };
+		86D1EEF321E4AEBD00738187 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				708A690E21E4E66100932BFA /* ReserveRegistrationViewController.swift in Sources */,
+				86AFF76E21E4D22800990FA8 /* TopRestaurantCollectionViewCell.swift in Sources */,
+				86D1EF9621E4C69A00738187 /* TopHotelTableViewCell.swift in Sources */,
+				86D1EF2021E4B5CA00738187 /* AppDelegate.swift in Sources */,
+				86AFF76C21E4D1D100990FA8 /* TopHotelCollectionViewCell.swift in Sources */,
+				708A692621E557F600932BFA /* RestaurantTableViewCell.swift in Sources */,
+				86D1EF1B21E4B57100738187 /* MapInputTextField.swift in Sources */,
+				86D1EF3821E4B83000738187 /* PHPhotoLibrary+ AuthRequest.swift in Sources */,
+				86D1EF1F21E4B5CA00738187 /* DataManager.swift in Sources */,
+				86D1EF3A21E4B83000738187 /* CLLocationManager+ AuthRequest.swift in Sources */,
+				86D1EF9521E4C69A00738187 /* TopRestaurantTableViewCell.swift in Sources */,
+				D4C8F9D621E4DAD400EF213C /* Image.swift in Sources */,
+				86D1EF7921E4C31400738187 /* EventViewController.swift in Sources */,
+				708A691121E4E6A200932BFA /* ReserveRegistrationTableViewCell.swift in Sources */,
+				86D1EF1A21E4B57100738187 /* DatePickerInputTextField.swift in Sources */,
+				D4C8F9DC21E4DB1500EF213C /* UserListViewController.swift in Sources */,
+				86D1EF1C21E4B57100738187 /* GradientView.swift in Sources */,
+				86D1EF6521E4C05800738187 /* UpcomingTableViewCell.swift in Sources */,
+				86D1EF6621E4C05800738187 /* EventTableViewCell.swift in Sources */,
+				86D1EF1921E4B57100738187 /* DoneButton.swift in Sources */,
+				86D1EF8A21E4C4D800738187 /* HotelsViewController.swift in Sources */,
+				86D1EF7821E4C31400738187 /* NewEventViewController.swift in Sources */,
+				86D1EF8021E4C41300738187 /* ProfileViewController.swift in Sources */,
+				86D1EF7721E4C31400738187 /* UpcomingEventViewController.swift in Sources */,
+				86D1EFA121E4D06700738187 /* In_Yerevan.xcdatamodeld in Sources */,
+				D4C8F9D521E4DAD400EF213C /* Channel.swift in Sources */,
+				86D1EF6E21E4C0B500738187 /* NewEventCollectionViewCellWithPicture.swift in Sources */,
+				708A691D21E521C700932BFA /* HotelOverviewTableViewCell.swift in Sources */,
+				D4C8F9E221E4DBFE00EF213C /* UIScrollView+Bottom.swift in Sources */,
+				86D1EF3221E4B7F200738187 /* ImagePickerCollectionViewCell.swift in Sources */,
+				D4C8F9E421E4DBFE00EF213C /* UIImage+Scaling.swift in Sources */,
+				86D1EF3921E4B83000738187 /* Date+String.swift in Sources */,
+				86D1EF7F21E4C41300738187 /* HomeViewController.swift in Sources */,
+				D4C8F9D421E4DAD400EF213C /* Message.swift in Sources */,
+				86D1EF8921E4C4D800738187 /* RestaurantDescriptionViewController.swift in Sources */,
+				86D1EF6C21E4C0B500738187 /* EventCategoryCollectionViewCell.swift in Sources */,
+				86D1EF7621E4C31400738187 /* EventsViewController.swift in Sources */,
+				86D1EF7A21E4C31400738187 /* EventCategoriesViewController.swift in Sources */,
+				86D1EF9E21E4D00400738187 /* PersistentController.swift in Sources */,
+				708A690C21E4E62400932BFA /* ReserveModel.swift in Sources */,
+				86D1EF6D21E4C0B500738187 /* EventPictureCollectionViewCell.swift in Sources */,
+				D4C8F9E321E4DBFE00EF213C /* String+Emoji.swift in Sources */,
+				F9E58D8F21E604F700D0A88C /* User.swift in Sources */,
+				86D1EF8B21E4C4D800738187 /* RestaurantsViewController.swift in Sources */,
+				86D1EF8421E4C4C300738187 /* MainReserveViewController.swift in Sources */,
+				86D1EF8C21E4C4D800738187 /* HotelDescriptionViewController.swift in Sources */,
+				86D1EF2C21E4B7D500738187 /* ImagePickerViewController.swift in Sources */,
+				708A692121E5421900932BFA /* HotelRestaurantMapTableViewCell.swift in Sources */,
+				86D1EF8121E4C41300738187 /* LoginRegistrationViewController.swift in Sources */,
+				708A692421E551FC00932BFA /* HotelTableViewCell.swift in Sources */,
+				D4C8F9DA21E4DB1500EF213C /* ChatViewController.swift in Sources */,
+				D4C8F9DE21E4DBA400EF213C /* ChatSettings.swift in Sources */,
+				86D1EF4E21E4BDBD00738187 /* CategoryTableViewCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
