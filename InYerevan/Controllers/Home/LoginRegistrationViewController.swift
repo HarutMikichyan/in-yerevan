@@ -53,12 +53,12 @@ class LoginRegistrationViewController: UIViewController, GIDSignInUIDelegate {
                 self.loginErrorLabel.text = firebaseError.localizedDescription
                 return
             }
-            self.logIn(userEmail: self.loginEmailTextField.text!, isAdministration: false)
+            self.logIn(userEmail: self.loginEmailTextField.text!)
         })
     }
     
     @IBAction func scipForNowAction() {
-        logIn(userEmail: "guest", isAdministration: false)
+        logIn(userEmail: "guest")
     }
     
     @IBAction func registrationAction() {
@@ -71,7 +71,7 @@ class LoginRegistrationViewController: UIViewController, GIDSignInUIDelegate {
                 self.registrationErrorLabel.text = firebaseError.localizedDescription
                 return
             }
-            self.logIn(userEmail: self.loginEmailTextField.text!, isAdministration: false)
+            self.logIn(userEmail: self.loginEmailTextField.text!)
         })
     }
     
@@ -136,14 +136,22 @@ class LoginRegistrationViewController: UIViewController, GIDSignInUIDelegate {
         resetView.removeFromSuperview()
     }
     
-    func logIn(userEmail: String, isAdministration: Bool) {
+    func logIn(userEmail: String) {
+        var isAdministration: Bool = false
+        
+        for item in User.administration {
+            if item == userEmail {
+                isAdministration = true
+                break
+            }
+        }
+        
         UserDefaults.standard.set(userEmail, forKey: "userEmail")
         UserDefaults.standard.set(isAdministration, forKey: "isAdministration")
         
-        let storyboard = UIStoryboard(name: "Home", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "TabBarController")
         
-        self.navigationController?.pushViewController(vc, animated: true)
-        self.navigationController?.viewControllers = [vc]
+        self.show(vc, sender: nil)
     }
 }
