@@ -12,21 +12,28 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ImagePickerCollectionViewCell" id="gTV-IL-0wX" customClass="ImagePickerCollectionViewCell" customModule="In_Yerevan" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ImagePickerCollectionViewCell" id="gTV-IL-0wX" customClass="ImagePickerCollectionViewCell" customModule="InYerevan" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="156" height="149"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="156" height="149"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jgD-mz-k9m">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Technology" translatesAutoresizingMaskIntoConstraints="NO" id="jgD-mz-k9m">
                         <rect key="frame" x="0.0" y="0.0" width="156" height="149"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkMark" translatesAutoresizingMaskIntoConstraints="NO" id="qFG-tS-yFu">
+                        <rect key="frame" x="114" y="3" width="39" height="37.5"/>
                     </imageView>
                 </subviews>
             </view>
             <constraints>
+                <constraint firstItem="qFG-tS-yFu" firstAttribute="width" secondItem="jgD-mz-k9m" secondAttribute="width" multiplier="1/4" id="3In-Bf-Qxt"/>
+                <constraint firstAttribute="trailing" secondItem="qFG-tS-yFu" secondAttribute="trailing" constant="3" id="Wl1-r0-2Ga"/>
+                <constraint firstItem="qFG-tS-yFu" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="3" id="dcJ-3m-TVZ"/>
                 <constraint firstAttribute="trailing" secondItem="jgD-mz-k9m" secondAttribute="trailing" id="fPm-Vw-9YL"/>
                 <constraint firstAttribute="bottom" secondItem="jgD-mz-k9m" secondAttribute="bottom" id="huK-u1-sLJ"/>
+                <constraint firstItem="qFG-tS-yFu" firstAttribute="height" secondItem="jgD-mz-k9m" secondAttribute="height" multiplier="1/4" id="kuO-R0-2uy"/>
                 <constraint firstItem="jgD-mz-k9m" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="yAc-Yj-Sec"/>
                 <constraint firstItem="jgD-mz-k9m" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="z9x-zC-YHj"/>
             </constraints>
@@ -34,8 +41,13 @@
             <size key="customSize" width="156" height="149"/>
             <connections>
                 <outlet property="backgroundImageView" destination="jgD-mz-k9m" id="sTe-I9-5LU"/>
+                <outlet property="checkMark" destination="qFG-tS-yFu" id="dX7-zJ-djB"/>
             </connections>
             <point key="canvasLocation" x="222.40000000000001" y="199.25037481259372"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="Technology" width="299" height="168"/>
+        <image name="checkMark" width="42" height="42"/>
+    </resources>
 </document>

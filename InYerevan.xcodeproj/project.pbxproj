@@ -607,9 +607,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-
 				708A692221E5421900932BFA /* HotelRestaurantMapTableViewCell.xib in Resources */,
-				D4C8F9E621E4DC3700EF213C /* CustomerSupport.storyboard in Resources */,
 				86D1EF2621E4B73700738187 /* HotelsAndRestaurants.storyboard in Resources */,
 				86D1EF0521E4AECF00738187 /* LaunchScreen.storyboard in Resources */,
 				86D1EF0221E4AECF00738187 /* Assets.xcassets in Resources */,
@@ -755,9 +753,6 @@
 				D4C8F9D521E4DAD400EF213C /* Channel.swift in Sources */,
 				86D1EF6E21E4C0B500738187 /* NewEventCollectionViewCellWithPicture.swift in Sources */,
 				708A691D21E521C700932BFA /* HotelOverviewTableViewCell.swift in Sources */,
-				86D1EF5621E4BEB500738187 /* HotelMapTableViewCell.swift in Sources */,
-				86D1EF5D21E4BF4200738187 /* HotelsTableViewCell.swift in Sources */,
-				86D1EF5321E4BE7400738187 /* RestaurantsTableViewCell.swift in Sources */,
 				D4C8F9E221E4DBFE00EF213C /* UIScrollView+Bottom.swift in Sources */,
 				86D1EF3221E4B7F200738187 /* ImagePickerCollectionViewCell.swift in Sources */,
 				D4C8F9E421E4DBFE00EF213C /* UIImage+Scaling.swift in Sources */,
@@ -772,7 +767,6 @@
 				708A690C21E4E62400932BFA /* ReserveModel.swift in Sources */,
 				86D1EF6D21E4C0B500738187 /* EventPictureCollectionViewCell.swift in Sources */,
 				D4C8F9E321E4DBFE00EF213C /* String+Emoji.swift in Sources */,
-				86D1EF5021E4BE0F00738187 /* HotelOverviewTableViewCell.swift in Sources */,
 				F9E58D8F21E604F700D0A88C /* User.swift in Sources */,
 				86D1EF8B21E4C4D800738187 /* RestaurantsViewController.swift in Sources */,
 				86D1EF8421E4C4C300738187 /* MainReserveViewController.swift in Sources */,
@@ -934,7 +928,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = G8FMHUHF2Y;
+				DEVELOPMENT_TEAM = A6635SAL2C;
 				INFOPLIST_FILE = "$(SRCROOT)/InYerevan/Supporting FIles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -957,7 +951,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = G8FMHUHF2Y;
+				DEVELOPMENT_TEAM = A6635SAL2C;
 				INFOPLIST_FILE = "$(SRCROOT)/InYerevan/Supporting FIles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (

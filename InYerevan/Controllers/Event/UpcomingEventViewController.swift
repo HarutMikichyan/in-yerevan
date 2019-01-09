@@ -22,7 +22,7 @@ class UpcomingEventViewController: UIViewController {
         
         // TODO: - if admin permissions => 
         if true {
-            timeGroup.insert("New envent", at: 0)
+            timeGroup.insert("New event", at: 0)
         }
         // timeGroup = FetchCategories
     }
