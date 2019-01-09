@@ -1,8 +1,8 @@
 //
-//  ReserveModel.swift
+//  HotelsRestaurants.swift
 //  InYerevan
 //
-//  Created by HarutMikichyan on 1/8/19.
+//  Created by HarutMikichyan on 1/10/19.
 //  Copyright © 2019 InYerevan.am. All rights reserved.
 //
 

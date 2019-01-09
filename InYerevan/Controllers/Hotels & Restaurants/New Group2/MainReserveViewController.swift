@@ -7,23 +7,45 @@
 //
 
 import UIKit
+import Firebase
 
 class MainReserveViewController: UIViewController {
     
+    static var hotelsList = [HotelModel]()
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var mainImage: UIImageView!
-    
     var headerView: UIView!
     var newHeaderLayer: CAShapeLayer!
-    
     private let headerHeight: CGFloat = 218
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Main"
         
+        UIApplication.appDelegate.refHotels.observe(.value) { (snapshot) in
+            
+            if snapshot.childrenCount > 0 {
+                MainReserveViewController.hotelsList.removeAll()
+                for hot in snapshot.children.allObjects as! [DataSnapshot] {
+                    let hotelObject = hot.value as! [String: AnyObject]
+                    let id = hotelObject["id"]
+                    let name = hotelObject["hotelName"]
+                    let star = hotelObject["hotelStar"]
+                    let phoneNumber = hotelObject["hotelPhoneNumber"]
+                    let openingHours = hotelObject["openingHoursHotel"]
+                    let location = hotelObject["hotelLocation"]
+                    
+                    
+                    let hotel = HotelModel(id: id as! String, hotelName: name as! String, hotelStar: star as! String, hotelPhoneNumber: phoneNumber as! String, openingHoursHotel: openingHours as! String, hotelLocation: location as! String)
+                    
+                    MainReserveViewController.hotelsList.append(hotel)
+                }
+            }
+        }
+        
         tableView.register(UINib(nibName: ReserveRegistrationTableViewCell.id, bundle: nil), forCellReuseIdentifier: ReserveRegistrationTableViewCell.id)
         tableView.register(UINib(nibName: CategoryTableViewCell.id, bundle: nil), forCellReuseIdentifier: CategoryTableViewCell.id)
+        
+       
     }
     
     override func viewDidLayoutSubviews() {
@@ -119,11 +141,9 @@ extension MainReserveViewController: UITableViewDelegate, UITableViewDataSource 
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: TopHotelTableViewCell.id, for: indexPath) as! TopHotelTableViewCell
-            cell.selectionStyle = .none
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: TopRestaurantTableViewCell.id, for: indexPath) as! TopRestaurantTableViewCell
-            cell.selectionStyle = .none
             return cell
         }
     }

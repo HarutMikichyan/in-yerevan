@@ -15,6 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var dataManager: DataManager!
     var persistentController: PersistentController!
+    
+    // HotelsRestaurants Databse reference
+    var refHotels: DatabaseReference!
+    var refRestaurants: DatabaseReference!
 
     override init() {
         FirebaseApp.configure()
@@ -29,6 +33,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             name: Notification.Name.AuthStateDidChange,
             object: nil
         )
+ 
+        refHotels = Database.database().reference().child("Hotels")
+        refRestaurants = Database.database().reference().child("Restaurants")
+        
+        
         ///-----------------------------------///
         
         persistentController = PersistentController()

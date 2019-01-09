@@ -7,6 +7,7 @@
 //
 
 import UIKit
+//import Firebase
 
 class TopHotelTableViewCell: UITableViewCell {
     
@@ -22,12 +23,19 @@ class TopHotelTableViewCell: UITableViewCell {
 }
 
 extension TopHotelTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        topHotelCollectionView.deselectItem(at: indexPath, animated: true)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopHotelCollectionViewCell.id, for: indexPath) as! TopHotelCollectionViewCell
+//            cell.topHotelsName.text = MainReserveViewController.hotelsList[indexPath.row].hotelName
         return cell
     }
 }

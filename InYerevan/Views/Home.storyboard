@@ -13,7 +13,7 @@
         <!--Login Registration View Controller-->
         <scene sceneID="Koz-QJ-Hn9">
             <objects>
-                <viewController storyboardIdentifier="LoginRegistrationViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cBK-2N-Ldm" customClass="LoginRegistrationViewController" customModule="In_Yerevan" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginRegistrationViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cBK-2N-Ldm" customClass="LoginRegistrationViewController" customModule="InYerevan" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0eo-G5-n9e">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -247,7 +247,7 @@
         <!--Profile View Controller-->
         <scene sceneID="1YN-0W-MDw">
             <objects>
-                <viewController storyboardIdentifier="ProfileViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9iG-Lu-Bm4" customClass="ProfileViewController" customModule="In_Yerevan" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9iG-Lu-Bm4" customClass="ProfileViewController" customModule="InYerevan" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="74M-Zh-yKG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -300,7 +300,7 @@
         <!--Home View Controller-->
         <scene sceneID="Ufe-pR-M8Q">
             <objects>
-                <viewController storyboardIdentifier="HomeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="EtW-LT-gJA" customClass="HomeViewController" customModule="In_Yerevan" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="EtW-LT-gJA" customClass="HomeViewController" customModule="InYerevan" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eb2-2A-b3b">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

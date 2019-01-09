@@ -11,23 +11,26 @@ import Firebase
 
 class ReserveRegistrationViewController: UIViewController {
     
-    static var refHotel: DatabaseReference!
-    var hotelsList = [HotelModel]()
-    
     @IBOutlet weak var registrationView: UIView!
     @IBOutlet var hotelRegistrationView: UIView!
     @IBOutlet var restaurantRegistrationView: UIView!
     
     //MARK: -TextField Outlet
+    // hotel outlet
     @IBOutlet weak var hotelName: UITextField!
     @IBOutlet weak var hotelStar: UITextField!
     @IBOutlet weak var hotelPhoneNumber: UITextField!
     @IBOutlet weak var openingHoursHotel: UITextField!
     @IBOutlet weak var hotelLocation: UITextField!
     
+    //restaurant outlet
+    @IBOutlet weak var restaurantName: UITextField!
+    @IBOutlet weak var restaurantPhoneNumber: UITextField!
+    @IBOutlet weak var openingHoursRestaurant: UITextField!
+    @IBOutlet weak var restaurantLocation: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        ReserveRegistrationViewController.refHotel = Database.database().reference().child("Hotel")
         
         registrationView.addSubview(hotelRegistrationView)
         hotelRegistrationView.frame = registrationView.bounds
@@ -69,10 +72,25 @@ class ReserveRegistrationViewController: UIViewController {
     }
     
     @IBAction func addHotel(_ sender: Any) {
-        let key = ReserveRegistrationViewController.refHotel.childByAutoId().key
-        
-        let hotel = ["id": key, "hotelName": hotelName.text! as String, "hotelStar": hotelStar.text! as String, "hotelPhoneNumber": hotelPhoneNumber.text! as String, "openingHoursHotel": openingHoursHotel.text! as String, "hotelLocation": hotelLocation.text! as String]
-        
-        ReserveRegistrationViewController.refHotel.child(key!).setValue(hotel)
+        if hotelName.text != "" && hotelStar.text != "" && hotelPhoneNumber.text != ""
+            && openingHoursHotel.text != "" && hotelLocation.text != "" {
+            
+            let keyHotel = UIApplication.appDelegate.refHotels.childByAutoId().key
+            
+            let hotel = ["id": keyHotel, "hotelName": hotelName.text!, "hotelStar": hotelStar.text!, "hotelPhoneNumber": hotelPhoneNumber.text!, "openingHoursHotel": openingHoursHotel.text!, "hotelLocation": hotelLocation.text!]
+            
+            UIApplication.appDelegate.refHotels.child(keyHotel!).setValue(hotel)
+        }
+    }
+    
+    @IBAction func addRestaurant(_ sender: Any) {
+        if restaurantName.text != "" && restaurantPhoneNumber.text != ""
+            && openingHoursRestaurant.text != "" && restaurantLocation.text != "" {
+            
+            let keyRestaurant = UIApplication.appDelegate.refRestaurants.childByAutoId().key
+            
+            let restaurant = ["id": keyRestaurant, "restaurantName": restaurantName.text, "restaurantPhoneNumber": restaurantPhoneNumber.text, "openingHoursRestaurant": openingHoursRestaurant.text, "restaurantLocation": restaurantLocation.text]
+            UIApplication.appDelegate.refRestaurants.child(keyRestaurant!).setValue(restaurant)
+        }
     }
 }

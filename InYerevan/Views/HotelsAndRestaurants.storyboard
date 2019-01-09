@@ -110,8 +110,8 @@
                                                                 <constraint firstAttribute="bottomMargin" secondItem="1wI-L4-zIl" secondAttribute="bottom" constant="2" id="vrB-9S-CHF"/>
                                                             </constraints>
                                                             <connections>
-                                                                <outlet property="topHotelImage" destination="GTR-05-BgU" id="QKI-Og-abu"/>
-                                                                <outlet property="topHotelName" destination="1wI-L4-zIl" id="OMe-Us-lQq"/>
+                                                                <outlet property="topHotelsImage" destination="GTR-05-BgU" id="3bu-KI-rm7"/>
+                                                                <outlet property="topHotelsName" destination="1wI-L4-zIl" id="oIQ-gi-czx"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>
@@ -200,8 +200,8 @@
                                                                 <constraint firstItem="IAH-QZ-Uv0" firstAttribute="bottom" secondItem="QSQ-ZH-EgT" secondAttribute="bottomMargin" constant="2" id="iiH-9H-Ich"/>
                                                             </constraints>
                                                             <connections>
-                                                                <outlet property="topRestaurantImage" destination="tVn-We-qu6" id="GTG-yp-92w"/>
-                                                                <outlet property="topRestaurantName" destination="IAH-QZ-Uv0" id="rmk-QD-JX6"/>
+                                                                <outlet property="topRestaurantsImage" destination="tVn-We-qu6" id="FVK-7V-koQ"/>
+                                                                <outlet property="topRestaurantsName" destination="IAH-QZ-Uv0" id="0Y8-LB-WNl"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>
@@ -231,7 +231,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="topRestaurantCollectionView" destination="0yd-FG-9jX" id="6qb-jR-Fc1"/>
+                                            <outlet property="topRestaurantCollectionView" destination="0yd-FG-9jX" id="DAg-79-HVu"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -441,10 +441,14 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1gQ-lQ-zkJ">
                                 <rect key="frame" x="24" y="64" width="327" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="ZBs-qF-zID"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <state key="normal" title="Dismiss">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="dismissRegistrationView:" destination="rBE-oD-862" eventType="touchUpInside" id="468-P3-VGd"/>
                                 </connections>
@@ -472,7 +476,11 @@
                         <outlet property="hotelRegistrationView" destination="AGi-Je-c8Q" id="yhV-gz-Rfc"/>
                         <outlet property="hotelStar" destination="IkA-1a-uxF" id="LNl-8J-Mlg"/>
                         <outlet property="openingHoursHotel" destination="ZVp-cp-hUK" id="JQm-rB-nan"/>
+                        <outlet property="openingHoursRestaurant" destination="6pY-yw-4DW" id="bq3-2c-W36"/>
                         <outlet property="registrationView" destination="MLC-26-VvO" id="9nL-4t-b7f"/>
+                        <outlet property="restaurantLocation" destination="uYV-91-1cS" id="uDM-VI-3TP"/>
+                        <outlet property="restaurantName" destination="EwI-i9-kpK" id="zCw-uW-N1a"/>
+                        <outlet property="restaurantPhoneNumber" destination="tWH-rI-WTk" id="6mh-5e-NnT"/>
                         <outlet property="restaurantRegistrationView" destination="BqJ-YG-UlE" id="Hff-wf-snc"/>
                     </connections>
                 </viewController>
@@ -567,7 +575,75 @@
                 <view contentMode="scaleToFill" id="BqJ-YG-UlE">
                     <rect key="frame" x="0.0" y="0.0" width="366" height="598"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Restaurant Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EwI-i9-kpK">
+                            <rect key="frame" x="24" y="28" width="318" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="m3z-xW-lFt"/>
+                            </constraints>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Restaurant Phone Number +374( )" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tWH-rI-WTk">
+                            <rect key="frame" x="24" y="66" width="318" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="twi-sX-ivl"/>
+                            </constraints>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Opening Hours nn : nn - nn : nn" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6pY-yw-4DW">
+                            <rect key="frame" x="24" y="104" width="318" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="aLq-wU-hdb"/>
+                            </constraints>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Restaurant Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uYV-91-1cS" customClass="UIMapInputTextField" customModule="InYerevan" customModuleProvider="target">
+                            <rect key="frame" x="24" y="142" width="318" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="DgO-FJ-hnc"/>
+                            </constraints>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DNi-M7-4Yd">
+                            <rect key="frame" x="40" y="196" width="286" height="40"/>
+                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="YJS-Qp-fkp"/>
+                            </constraints>
+                            <state key="normal" title="Add Restaurant">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="addRestaurant:" destination="rBE-oD-862" eventType="touchUpInside" id="Vh4-f7-L3H"/>
+                            </connections>
+                        </button>
+                    </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="uYV-91-1cS" firstAttribute="leading" secondItem="eOf-yO-Kgw" secondAttribute="leading" constant="24" id="0kM-ew-dhj"/>
+                        <constraint firstItem="eOf-yO-Kgw" firstAttribute="trailing" secondItem="DNi-M7-4Yd" secondAttribute="trailing" constant="40" id="F72-rh-XL3"/>
+                        <constraint firstItem="tWH-rI-WTk" firstAttribute="leading" secondItem="eOf-yO-Kgw" secondAttribute="leading" constant="24" id="HgA-Fm-caV"/>
+                        <constraint firstItem="EwI-i9-kpK" firstAttribute="leading" secondItem="eOf-yO-Kgw" secondAttribute="leading" constant="24" id="JZa-uX-FQq"/>
+                        <constraint firstItem="tWH-rI-WTk" firstAttribute="top" secondItem="EwI-i9-kpK" secondAttribute="bottom" constant="8" id="Lr2-JM-vuQ"/>
+                        <constraint firstItem="DNi-M7-4Yd" firstAttribute="top" secondItem="uYV-91-1cS" secondAttribute="bottom" constant="24" id="OHx-gP-erN"/>
+                        <constraint firstItem="eOf-yO-Kgw" firstAttribute="trailing" secondItem="EwI-i9-kpK" secondAttribute="trailing" constant="24" id="OfN-tP-VwH"/>
+                        <constraint firstItem="uYV-91-1cS" firstAttribute="top" secondItem="6pY-yw-4DW" secondAttribute="bottom" constant="8" id="PZ4-nb-Wkr"/>
+                        <constraint firstItem="6pY-yw-4DW" firstAttribute="leading" secondItem="eOf-yO-Kgw" secondAttribute="leading" constant="24" id="U5q-zh-fRX"/>
+                        <constraint firstItem="eOf-yO-Kgw" firstAttribute="trailing" secondItem="6pY-yw-4DW" secondAttribute="trailing" constant="24" id="ZPv-XA-y58"/>
+                        <constraint firstItem="6pY-yw-4DW" firstAttribute="top" secondItem="tWH-rI-WTk" secondAttribute="bottom" constant="8" id="dHY-1Y-nDm"/>
+                        <constraint firstItem="eOf-yO-Kgw" firstAttribute="trailing" secondItem="uYV-91-1cS" secondAttribute="trailing" constant="24" id="h2X-DF-KRr"/>
+                        <constraint firstItem="DNi-M7-4Yd" firstAttribute="leading" secondItem="eOf-yO-Kgw" secondAttribute="leading" constant="40" id="i0u-Yc-TN1"/>
+                        <constraint firstItem="eOf-yO-Kgw" firstAttribute="trailing" secondItem="tWH-rI-WTk" secondAttribute="trailing" constant="24" id="tG8-MB-EFe"/>
+                        <constraint firstItem="EwI-i9-kpK" firstAttribute="top" secondItem="eOf-yO-Kgw" secondAttribute="top" constant="8" id="xOf-og-g7h"/>
+                    </constraints>
                     <viewLayoutGuide key="safeArea" id="eOf-yO-Kgw"/>
                 </view>
             </objects>

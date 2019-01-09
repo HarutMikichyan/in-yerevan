@@ -12,12 +12,12 @@ class TopHotelCollectionViewCell: UICollectionViewCell {
     
     static let id = "TopHotelCollectionViewCell"
     
-    @IBOutlet weak var topHotelImage: UIImageView!
-    @IBOutlet weak var topHotelName: UILabel!
+    @IBOutlet weak var topHotelsImage: UIImageView!
+    @IBOutlet weak var topHotelsName: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        topHotelImage.layer.cornerRadius = 12
-        topHotelImage.clipsToBounds = true
+        topHotelsImage.layer.cornerRadius = 12
+        topHotelsImage.clipsToBounds = true
     }
 }
