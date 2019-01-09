@@ -14,9 +14,12 @@ class HotelsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Hotels"
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear( animated )
         navigationController?.isNavigationBarHidden = false
-        
-        tableView.register(UINib(nibName: HotelsTableViewCell.id, bundle: nil), forCellReuseIdentifier: HotelsTableViewCell.id)
     }
 }
 
@@ -25,13 +28,13 @@ extension HotelsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let storyboard = UIStoryboard(name: "AdditionalAbilities", bundle: nil)
+        let storyboard = UIStoryboard(name: "HotelsAndRestaurants", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "HotelDescriptionViewControllerID")
         navigationController?.pushViewController(vc, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        return 270
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -39,7 +42,7 @@ extension HotelsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: HotelsTableViewCell.id, for: indexPath) as! HotelsTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: HotelTableViewCell.id, for: indexPath) as! HotelTableViewCell
         return cell
     }
 }

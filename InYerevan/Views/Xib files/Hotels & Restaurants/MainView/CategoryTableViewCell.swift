@@ -9,11 +9,10 @@
 import UIKit
 
 class CategoryTableViewCell: UITableViewCell {
-
+    
     static let id = "CategoryTableViewCell"
     
     @IBOutlet weak var addHotels: UIView!
-    
     @IBOutlet weak var addRestaurants: UIView!
     
     var parrentViewController: UIViewController!
@@ -34,13 +33,13 @@ class CategoryTableViewCell: UITableViewCell {
     }
     
     @objc func pushHotels() {
-        let storyboard = UIStoryboard(name: "AdditionalAbilities", bundle: nil)
+        let storyboard = UIStoryboard(name: "HotelsAndRestaurants", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "HotelsViewControllerID")
         parrentViewController.navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func pushRestaurants() {
-        let storyboard = UIStoryboard(name: "AdditionalAbilities", bundle: nil)
+        let storyboard = UIStoryboard(name: "HotelsAndRestaurants", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "RestaurantsViewControllerID")
         parrentViewController.navigationController?.pushViewController(vc, animated: true)
     }

@@ -18,7 +18,7 @@ class NewEventViewController: UIViewController {
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var imagesCollectionView: UICollectionView!
     @IBOutlet weak var coverButton: UIButton!
-  
+    
     
     var images = [UIImage]()
     
@@ -70,10 +70,10 @@ class NewEventViewController: UIViewController {
     }
     
     @IBAction func saveAction() {
-    
+        
         UIApplication.appDelegate.dataManager.saveEvent(title: titleField.text!, date: dateFIeld.getValue(), cover: images[0], pictures: images, details: descriptionTextView.text!, coordinates: locationFIeld.getCoordinatesAsTuple())
     }
-
+    
     
 }
 
@@ -93,17 +93,15 @@ extension NewEventViewController: UICollectionViewDelegate, UICollectionViewData
         if indexPath.row == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImportImages", for: indexPath)
             return cell
-        } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NewEventCollectionViewCellWithPicture.id, for: indexPath) as! NewEventCollectionViewCellWithPicture
-            cell.delegate = self
-            cell.prepareCellWith(indexPath: indexPath, image: images[indexPath.row - 1 ]) // TODO: Fix Nil
-            return cell
         }
-        fatalError("Somethig went wrong with EventCollectionViewCell ")
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NewEventCollectionViewCellWithPicture.id, for: indexPath) as! NewEventCollectionViewCellWithPicture
+        cell.delegate = self
+        cell.prepareCellWith(indexPath: indexPath, image: images[indexPath.row - 1 ]) // TODO: Fix Nil
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            return CGSize(width: 80, height: 80)
+        return CGSize(width: 80, height: 80)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

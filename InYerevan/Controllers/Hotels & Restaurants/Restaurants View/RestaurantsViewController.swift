@@ -14,16 +14,27 @@ class RestaurantsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Restaurants"
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear( animated )
         navigationController?.isNavigationBarHidden = false
-        
-        tableView.register(UINib(nibName: RestaurantsTableViewCell.id, bundle: nil), forCellReuseIdentifier: RestaurantsTableViewCell.id)
     }
 }
 
 extension RestaurantsViewController: UITableViewDelegate, UITableViewDataSource {
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let storyboard = UIStoryboard(name: "HotelsAndRestaurants", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "RestaurantDescriptionViewControllerID")
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        return 270
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -31,15 +42,7 @@ extension RestaurantsViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: RestaurantsTableViewCell.id, for: indexPath) as! RestaurantsTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: RestaurantTableViewCell.id, for: indexPath) as! RestaurantTableViewCell
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        let storyboard = UIStoryboard(name: "AdditionalAbilities", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "RestaurantDescriptionViewControllerID")
-        navigationController?.pushViewController(vc, animated: true)
     }
 }
