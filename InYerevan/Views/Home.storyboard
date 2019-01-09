@@ -24,14 +24,23 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B0q-YM-Jsa">
                                 <rect key="frame" x="145.5" y="479" width="123" height="30"/>
                                 <state key="normal" title="Change Password"/>
+                                <connections>
+                                    <action selector="changePasswordAction" destination="9iG-Lu-Bm4" eventType="touchUpInside" id="wgw-Gk-GYZ"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8jq-Rh-OoI">
                                 <rect key="frame" x="178.5" y="663" width="57" height="30"/>
                                 <state key="normal" title="Sign out"/>
+                                <connections>
+                                    <action selector="signOutAction" destination="9iG-Lu-Bm4" eventType="touchUpInside" id="H7d-Vc-2HL"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U9Y-f7-It0">
                                 <rect key="frame" x="144" y="433" width="126" height="30"/>
                                 <state key="normal" title="Change Nickname"/>
+                                <connections>
+                                    <action selector="changeEmailAction" destination="9iG-Lu-Bm4" eventType="touchUpInside" id="h0r-KS-K2o"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nickname" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tmf-eb-EBU">
                                 <rect key="frame" x="0.0" y="344" width="414" height="21"/>
@@ -58,6 +67,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="sVC-Xn-Z3K"/>
                     </view>
+                    <connections>
+                        <outlet property="changeEmail" destination="U9Y-f7-It0" id="erO-to-t9S"/>
+                        <outlet property="changePassword" destination="B0q-YM-Jsa" id="NwD-cj-aIv"/>
+                        <outlet property="userImageView" destination="pLc-hz-LZ5" id="cgi-QE-TaJ"/>
+                        <outlet property="userNickname" destination="Tmf-eb-EBU" id="FBY-k5-K22"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c6W-3C-kG2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

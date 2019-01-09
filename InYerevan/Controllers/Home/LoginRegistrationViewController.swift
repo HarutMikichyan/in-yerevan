@@ -30,6 +30,9 @@ class LoginRegistrationViewController: UIViewController, GIDSignInUIDelegate {
     @IBOutlet weak var resetErrorLabel: UILabel!
     @IBOutlet weak var GSignIn: GIDSignInButton!
     @IBOutlet weak var resetEmailTextField: UITextField!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
+    private var isFirstLoad: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,14 +40,21 @@ class LoginRegistrationViewController: UIViewController, GIDSignInUIDelegate {
         homeImage.layer.cornerRadius = 12
         homeImage.layer.masksToBounds = true
         
-        uIView.addSubview(loginView)
-        loginView.frame = uIView.bounds
-        
         GIDSignIn.sharedInstance().uiDelegate = self
         // GIDSignIn.sharedInstance()?.signInSilently()
         
         // Log out-i jamanak ogtagorcel
         // GIDSignIn.sharedInstance()?.signOut()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        if isFirstLoad {
+            uIView.addSubview(loginView)
+            loginView.frame = uIView.bounds
+            isFirstLoad = !isFirstLoad
+        }
     }
     
     @IBAction func loginAction() {
@@ -73,17 +83,6 @@ class LoginRegistrationViewController: UIViewController, GIDSignInUIDelegate {
             }
             self.logIn(userEmail: self.loginEmailTextField.text!)
         })
-    }
-    
-    @IBAction func signInWithMailAction() {
-        //        Auth.auth().signInAndRetrieveData(with: signInButton!, completion: {(authResult, error) in
-        //            if let error = error {
-        //                // ...
-        //                return
-        //            }
-        //            // User is signed in
-        //            // ...
-        //        })
     }
     
     @IBAction func changePasswordAction() {

@@ -10,6 +10,11 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
+    @IBOutlet weak var userNickname: UILabel!
+    @IBOutlet weak var userImageView: UIImageView!
+    @IBOutlet weak var changeEmail: UIButton!
+    @IBOutlet weak var changePassword: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -17,14 +22,14 @@ class ProfileViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func changeEmailAction() {
     }
-    */
-
+    @IBAction func changePasswordAction() {
+    }
+    @IBAction func signOutAction() {
+        let myStoryboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let vc = myStoryboard.instantiateViewController(withIdentifier: "LoginRegistrationViewController")
+        
+        UIApplication.shared.keyWindow?.rootViewController = vc
+    }
 }
