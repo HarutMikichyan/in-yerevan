@@ -57,6 +57,9 @@ class NewEventViewController: UIViewController {
     // MARK: - button actions
     @IBAction func coverSelectAction(_ sender: UIButton) {
         let vc = ImagePickerViewController()
+        vc.modalPresentationStyle = .overFullScreen
+        vc.modalTransitionStyle = .crossDissolve
+        vc.view.backgroundColor = .clear
         present(vc, animated: true, completion: nil)
         vc.delegate = self
     }
@@ -117,11 +120,24 @@ extension NewEventViewController: UICollectionViewDelegate, UICollectionViewData
 }
 
 extension NewEventViewController: ImagePickerViewControllerDelegate {
-    func didSelected(image: UIImage?) {
+    func didSelectedItem(image: UIImage?) {
         if image != nil {
             images.append(image!)
             imagesCollectionView.reloadData()
         }
     }
+
+    func didDeselectedItem(image: UIImage?) {
+        if image != nil {
+            for index in 0..<images.count {
+                if image! == images[index] {
+                    images.remove(at: index)
+                    imagesCollectionView.reloadData()
+                    break
+                }
+            } 
+        }
+    }
+    
 }
 
