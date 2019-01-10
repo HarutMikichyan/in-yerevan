@@ -95,7 +95,11 @@
                                                                         </constraints>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1wI-L4-zIl">
-                                                                        <rect key="frame" x="45.5" y="117" width="42" height="21"/>
+                                                                        <rect key="frame" x="26.5" y="117" width="80" height="21"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="21" id="Ku0-7q-YcT"/>
+                                                                            <constraint firstAttribute="width" constant="80" id="hCk-Ue-He5"/>
+                                                                        </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -779,18 +783,17 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qah-5y-AOF">
                                 <rect key="frame" x="0.0" y="20" width="375" height="200"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hotelImage1" translatesAutoresizingMaskIntoConstraints="NO" id="Oy6-ng-pWZ">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hotelImage1" translatesAutoresizingMaskIntoConstraints="NO" id="EIk-lw-173">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="200" id="Bes-rw-JTl"/>
-                                        </constraints>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="Oy6-ng-pWZ" firstAttribute="top" secondItem="qah-5y-AOF" secondAttribute="top" id="LfB-bP-HOP"/>
-                                    <constraint firstItem="Oy6-ng-pWZ" firstAttribute="leading" secondItem="qah-5y-AOF" secondAttribute="leading" id="Rg7-4G-Hoh"/>
-                                    <constraint firstAttribute="trailing" secondItem="Oy6-ng-pWZ" secondAttribute="trailing" id="bad-OF-WdB"/>
+                                    <constraint firstAttribute="trailing" secondItem="EIk-lw-173" secondAttribute="trailing" id="1FL-Hh-pgx"/>
+                                    <constraint firstItem="EIk-lw-173" firstAttribute="leading" secondItem="qah-5y-AOF" secondAttribute="leading" id="7NC-8e-i0V"/>
+                                    <constraint firstAttribute="bottom" secondItem="EIk-lw-173" secondAttribute="bottom" id="8Sf-ZV-uql"/>
+                                    <constraint firstAttribute="height" constant="200" id="sqh-9N-WHY"/>
+                                    <constraint firstItem="EIk-lw-173" firstAttribute="top" secondItem="qah-5y-AOF" secondAttribute="top" id="tPc-kM-8gM"/>
                                 </constraints>
                             </view>
                         </subviews>

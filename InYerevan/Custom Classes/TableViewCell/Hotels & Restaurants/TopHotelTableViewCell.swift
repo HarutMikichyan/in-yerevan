@@ -35,7 +35,9 @@ extension TopHotelTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopHotelCollectionViewCell.id, for: indexPath) as! TopHotelCollectionViewCell
-//            cell.topHotelsName.text = MainReserveViewController.hotelsList[indexPath.row].hotelName
+        if MainReserveViewController.topHotelsList.count != 0 {
+              cell.topHotelsName.text = MainReserveViewController.topHotelsList[indexPath.row].hotelName
+        }
         return cell
     }
 }

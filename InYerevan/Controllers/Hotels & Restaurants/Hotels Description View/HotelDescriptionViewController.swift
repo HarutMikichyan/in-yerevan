@@ -10,6 +10,8 @@ import UIKit
 
 class HotelDescriptionViewController: UIViewController {
     
+    var hotel = [HotelDescriptionType]()
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {

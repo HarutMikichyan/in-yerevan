@@ -11,41 +11,48 @@ import Firebase
 
 class MainReserveViewController: UIViewController {
     
-    static var hotelsList = [HotelModel]()
+    static var topHotelsList = [TopHotelsType]()
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var mainImage: UIImageView!
+    
     var headerView: UIView!
     var newHeaderLayer: CAShapeLayer!
+    
     private let headerHeight: CGFloat = 218
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Main"
         
+        tableView.register(UINib(nibName: ReserveRegistrationTableViewCell.id, bundle: nil), forCellReuseIdentifier: ReserveRegistrationTableViewCell.id)
+        tableView.register(UINib(nibName: CategoryTableViewCell.id, bundle: nil), forCellReuseIdentifier: CategoryTableViewCell.id)
+        fg()
+        
         UIApplication.appDelegate.refHotels.observe(.value) { (snapshot) in
             
             if snapshot.childrenCount > 0 {
-                MainReserveViewController.hotelsList.removeAll()
+                MainReserveViewController.topHotelsList.removeAll()
                 for hot in snapshot.children.allObjects as! [DataSnapshot] {
                     let hotelObject = hot.value as! [String: AnyObject]
                     let id = hotelObject["id"]
                     let name = hotelObject["hotelName"]
-                    let star = hotelObject["hotelStar"]
-                    let phoneNumber = hotelObject["hotelPhoneNumber"]
-                    let openingHours = hotelObject["openingHoursHotel"]
-                    let location = hotelObject["hotelLocation"]
+                    let hotel = TopHotelsType(id: id as! String, hotelName: name as! String)
                     
-                    
-                    let hotel = HotelModel(id: id as! String, hotelName: name as! String, hotelStar: star as! String, hotelPhoneNumber: phoneNumber as! String, openingHoursHotel: openingHours as! String, hotelLocation: location as! String)
-                    
-                    MainReserveViewController.hotelsList.append(hotel)
+                    MainReserveViewController.topHotelsList.append(hotel)
                 }
             }
+            self.tableView.reloadData()
         }
-        
-        tableView.register(UINib(nibName: ReserveRegistrationTableViewCell.id, bundle: nil), forCellReuseIdentifier: ReserveRegistrationTableViewCell.id)
-        tableView.register(UINib(nibName: CategoryTableViewCell.id, bundle: nil), forCellReuseIdentifier: CategoryTableViewCell.id)
-        
-       
+    }
+    
+    func fg() {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime(uptimeNanoseconds: UInt64(123456789))) {
+            if MainReserveViewController.topHotelsList.count > 0 {
+                print("exav")
+            }
+            self.fg()
+        }
     }
     
     override func viewDidLayoutSubviews() {
