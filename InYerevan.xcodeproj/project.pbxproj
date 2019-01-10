@@ -64,6 +64,8 @@
 		86D1EF9E21E4D00400738187 /* PersistentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D1EF9D21E4D00300738187 /* PersistentController.swift */; };
 		86D1EFA121E4D06700738187 /* In_Yerevan.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 86D1EF9F21E4D06600738187 /* In_Yerevan.xcdatamodeld */; };
 		98E1B5C4496047B6E7761DDF /* Pods_InYerevan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DABF38CD586899DF4A2D30E /* Pods_InYerevan.framework */; };
+		D4BE0CCD21E79A63006E0907 /* ChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BE0CCB21E79A63006E0907 /* ChannelCell.swift */; };
+		D4BE0CCE21E79A63006E0907 /* ChannelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4BE0CCC21E79A63006E0907 /* ChannelCell.xib */; };
 		D4C8F9D421E4DAD400EF213C /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C8F9D121E4DAD300EF213C /* Message.swift */; };
 		D4C8F9D521E4DAD400EF213C /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C8F9D221E4DAD300EF213C /* Channel.swift */; };
 		D4C8F9D621E4DAD400EF213C /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C8F9D321E4DAD300EF213C /* Image.swift */; };
@@ -138,6 +140,8 @@
 		86D1EF9C21E4CF5400738187 /* InYerevan-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "InYerevan-Bridging-Header.h"; sourceTree = "<group>"; };
 		86D1EF9D21E4D00300738187 /* PersistentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentController.swift; sourceTree = "<group>"; };
 		86D1EFA021E4D06600738187 /* In_Yerevan.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = In_Yerevan.xcdatamodel; sourceTree = "<group>"; };
+		D4BE0CCB21E79A63006E0907 /* ChannelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCell.swift; sourceTree = "<group>"; };
+		D4BE0CCC21E79A63006E0907 /* ChannelCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChannelCell.xib; sourceTree = "<group>"; };
 		D4C8F9D121E4DAD300EF213C /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		D4C8F9D221E4DAD300EF213C /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		D4C8F9D321E4DAD300EF213C /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
@@ -335,6 +339,8 @@
 			children = (
 				86D1EF3421E4B80B00738187 /* ImagePicker */,
 				86D1EF3F21E4BD0D00738187 /* Hotels & Restaurants */,
+				D4BE0CCB21E79A63006E0907 /* ChannelCell.swift */,
+				D4BE0CCC21E79A63006E0907 /* ChannelCell.xib */,
 			);
 			path = "Xib files";
 			sourceTree = "<group>";
@@ -616,6 +622,7 @@
 				86D1EF0021E4AEBD00738187 /* Main.storyboard in Resources */,
 				86D1EF2221E4B67A00738187 /* Home.storyboard in Resources */,
 				86D1EF2D21E4B7D500738187 /* ImagePickerViewController.xib in Resources */,
+				D4BE0CCE21E79A63006E0907 /* ChannelCell.xib in Resources */,
 				86D1EF3121E4B7F200738187 /* ImagePickerCollectionViewCell.xib in Resources */,
 				86D1EF2421E4B6F700738187 /* Events.storyboard in Resources */,
 				708A691221E4E6A200932BFA /* ReserveRegistrationTableViewCell.xib in Resources */,
@@ -744,6 +751,7 @@
 				86D1EF1C21E4B57100738187 /* GradientView.swift in Sources */,
 				86D1EF6521E4C05800738187 /* UpcomingTableViewCell.swift in Sources */,
 				86D1EF6621E4C05800738187 /* EventTableViewCell.swift in Sources */,
+				D4BE0CCD21E79A63006E0907 /* ChannelCell.swift in Sources */,
 				86D1EF1921E4B57100738187 /* DoneButton.swift in Sources */,
 				86D1EF8A21E4C4D800738187 /* HotelsViewController.swift in Sources */,
 				86D1EF7821E4C31400738187 /* NewEventViewController.swift in Sources */,

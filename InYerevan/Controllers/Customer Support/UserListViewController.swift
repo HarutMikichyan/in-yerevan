@@ -56,6 +56,8 @@ final class UserListViewController: UITableViewController {
 //            }
 //            createChannel(channel)
 //        }
+        tableView.register(UINib(nibName: ChannelCell.id, bundle: nil),
+                           forCellReuseIdentifier: ChannelCell.id)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -154,9 +156,17 @@ extension UserListViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: channelCellIdentifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: ChannelCell.id, for: indexPath) as! ChannelCell
         cell.accessoryType = .disclosureIndicator
-        cell.textLabel?.text = channels[indexPath.row].name
+        cell.chatNameLabel.text = channels[indexPath.row].name
+        let numberOfUnreadMessages = channels[indexPath.row].numberOfUnreadMessages ?? 0
+        if numberOfUnreadMessages == 0 {
+            cell.unreadMessagesLabel.text = ""
+            cell.unreadMessagesFrameImageView.isHidden = true
+        } else {
+            cell.unreadMessagesLabel.text = "\(numberOfUnreadMessages)"
+            cell.unreadMessagesFrameImageView.isHidden = false
+        }
         return cell
     }
     

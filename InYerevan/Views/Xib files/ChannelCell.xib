@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChannelCell" rowHeight="90" id="KGk-i7-Jjw" customClass="ChannelCell" customModule="InYerevan" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="395" height="90"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="395" height="89.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rainbowCircle" translatesAutoresizingMaskIntoConstraints="NO" id="7KE-aF-hD7">
+                        <rect key="frame" x="320" y="10.5" width="65" height="70"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="70" id="rKZ-pv-U5Z"/>
+                            <constraint firstAttribute="width" constant="65" id="wYn-mc-Lx6"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;Chat Name&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bkQ-Yt-Pse">
+                        <rect key="frame" x="20" y="11.5" width="292" height="33"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="33" id="Aeq-xf-sgI"/>
+                            <constraint firstAttribute="width" constant="292" id="jaU-Uc-FVu"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Bg-lz-JcA" userLabel="&lt;Unread Messages&gt; ">
+                        <rect key="frame" x="320" y="35.5" width="65" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="65" id="dqt-DL-r6Y"/>
+                            <constraint firstAttribute="height" constant="21" id="hMb-9t-b5b"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="7KE-aF-hD7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="3No-0d-Ent"/>
+                    <constraint firstAttribute="bottom" secondItem="5Bg-lz-JcA" secondAttribute="bottom" constant="33.5" id="CcD-FQ-uYm"/>
+                    <constraint firstItem="bkQ-Yt-Pse" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="E2K-OD-I5s"/>
+                    <constraint firstItem="5Bg-lz-JcA" firstAttribute="leading" secondItem="bkQ-Yt-Pse" secondAttribute="trailing" constant="8" id="Im1-Fl-2II"/>
+                    <constraint firstItem="bkQ-Yt-Pse" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="hOh-9f-xe9"/>
+                    <constraint firstAttribute="trailing" secondItem="5Bg-lz-JcA" secondAttribute="trailing" constant="10" id="jMv-6p-C0y"/>
+                    <constraint firstAttribute="trailing" secondItem="7KE-aF-hD7" secondAttribute="trailing" constant="10" id="kCq-nn-CVe"/>
+                    <constraint firstAttribute="bottom" secondItem="7KE-aF-hD7" secondAttribute="bottom" constant="10" id="mYt-ei-AVD"/>
+                    <constraint firstItem="5Bg-lz-JcA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="35" id="tud-tY-0xf"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="chatNameLabel" destination="bkQ-Yt-Pse" id="07V-bZ-6kQ"/>
+                <outlet property="unreadMessagesFrameImageView" destination="7KE-aF-hD7" id="4xE-z3-xfJ"/>
+                <outlet property="unreadMessagesLabel" destination="5Bg-lz-JcA" id="3QX-Fs-PEU"/>
+            </connections>
+            <point key="canvasLocation" x="192.80000000000001" y="174.51274362818592"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="rainbowCircle" width="400" height="400"/>
+    </resources>
+</document>

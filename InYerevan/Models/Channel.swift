@@ -59,6 +59,9 @@ extension Channel: Comparable {
     }
     
     static func < (lhs: Channel, rhs: Channel) -> Bool {
+        if lhs.numberOfUnreadMessages != nil && rhs.numberOfUnreadMessages != nil {
+            return lhs.numberOfUnreadMessages != rhs.numberOfUnreadMessages ? lhs.numberOfUnreadMessages! > rhs.numberOfUnreadMessages! : lhs.name < rhs.name
+        }
         return lhs.name < rhs.name
     }
     
