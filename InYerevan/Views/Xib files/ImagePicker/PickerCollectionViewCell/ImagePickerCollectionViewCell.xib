@@ -23,7 +23,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="156" height="149"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkMark" translatesAutoresizingMaskIntoConstraints="NO" id="qFG-tS-yFu">
-                        <rect key="frame" x="114" y="3" width="39" height="37.5"/>
+                        <rect key="frame" x="114" y="3" width="39" height="39"/>
                     </imageView>
                 </subviews>
             </view>
@@ -33,7 +33,7 @@
                 <constraint firstItem="qFG-tS-yFu" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="3" id="dcJ-3m-TVZ"/>
                 <constraint firstAttribute="trailing" secondItem="jgD-mz-k9m" secondAttribute="trailing" id="fPm-Vw-9YL"/>
                 <constraint firstAttribute="bottom" secondItem="jgD-mz-k9m" secondAttribute="bottom" id="huK-u1-sLJ"/>
-                <constraint firstItem="qFG-tS-yFu" firstAttribute="height" secondItem="jgD-mz-k9m" secondAttribute="height" multiplier="1/4" id="kuO-R0-2uy"/>
+                <constraint firstItem="qFG-tS-yFu" firstAttribute="height" secondItem="jgD-mz-k9m" secondAttribute="width" multiplier="1/4" id="kuO-R0-2uy"/>
                 <constraint firstItem="jgD-mz-k9m" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="yAc-Yj-Sec"/>
                 <constraint firstItem="jgD-mz-k9m" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="z9x-zC-YHj"/>
             </constraints>

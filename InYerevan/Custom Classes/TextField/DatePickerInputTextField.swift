@@ -24,6 +24,7 @@ class DatePickerInputTextField: UITextField {
     
     // MARK: - Prepareing for init
     private func prepare() {
+        disableUserManuallyInput()
         inputView = datePicker
         let doneButton = DoneButton()
         doneButton.addTarget(self, action: #selector(endEditing(_:)), for: .touchUpInside)
@@ -32,6 +33,15 @@ class DatePickerInputTextField: UITextField {
         datePicker.minimumDate = Date()
         datePicker.maximumDate = Date() + (60 * 60 * 24 * 30 * 2) // (secs , mins , hrs, days, months)
         datePicker.addTarget(self, action: #selector(valueChange), for: .valueChanged)
+    }
+    
+    private func  disableUserManuallyInput() {
+        autocapitalizationType = .none
+        autocorrectionType = .no
+        smartDashesType = .no
+        smartInsertDeleteType = .no
+        smartQuotesType = .no
+        spellCheckingType = .no
     }
     
     @objc private func valueChange() {
@@ -44,8 +54,8 @@ class DatePickerInputTextField: UITextField {
         return datePicker.date
     }
     
-    func setToday() {
-        datePicker.date = Date()
+    func setTommorow() {
+        datePicker.date = Date() + (60 * 60 * 24 ) // (sec * min * hrs ) to get tomorrow 
         let dateAsString = datePicker.date.dateToString()
         text = "\(dateAsString.day) \(dateAsString.month) \(dateAsString.year) \(dateAsString.time)"
     }

@@ -44,6 +44,7 @@ class UIMapInputTextField: UITextField, UITextFieldDelegate {
 
     // MARK: - Prepareing for init 
     private func prepareMap() {
+        disableUserManuallyInput()
         // MARK: - Button
         let doneButton = DoneButton()
         doneButton.addTarget(self, action: #selector(endEditing(_:)), for: .touchUpInside)
@@ -66,6 +67,15 @@ class UIMapInputTextField: UITextField, UITextFieldDelegate {
         }
     }
     
+    private func  disableUserManuallyInput() {
+        autocapitalizationType = .none
+        autocorrectionType = .no
+        smartDashesType = .no
+        smartInsertDeleteType = .no
+        smartQuotesType = .no
+        spellCheckingType = .no
+    }
+    
     // MARK: - PUBLIC INTERFACE 
     func updateKeyboardSize(hight: CGFloat) {
         mapView.frame = CGRect(x: 0, y: 0, width: 0, height: hight)
@@ -85,6 +95,14 @@ class UIMapInputTextField: UITextField, UITextFieldDelegate {
     
     func setCurrentLocation() {
         locationManager.requestWhenInUseIfNeeded()
+        if  let location =  locationManager.location {
+            let region =  MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 20000.0, longitudinalMeters: 20000.0)
+            mapView.setRegion(region, animated: true)
+            annotation.coordinate = region.center
+            let latitude = String(format: "%.5f", region.center.latitude)
+            let longitude = String(format: "%.5f", region.center.longitude)
+            text = "Lat \(latitude), Lon \(longitude)"
+        }
     }
 }
 
