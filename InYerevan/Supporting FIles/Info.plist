@@ -56,10 +56,10 @@
 	<string>Used to send photos from the Camera.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Used to access location services to show the current location</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Used to access location services to show the current location</string>
 	<key>NSLocationUsageDescription</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Used to access location services to show the current location</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Used to send photos from your Camera Roll.</string>
 	<key>UILaunchStoryboardName</key>

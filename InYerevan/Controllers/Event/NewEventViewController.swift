@@ -17,7 +17,7 @@ class NewEventViewController: UIViewController {
     @IBOutlet weak var locationFIeld: UIMapInputTextField!
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var imagesCollectionView: UICollectionView!
-    @IBOutlet weak var coverButton: UIButton!
+    @IBOutlet weak var categoryField: UITextField!
     
     
     var images = [UIImage]()
@@ -62,6 +62,10 @@ class NewEventViewController: UIViewController {
         locationFIeld.setCurrentLocation()
     }
     
+    @IBAction func setCityEvent() {
+        
+    }
+    
     @IBAction func saveAction() {
         UIApplication.appDelegate.dataManager.saveEvent(title: titleField.text!, date: dateFIeld.getValue(), cover: images[0], pictures: images, details: descriptionTextView.text!, coordinates: locationFIeld.getCoordinatesAsTuple())
     }
@@ -92,7 +96,8 @@ extension NewEventViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 80, height: 80)
+        let side = collectionView.bounds.height - 8
+        return CGSize(width: side, height: side)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
