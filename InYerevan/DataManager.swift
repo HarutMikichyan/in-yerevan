@@ -27,7 +27,7 @@ class DataManager {
     }
     
     // MARK: - Event
-    func saveEvent(title: String, date: Date, cover: UIImage, pictures: [UIImage], details: String, coordinates: (lat: Double, long: Double)) {
+    func saveEvent(title: String, date: Date, category: String, pictures: [UIImage], details: String, coordinates: (lat: Double, long: Double)) {
         let context = persistentController.newBackgroundContext 
         let event = Event(context: context)
         event.title = title
@@ -36,6 +36,7 @@ class DataManager {
         let location = Coordinates(context: context)
         location.latitude = coordinates.lat
         location.longitude = coordinates.long
+        event.category = requestCategoryWith(name: category, in: context)
         persistentController.saveContext(context)
         persistentController.viewContext.refreshAllObjects()
     }
@@ -49,12 +50,23 @@ class DataManager {
         return objects
     }
     
- 
+    
     //Private Interface
     //  Write only functions which will support your public functions 
     
-    
-    
+    private func requestCategoryWith(name: String, in context: NSManagedObjectContext ) -> Category {
+        let request: NSFetchRequest<Category> = Category.fetchRequest()
+        request.predicate = NSPredicate(format: "name == %@", name)
+        if let objects = (try? context.fetch(request)) {
+            if let category = objects.first {
+                return category
+            } 
+        }
+        let category = Category(context: context)
+        category.name = name 
+        return category
+        
+    }
     
     
 }

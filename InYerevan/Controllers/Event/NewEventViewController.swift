@@ -67,7 +67,8 @@ class NewEventViewController: UIViewController {
     }
     
     @IBAction func saveAction() {
-        UIApplication.appDelegate.dataManager.saveEvent(title: titleField.text!, date: dateFIeld.getValue(), cover: images[0], pictures: images, details: descriptionTextView.text!, coordinates: locationFIeld.getCoordinatesAsTuple())
+        UIApplication.dataManager.saveEvent(title: titleField.text!, date: dateFIeld.getValue(), category: categoryField.text!, pictures: images, details: descriptionTextView.text!, coordinates: locationFIeld.getCoordinatesAsTuple())
+        navigationController?.popViewController(animated: true)
     }
         
 }
