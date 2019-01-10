@@ -56,6 +56,8 @@
 	<string>Used to send photos from the Camera.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Used to access location services to show the current location</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Used to access location services to show the current location</string>
 	<key>NSLocationUsageDescription</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>NSPhotoLibraryUsageDescription</key>

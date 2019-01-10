@@ -12,7 +12,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ImagePickerViewController" customModule="InYerevan" customModuleProvider="target">
             <connections>
+                <outlet property="dismissView" destination="kF2-1R-kfC" id="ukT-q8-Kb7"/>
                 <outlet property="imageCollectionView" destination="kgi-nj-kve" id="ZMQ-fh-R6U"/>
+                <outlet property="tapGesture" destination="lME-h6-DNw" id="lgB-Cs-ub0"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -52,14 +54,21 @@
                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </collectionViewFlowLayout>
                         </collectionView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kF2-1R-kfC">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="358"/>
+                        </view>
                     </subviews>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="kgi-nj-kve" secondAttribute="trailing" id="67f-Da-frH"/>
                         <constraint firstItem="kgi-nj-kve" firstAttribute="leading" secondItem="VFj-XL-CPn" secondAttribute="leading" id="6zP-Pl-50Q"/>
                         <constraint firstItem="Zaq-w2-ACq" firstAttribute="leading" secondItem="VFj-XL-CPn" secondAttribute="leading" id="JPc-ZM-TvP"/>
                         <constraint firstAttribute="bottom" secondItem="kgi-nj-kve" secondAttribute="bottom" id="Jy3-su-2RO"/>
+                        <constraint firstAttribute="trailing" secondItem="kF2-1R-kfC" secondAttribute="trailing" id="T7C-SZ-ZbY"/>
                         <constraint firstItem="kgi-nj-kve" firstAttribute="top" secondItem="Zaq-w2-ACq" secondAttribute="bottom" id="bE9-dx-048"/>
+                        <constraint firstItem="kF2-1R-kfC" firstAttribute="leading" secondItem="VFj-XL-CPn" secondAttribute="leading" id="e83-9a-zmp"/>
                         <constraint firstAttribute="trailing" secondItem="Zaq-w2-ACq" secondAttribute="trailing" id="kgG-hD-QZT"/>
+                        <constraint firstItem="Zaq-w2-ACq" firstAttribute="top" secondItem="kF2-1R-kfC" secondAttribute="bottom" id="mpR-Qo-hVc"/>
+                        <constraint firstItem="kF2-1R-kfC" firstAttribute="top" secondItem="VFj-XL-CPn" secondAttribute="top" id="pUX-mm-NhX"/>
                     </constraints>
                 </view>
             </subviews>
@@ -76,6 +85,10 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
         </view>
-        <tapGestureRecognizer id="lME-h6-DNw"/>
+        <tapGestureRecognizer id="lME-h6-DNw">
+            <connections>
+                <action selector="tapOnView:" destination="-1" id="MPQ-xu-FX7"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
 </document>

@@ -8,6 +8,9 @@
 
 import UIKit
 import CoreData
+import FirebaseDatabase
+import Firebase
+import FirebaseFirestore
 
 class DataManager {
     private let persistentController: PersistentController
