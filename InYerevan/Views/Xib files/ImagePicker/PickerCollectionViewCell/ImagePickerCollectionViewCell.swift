@@ -12,10 +12,16 @@ class ImagePickerCollectionViewCell: UICollectionViewCell {
     static let id = "ImagePickerCollectionViewCell"
 
     @IBOutlet weak var backgroundImageView: UIImageView!
+    @IBOutlet private weak var checkMark: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundImageView.contentMode = .scaleAspectFit
         backgroundImageView.layer.masksToBounds = true
     }
 
+    func changeCheckMarkStatus(isSelected: Bool) {
+        checkMark.isHidden = isSelected
+    }
+ 
 }

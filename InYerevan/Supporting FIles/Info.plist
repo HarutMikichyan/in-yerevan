@@ -31,7 +31,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.173888732331-48h6ssflchdk3uucikmjl5o48ueq9tl9</string>
+				<string>com.googleusercontent.apps.127608008778-kdfb153i4f8kja6gm8o9pu0pra2ms0p9</string>
 			</array>
 		</dict>
 	</array>
@@ -55,6 +55,8 @@
 	<key>NSCameraUsageDescription</key>
 	<string>Used to send photos from the Camera.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Used to access location services to show the current location</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Used to access location services to show the current location</string>
 	<key>NSLocationUsageDescription</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>

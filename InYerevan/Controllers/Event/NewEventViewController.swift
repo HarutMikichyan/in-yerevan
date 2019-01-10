@@ -54,27 +54,18 @@ class NewEventViewController: UIViewController {
         }
     }
     
-    // MARK: - button actions
-    @IBAction func coverSelectAction(_ sender: UIButton) {
-        let vc = ImagePickerViewController()
-        present(vc, animated: true, completion: nil)
-        vc.delegate = self
-    }
-    
     @IBAction func todayAction() {
-        dateFIeld.setToday()
+        dateFIeld.setTommorow()
     }
     
     @IBAction func currentLocationAction() {
-        
+        locationFIeld.setCurrentLocation()
     }
     
     @IBAction func saveAction() {
-        
         UIApplication.appDelegate.dataManager.saveEvent(title: titleField.text!, date: dateFIeld.getValue(), cover: images[0], pictures: images, details: descriptionTextView.text!, coordinates: locationFIeld.getCoordinatesAsTuple())
     }
-    
-    
+        
 }
 
 extension NewEventViewController: NewEventCollectionViewCellWithPictureDelegate{
@@ -96,7 +87,7 @@ extension NewEventViewController: UICollectionViewDelegate, UICollectionViewData
         }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NewEventCollectionViewCellWithPicture.id, for: indexPath) as! NewEventCollectionViewCellWithPicture
         cell.delegate = self
-        cell.prepareCellWith(indexPath: indexPath, image: images[indexPath.row - 1 ]) // TODO: Fix Nil
+        cell.prepareCellWith(indexPath: indexPath, image: images[indexPath.row - 1 ])
         return cell
     }
     
@@ -105,23 +96,33 @@ extension NewEventViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        switch indexPath.row {
-        case 0:
-            print()
-        // open import Images
-        default:
-            print()
-            // open image full screen somehow :D
+        if indexPath.row == 0 {
+            let vc = ImagePickerViewController()
+            present(vc, animated: true, completion: nil)
+            vc.delegate = self
         }
     }
 }
 
 extension NewEventViewController: ImagePickerViewControllerDelegate {
-    func didSelected(image: UIImage?) {
+    func didSelectedItem(image: UIImage?) {
         if image != nil {
             images.append(image!)
             imagesCollectionView.reloadData()
         }
     }
+
+    func didDeselectedItem(image: UIImage?) {
+        if image != nil {
+            for index in 0..<images.count {
+                if image! == images[index] {
+                    images.remove(at: index)
+                    imagesCollectionView.reloadData()
+                    break
+                }
+            } 
+        }
+    }
+    
 }
 
