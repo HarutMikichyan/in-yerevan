@@ -13,7 +13,6 @@ import FirebaseFirestore
 class HomeViewController: UIViewController {
 
     private var name = User.email
-    
     private let db = Firestore.firestore()
     private var channels = [Channel]()
     private var channelListener: ListenerRegistration?

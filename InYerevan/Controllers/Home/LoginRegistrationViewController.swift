@@ -81,7 +81,8 @@ class LoginRegistrationViewController: UIViewController, GIDSignInUIDelegate {
                 self.registrationErrorLabel.text = firebaseError.localizedDescription
                 return
             }
-            self.logIn(userEmail: self.loginEmailTextField.text!)
+            
+            self.logIn(userEmail: self.registrationEmailTextField.text!)
         })
     }
     

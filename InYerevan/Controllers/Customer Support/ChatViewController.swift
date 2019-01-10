@@ -22,7 +22,6 @@ final class ChatViewController: MessagesViewController {
     private let db = Firestore.firestore()
     private let storage = Storage.storage().reference()
     private var reference: CollectionReference?
-    
     private var messages: [Message] = []
     private var messageListener: ListenerRegistration?
     
@@ -40,6 +39,7 @@ final class ChatViewController: MessagesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         guard let id = channel.id else {
             navigationController?.popViewController(animated: true)
             return
@@ -107,6 +107,15 @@ final class ChatViewController: MessagesViewController {
         /// ----------------------------------------------- /// subject to change
         messageListener?.remove()
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        if User.isAdministration {
+            channel.numberOfUnreadMessages = 0
+            db.collection("channels").document(channel.id!).setData(["unreadMessages": 0], merge: true)
+        }
+    }
+    
+    
     
     // MARK:- ACTIONS
     
@@ -207,6 +216,11 @@ final class ChatViewController: MessagesViewController {
     }
     
     private func save(_ message: Message) {
+        if !User.isAdministration {
+            let unreadMessages = channel.numberOfUnreadMessages ?? 0
+            channel.numberOfUnreadMessages = unreadMessages + 1
+            db.collection("channels").document(channel.id!).setData(["unreadMessages": (unreadMessages + 1)], merge: true)
+        }
         reference?.addDocument(data: message.representation) { error in
             if let error = error {
                 print("Error sending message: \(error.localizedDescription)")

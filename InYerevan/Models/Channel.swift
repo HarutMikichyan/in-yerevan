@@ -16,11 +16,12 @@ struct Channel {
     
     let id: String?
     let name: String
+    var numberOfUnreadMessages: Int?
     
     init(name: String) {
-        ///---subject to change---///
-        id = name
+        id = nil
         self.name = name
+        numberOfUnreadMessages = 0
     }
     
     init?(document: QueryDocumentSnapshot) {
@@ -30,6 +31,7 @@ struct Channel {
         }
         id = document.documentID
         self.name = name
+        numberOfUnreadMessages = data["unreadMessages"] as? Int ?? 0
     }
     
 }
@@ -39,7 +41,7 @@ struct Channel {
 extension Channel: DatabaseRepresentation {
     
     var representation: [String : Any] {
-        var rep = ["name": name]
+        var rep = ["name": name, "unreadMessages": numberOfUnreadMessages ?? 0] as [String : Any]
         if let id = id {
             rep["id"] = id
         }
