@@ -14,10 +14,14 @@ protocol DatabaseRepresentation {
 
 struct Channel {
     
+    // MARK:- MAIN PROPERTIES
+    
     let id: String?
     let name: String
     var numberOfUnreadMessages: Int
     var lastMessageSentDate: Date
+    
+    // MARK:- INITIALIZERS
     
     init(name: String) {
         id = nil
@@ -28,15 +32,9 @@ struct Channel {
     
     init?(document: QueryDocumentSnapshot) {
         let data = document.data()
-        guard let name = data["name"] as? String else {
-            return nil
-        }
-        guard let sentDate = data["lastMessageSent"] as? Date else {
-            return nil
-        }
-        guard let unreadMessages = data["unreadMessages"] as? Int else {
-            return nil
-        }
+        guard let name = data["name"] as? String else { return nil }
+        guard let sentDate = data["lastMessageSent"] as? Date else { return nil }
+        guard let unreadMessages = data["unreadMessages"] as? Int else { return nil }
         
         id = document.documentID
         self.name = name

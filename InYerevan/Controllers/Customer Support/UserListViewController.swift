@@ -13,71 +13,37 @@ import MessageKit
 
 final class UserListViewController: UITableViewController {
     
-    // MARK:- MAIN PROPERTIES
-    
-    var currentUser: User? = nil
-//    var newlyCreatedChannelName: String?
-//    var shouldOpenChatInstantly = false
+    // MARK:- FIREBASE PROPERTIES
     
     private let db = Firestore.firestore()
     private let channelCellIdentifier = "channelCell"
-    
     private var channels = [Channel]()
     private var channelListener: ListenerRegistration?
     private var channelReference: CollectionReference {
         return db.collection("channels")
     }
     
-    ///---------subject to change----------///
-    deinit {
-        channelListener?.remove()
-    }
-    ///-----------------------------------///
-
+    // MARK:- VIEW LIFE CYCLE
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
-
-        channelListener = channelReference.addSnapshotListener { querySnapshot, error in
-            guard let snapshot = querySnapshot else {
-                print("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
-                return
-            }
-
-            snapshot.documentChanges.forEach { change in
-                self.handleDocumentChange(change)
-            }
-        }
-        
-        
-
-//        if let name = newlyCreatedChannelName {
-//            let channel = Channel(name: name)
-//            guard !channels.contains(channel) else {
-//                return
-//            }
-//            createChannel(channel)
-//        }
+        listenToChanges()
         tableView.register(UINib(nibName: ChannelCell.id, bundle: nil),
                            forCellReuseIdentifier: ChannelCell.id)
     }
     
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        channelListener = channelReference.addSnapshotListener { querySnapshot, error in
-            guard let snapshot = querySnapshot else {
-                print("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
-                return
-            }
-            
-            snapshot.documentChanges.forEach { change in
-                self.handleDocumentChange(change)
-            }
-        }
+        listenToChanges()
         channels = []
         tableView.reloadData()
     }
+
+    deinit {
+        channelListener?.remove()
+    }
+    
     // MARK:- ACTIONS
     
     private func createChannel(_ channel: Channel) {
@@ -102,43 +68,44 @@ final class UserListViewController: UITableViewController {
         }
     }
     
-    @objc private func logOut() {
-        do {
-            try Auth.auth().signOut()
-            print("---------SIGNED OUT----------")
-        } catch {
-            print("Error signing out: \(error.localizedDescription)")
+    // MARK :- HELPER FUNCTIONS
+    
+    private func listenToChanges() {
+        channelListener = channelReference.addSnapshotListener { querySnapshot, error in
+            guard let snapshot = querySnapshot else {
+                print("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
+                return
+            }
+            
+            snapshot.documentChanges.forEach { change in
+                self.handleDocumentChange(change)
+            }
         }
-        
-        navigationController?.popViewController(animated: true)
     }
-
-
-// MARK :- HELPER FUNCTIONS
-
-private func addChannelToTable(_ channel: Channel) {
-    guard !channels.contains(channel) else {
-        return
+    
+    private func addChannelToTable(_ channel: Channel) {
+        guard !channels.contains(channel) else {
+            return
+        }
+        channels.append(channel)
+        channels.sort()
+        guard let index = channels.index(of: channel) else { return }
+        tableView.insertRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
     }
-    channels.append(channel)
-    channels.sort()
-    guard let index = channels.index(of: channel) else { return }
-    tableView.insertRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
-}
-
-private func updateChannelInTable(_ channel: Channel) {
-    guard let index = channels.index(of: channel) else { return }
-    tableView.beginUpdates()
-    tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
-    tableView.endUpdates()
-}
-
-private func removeChannelFromTable(_ channel: Channel) {
-    guard let index = channels.index(of: channel) else { return }
-    channels.remove(at: index)
-    tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
-}
-
+    
+    private func updateChannelInTable(_ channel: Channel) {
+        guard let index = channels.index(of: channel) else { return }
+        tableView.beginUpdates()
+        tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+        tableView.endUpdates()
+    }
+    
+    private func removeChannelFromTable(_ channel: Channel) {
+        guard let index = channels.index(of: channel) else { return }
+        channels.remove(at: index)
+        tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+    }
+    
 }
 
 // MARK:- TABLE VIEW DATA SOURCE

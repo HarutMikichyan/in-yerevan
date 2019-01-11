@@ -15,9 +15,7 @@ import Photos
 
 final class ChatViewController: MessagesViewController {
     
-    // MARK:- MAIN PROPERTIES
-    
-    var channel: Channel!
+    // MARK:- FIREBASE PROPERTIES
     
     private let db = Firestore.firestore()
     private let storage = Storage.storage().reference()
@@ -25,11 +23,12 @@ final class ChatViewController: MessagesViewController {
     private var messages: [Message] = []
     private var messageListener: ListenerRegistration?
     
+    // MARK:- OTHER PROPERTIES
+    
+    var channel: Channel!
     private var isSendingPhoto = false {
         didSet {
             DispatchQueue.main.async {
-                /// ----------------------------------------------- /// subject to change
-                
                 self.messageInputBar.leftStackViewItems.forEach { item in
                     (item as! InputBarButtonItem).isEnabled = !self.isSendingPhoto
                 }
@@ -37,75 +36,13 @@ final class ChatViewController: MessagesViewController {
         }
     }
     
+    // MARK:- VIEW LIFE CYCLE METHODS
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        guard let id = channel.id else {
-            navigationController?.popViewController(animated: true)
-            return
-        }
-        reference = db.collection(["channels", id, "thread"].joined(separator: "/"))
-        messageInputBar.delegate = self
-        messagesCollectionView.messagesDataSource = self
-        messagesCollectionView.messagesLayoutDelegate = self
-        messagesCollectionView.messagesDisplayDelegate = self
-        
-        navigationItem.largeTitleDisplayMode = .never
-        
-        maintainPositionOnKeyboardFrameChanged = true
-        messageInputBar.inputTextView.tintColor = .gray
-        messageInputBar.sendButton.setTitleColor(.gray, for: .normal)
-        
-        messageListener = reference?.addSnapshotListener { querySnapshot, error in
-            guard let snapshot = querySnapshot else {
-                print("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
-                return
-            }
-            
-            snapshot.documentChanges.forEach { change in
-                self.handleDocumentChange(change)
-            }
-        }
-        
-        // 1
-        let cameraItem = InputBarButtonItem(type: .system)
-        cameraItem.tintColor = .blue
-        cameraItem.image = #imageLiteral(resourceName: "camera")
-        let photosItem = InputBarButtonItem(type: .system)
-        photosItem.tintColor = .blue
-        photosItem.image = #imageLiteral(resourceName: "photos")
-        
-        messageInputBar.sendButton.tintColor = .blue
-        messageInputBar.sendButton.image = #imageLiteral(resourceName: "sendMessage")
-        // 2
-        cameraItem.addTarget(
-            self,
-            action: #selector(cameraButtonPressed),
-            for: .primaryActionTriggered
-        )
-        photosItem.addTarget(
-            self,
-            action: #selector(photosButtonPressed),
-            for: .primaryActionTriggered
-        )
-        cameraItem.setSize(CGSize(width: 60, height: 30), animated: false)
-        photosItem.setSize(CGSize(width: 60, height: 30), animated: false)
-        
-        messageInputBar.leftStackView.alignment = .center
-        messageInputBar.setLeftStackViewWidthConstant(to: 90, animated: false)
-        
-        // 3
-        messageInputBar.setStackViewItems([cameraItem, photosItem], forStack: .left, animated: false)
-        
-        if let layout = messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout {
-            layout.setMessageIncomingMessagePadding(UIEdgeInsets(top: 0, left: -20, bottom: 0, right: 0))
-            layout.setMessageOutgoingMessagePadding(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -20))
-        }
-    }
-    
-    deinit {
-        /// ----------------------------------------------- /// subject to change
-        messageListener?.remove()
+        configureDatabase()
+        configureLayoutAndDataSource()
+        configureMessageInputBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -116,45 +53,49 @@ final class ChatViewController: MessagesViewController {
         }
     }
     
-    
+    deinit {
+        messageListener?.remove()
+    }
     
     // MARK:- ACTIONS
     
     @objc private func cameraButtonPressed() {
         let picker = UIImagePickerController()
         picker.delegate = self
-        /// ----------------------------------------------- /// subject to change
+        
+        /// ––––––––––––––––– subject to change ––––––––––––––––––––– ///
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             picker.sourceType = .camera
         } else {
-            /// to change
+            
         }
+        /// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––– ///
+
         present(picker, animated: true, completion: nil)
     }
     
     @objc private func photosButtonPressed() {
         let picker = UIImagePickerController()
         picker.delegate = self
-        /// ----------------------------------------------- /// subject to change
+
+        /// ––––––––––––––––– subject to change ––––––––––––––––––––– ///
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             picker.sourceType = .photoLibrary
         } else {
-            /// to change
+            
         }
+        /// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––– ///
+        
         present(picker, animated: true, completion: nil)
     }
     
     private func sendPhoto(_ image: UIImage) {
         isSendingPhoto = true
         uploadImage(image, to: channel) { [weak self] url in
-            guard let `self` = self else {
-                return
-            }
+            guard let `self` = self else { return }
             self.isSendingPhoto = false
             
-            guard let url = url else {
-                return
-            }
+            guard let url = url else { return }
             
             var message = Message(image: image)
             message.downloadURL = url
@@ -164,18 +105,14 @@ final class ChatViewController: MessagesViewController {
     }
     
     private func insertNewMessage(_ message: Message) {
-        guard !messages.contains(message) else {
-            return
-        }
+        guard !messages.contains(message) else { return }
         
         messages.append(message)
         messages.sort()
         
         let isLatestMessage = messages.index(of: message) == (messages.count - 1)
         let shouldScrollToBottom = messagesCollectionView.isAtBottom && isLatestMessage
-        
         messagesCollectionView.reloadData()
-        
         if shouldScrollToBottom {
             DispatchQueue.main.async {
                 self.messagesCollectionView.scrollToBottom(animated: true)
@@ -183,23 +120,100 @@ final class ChatViewController: MessagesViewController {
         }
     }
     
-    // MARK:- HELPER FUNCTIONS
+    // MARK:- INITIAL CONFIGURATION METHODS
     
-    private func handleDocumentChange(_ change: DocumentChange) {
-        guard var message = Message(document: change.document) else {
+    private func configureDatabase() {
+        guard let id = channel.id else {
+            navigationController?.popViewController(animated: true)
             return
         }
         
+        reference = db.collection(["channels", id, "thread"].joined(separator: "/"))
+        messageListener = reference?.addSnapshotListener { querySnapshot, error in
+            guard let snapshot = querySnapshot else {
+                print("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
+                return
+            }
+            
+            snapshot.documentChanges.forEach { change in
+                self.handleDocumentChange(change)
+            }
+        }
+    }
+    
+    private func configureLayoutAndDataSource() {
+        navigationItem.largeTitleDisplayMode = .never
+        messagesCollectionView.messagesDataSource = self
+        messagesCollectionView.messagesLayoutDelegate = self
+        messagesCollectionView.messagesDisplayDelegate = self
+        if let layout = messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout {
+            layout.setMessageIncomingMessagePadding(UIEdgeInsets(top: 0, left: -20, bottom: 0, right: 0))
+            layout.setMessageOutgoingMessagePadding(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -20))
+        }
+    }
+    
+    private func configureMessageInputBar() {
+        // Configuring input bar
+        messageInputBar.delegate = self
+        maintainPositionOnKeyboardFrameChanged = true
+        messageInputBar.inputTextView.tintColor = .gray
+        
+        // Configuring camera item
+        let cameraItem = InputBarButtonItem(type: .system)
+        cameraItem.setSize(CGSize(width: 60, height: 30), animated: false)
+        cameraItem.tintColor = .blue
+        cameraItem.image = #imageLiteral(resourceName: "camera")
+        cameraItem.addTarget(
+            self,
+            action: #selector(cameraButtonPressed),
+            for: .primaryActionTriggered
+        )
+        
+        // Configuring photos item
+        let photosItem = InputBarButtonItem(type: .system)
+        photosItem.setSize(CGSize(width: 60, height: 30), animated: false)
+        photosItem.tintColor = .blue
+        photosItem.image = #imageLiteral(resourceName: "photos")
+        photosItem.addTarget(
+            self,
+            action: #selector(photosButtonPressed),
+            for: .primaryActionTriggered
+        )
+        
+        // Configuring send button item
+        let sendItem = InputBarButtonItem(type: .system)
+        sendItem.setSize(CGSize(width: 60, height: 30), animated: false)
+        sendItem.tintColor = .blue
+        sendItem.image = #imageLiteral(resourceName: "sendMessage")
+        sendItem.addTarget(
+            self,
+            action: #selector(send),
+            for: .primaryActionTriggered
+        )
+        
+        // Configuring all stack view items
+        messageInputBar.leftStackView.alignment = .center
+        messageInputBar.setLeftStackViewWidthConstant(to: 90, animated: false)
+        messageInputBar.setStackViewItems([cameraItem, photosItem], forStack: .left, animated: false)
+        messageInputBar.setStackViewItems([sendItem], forStack: .right, animated: false)
+    }
+
+    // MARK:- HELPER METHODS
+    
+    @objc private func send() {
+        if !messageInputBar.inputTextView.text.isEmpty {
+            messageInputBar.didSelectSendButton()
+        }
+    }
+    
+    private func handleDocumentChange(_ change: DocumentChange) {
+        guard var message = Message(document: change.document) else { return }
         switch change.type {
         case .added:
             if let url = message.downloadURL {
                 downloadImage(at: url) { [weak self] image in
-                    guard let self = self else {
-                        return
-                    }
-                    guard let image = image else {
-                        return
-                    }
+                    guard let self = self else { return }
+                    guard let image = image else { return }
                     
                     message.image = image
                     self.insertNewMessage(message)
@@ -231,7 +245,6 @@ final class ChatViewController: MessagesViewController {
                 print("Error sending message: \(error.localizedDescription)")
                 return
             }
-            
             self.messagesCollectionView.scrollToBottom()
         }
     }
@@ -287,7 +300,7 @@ final class ChatViewController: MessagesViewController {
 
 // MARK: - MESSAGES DISPLAY DELEGATE
 
-extension ChatViewController: MessagesDisplayDelegate {
+extension ChatViewController: MessagesDisplayDelegate, MessagesLayoutDelegate {
     func backgroundColor(for message: MessageType, at indexPath: IndexPath,
                          in messagesCollectionView: MessagesCollectionView) -> UIColor {
         switch message.kind {
@@ -311,12 +324,6 @@ extension ChatViewController: MessagesDisplayDelegate {
     func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
         avatarView.isHidden = true
     }
-}
-
-// MARK: - MESSAGES LAYOUT DELEGATE
-
-extension ChatViewController: MessagesLayoutDelegate {
-    
 }
 
 // MARK: - MESSAGES DATA SOURCE
