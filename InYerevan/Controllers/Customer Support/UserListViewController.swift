@@ -49,6 +49,8 @@ final class UserListViewController: UITableViewController {
             }
         }
         
+        
+
 //        if let name = newlyCreatedChannelName {
 //            let channel = Channel(name: name)
 //            guard !channels.contains(channel) else {
@@ -60,33 +62,22 @@ final class UserListViewController: UITableViewController {
                            forCellReuseIdentifier: ChannelCell.id)
     }
     
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        title = "Chat List"
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        channelListener = channelReference.addSnapshotListener { querySnapshot, error in
+            guard let snapshot = querySnapshot else {
+                print("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
+                return
+            }
+            
+            snapshot.documentChanges.forEach { change in
+                self.handleDocumentChange(change)
+            }
+        }
+        channels = []
         tableView.reloadData()
-//        if shouldOpenChatInstantly {
-//            let sb = UIStoryboard(name: "CustomerSupport", bundle: nil)
-//            let vc = sb.instantiateViewController(withIdentifier: "chatvc") as! ChatViewController
-//            vc.user = currentUser
-//            for channel in channels {
-//                if channel.name == ChatSettings.displayName {
-//                    vc.channel = channel
-//                    break
-//                }
-//            }
-//            navigationController?.setViewControllers([vc], animated: true)
-//        }
     }
-    
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(animated)
-//        newlyCreatedChannelName = nil
-//    }
-    
     // MARK:- ACTIONS
     
     private func createChannel(_ channel: Channel) {
@@ -137,7 +128,9 @@ private func addChannelToTable(_ channel: Channel) {
 
 private func updateChannelInTable(_ channel: Channel) {
     guard let index = channels.index(of: channel) else { return }
+    tableView.beginUpdates()
     tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+    tableView.endUpdates()
 }
 
 private func removeChannelFromTable(_ channel: Channel) {
@@ -159,7 +152,7 @@ extension UserListViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: ChannelCell.id, for: indexPath) as! ChannelCell
         cell.accessoryType = .disclosureIndicator
         cell.chatNameLabel.text = channels[indexPath.row].name
-        let numberOfUnreadMessages = channels[indexPath.row].numberOfUnreadMessages ?? 0
+        let numberOfUnreadMessages = channels[indexPath.row].numberOfUnreadMessages
         if numberOfUnreadMessages == 0 {
             cell.unreadMessagesLabel.text = ""
             cell.unreadMessagesFrameImageView.isHidden = true

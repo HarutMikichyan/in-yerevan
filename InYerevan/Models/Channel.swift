@@ -16,12 +16,14 @@ struct Channel {
     
     let id: String?
     let name: String
-    var numberOfUnreadMessages: Int?
+    var numberOfUnreadMessages: Int
+    var lastMessageSentDate: Date
     
     init(name: String) {
         id = nil
         self.name = name
         numberOfUnreadMessages = 0
+        lastMessageSentDate = Date()
     }
     
     init?(document: QueryDocumentSnapshot) {
@@ -29,9 +31,17 @@ struct Channel {
         guard let name = data["name"] as? String else {
             return nil
         }
+        guard let sentDate = data["lastMessageSent"] as? Date else {
+            return nil
+        }
+        guard let unreadMessages = data["unreadMessages"] as? Int else {
+            return nil
+        }
+        
         id = document.documentID
         self.name = name
-        numberOfUnreadMessages = data["unreadMessages"] as? Int ?? 0
+        self.numberOfUnreadMessages = unreadMessages
+        self.lastMessageSentDate = sentDate
     }
     
 }
@@ -41,7 +51,12 @@ struct Channel {
 extension Channel: DatabaseRepresentation {
     
     var representation: [String : Any] {
-        var rep = ["name": name, "unreadMessages": numberOfUnreadMessages ?? 0] as [String : Any]
+        var rep: [String : Any] = [
+            "name": name,
+            "unreadMessages": numberOfUnreadMessages,
+            "lastMessageSent": lastMessageSentDate
+        ]
+        
         if let id = id {
             rep["id"] = id
         }
@@ -59,10 +74,7 @@ extension Channel: Comparable {
     }
     
     static func < (lhs: Channel, rhs: Channel) -> Bool {
-        if lhs.numberOfUnreadMessages != nil && rhs.numberOfUnreadMessages != nil {
-            return lhs.numberOfUnreadMessages != rhs.numberOfUnreadMessages ? lhs.numberOfUnreadMessages! > rhs.numberOfUnreadMessages! : lhs.name < rhs.name
-        }
-        return lhs.name < rhs.name
+            return lhs.lastMessageSentDate > rhs.lastMessageSentDate
     }
     
 }

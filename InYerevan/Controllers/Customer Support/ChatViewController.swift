@@ -108,7 +108,8 @@ final class ChatViewController: MessagesViewController {
         messageListener?.remove()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         if User.isAdministration {
             channel.numberOfUnreadMessages = 0
             db.collection("channels").document(channel.id!).setData(["unreadMessages": 0], merge: true)
@@ -216,10 +217,14 @@ final class ChatViewController: MessagesViewController {
     }
     
     private func save(_ message: Message) {
+        let sentDate = Date()
+        channel.lastMessageSentDate = sentDate
+        db.collection("channels").document(channel.id!).setData(["lastMessageSent": sentDate], merge: true)
+
         if !User.isAdministration {
-            let unreadMessages = channel.numberOfUnreadMessages ?? 0
-            channel.numberOfUnreadMessages = unreadMessages + 1
-            db.collection("channels").document(channel.id!).setData(["unreadMessages": (unreadMessages + 1)], merge: true)
+            let unreadMessages = channel.numberOfUnreadMessages + 1
+            channel.numberOfUnreadMessages = unreadMessages
+            db.collection("channels").document(channel.id!).setData(["unreadMessages": unreadMessages], merge: true)
         }
         reference?.addDocument(data: message.representation) { error in
             if let error = error {
