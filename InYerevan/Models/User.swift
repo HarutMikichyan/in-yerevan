@@ -3,7 +3,7 @@ import Foundation
 class User {
     
     public static var administration: [String] = ["harmik@gmail.com",
-                                                  "davxush@gmail.com",
+                                                  "davghush@gmail.com",
                                                   "vahtad@gmail.com",
                                                   "gevdar@gmail.com"]
     

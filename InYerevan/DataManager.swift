@@ -41,15 +41,20 @@ class DataManager {
         persistentController.viewContext.refreshAllObjects()
     }
     
-    func fetchAllEvents() -> [Event]? {
+    func fetchAllEventsFromNowTill(date: Date, for category: Category) -> [Event]? {
         let context = persistentController.viewContext 
         let request: NSFetchRequest<Event> =  Event.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
         request.predicate = NSPredicate(format: "date > %@", NSDate())
-        let objects = (try? context.fetch(request))
-        return objects
+        
+        return (try? context.fetch(request))
     }
     
+    func fetchCategories() -> [Category]? {
+        let context = persistentController.viewContext 
+        let request: NSFetchRequest<Category> =  Category.fetchRequest()
+        return (try? context.fetch(request))
+    }
     
     //Private Interface
     //  Write only functions which will support your public functions 

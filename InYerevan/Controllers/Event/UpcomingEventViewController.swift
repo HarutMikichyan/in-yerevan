@@ -67,12 +67,10 @@ extension UpcomingEventViewController: UITableViewDelegate, UITableViewDataSourc
             if indexPath.row == 0 {
                 if let vc = storyboard?.instantiateViewController(withIdentifier: NewEventViewController.id) {
                     navigationController?.pushViewController(vc, animated: true)
-                } else {
-                    openEventCategoriesViewController()
+                    return
                 } 
-            } else {
-                openEventCategoriesViewController()
-            }   
-        }
+            } 
+        } 
+        openEventCategoriesViewController()
     }
 }
