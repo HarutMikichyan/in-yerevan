@@ -45,11 +45,11 @@ final class ChatViewController: MessagesViewController {
         configureMessageInputBar()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         if User.isAdministration {
-            channel.numberOfUnreadMessages = 0
-            db.collection("channels").document(channel.id!).setData(["unreadMessages": 0], merge: true)
+            channel.isUnseenBySupport = false
+            db.collection("channels").document(channel.id!).setData(["unseen": false], merge: true)
         }
     }
     
@@ -70,14 +70,14 @@ final class ChatViewController: MessagesViewController {
             
         }
         /// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––– ///
-
+        
         present(picker, animated: true, completion: nil)
     }
     
     @objc private func photosButtonPressed() {
         let picker = UIImagePickerController()
         picker.delegate = self
-
+        
         /// ––––––––––––––––– subject to change ––––––––––––––––––––– ///
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             picker.sourceType = .photoLibrary
@@ -94,9 +94,7 @@ final class ChatViewController: MessagesViewController {
         uploadImage(image, to: channel) { [weak self] url in
             guard let `self` = self else { return }
             self.isSendingPhoto = false
-            
             guard let url = url else { return }
-            
             var message = Message(image: image)
             message.downloadURL = url
             self.save(message)
@@ -147,8 +145,8 @@ final class ChatViewController: MessagesViewController {
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
         if let layout = messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout {
-            layout.setMessageIncomingMessagePadding(UIEdgeInsets(top: 0, left: -20, bottom: 0, right: 0))
-            layout.setMessageOutgoingMessagePadding(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -20))
+            layout.setMessageIncomingMessagePadding(UIEdgeInsets(top: 0, left: -15, bottom: 0, right: 50))
+            layout.setMessageOutgoingMessagePadding(UIEdgeInsets(top: 0, left: 50, bottom: 0, right: -15))
         }
     }
     
@@ -185,6 +183,7 @@ final class ChatViewController: MessagesViewController {
         sendItem.setSize(CGSize(width: 60, height: 30), animated: false)
         sendItem.tintColor = .blue
         sendItem.image = #imageLiteral(resourceName: "sendMessage")
+        sendItem.isEnabled = false
         sendItem.addTarget(
             self,
             action: #selector(send),
@@ -197,7 +196,7 @@ final class ChatViewController: MessagesViewController {
         messageInputBar.setStackViewItems([cameraItem, photosItem], forStack: .left, animated: false)
         messageInputBar.setStackViewItems([sendItem], forStack: .right, animated: false)
     }
-
+    
     // MARK:- HELPER METHODS
     
     @objc private func send() {
@@ -214,7 +213,6 @@ final class ChatViewController: MessagesViewController {
                 downloadImage(at: url) { [weak self] image in
                     guard let self = self else { return }
                     guard let image = image else { return }
-                    
                     message.image = image
                     self.insertNewMessage(message)
                 }
@@ -224,7 +222,6 @@ final class ChatViewController: MessagesViewController {
             } else {
                 insertNewMessage(message)
             }
-            
         default:
             break
         }
@@ -234,12 +231,12 @@ final class ChatViewController: MessagesViewController {
         let sentDate = Date()
         channel.lastMessageSentDate = sentDate
         db.collection("channels").document(channel.id!).setData(["lastMessageSent": sentDate], merge: true)
-
+        
         if !User.isAdministration {
-            let unreadMessages = channel.numberOfUnreadMessages + 1
-            channel.numberOfUnreadMessages = unreadMessages
-            db.collection("channels").document(channel.id!).setData(["unreadMessages": unreadMessages], merge: true)
+            channel.isUnseenBySupport = true
+            db.collection("channels").document(channel.id!).setData(["unseen": true], merge: true)
         }
+        
         reference?.addDocument(data: message.representation) { error in
             if let error = error {
                 print("Error sending message: \(error.localizedDescription)")
@@ -301,19 +298,15 @@ final class ChatViewController: MessagesViewController {
 // MARK: - MESSAGES DISPLAY DELEGATE
 
 extension ChatViewController: MessagesDisplayDelegate, MessagesLayoutDelegate {
+    
     func backgroundColor(for message: MessageType, at indexPath: IndexPath,
                          in messagesCollectionView: MessagesCollectionView) -> UIColor {
         switch message.kind {
         case .emoji:
             return .clear
         default:
-            return isFromCurrentSender(message: message) ? .gray : .cyan
+            return isFromCurrentSender(message: message) ? .blue : .cyan
         }
-    }
-    
-    func shouldDisplayHeader(for message: MessageType, at indexPath: IndexPath,
-                             in messagesCollectionView: MessagesCollectionView) -> Bool {
-        return false
     }
     
     func messageStyle(for message: MessageType, at indexPath: IndexPath,
@@ -324,6 +317,7 @@ extension ChatViewController: MessagesDisplayDelegate, MessagesLayoutDelegate {
     func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
         avatarView.isHidden = true
     }
+    
 }
 
 // MARK: - MESSAGES DATA SOURCE
@@ -335,21 +329,11 @@ extension ChatViewController: MessagesDataSource {
     }
     
     func currentSender() -> Sender {
-        return Sender(id: User.email, displayName: ChatSettings.displayName)
-    }
-    
-    func numberOfMessages(in messagesCollectionView: MessagesCollectionView) -> Int {
-        return messages.count
+        return Sender(id: User.email, displayName: User.email)
     }
     
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
         return messages[indexPath.section]
-    }
-    
-    func messageTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
-        return NSAttributedString(
-            string: message.sender.displayName,
-            attributes: [.font: UIFont.systemFont(ofSize: 12)])
     }
     
 }
@@ -357,14 +341,27 @@ extension ChatViewController: MessagesDataSource {
 // MARK: - MESSAGE INPUT BAR DELEGATE
 
 extension ChatViewController: MessageInputBarDelegate {
+    
     func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
-        if text.containsOnlyEmoji {
-            save(Message(emoji: text))
-        } else {
-            save(Message(content: text))
-        }
+        text.containsOnlyEmoji ? save(Message(emoji: text)) : save(Message(content: text))
         inputBar.inputTextView.text = ""
     }
+    
+    func messageInputBar(_ inputBar: MessageInputBar, textViewTextDidChangeTo text: String) {
+        let sendItem = InputBarButtonItem(type: .system)
+        sendItem.setSize(CGSize(width: 60, height: 30), animated: false)
+        sendItem.tintColor = .blue
+        sendItem.image = #imageLiteral(resourceName: "sendMessage")
+        sendItem.addTarget(
+            self,
+            action: #selector(send),
+            for: .primaryActionTriggered
+        )
+        sendItem.isEnabled = !text.isEmpty
+        messageInputBar.setStackViewItems([sendItem], forStack: .right, animated: false)
+    }
+    
+    
 }
 
 // MARK: - IMAGE PICKER CONTROLLER & NAVIGATION CONTROLLER DELEGATE

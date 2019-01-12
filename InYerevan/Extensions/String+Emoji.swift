@@ -28,10 +28,9 @@ extension String {
             8400...8447: // Combining Diacritical Marks for Symbols
                 return true
             default:
-                continue
+                return false
             }
         }
         return false
-    }
-    
+    }    
 }
