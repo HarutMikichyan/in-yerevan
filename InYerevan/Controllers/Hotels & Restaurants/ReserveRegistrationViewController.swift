@@ -21,7 +21,7 @@ class ReserveRegistrationViewController: UIViewController {
     @IBOutlet weak var hotelStar: UITextField!
     @IBOutlet weak var hotelPhoneNumber: UITextField!
     @IBOutlet weak var openingHoursHotel: UITextField!
-    @IBOutlet weak var hotelLocation: UITextField!
+    @IBOutlet weak var hotelLocation: UIMapInputTextField!
     
     //restaurant outlet
     @IBOutlet weak var restaurantName: UITextField!
@@ -75,11 +75,12 @@ class ReserveRegistrationViewController: UIViewController {
         if hotelName.text != "" && hotelStar.text != "" && hotelPhoneNumber.text != ""
             && openingHoursHotel.text != "" && hotelLocation.text != "" {
             
-            let keyHotel = UIApplication.appDelegate.refHotels.childByAutoId().key
+            let keyHotel: String! = UIApplication.appDelegate.refHotels.childByAutoId().key
+            let hotLoc: (lat: Double, long: Double) = self.hotelLocation.getCoordinatesAsTuple()
             
-            let hotel = ["id": keyHotel, "hotelName": hotelName.text!, "hotelStar": hotelStar.text!, "hotelPhoneNumber": hotelPhoneNumber.text!, "openingHoursHotel": openingHoursHotel.text!, "hotelLocation": hotelLocation.text!]
+            let hotel: [String: Any] = ["id": keyHotel, "hotelName": hotelName.text! , "hotelStar": hotelStar.text! , "hotelPhoneNumber": hotelPhoneNumber.text! , "openingHoursHotel": openingHoursHotel.text!, "hotelLocationLong": hotLoc.long , "hotelLocationLat": hotLoc.lat]
             
-            UIApplication.appDelegate.refHotels.child(keyHotel!).setValue(hotel)
+            UIApplication.appDelegate.refHotels.child(keyHotel).setValue(hotel)
         }
     }
     
@@ -90,6 +91,7 @@ class ReserveRegistrationViewController: UIViewController {
             let keyRestaurant = UIApplication.appDelegate.refRestaurants.childByAutoId().key
             
             let restaurant = ["id": keyRestaurant, "restaurantName": restaurantName.text, "restaurantPhoneNumber": restaurantPhoneNumber.text, "openingHoursRestaurant": openingHoursRestaurant.text, "restaurantLocation": restaurantLocation.text]
+            
             UIApplication.appDelegate.refRestaurants.child(keyRestaurant!).setValue(restaurant)
         }
     }

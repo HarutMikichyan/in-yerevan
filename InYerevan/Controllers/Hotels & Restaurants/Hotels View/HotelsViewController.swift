@@ -28,8 +28,11 @@ class HotelsViewController: UIViewController {
                     let id = hotelObject["id"]
                     let name = hotelObject["hotelName"]
                     let star = hotelObject["hotelStar"]
-                    let hotels = HotelsType(id: id as! String, hotelName: name as! String, hotelStar: star as! String)
-                    
+                    let phoneNumber = hotelObject["hotelPhoneNumber"]
+                    let openingHours = hotelObject["openingHoursHotel"]
+                    let locationLong = hotelObject["hotelLocationLong"]
+                    let locationlat = hotelObject["hotelLocationLat"]
+                    let hotels = HotelsType(id: id as! String, hotelName: name as! String, hotelStar: star as! String, hotelPhoneNumber: phoneNumber as! String, openingHoursHotel: openingHours as! String, hotelLocationLong: locationLong as! Double, hotelLocationLat: locationlat as! Double)
                     self.hotelsList.append(hotels)
                 }
             }
@@ -49,7 +52,9 @@ extension HotelsViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let storyboard = UIStoryboard(name: "HotelsAndRestaurants", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "HotelDescriptionViewControllerID")
+        let vc = storyboard.instantiateViewController(withIdentifier: "HotelDescriptionViewControllerID") as! HotelDescriptionViewController
+        vc.hotel = hotelsList[indexPath.row]
+        
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -64,7 +69,7 @@ extension HotelsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: HotelTableViewCell.id, for: indexPath) as! HotelTableViewCell
         if hotelsList.count != 0 {
-                  cell.nameHotel.text = hotelsList[indexPath.row].hotelName
+            cell.nameHotel.text = hotelsList[indexPath.row].hotelName
         }
         return cell
     }

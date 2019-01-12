@@ -13,7 +13,6 @@ class TopRestaurantCollectionViewCell: UICollectionViewCell {
     static let id = "TopRestaurantCollectionViewCell"
     
     @IBOutlet weak var topRestaurantsImage: UIImageView!
-    
     @IBOutlet weak var topRestaurantsName: UILabel!
     
     override func awakeFromNib() {

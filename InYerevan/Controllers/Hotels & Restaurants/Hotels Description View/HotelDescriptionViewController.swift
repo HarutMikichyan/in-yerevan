@@ -7,16 +7,16 @@
 //
 
 import UIKit
+import Firebase
 
 class HotelDescriptionViewController: UIViewController {
     
-    var hotel = [HotelDescriptionType]()
+     var hotel: HotelsType!
     
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tableView.register(UINib(nibName: HotelOverviewTableViewCell.id, bundle: nil), forCellReuseIdentifier: HotelOverviewTableViewCell.id)
         tableView.register(UINib(nibName: HotelRestaurantMapTableViewCell.id, bundle: nil), forCellReuseIdentifier: HotelRestaurantMapTableViewCell.id)
     }
@@ -45,10 +45,8 @@ extension HotelDescriptionViewController: UITableViewDelegate, UITableViewDataSo
         switch indexPath.row {
         case 0:
             return 300
-        case 1:
-            return 450
         default:
-            fatalError()
+            return 450
         }
     }
     
@@ -60,13 +58,18 @@ extension HotelDescriptionViewController: UITableViewDelegate, UITableViewDataSo
         switch indexPath.row {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: HotelOverviewTableViewCell.id, for: indexPath) as! HotelOverviewTableViewCell
-            return cell
-        case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: HotelRestaurantMapTableViewCell.id, for: indexPath) as! HotelRestaurantMapTableViewCell
-            cell.textMap.text = "Hotel Location"
+            cell.hotelPhoneNumber.text = hotel.hotelPhoneNumber
+            cell.ratelbl.text = hotel.hotelStar
+            cell.openingHours.text = hotel.openingHoursHotel
             return cell
         default:
-            fatalError()
+            let cell = tableView.dequeueReusableCell(withIdentifier: HotelRestaurantMapTableViewCell.id, for: indexPath) as! HotelRestaurantMapTableViewCell
+            cell.textMap.text = "Hotel Location"
+            cell.locationLong = hotel.hotelLocationLong
+            cell.locationLat = hotel.hotelLocationLat
+            cell.name = hotel.hotelName
+            cell.openingHours = hotel.openingHoursHotel
+            return cell
         }
     }
 }

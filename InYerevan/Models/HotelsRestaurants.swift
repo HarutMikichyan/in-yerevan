@@ -17,32 +17,22 @@ struct HotelsType {
     var id: String
     var hotelName: String
     var hotelStar: String
-}
-
-struct HotelDescriptionType {
-    var id: String
-    var hotelName: String
-    var hotelStar: String
     var hotelPhoneNumber: String
     var openingHoursHotel: String
-    var hotelLocation: String
+    var hotelLocationLong: Double
+    var hotelLocationLat: Double
 }
 
 struct TopRestaurantsType {
     var id: String
-    var hotelName: String
+    var restaurantName: String
 }
 
 struct RestaurantsType {
     var id: String
-    var hotelName: String
-    var hotelPhoneNumber: String
-}
-
-struct RestaurantsDescriptionType {
-    var id: String
-    var hotelName: String
-    var hotelPhoneNumber: String
-    var openingHoursHotel: String
-    var hotelLocation: String
+    var restaurantName: String
+    var restaurantPhoneNumber: String
+    var openingHoursRestaurant: String
+    var restaurantLocationLong: Double
+    var restaurantLocationLat: Double
 }

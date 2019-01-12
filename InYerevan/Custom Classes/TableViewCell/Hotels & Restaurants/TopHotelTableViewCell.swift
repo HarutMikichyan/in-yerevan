@@ -7,11 +7,12 @@
 //
 
 import UIKit
-//import Firebase
 
 class TopHotelTableViewCell: UITableViewCell {
     
     static let id = "TopHotelTableViewCell"
+    
+    private var hotels = [TopHotelsType]()
     
     @IBOutlet weak var topHotelCollectionView: UICollectionView!
     
@@ -19,6 +20,11 @@ class TopHotelTableViewCell: UITableViewCell {
         super.awakeFromNib()
         topHotelCollectionView.delegate = self
         topHotelCollectionView.dataSource = self
+    }
+    
+    func setUp(with hotels: [TopHotelsType]) {
+        self.hotels = hotels
+        topHotelCollectionView.reloadData()
     }
 }
 
@@ -35,8 +41,8 @@ extension TopHotelTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopHotelCollectionViewCell.id, for: indexPath) as! TopHotelCollectionViewCell
-        if MainReserveViewController.topHotelsList.count != 0 {
-              cell.topHotelsName.text = MainReserveViewController.topHotelsList[indexPath.row].hotelName
+        if hotels.count != 0 {
+            cell.topHotelsName.text = hotels[indexPath.row].hotelName
         }
         return cell
     }

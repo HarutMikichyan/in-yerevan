@@ -38,7 +38,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         refHotels = Database.database().reference().child("Hotels")
         refRestaurants = Database.database().reference().child("Restaurants")
         
-        
         ///-----------------------------------///
         
         persistentController = PersistentController()
