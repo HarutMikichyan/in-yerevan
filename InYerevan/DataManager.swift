@@ -145,14 +145,13 @@ class DataManager {
         let deleteRequestForPicture = NSBatchDeleteRequest(fetchRequest: requestForEvent)
         let deleteRequestForCoordinate = NSBatchDeleteRequest(fetchRequest: requestForCoordinate)
         let deleteRequestForCompany = NSBatchDeleteRequest(fetchRequest: requestForCompany)
-        let deleteRequestForCategory = NSBatchDeleteRequest(fetchRequest: requestForCategory)
+        
         
         do {
             try context.execute(deleteRequestForEvent)
             try context.execute(deleteRequestForPicture)
             try context.execute(deleteRequestForCoordinate)
             try context.execute(deleteRequestForCompany)
-            try context.execute(deleteRequestForCategory)
         } catch  {
             print("Error while erasing data DataManager row 134")
         }
