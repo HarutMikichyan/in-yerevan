@@ -146,7 +146,6 @@ class DataManager {
         let deleteRequestForCoordinate = NSBatchDeleteRequest(fetchRequest: requestForCoordinate)
         let deleteRequestForCompany = NSBatchDeleteRequest(fetchRequest: requestForCompany)
         
-        
         do {
             try context.execute(deleteRequestForEvent)
             try context.execute(deleteRequestForPicture)
