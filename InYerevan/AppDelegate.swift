@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     var window: UIWindow?
     var dataManager: DataManager!
     var persistentController: PersistentController!
+    let queue = DispatchQueue(label: "FetchQueue")
 
     override init() {
         FirebaseApp.configure()
@@ -25,6 +26,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         persistentController = PersistentController()
         dataManager = DataManager(persistentController)
+        
+        //FetchEvents and replace CoreData
+        queue.async {
+            self.dataManager.fetchEventsFromServerSide()
+        }
+        
         if FirebaseApp.app() == nil {
             FirebaseApp.configure()
         }
@@ -32,8 +39,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         GIDSignIn.sharedInstance()?.clientID = "127608008778-kdfb153i4f8kja6gm8o9pu0pra2ms0p9.apps.googleusercontent.com"
         GIDSignIn.sharedInstance().delegate = self
         
-        persistentController = PersistentController()
-        dataManager = DataManager(persistentController)
 
         return true
     }

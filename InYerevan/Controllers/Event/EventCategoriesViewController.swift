@@ -51,7 +51,7 @@ extension EventCategoiresViewController: UICollectionViewDelegate, UICollectionV
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EventCategoryCollectionViewCell.id, for: indexPath) as! EventCategoryCollectionViewCell
         let category = eventCategories[indexPath.row]
         //TODO: Fetch Picture from first event and show it!
-        let picture = (category.events?.allObjects.first as? Event)?.pictureURL
+        //let picture = (category.events?.allObjects.first as? Event)?.pictureURL
         cell.prepareCellWith(label: category.name!, background: #imageLiteral(resourceName: "Technology"))
         return cell
         

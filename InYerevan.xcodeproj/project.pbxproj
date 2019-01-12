@@ -63,6 +63,7 @@
 		86D1EF9B21E4C9BD00738187 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 86D1EF9A21E4C9BD00738187 /* GoogleService-Info.plist */; };
 		86D1EF9E21E4D00400738187 /* PersistentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D1EF9D21E4D00300738187 /* PersistentController.swift */; };
 		86D1EFA121E4D06700738187 /* In_Yerevan.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 86D1EF9F21E4D06600738187 /* In_Yerevan.xcdatamodeld */; };
+		86EED4AA21E8E52E002E455D /* FirebaseEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EED4A921E8E52E002E455D /* FirebaseEvent.swift */; };
 		98E1B5C4496047B6E7761DDF /* Pods_InYerevan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DABF38CD586899DF4A2D30E /* Pods_InYerevan.framework */; };
 		D4BE0CCD21E79A63006E0907 /* ChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BE0CCB21E79A63006E0907 /* ChannelCell.swift */; };
 		D4BE0CCE21E79A63006E0907 /* ChannelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4BE0CCC21E79A63006E0907 /* ChannelCell.xib */; };
@@ -140,6 +141,7 @@
 		86D1EF9C21E4CF5400738187 /* InYerevan-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "InYerevan-Bridging-Header.h"; sourceTree = "<group>"; };
 		86D1EF9D21E4D00300738187 /* PersistentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentController.swift; sourceTree = "<group>"; };
 		86D1EFA021E4D06600738187 /* In_Yerevan.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = In_Yerevan.xcdatamodel; sourceTree = "<group>"; };
+		86EED4A921E8E52E002E455D /* FirebaseEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FirebaseEvent.swift; path = Events/FirebaseEvent.swift; sourceTree = "<group>"; };
 		D4BE0CCB21E79A63006E0907 /* ChannelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCell.swift; sourceTree = "<group>"; };
 		D4BE0CCC21E79A63006E0907 /* ChannelCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChannelCell.xib; sourceTree = "<group>"; };
 		D4C8F9D121E4DAD300EF213C /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 				D4C8F9D321E4DAD300EF213C /* Image.swift */,
 				D4C8F9D121E4DAD300EF213C /* Message.swift */,
 				F9E58D8E21E604F700D0A88C /* User.swift */,
+				86EED4A921E8E52E002E455D /* FirebaseEvent.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -339,8 +342,7 @@
 			children = (
 				86D1EF3421E4B80B00738187 /* ImagePicker */,
 				86D1EF3F21E4BD0D00738187 /* Hotels & Restaurants */,
-				D4BE0CCB21E79A63006E0907 /* ChannelCell.swift */,
-				D4BE0CCC21E79A63006E0907 /* ChannelCell.xib */,
+				86FA2B2521E9684B009BAAFC /* ChannelCell */,
 			);
 			path = "Xib files";
 			sourceTree = "<group>";
@@ -535,6 +537,15 @@
 				86D1EF1821E4B57100738187 /* GradientView.swift */,
 			);
 			path = UiVIew;
+			sourceTree = "<group>";
+		};
+		86FA2B2521E9684B009BAAFC /* ChannelCell */ = {
+			isa = PBXGroup;
+			children = (
+				D4BE0CCB21E79A63006E0907 /* ChannelCell.swift */,
+				D4BE0CCC21E79A63006E0907 /* ChannelCell.xib */,
+			);
+			path = ChannelCell;
 			sourceTree = "<group>";
 		};
 		D4C8F9D021E4DA8E00EF213C /* Customer Support */ = {
@@ -738,6 +749,7 @@
 				86D1EF2021E4B5CA00738187 /* AppDelegate.swift in Sources */,
 				86AFF76C21E4D1D100990FA8 /* TopHotelCollectionViewCell.swift in Sources */,
 				708A692621E557F600932BFA /* RestaurantTableViewCell.swift in Sources */,
+				86EED4AA21E8E52E002E455D /* FirebaseEvent.swift in Sources */,
 				86D1EF1B21E4B57100738187 /* MapInputTextField.swift in Sources */,
 				86D1EF3821E4B83000738187 /* PHPhotoLibrary+ AuthRequest.swift in Sources */,
 				86D1EF1F21E4B5CA00738187 /* DataManager.swift in Sources */,

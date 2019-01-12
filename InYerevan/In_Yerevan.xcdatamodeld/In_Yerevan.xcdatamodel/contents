@@ -17,18 +17,23 @@
     <entity name="Event" representedClassName="Event" syncable="YES" codeGenerationType="class">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="details" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="pictureURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="raiting" optional="YES" attributeType="Float" minValueString="0" maxValueString="10" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="visitorsCount" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="events" inverseEntity="Category" syncable="YES"/>
+        <relationship name="images" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Picture" inverseName="event" inverseEntity="Picture" syncable="YES"/>
         <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Coordinates" inverseName="event" inverseEntity="Coordinates" syncable="YES"/>
         <relationship name="organizer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Company" inverseName="events" inverseEntity="Company" syncable="YES"/>
     </entity>
+    <entity name="Picture" representedClassName="Picture" syncable="YES" codeGenerationType="class">
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="event" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="images" inverseEntity="Event" syncable="YES"/>
+    </entity>
     <elements>
-        <element name="Category" positionX="6341.765625" positionY="-8252.67578125" width="128" height="90"/>
+        <element name="Category" positionX="6336.96484375" positionY="-8319.546875" width="128" height="90"/>
         <element name="Company" positionX="6341.37109375" positionY="-8039.7265625" width="128" height="75"/>
         <element name="Coordinates" positionX="6342.86328125" positionY="-8136.88671875" width="128" height="90"/>
-        <element name="Event" positionX="6511.046875" positionY="-8196.6640625" width="128" height="180"/>
+        <element name="Event" positionX="6540.81640625" positionY="-8236.6953125" width="128" height="180"/>
+        <element name="Picture" positionX="6340.98828125" positionY="-8220.28125" width="128" height="75"/>
     </elements>
 </model>

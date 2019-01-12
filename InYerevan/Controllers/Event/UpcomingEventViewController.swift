@@ -12,9 +12,7 @@ import UIKit
 class UpcomingEventViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
-    
     private var timeGroup = ["today", "thisWeek", "thisMonth"]
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()

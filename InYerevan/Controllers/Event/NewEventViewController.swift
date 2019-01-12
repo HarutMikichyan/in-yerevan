@@ -25,6 +25,7 @@ class NewEventViewController: UIViewController {
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         // Do any additional setup after loading the view.
@@ -39,7 +40,6 @@ class NewEventViewController: UIViewController {
     // MARK: - Keyboard Notification handler 
     @objc private func keyboardWillShow(notification: Notification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            print("notification: Keyboard will show")
             if scrollView.contentSize.height < view.bounds.height {
                 scrollView.contentSize.height += keyboardSize.height
             }
@@ -67,7 +67,7 @@ class NewEventViewController: UIViewController {
     }
     
     @IBAction func saveAction() {
-        UIApplication.dataManager.saveEvent(title: titleField.text!, date: dateFIeld.getValue(), category: categoryField.text!, pictures: images, details: descriptionTextView.text!, coordinates: locationFIeld.getCoordinatesAsTuple())
+        UIApplication.dataManager.saveEvent(title: titleField.text!, date: dateFIeld.getValue(), category: categoryField.text!, pictureURLs: ["array of strings"], details: descriptionTextView.text!, coordinates: locationFIeld.getCoordinatesAsTuple())
         navigationController?.popViewController(animated: true)
     }
         
