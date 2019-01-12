@@ -12,12 +12,12 @@ class TopRestaurantCollectionViewCell: UICollectionViewCell {
     
     static let id = "TopRestaurantCollectionViewCell"
     
-    @IBOutlet weak var topRestaurantImage: UIImageView!
-    @IBOutlet weak var topRestaurantName: UILabel!
+    @IBOutlet weak var topRestaurantsImage: UIImageView!
+    @IBOutlet weak var topRestaurantsName: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        topRestaurantImage.layer.cornerRadius = 12
-        topRestaurantImage.clipsToBounds = true
+        layer.cornerRadius = 12
+        topRestaurantsImage.clipsToBounds = true
     }
 }

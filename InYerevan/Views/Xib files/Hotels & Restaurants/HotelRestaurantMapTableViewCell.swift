@@ -10,9 +10,33 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class HotelRestaurantMapTableViewCell: UITableViewCell {
+final class Annotation: NSObject, MKAnnotation {
+    var coordinate: CLLocationCoordinate2D
+    var title: String?
+    var subtitle: String?
+    
+    init(coordinate: CLLocationCoordinate2D, title: String?, subtitle: String?) {
+        self.coordinate = coordinate
+        self.title = title
+        self.subtitle = subtitle
+        
+        super.init()
+    }
+    
+    var region: MKCoordinateRegion {
+        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+        
+        return MKCoordinateRegion(center: coordinate, span: span)
+    }
+}
+
+class HotelRestaurantMapTableViewCell: UITableViewCell, CLLocationManagerDelegate {
 
     static let id = "HotelRestaurantMapTableViewCell"
+    var locationLat: Double!
+    var locationLong: Double!
+    var name: String!
+    var openingHours: String!
 
     @IBOutlet weak var textMap: UILabel!
     @IBOutlet weak var mapView: MKMapView!
@@ -22,7 +46,17 @@ class HotelRestaurantMapTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
-        showUserLocation()
+//        showUserLocation()
+        
+        if locationLong != nil && locationLat != nil {
+            mapView.register(MKMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
+            
+            let coordinate = CLLocationCoordinate2D(latitude: locationLat, longitude: locationLong)
+            let annotation = Annotation(coordinate: coordinate, title: name, subtitle: openingHours)
+            
+            mapView.addAnnotation(annotation)
+            mapView.setRegion(annotation.region, animated: true)
+        }
     }
     
     func showUserLocation() {

@@ -16,12 +16,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     var window: UIWindow?
     var dataManager: DataManager!
     var persistentController: PersistentController!
+    
+    // HotelsRestaurants Databse reference
+    var refHotels: DatabaseReference!
+    var refRestaurants: DatabaseReference!
 
     override init() {
         FirebaseApp.configure()
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        ///---------subject to change----------///
+//        NotificationCenter.default.addObserver(
+//            self,
+//            selector: #selector(userStateDidChange),
+//            name: Notification.Name.AuthStateDidChange,
+//            object: nil
+//        )
+ 
+        refHotels = Database.database().reference().child("Hotels")
+        refRestaurants = Database.database().reference().child("Restaurants")
+        
+        ///-----------------------------------///
         
         persistentController = PersistentController()
         dataManager = DataManager(persistentController)

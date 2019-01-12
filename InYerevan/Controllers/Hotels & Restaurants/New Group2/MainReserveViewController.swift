@@ -7,14 +7,18 @@
 //
 
 import UIKit
+import Firebase
 
 class MainReserveViewController: UIViewController {
+    
+     var topHotelsList = [TopHotelsType]()
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var mainImage: UIImageView!
     
     var headerView: UIView!
     var newHeaderLayer: CAShapeLayer!
+    weak var topHotelCell: TopHotelTableViewCell!
     
     private let headerHeight: CGFloat = 218
     
@@ -24,16 +28,32 @@ class MainReserveViewController: UIViewController {
         
         tableView.register(UINib(nibName: ReserveRegistrationTableViewCell.id, bundle: nil), forCellReuseIdentifier: ReserveRegistrationTableViewCell.id)
         tableView.register(UINib(nibName: CategoryTableViewCell.id, bundle: nil), forCellReuseIdentifier: CategoryTableViewCell.id)
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        upDateView()
+        
+        UIApplication.appDelegate.refHotels.observe(.value) { (snapshot) in
+            
+            if snapshot.childrenCount > 0 {
+                self.topHotelsList.removeAll()
+                for hot in snapshot.children.allObjects as! [DataSnapshot] {
+                    let hotelObject = hot.value as! [String: AnyObject]
+                    let id = hotelObject["id"]
+                    let name = hotelObject["hotelName"]
+                    let hotels = TopHotelsType(id: id as! String, hotelName: name as! String)
+                    
+                    self.topHotelsList.append(hotels)
+                }
+                self.tableView.reloadData()
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear( animated )
         navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        upDateView()
     }
     
     // Main Image Animate Methods
@@ -118,12 +138,14 @@ extension MainReserveViewController: UITableViewDelegate, UITableViewDataSource 
             let cell = tableView.dequeueReusableCell(withIdentifier: ReserveRegistrationTableViewCell.id, for: indexPath) as! ReserveRegistrationTableViewCell
             return cell
         case 2:
-            let cell = tableView.dequeueReusableCell(withIdentifier: TopHotelTableViewCell.id, for: indexPath) as! TopHotelTableViewCell
-            cell.selectionStyle = .none
-            return cell
+            if topHotelCell == nil {
+                let cell = tableView.dequeueReusableCell(withIdentifier: TopHotelTableViewCell.id, for: indexPath) as! TopHotelTableViewCell
+                topHotelCell = cell
+            }
+            topHotelCell.setUp(with: topHotelsList)
+            return topHotelCell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: TopRestaurantTableViewCell.id, for: indexPath) as! TopRestaurantTableViewCell
-            cell.selectionStyle = .none
             return cell
         }
     }
@@ -134,6 +156,7 @@ extension MainReserveViewController: UITableViewDelegate, UITableViewDataSource 
         case 1:
             let storyboard = UIStoryboard(name: "HotelsAndRestaurants", bundle: nil)
             let vc =  storyboard.instantiateViewController(withIdentifier: "ReserveRegistrationViewControllerID")
+            
             navigationController?.present(vc, animated: true, completion: nil)
         default:
             break
