@@ -13,6 +13,5 @@ class ChannelCell: UITableViewCell {
     static let id = "ChannelCell"
     @IBOutlet weak var chatNameLabel: UILabel!
     @IBOutlet weak var unreadMessagesFrameImageView: UIImageView!
-    @IBOutlet weak var unreadMessagesLabel: UILabel!
     
 }

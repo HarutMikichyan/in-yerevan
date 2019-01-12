@@ -39,7 +39,7 @@ final class UserListViewController: UITableViewController {
         channels = []
         tableView.reloadData()
     }
-
+    
     deinit {
         channelListener?.remove()
     }
@@ -55,9 +55,7 @@ final class UserListViewController: UITableViewController {
     }
     
     private func handleDocumentChange(_ change: DocumentChange) {
-        guard let channel = Channel(document: change.document) else { ///-------
-            return
-        }
+        guard let channel = Channel(document: change.document) else { return }
         switch change.type {
         case .added:
             addChannelToTable(channel)
@@ -95,6 +93,8 @@ final class UserListViewController: UITableViewController {
     
     private func updateChannelInTable(_ channel: Channel) {
         guard let index = channels.index(of: channel) else { return }
+        //        print("\(channel.name) --> \(channel.numberOfUnreadMessages)")
+        //        db.collection("channels").document(channel.id!).setData(["unreadMessages": channel.numberOfUnreadMessages], merge: true)
         tableView.beginUpdates()
         tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
         tableView.endUpdates()
@@ -119,14 +119,7 @@ extension UserListViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: ChannelCell.id, for: indexPath) as! ChannelCell
         cell.accessoryType = .disclosureIndicator
         cell.chatNameLabel.text = channels[indexPath.row].name
-        let numberOfUnreadMessages = channels[indexPath.row].numberOfUnreadMessages
-        if numberOfUnreadMessages == 0 {
-            cell.unreadMessagesLabel.text = ""
-            cell.unreadMessagesFrameImageView.isHidden = true
-        } else {
-            cell.unreadMessagesLabel.text = "\(numberOfUnreadMessages)"
-            cell.unreadMessagesFrameImageView.isHidden = false
-        }
+        cell.unreadMessagesFrameImageView.isHidden = !channels[indexPath.row].isUnseenBySupport
         return cell
     }
     

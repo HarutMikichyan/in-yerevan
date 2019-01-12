@@ -76,7 +76,6 @@
 		D4C8F9D621E4DAD400EF213C /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C8F9D321E4DAD300EF213C /* Image.swift */; };
 		D4C8F9DA21E4DB1500EF213C /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C8F9D721E4DB1400EF213C /* ChatViewController.swift */; };
 		D4C8F9DC21E4DB1500EF213C /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C8F9D921E4DB1400EF213C /* UserListViewController.swift */; };
-		D4C8F9DE21E4DBA400EF213C /* ChatSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C8F9DD21E4DBA400EF213C /* ChatSettings.swift */; };
 		D4C8F9E221E4DBFE00EF213C /* UIScrollView+Bottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C8F9DF21E4DBFD00EF213C /* UIScrollView+Bottom.swift */; };
 		D4C8F9E321E4DBFE00EF213C /* String+Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C8F9E021E4DBFE00EF213C /* String+Emoji.swift */; };
 		D4C8F9E421E4DBFE00EF213C /* UIImage+Scaling.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C8F9E121E4DBFE00EF213C /* UIImage+Scaling.swift */; };
@@ -157,7 +156,6 @@
 		D4C8F9D321E4DAD300EF213C /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		D4C8F9D721E4DB1400EF213C /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		D4C8F9D921E4DB1400EF213C /* UserListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
-		D4C8F9DD21E4DBA400EF213C /* ChatSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatSettings.swift; sourceTree = "<group>"; };
 		D4C8F9DF21E4DBFD00EF213C /* UIScrollView+Bottom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Bottom.swift"; sourceTree = "<group>"; };
 		D4C8F9E021E4DBFE00EF213C /* String+Emoji.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Emoji.swift"; sourceTree = "<group>"; };
 		D4C8F9E121E4DBFE00EF213C /* UIImage+Scaling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Scaling.swift"; sourceTree = "<group>"; };
@@ -344,7 +342,6 @@
 		86D1EF1121E4B4E400738187 /* Custom Classes */ = {
 			isa = PBXGroup;
 			children = (
-				D4C8F9DD21E4DBA400EF213C /* ChatSettings.swift */,
 				86D1EF6821E4C08100738187 /* CollectionViewCells */,
 				86D1EF6021E4C01700738187 /* TableViewCell */,
 				86D1EF9721E4C75F00738187 /* TextField */,
@@ -821,7 +818,6 @@
 				708A692421E551FC00932BFA /* HotelTableViewCell.swift in Sources */,
 				D4C8F9DA21E4DB1500EF213C /* ChatViewController.swift in Sources */,
 				86043CBD21EA1A80001C78F3 /* ChannelCell.swift in Sources */,
-				D4C8F9DE21E4DBA400EF213C /* ChatSettings.swift in Sources */,
 				86D1EF4E21E4BDBD00738187 /* CategoryTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -973,14 +969,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = A6635SAL2C;
+				DEVELOPMENT_TEAM = JH43XF7V78;
 				INFOPLIST_FILE = "$(SRCROOT)/InYerevan/Supporting FIles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = loqshGroup.InYerevan;
+				PRODUCT_BUNDLE_IDENTIFIER = lloqshGroup.InYerevan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ENABLE_BATCH_MODE = No;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -996,14 +992,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = A6635SAL2C;
+				DEVELOPMENT_TEAM = JH43XF7V78;
 				INFOPLIST_FILE = "$(SRCROOT)/InYerevan/Supporting FIles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = loqshGroup.InYerevan;
+				PRODUCT_BUNDLE_IDENTIFIER = lloqshGroup.InYerevan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ENABLE_BATCH_MODE = No;
 				SWIFT_VERSION = 4.2;
