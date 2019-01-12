@@ -13,77 +13,36 @@ import MessageKit
 
 final class UserListViewController: UITableViewController {
     
-    // MARK:- MAIN PROPERTIES
-    
-    var currentUser: User? = nil
-//    var newlyCreatedChannelName: String?
-//    var shouldOpenChatInstantly = false
+    // MARK:- FIREBASE PROPERTIES
     
     private let db = Firestore.firestore()
     private let channelCellIdentifier = "channelCell"
-    
     private var channels = [Channel]()
     private var channelListener: ListenerRegistration?
     private var channelReference: CollectionReference {
         return db.collection("channels")
     }
     
-    ///---------subject to change----------///
-    deinit {
-        channelListener?.remove()
-    }
-    ///-----------------------------------///
-
+    // MARK:- VIEW LIFE CYCLE
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
-
-        channelListener = channelReference.addSnapshotListener { querySnapshot, error in
-            guard let snapshot = querySnapshot else {
-                print("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
-                return
-            }
-
-            snapshot.documentChanges.forEach { change in
-                self.handleDocumentChange(change)
-            }
-        }
-        
-//        if let name = newlyCreatedChannelName {
-//            let channel = Channel(name: name)
-//            guard !channels.contains(channel) else {
-//                return
-//            }
-//            createChannel(channel)
-//        }
+        listenToChanges()
+        tableView.register(UINib(nibName: ChannelCell.id, bundle: nil),
+                           forCellReuseIdentifier: ChannelCell.id)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        title = "Chat List"
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        listenToChanges()
+        channels = []
         tableView.reloadData()
-//        if shouldOpenChatInstantly {
-//            let sb = UIStoryboard(name: "CustomerSupport", bundle: nil)
-//            let vc = sb.instantiateViewController(withIdentifier: "chatvc") as! ChatViewController
-//            vc.user = currentUser
-//            for channel in channels {
-//                if channel.name == ChatSettings.displayName {
-//                    vc.channel = channel
-//                    break
-//                }
-//            }
-//            navigationController?.setViewControllers([vc], animated: true)
-//        }
     }
-    
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(animated)
-//        newlyCreatedChannelName = nil
-//    }
+
+    deinit {
+        channelListener?.remove()
+    }
     
     // MARK:- ACTIONS
     
@@ -109,41 +68,44 @@ final class UserListViewController: UITableViewController {
         }
     }
     
-    @objc private func logOut() {
-        do {
-            try Auth.auth().signOut()
-            print("---------SIGNED OUT----------")
-        } catch {
-            print("Error signing out: \(error.localizedDescription)")
+    // MARK :- HELPER FUNCTIONS
+    
+    private func listenToChanges() {
+        channelListener = channelReference.addSnapshotListener { querySnapshot, error in
+            guard let snapshot = querySnapshot else {
+                print("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
+                return
+            }
+            
+            snapshot.documentChanges.forEach { change in
+                self.handleDocumentChange(change)
+            }
         }
-        
-        navigationController?.popViewController(animated: true)
     }
-
-
-// MARK :- HELPER FUNCTIONS
-
-private func addChannelToTable(_ channel: Channel) {
-    guard !channels.contains(channel) else {
-        return
+    
+    private func addChannelToTable(_ channel: Channel) {
+        guard !channels.contains(channel) else {
+            return
+        }
+        channels.append(channel)
+        channels.sort()
+        guard let index = channels.index(of: channel) else { return }
+        tableView.insertRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
     }
-    channels.append(channel)
-    channels.sort()
-    guard let index = channels.index(of: channel) else { return }
-    tableView.insertRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
-}
-
-private func updateChannelInTable(_ channel: Channel) {
-    guard let index = channels.index(of: channel) else { return }
-    tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
-}
-
-private func removeChannelFromTable(_ channel: Channel) {
-    guard let index = channels.index(of: channel) else { return }
-    channels.remove(at: index)
-    tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
-}
-
+    
+    private func updateChannelInTable(_ channel: Channel) {
+        guard let index = channels.index(of: channel) else { return }
+        tableView.beginUpdates()
+        tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+        tableView.endUpdates()
+    }
+    
+    private func removeChannelFromTable(_ channel: Channel) {
+        guard let index = channels.index(of: channel) else { return }
+        channels.remove(at: index)
+        tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+    }
+    
 }
 
 // MARK:- TABLE VIEW DATA SOURCE
@@ -154,9 +116,17 @@ extension UserListViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: channelCellIdentifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: ChannelCell.id, for: indexPath) as! ChannelCell
         cell.accessoryType = .disclosureIndicator
-        cell.textLabel?.text = channels[indexPath.row].name
+        cell.chatNameLabel.text = channels[indexPath.row].name
+        let numberOfUnreadMessages = channels[indexPath.row].numberOfUnreadMessages
+        if numberOfUnreadMessages == 0 {
+            cell.unreadMessagesLabel.text = ""
+            cell.unreadMessagesFrameImageView.isHidden = true
+        } else {
+            cell.unreadMessagesLabel.text = "\(numberOfUnreadMessages)"
+            cell.unreadMessagesFrameImageView.isHidden = false
+        }
         return cell
     }
     
