@@ -32,13 +32,20 @@ class DataManager {
         fetchEventsFromServerSide()
     }
     
-    func fetchAllEventsFromNowTill(date: Date, for category: Category) -> [Event]? {
+    func fetchAllEventsFromNowTill(date: Date, for category: Category) -> [Event] {
         let context = persistentController.viewContext 
         let request: NSFetchRequest<Event> =  Event.fetchRequest()
         request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
-        request.predicate = NSPredicate(format: "date > %@", NSDate())
+        let predicateSince = NSPredicate(format: "date > %@", NSDate())
+        let predicateTill = NSPredicate(format: "date < %@", date as NSDate)
+        let predicateCategory = NSPredicate(format: "category = %@", category)
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicateSince, predicateTill, predicateCategory])
+        request.predicate = predicate
+        if let events = (try? context.fetch(request)) {
+            return events
+        }
         
-        return (try? context.fetch(request))
+        return []
     }
     
     func fetchCategories() -> [Category]? {
@@ -48,7 +55,7 @@ class DataManager {
     }
     
     func fetchEventsFromServerSide() {
-        let referance = Firestore.firestore().collection("Events").whereField("date", isGreaterThan: Date()).getDocuments { (querySnapshot, error) in
+        let _ = Firestore.firestore().collection("Events").whereField("date", isGreaterThan: Date()).getDocuments { (querySnapshot, error) in
             if error == nil {
                 self.eraseLocalCache()
                 for document in querySnapshot!.documents {
@@ -142,7 +149,7 @@ class DataManager {
         
         
         let deleteRequestForEvent = NSBatchDeleteRequest(fetchRequest: requestForEvent)
-        let deleteRequestForPicture = NSBatchDeleteRequest(fetchRequest: requestForEvent)
+        let deleteRequestForPicture = NSBatchDeleteRequest(fetchRequest: requestForPicture)
         let deleteRequestForCoordinate = NSBatchDeleteRequest(fetchRequest: requestForCoordinate)
         let deleteRequestForCompany = NSBatchDeleteRequest(fetchRequest: requestForCompany)
         

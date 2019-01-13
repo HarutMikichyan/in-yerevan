@@ -36,17 +36,13 @@ class HomeViewController: UIViewController {
     }
     
     private func addChannelToTable(_ channel: Channel) {
-        guard !channels.contains(channel) else {
-            return
-        }
+        guard !channels.contains(channel) else { return }
         channels.append(channel)
         channels.sort()
     }
     
     private func handleDocumentChange(_ change: DocumentChange) {
-        guard let channel = Channel(document: change.document) else { ///-------
-            return
-        }
+        guard let channel = Channel(document: change.document) else { return }
         switch change.type {
         case .added:
             addChannelToTable(channel)
@@ -56,9 +52,7 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func onlineSupportAction() {
-        ChatSettings.displayName = name
         let sb = UIStoryboard(name: "Home", bundle: nil)
-        
         if User.isAdministration {
             let vc = sb.instantiateViewController(withIdentifier: "userlist") as! UserListViewController
             navigationController?.pushViewController(vc, animated: true)
@@ -67,18 +61,15 @@ class HomeViewController: UIViewController {
             if channels.contains(Channel(name: name)) {
                 let index = channels.index(of: Channel(name: name))
                 vc.channel = channels[index!]
-                // vc.user = Auth.auth().currentUser
                 navigationController?.pushViewController(vc, animated: true)
             } else {
                 channelReference.addDocument(data: Channel(name: name).representation) { error in
-                    if let e = error {
-                        print("Error saving channel: \(e.localizedDescription)")
+                    if let error = error {
+                        print("Error saving channel: \(error.localizedDescription)")
                     }
                 }
             }
             vc.title = "Customer Support"
-            //            vc.newlyCreatedChannelName = name
-            //            vc.shouldOpenChatInstantly = true
         }
     }
     
