@@ -16,22 +16,30 @@ class EventCategoiresViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Categories"
-        if let categories = UIApplication.dataManager.fetchCategories() {
-            eventCategories = categories
-        } else {
-            let alert = UIAlertController(title: "Sorry", message: "No available Data, try again", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .destructive, handler: nil))
-            present(alert, animated: true)
-        }
+    
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.isNavigationBarHidden = false 
+        navigationController?.isNavigationBarHidden = true 
+        // Won't show category with unavailable events 
+        guard let categories = UIApplication.dataManager.fetchCategories() else {
+            let alert = UIAlertController(title: "Sorry", message: "No available Data, try again", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .destructive, handler: nil))
+            present(alert, animated: true)
+            return
+        }
+        eventCategories.removeAll()
+        for category in categories {
+            if category.events!.count > 0 {
+                eventCategories.append(category)
+                collectionView.reloadData()
+            }
+        } 
+       
     }
-
+    
 }
-
 extension EventCategoiresViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return eventCategories.count
@@ -40,10 +48,7 @@ extension EventCategoiresViewController: UICollectionViewDelegate, UICollectionV
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let count: CGFloat = 2
         let width: CGFloat =  collectionView.bounds.width / count - 16
-        var height: CGFloat = collectionView.bounds.width / count - 16
-        if indexPath.row == 0 {
-            height =  height + height / 2
-        }
+        var height: CGFloat = (collectionView.bounds.width / count - 16 ) * 1.5
         return CGSize(width: width, height: height)
     }
     
@@ -58,8 +63,9 @@ extension EventCategoiresViewController: UICollectionViewDelegate, UICollectionV
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: EventsViewController.id) as! EventsViewController
-        vc.events =  eventCategories[indexPath.row].events?.allObjects as! [Event]
+
+        let vc = storyboard?.instantiateViewController(withIdentifier: UpcomingEventViewController.id) as! UpcomingEventViewController
+        vc.category = eventCategories[indexPath.row]
         navigationController?.pushViewController(vc, animated: true)
     }
     
