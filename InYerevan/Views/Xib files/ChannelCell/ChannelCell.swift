@@ -13,5 +13,10 @@ class ChannelCell: UITableViewCell {
     static let id = "ChannelCell"
     @IBOutlet weak var chatNameLabel: UILabel!
     @IBOutlet weak var unreadMessagesFrameImageView: UIImageView!
-    
+    weak var channel: Channel! {
+        didSet {
+            unreadMessagesFrameImageView.isHidden = !channel.isUnseenBySupport
+            chatNameLabel.text = channel.name
+        }
+    }
 }

@@ -95,6 +95,9 @@ final class UserListViewController: UITableViewController {
         guard let index = channels.index(of: channel) else { return }
         //        print("\(channel.name) --> \(channel.numberOfUnreadMessages)")
         //        db.collection("channels").document(channel.id!).setData(["unreadMessages": channel.numberOfUnreadMessages], merge: true)
+        channels[index] = channel
+        print("\(User.email)-> \(channel.isUnseenBySupport)")
+        
         tableView.beginUpdates()
         tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
         tableView.endUpdates()
@@ -118,8 +121,8 @@ extension UserListViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ChannelCell.id, for: indexPath) as! ChannelCell
         cell.accessoryType = .disclosureIndicator
-        cell.chatNameLabel.text = channels[indexPath.row].name
-        cell.unreadMessagesFrameImageView.isHidden = !channels[indexPath.row].isUnseenBySupport
+        cell.channel = channels[indexPath.row]
+        //        cell.unreadMessagesFrameImageView.isHidden = !channels[indexPath.row].isUnseenBySupport
         return cell
     }
     

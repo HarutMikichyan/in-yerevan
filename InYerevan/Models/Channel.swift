@@ -13,7 +13,7 @@ protocol DatabaseRepresentation {
     var representation: [String: Any] { get }
 }
 
-struct Channel {
+class Channel {
     
     // MARK:- MAIN PROPERTIES
     
