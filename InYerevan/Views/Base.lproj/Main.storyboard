@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OJu-xE-tPp">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -61,16 +61,113 @@
             </objects>
             <point key="canvasLocation" x="1825" y="353"/>
         </scene>
+        <!--Registration View Controller-->
+        <scene sceneID="hTS-JK-hag">
+            <objects>
+                <viewController id="urK-s7-HY3" customClass="RegistrationViewController" customModule="InYerevan" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="w68-Gw-l8A">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bgLogin" translatesAutoresizingMaskIntoConstraints="NO" id="Hxw-bJ-Scf">
+                                <rect key="frame" x="106" y="119" width="217" height="310"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="b2A-C4-5rd">
+                                <rect key="frame" x="148" y="130" width="129" height="0.0"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="Y56-QL-WsV">
+                                        <rect key="frame" x="0.0" y="0.0" width="129" height="0.0"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.46000000000000002" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZZZ-vm-3d5">
+                                        <rect key="frame" x="0.0" y="0.0" width="129" height="0.0"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.46000000000000002" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="6aM-Bg-Yf7" userLabel="Confirm Password">
+                                        <rect key="frame" x="0.0" y="0.0" width="129" height="0.0"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.46000000000000002" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qLn-YA-3ZL" userLabel="Log In">
+                                        <rect key="frame" x="0.0" y="0.0" width="129" height="0.0"/>
+                                        <color key="backgroundColor" red="0.49411764705882355" green="0.46274509803921571" blue="0.55686274509803924" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                        <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <state key="normal" title="LOGIN">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="5iY-gi-U1V">
+                                        <rect key="frame" x="0.0" y="0.0" width="129" height="0.0"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RjZ-5Y-rna">
+                                                <rect key="frame" x="0.0" y="0.0" width="129" height="0.0"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                                <state key="normal" title="Create Account">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vpb-jf-SdV">
+                                                <rect key="frame" x="0.0" y="0.0" width="129" height="0.0"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                                <state key="normal" title="Forgot Password?">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Y56-QL-WsV" firstAttribute="height" secondItem="qLn-YA-3ZL" secondAttribute="height" id="1Qp-gA-0xE"/>
+                                    <constraint firstItem="6aM-Bg-Yf7" firstAttribute="height" secondItem="Y56-QL-WsV" secondAttribute="height" id="6KB-dr-saA"/>
+                                    <constraint firstItem="Y56-QL-WsV" firstAttribute="height" secondItem="ZZZ-vm-3d5" secondAttribute="height" id="Lhd-OM-QJy"/>
+                                    <constraint firstItem="5iY-gi-U1V" firstAttribute="height" secondItem="qLn-YA-3ZL" secondAttribute="height" multiplier="1.7" id="M89-mV-K2Y"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="1Cd-Gl-Oqs"/>
+                    </view>
+                    <connections>
+                        <outlet property="backgroundImageView" destination="Hxw-bJ-Scf" id="VV0-RX-VHI"/>
+                        <outlet property="confirmPasswordTextField" destination="6aM-Bg-Yf7" id="g40-ns-Htl"/>
+                        <outlet property="emailTextField" destination="Y56-QL-WsV" id="Yrf-cm-CLP"/>
+                        <outlet property="loginButton" destination="qLn-YA-3ZL" id="dzx-nK-HW0"/>
+                        <outlet property="passwordTextField" destination="ZZZ-vm-3d5" id="BxE-xH-HwU"/>
+                        <outlet property="stackView" destination="b2A-C4-5rd" id="O95-aN-yMh"/>
+                        <outletCollection property="additionalButtons" destination="Vpb-jf-SdV" collectionClass="NSMutableArray" id="VoA-vF-c6O"/>
+                        <outletCollection property="additionalButtons" destination="RjZ-5Y-rna" collectionClass="NSMutableArray" id="wEX-nz-13d"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MmJ-ol-1Qc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-908.69565217391312" y="130.43478260869566"/>
+        </scene>
         <!--Login Registration View Controller-->
         <scene sceneID="cw7-0q-12I">
             <objects>
                 <viewController storyboardIdentifier="LoginRegistrationViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OJu-xE-tPp" customClass="LoginRegistrationViewController" customModule="InYerevan" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eIb-bV-Hdz">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Idp-7F-0Lr">
-                                <rect key="frame" x="96.5" y="197.5" width="182" height="29"/>
+                                <rect key="frame" x="116" y="211.33333333333334" width="182" height="29"/>
                                 <color key="backgroundColor" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>
                                 <segments>
                                     <segment title="Sign in"/>
@@ -83,11 +180,11 @@
                                 </connections>
                             </segmentedControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JZc-18-M11">
-                                <rect key="frame" x="0.0" y="249.5" width="375" height="368.5"/>
+                                <rect key="frame" x="0.0" y="263.33333333333326" width="414" height="423.66666666666674"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Main-Yerevan" translatesAutoresizingMaskIntoConstraints="NO" id="CCH-6d-Sci">
-                                <rect key="frame" x="10" y="40" width="355" height="133.5"/>
+                                <rect key="frame" x="10" y="40" width="394" height="147.33333333333334"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -310,5 +407,6 @@
         <image name="EventRPG-Compact" width="25.5" height="25.5"/>
         <image name="HomeRPG-Compact" width="25.5" height="25.5"/>
         <image name="Main-Yerevan" width="2448" height="1377"/>
+        <image name="bgLogin" width="1706.6666259765625" height="1066.6666259765625"/>
     </resources>
 </document>
