@@ -261,6 +261,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="62v-Bw-PQb"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="onlineSupportButton" destination="kyQ-dl-Oxe" id="aRh-d9-slV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TbD-yh-HrJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

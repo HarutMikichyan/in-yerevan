@@ -18,9 +18,16 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        if User.email == "guest" {
+            changeEmail.isEnabled = false
+            changeEmail.setTitleColor(UIColor.white, for: .normal)
+            changeEmail.backgroundColor = UIColor.white
+            
+            changePassword.isEnabled = false
+            changePassword.setTitleColor(UIColor.white, for: .normal)
+            changePassword.backgroundColor = UIColor.white
+        }
     }
-    
 
     @IBAction func changeEmailAction() {
     }
