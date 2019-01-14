@@ -17,8 +17,43 @@ class RegistrationViewController: UIViewController {
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet var additionalButtons: [UIButton]!
+    
     private var isSigningUp: Bool = false
     private var isResettingPassword: Bool = false
+    
+    @IBAction func signUpButtonIsTapped(_ sender: UIButton) {
+        isSigningUp = !isSigningUp
+
+        if isResettingPassword {
+            additionalButtons.forEach { button in
+                button.isHidden = false
+            }
+            isResettingPassword = !isResettingPassword
+            isSigningUp = true
+        }
+        
+        passwordTextField.isHidden = false
+        if isSigningUp {
+            confirmPasswordTextField.isHidden = false
+            loginButton.setTitle("SIGN UP", for: .normal)
+            sender.setTitle("Log In", for: .normal)
+        } else {
+            confirmPasswordTextField.isHidden = true
+            loginButton.setTitle("LOG IN", for: .normal)
+            sender.setTitle("Create Account", for: .normal)
+        }
+    }
+    
+    @IBAction func resetPasswordButtonIsTapped(_ sender: UIButton) {
+        isResettingPassword = !isResettingPassword
+        passwordTextField.isHidden = true
+        confirmPasswordTextField.isHidden = true
+        loginButton.setTitle("RESET PASSWORD", for: .normal)
+        additionalButtons[1].setTitle("Create Account", for: .normal)
+        sender.isHidden = true
+    }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
