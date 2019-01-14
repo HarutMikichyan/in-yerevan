@@ -34,6 +34,9 @@ class ProfileViewController: UIViewController {
     @IBAction func changePasswordAction() {
     }
     @IBAction func signOutAction() {
+        
+        User.email = ""
+        
         let myStoryboard = UIStoryboard.init(name: "Main", bundle: nil)
         let vc = myStoryboard.instantiateViewController(withIdentifier: "LoginRegistrationViewController")
         

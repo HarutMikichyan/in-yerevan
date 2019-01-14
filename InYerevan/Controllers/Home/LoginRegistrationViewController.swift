@@ -153,8 +153,8 @@ class LoginRegistrationViewController: UIViewController, GIDSignInUIDelegate {
             }
         }
         
-        UserDefaults.standard.set(userEmail, forKey: "userEmail")
-        UserDefaults.standard.set(isAdministration, forKey: "isAdministration")
+        User.email = userEmail
+        User.isAdministration = isAdministration
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "TabBarController")
