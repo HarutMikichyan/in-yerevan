@@ -71,6 +71,7 @@
 		86D1EF9E21E4D00400738187 /* PersistentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D1EF9D21E4D00300738187 /* PersistentController.swift */; };
 		86D1EFA121E4D06700738187 /* In_Yerevan.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 86D1EF9F21E4D06600738187 /* In_Yerevan.xcdatamodeld */; };
 		98E1B5C4496047B6E7761DDF /* Pods_InYerevan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DABF38CD586899DF4A2D30E /* Pods_InYerevan.framework */; };
+		D484C15921EC9119006260B3 /* UIColor+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D484C15821EC9119006260B3 /* UIColor+Additions.swift */; };
 		D4C8F9D421E4DAD400EF213C /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C8F9D121E4DAD300EF213C /* Message.swift */; };
 		D4C8F9D521E4DAD400EF213C /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C8F9D221E4DAD300EF213C /* Channel.swift */; };
 		D4C8F9D621E4DAD400EF213C /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C8F9D321E4DAD300EF213C /* Image.swift */; };
@@ -152,6 +153,7 @@
 		86D1EF9C21E4CF5400738187 /* InYerevan-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "InYerevan-Bridging-Header.h"; sourceTree = "<group>"; };
 		86D1EF9D21E4D00300738187 /* PersistentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentController.swift; sourceTree = "<group>"; };
 		86D1EFA021E4D06600738187 /* In_Yerevan.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = In_Yerevan.xcdatamodel; sourceTree = "<group>"; };
+		D484C15821EC9119006260B3 /* UIColor+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Additions.swift"; sourceTree = "<group>"; };
 		D4C8F9D121E4DAD300EF213C /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		D4C8F9D221E4DAD300EF213C /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		D4C8F9D321E4DAD300EF213C /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
@@ -335,6 +337,7 @@
 				86D1EF3621E4B82F00738187 /* Date+String.swift */,
 				86D1EF3521E4B82F00738187 /* PHPhotoLibrary+ AuthRequest.swift */,
 				D4C8F9E021E4DBFE00EF213C /* String+Emoji.swift */,
+				D484C15821EC9119006260B3 /* UIColor+Additions.swift */,
 				D4C8F9E121E4DBFE00EF213C /* UIImage+Scaling.swift */,
 				D4C8F9DF21E4DBFD00EF213C /* UIScrollView+Bottom.swift */,
 			);
@@ -815,6 +818,7 @@
 				86D1EF8421E4C4C300738187 /* MainReserveViewController.swift in Sources */,
 				86D1EF8C21E4C4D800738187 /* HotelDescriptionViewController.swift in Sources */,
 				86D1EF2C21E4B7D500738187 /* ImagePickerViewController.swift in Sources */,
+				D484C15921EC9119006260B3 /* UIColor+Additions.swift in Sources */,
 				70E7072621E78E6F007CE603 /* HotelRestaurantImageTableViewCell.swift in Sources */,
 				708A692121E5421900932BFA /* HotelRestaurantMapTableViewCell.swift in Sources */,
 				86D1EF8121E4C41300738187 /* LoginRegistrationViewController.swift in Sources */,
