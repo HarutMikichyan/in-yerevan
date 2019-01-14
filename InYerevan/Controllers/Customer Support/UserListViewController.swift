@@ -31,13 +31,12 @@ final class UserListViewController: UITableViewController {
         listenToChanges()
         tableView.register(UINib(nibName: ChannelCell.id, bundle: nil),
                            forCellReuseIdentifier: ChannelCell.id)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        listenToChanges()
-        channels = []
-        tableView.reloadData()
+        let view = UIView(frame: tableView.bounds)
+        view.changeBackgroundToGradient(from: [.backgroundDarkSpruce, .backgroundDenimBlue])
+        tableView.backgroundColor = .clear
+        tableView.backgroundView = view
+        tableView.tableFooterView = UIView(frame: .zero)
+
     }
     
     deinit {
@@ -93,11 +92,8 @@ final class UserListViewController: UITableViewController {
     
     private func updateChannelInTable(_ channel: Channel) {
         guard let index = channels.index(of: channel) else { return }
-        //        print("\(channel.name) --> \(channel.numberOfUnreadMessages)")
-        //        db.collection("channels").document(channel.id!).setData(["unreadMessages": channel.numberOfUnreadMessages], merge: true)
         channels[index] = channel
-        print("\(User.email)-> \(channel.isUnseenBySupport)")
-        
+        channels.sort()
         tableView.beginUpdates()
         tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
         tableView.endUpdates()
@@ -120,9 +116,10 @@ extension UserListViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ChannelCell.id, for: indexPath) as! ChannelCell
-        cell.accessoryType = .disclosureIndicator
+//        cell.accessoryType = .disclosureIndicator
         cell.channel = channels[indexPath.row]
-        //        cell.unreadMessagesFrameImageView.isHidden = !channels[indexPath.row].isUnseenBySupport
+        cell.backgroundColor = .clear
+        cell.contentView.backgroundColor = .clear
         return cell
     }
     
