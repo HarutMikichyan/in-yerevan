@@ -42,14 +42,14 @@ struct Message: MessageType {
     // MARK:- INITIALIZERS
     
     init(content: String) {
-        sender = Sender(id: User.email, displayName: ChatSettings.displayName)
+        sender = Sender(id: User.email, displayName: User.email)
         self.content = content
         sentDate = Date()
         id = nil
     }
     
     init(image: UIImage) {
-        sender = Sender(id: User.email, displayName: ChatSettings.displayName)
+        sender = Sender(id: User.email, displayName: User.email)
         self.image = image
         content = ""
         sentDate = Date()
@@ -57,7 +57,7 @@ struct Message: MessageType {
     }
     
     init(emoji: String) {
-        sender = Sender(id: User.email, displayName: ChatSettings.displayName)
+        sender = Sender(id: User.email, displayName: User.email)
         self.emoji = emoji
         content = emoji
         sentDate = Date()
@@ -66,15 +66,9 @@ struct Message: MessageType {
     
     init?(document: QueryDocumentSnapshot) {
         let data = document.data()
-        guard let sentDate = data["created"] as? Date else {
-            return nil
-        }
-        guard let senderID = data["senderID"] as? String else {
-            return nil
-        }
-        guard let senderName = data["senderName"] as? String else {
-            return nil
-        }
+        guard let sentDate = data["created"] as? Date else { return nil }
+        guard let senderID = data["senderID"] as? String else { return nil }
+        guard let senderName = data["senderName"] as? String else { return nil }
         
         id = document.documentID
         self.sentDate = sentDate

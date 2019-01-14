@@ -6,6 +6,7 @@
 //  Copyright © 2018 com.inYerevan. All rights reserved.
 //
 
+import Firebase
 import FirebaseFirestore
 
 protocol DatabaseRepresentation {
@@ -18,7 +19,7 @@ struct Channel {
     
     let id: String?
     let name: String
-    var numberOfUnreadMessages: Int
+    var isUnseenBySupport: Bool
     var lastMessageSentDate: Date
     
     // MARK:- INITIALIZERS
@@ -26,7 +27,7 @@ struct Channel {
     init(name: String) {
         id = nil
         self.name = name
-        numberOfUnreadMessages = 0
+        isUnseenBySupport = true
         lastMessageSentDate = Date()
     }
     
@@ -34,11 +35,11 @@ struct Channel {
         let data = document.data()
         guard let name = data["name"] as? String else { return nil }
         guard let sentDate = data["lastMessageSent"] as? Date else { return nil }
-        guard let unreadMessages = data["unreadMessages"] as? Int else { return nil }
+        guard let unseenBySupport = data["unseen"] as? Bool else { return nil }
         
         id = document.documentID
         self.name = name
-        self.numberOfUnreadMessages = unreadMessages
+        self.isUnseenBySupport = unseenBySupport
         self.lastMessageSentDate = sentDate
     }
     
@@ -51,7 +52,7 @@ extension Channel: DatabaseRepresentation {
     var representation: [String : Any] {
         var rep: [String : Any] = [
             "name": name,
-            "unreadMessages": numberOfUnreadMessages,
+            "unseen": isUnseenBySupport,
             "lastMessageSent": lastMessageSentDate
         ]
         
@@ -72,7 +73,7 @@ extension Channel: Comparable {
     }
     
     static func < (lhs: Channel, rhs: Channel) -> Bool {
-            return lhs.lastMessageSentDate > rhs.lastMessageSentDate
+        return lhs.lastMessageSentDate > rhs.lastMessageSentDate
     }
     
 }
