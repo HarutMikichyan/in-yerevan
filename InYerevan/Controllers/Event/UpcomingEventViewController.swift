@@ -60,10 +60,10 @@ extension UpcomingEventViewController: UITableViewDelegate, UITableViewDataSourc
             navigationController?.pushViewController(vc, animated: true)
         }
         
-        // if admin permissions => 
+//         if admin permissions =>
         if User.isAdministration {
             switch indexPath.row {
-            case 0 : 
+            case 0 :
                 let vc = storyboard?.instantiateViewController(withIdentifier: NewEventViewController.id)
                 navigationController?.pushViewController(vc!, animated: true)
                 
@@ -71,18 +71,18 @@ extension UpcomingEventViewController: UITableViewDelegate, UITableViewDataSourc
                 goToEventsVCWith(events: UIApplication.dataManager.fetchAllEventsFromNowTill(date: Date().endOfDay, for: category))
             case 2:
                 goToEventsVCWith(events: UIApplication.dataManager.fetchAllEventsFromNowTill(date: Date().endOfWeek, for: category))
-            default: 
+            default:
                 goToEventsVCWith(events: UIApplication.dataManager.fetchAllEventsFromNowTill(date: Date().endOfMonth(), for: category))
             }
             
         }  else {
             switch indexPath.row {
-            case 0 : 
+            case 0 :
                 goToEventsVCWith(events: UIApplication.dataManager.fetchAllEventsFromNowTill(date: Date().endOfDay, for: category))
                 
             case 1:
                 goToEventsVCWith(events: UIApplication.dataManager.fetchAllEventsFromNowTill(date: Date().endOfWeek, for: category))
-            default: 
+            default:
                 goToEventsVCWith(events: UIApplication.dataManager.fetchAllEventsFromNowTill(date: Date().endOfMonth(), for: category))
                 
             }
