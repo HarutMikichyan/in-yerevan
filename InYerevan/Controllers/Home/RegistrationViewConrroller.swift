@@ -44,8 +44,5 @@ class RegistrationViewController: UIViewController {
         additionalButtons.forEach({ button in
             button.customize(by: view, shouldBeRound: false)
         })
-        
     }
-    
-
 }

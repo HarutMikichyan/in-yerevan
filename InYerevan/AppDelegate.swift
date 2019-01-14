@@ -46,6 +46,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         GIDSignIn.sharedInstance()?.clientID = "127608008778-kdfb153i4f8kja6gm8o9pu0pra2ms0p9.apps.googleusercontent.com"
         GIDSignIn.sharedInstance().delegate = self
     
+        
+
+        if !User.email.isEmpty {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "TabBarController")
+            
+            self.window?.rootViewController = vc
+            self.window?.makeKeyAndVisible()
+
+        }
+        
         return true
     }
 
