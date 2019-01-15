@@ -8,13 +8,25 @@ class User {
                                                   "gevdar@gmail.com"]
     
     public static var email: String {
-        let email = UserDefaults.standard.object(forKey: "userEmail") as! String
-        return email
+        get {
+            let email = UserDefaults.standard.object(forKey: "userEmail") as! String
+            return email
+        }
+        
+        set(value) {
+            UserDefaults.standard.set(value, forKey: "userEmail")
+        }
     }
     
     public static var isAdministration: Bool {
-        let bool = UserDefaults.standard.object(forKey: "isAdministration") as! Bool
-        return bool
+        get {
+            let bool = UserDefaults.standard.object(forKey: "isAdministration") as! Bool
+            return bool
+        }
+        
+        set(value) {
+            UserDefaults.standard.set(value, forKey: "isAdministration")
+        }
     }
     
     private init(){ }
