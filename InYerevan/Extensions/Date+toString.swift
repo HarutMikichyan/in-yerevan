@@ -1,5 +1,5 @@
 //
-//  Date+ Date().swift
+//  Date+toString¸.swift
 //  InYerevan
 //
 //  Created by Davit Ghushchyan on 1/13/19.

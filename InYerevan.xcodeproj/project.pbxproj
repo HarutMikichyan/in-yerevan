@@ -24,7 +24,7 @@
 		86043CBD21EA1A80001C78F3 /* ChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86043CBB21EA1A7F001C78F3 /* ChannelCell.swift */; };
 		86043CBE21EA1A80001C78F3 /* ChannelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86043CBC21EA1A80001C78F3 /* ChannelCell.xib */; };
 		86043CC121EA1AE9001C78F3 /* FirebaseEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86043CC021EA1AE8001C78F3 /* FirebaseEvent.swift */; };
-		86043CC321EAB245001C78F3 /* Date+ Date().swift in Sources */ = {isa = PBXBuildFile; fileRef = 86043CC221EAB245001C78F3 /* Date+ Date().swift */; };
+		86043CC321EAB245001C78F3 /* Date+toString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86043CC221EAB245001C78F3 /* Date+toString.swift */; };
 		86AFF76C21E4D1D100990FA8 /* TopHotelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AFF76B21E4D1D100990FA8 /* TopHotelCollectionViewCell.swift */; };
 		86AFF76E21E4D22800990FA8 /* TopRestaurantCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AFF76D21E4D22700990FA8 /* TopRestaurantCollectionViewCell.swift */; };
 		86D1EF0021E4AEBD00738187 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86D1EEFE21E4AEBD00738187 /* Main.storyboard */; };
@@ -72,6 +72,10 @@
 		86D1EF9E21E4D00400738187 /* PersistentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D1EF9D21E4D00300738187 /* PersistentController.swift */; };
 		86D1EFA121E4D06700738187 /* In_Yerevan.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 86D1EF9F21E4D06600738187 /* In_Yerevan.xcdatamodeld */; };
 		98E1B5C4496047B6E7761DDF /* Pods_InYerevan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DABF38CD586899DF4A2D30E /* Pods_InYerevan.framework */; };
+		D484C15921EC9119006260B3 /* UIColor+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D484C15821EC9119006260B3 /* UIColor+Additions.swift */; };
+		D484C15B21EC961E006260B3 /* UIView+GradientBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = D484C15A21EC961E006260B3 /* UIView+GradientBackground.swift */; };
+		D484C16121ED2AA4006260B3 /* Sender+isAdministration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D484C16021ED2AA4006260B3 /* Sender+isAdministration.swift */; };
+		D484C16321ED3150006260B3 /* UIView+makeCircular.swift in Sources */ = {isa = PBXBuildFile; fileRef = D484C16221ED3150006260B3 /* UIView+makeCircular.swift */; };
 		D4C17D9B21EC07DF008FCA61 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C17D9A21EC07DF008FCA61 /* UIView+Constraints.swift */; };
 		D4C17D9F21EC0D72008FCA61 /* UITextField+RoundedCustomization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C17D9E21EC0D72008FCA61 /* UITextField+RoundedCustomization.swift */; };
 		D4C17DA121EC1348008FCA61 /* UIButton+RoundedCustomization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C17DA021EC1348008FCA61 /* UIButton+RoundedCustomization.swift */; };
@@ -107,7 +111,7 @@
 		86043CBB21EA1A7F001C78F3 /* ChannelCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChannelCell.swift; path = "InYerevan/Views/Xib files/ChannelCell/ChannelCell.swift"; sourceTree = SOURCE_ROOT; };
 		86043CBC21EA1A80001C78F3 /* ChannelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ChannelCell.xib; path = "InYerevan/Views/Xib files/ChannelCell/ChannelCell.xib"; sourceTree = SOURCE_ROOT; };
 		86043CC021EA1AE8001C78F3 /* FirebaseEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FirebaseEvent.swift; path = InYerevan/Models/Events/FirebaseEvent.swift; sourceTree = SOURCE_ROOT; };
-		86043CC221EAB245001C78F3 /* Date+ Date().swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+ Date().swift"; sourceTree = "<group>"; };
+		86043CC221EAB245001C78F3 /* Date+toString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+toString.swift"; sourceTree = "<group>"; };
 		86AFF76B21E4D1D100990FA8 /* TopHotelCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopHotelCollectionViewCell.swift; sourceTree = "<group>"; };
 		86AFF76D21E4D22700990FA8 /* TopRestaurantCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopRestaurantCollectionViewCell.swift; sourceTree = "<group>"; };
 		86D1EEF721E4AEBD00738187 /* InYerevan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InYerevan.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -157,6 +161,10 @@
 		86D1EF9C21E4CF5400738187 /* InYerevan-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "InYerevan-Bridging-Header.h"; sourceTree = "<group>"; };
 		86D1EF9D21E4D00300738187 /* PersistentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistentController.swift; sourceTree = "<group>"; };
 		86D1EFA021E4D06600738187 /* In_Yerevan.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = In_Yerevan.xcdatamodel; sourceTree = "<group>"; };
+		D484C15821EC9119006260B3 /* UIColor+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Additions.swift"; sourceTree = "<group>"; };
+		D484C15A21EC961E006260B3 /* UIView+GradientBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+GradientBackground.swift"; sourceTree = "<group>"; };
+		D484C16021ED2AA4006260B3 /* Sender+isAdministration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sender+isAdministration.swift"; sourceTree = "<group>"; };
+		D484C16221ED3150006260B3 /* UIView+makeCircular.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+makeCircular.swift"; sourceTree = "<group>"; };
 		D4C17D9A21EC07DF008FCA61 /* UIView+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
 		D4C17D9E21EC0D72008FCA61 /* UITextField+RoundedCustomization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+RoundedCustomization.swift"; sourceTree = "<group>"; };
 		D4C17DA021EC1348008FCA61 /* UIButton+RoundedCustomization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+RoundedCustomization.swift"; sourceTree = "<group>"; };
@@ -343,12 +351,16 @@
 				86D1EF3621E4B82F00738187 /* Date+String.swift */,
 				86D1EF3521E4B82F00738187 /* PHPhotoLibrary+ AuthRequest.swift */,
 				D4C8F9E021E4DBFE00EF213C /* String+Emoji.swift */,
+				D484C15821EC9119006260B3 /* UIColor+Additions.swift */,
 				D4C17D9E21EC0D72008FCA61 /* UITextField+RoundedCustomization.swift */,
 				D4C17D9A21EC07DF008FCA61 /* UIView+Constraints.swift */,
+				D484C15A21EC961E006260B3 /* UIView+GradientBackground.swift */,
+				D484C16221ED3150006260B3 /* UIView+makeCircular.swift */,
+				D484C16021ED2AA4006260B3 /* Sender+isAdministration.swift */,
 				D4C8F9E121E4DBFE00EF213C /* UIImage+Scaling.swift */,
 				D4C17DA021EC1348008FCA61 /* UIButton+RoundedCustomization.swift */,
 				D4C8F9DF21E4DBFD00EF213C /* UIScrollView+Bottom.swift */,
-				86043CC221EAB245001C78F3 /* Date+ Date().swift */,
+				86043CC221EAB245001C78F3 /* Date+toString.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -805,6 +817,7 @@
 				86D1EF7821E4C31400738187 /* NewEventViewController.swift in Sources */,
 				86D1EF8021E4C41300738187 /* ProfileViewController.swift in Sources */,
 				86D1EF7721E4C31400738187 /* UpcomingEventViewController.swift in Sources */,
+				D484C15B21EC961E006260B3 /* UIView+GradientBackground.swift in Sources */,
 				86D1EFA121E4D06700738187 /* In_Yerevan.xcdatamodeld in Sources */,
 				D4C17D9B21EC07DF008FCA61 /* UIView+Constraints.swift in Sources */,
 				D4C8F9D521E4DAD400EF213C /* Channel.swift in Sources */,
@@ -814,7 +827,8 @@
 				D4C8F9E221E4DBFE00EF213C /* UIScrollView+Bottom.swift in Sources */,
 				86D1EF3221E4B7F200738187 /* ImagePickerCollectionViewCell.swift in Sources */,
 				D4C8F9E421E4DBFE00EF213C /* UIImage+Scaling.swift in Sources */,
-				86043CC321EAB245001C78F3 /* Date+ Date().swift in Sources */,
+				86043CC321EAB245001C78F3 /* Date+toString.swift in Sources */,
+				D484C16121ED2AA4006260B3 /* Sender+isAdministration.swift in Sources */,
 				86D1EF3921E4B83000738187 /* Date+String.swift in Sources */,
 				86D1EF7F21E4C41300738187 /* HomeViewController.swift in Sources */,
 				D4C8F9D421E4DAD400EF213C /* Message.swift in Sources */,
@@ -831,6 +845,7 @@
 				86D1EF8421E4C4C300738187 /* MainReserveViewController.swift in Sources */,
 				86D1EF8C21E4C4D800738187 /* HotelDescriptionViewController.swift in Sources */,
 				86D1EF2C21E4B7D500738187 /* ImagePickerViewController.swift in Sources */,
+				D484C15921EC9119006260B3 /* UIColor+Additions.swift in Sources */,
 				70E7072621E78E6F007CE603 /* HotelRestaurantImageTableViewCell.swift in Sources */,
 				708A692121E5421900932BFA /* HotelRestaurantMapTableViewCell.swift in Sources */,
 				D4C17DA121EC1348008FCA61 /* UIButton+RoundedCustomization.swift in Sources */,
@@ -838,6 +853,7 @@
 				708A692421E551FC00932BFA /* HotelTableViewCell.swift in Sources */,
 				D4C8F9DA21E4DB1500EF213C /* ChatViewController.swift in Sources */,
 				86043CBD21EA1A80001C78F3 /* ChannelCell.swift in Sources */,
+				D484C16321ED3150006260B3 /* UIView+makeCircular.swift in Sources */,
 				86D1EF4E21E4BDBD00738187 /* CategoryTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

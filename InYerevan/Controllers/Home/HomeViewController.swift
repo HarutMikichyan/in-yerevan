@@ -24,6 +24,9 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.barStyle = .black
+        navigationController?.navigationBar.tintColor = .outgoingLavender
+
         channelListener = channelReference.addSnapshotListener { querySnapshot, error in
             guard let snapshot = querySnapshot else {
                 print("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
@@ -34,7 +37,6 @@ class HomeViewController: UIViewController {
                 self.handleDocumentChange(change)
             }
         }
-        
         if User.email == "guest" {
             onlineSupportButton.isEnabled = false
             onlineSupportButton.setTitleColor(UIColor.white, for: .normal)
