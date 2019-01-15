@@ -6,12 +6,6 @@
 //  Copyright © 2019 InYerevan.am. All rights reserved.
 //
 
-import Foundation
-
-struct TopHotelsType {
-    var id: String
-    var hotelName: String
-}
 
 struct HotelsType {
     var id: String
@@ -21,11 +15,6 @@ struct HotelsType {
     var openingHoursHotel: String
     var hotelLocationLong: Double
     var hotelLocationLat: Double
-}
-
-struct TopRestaurantsType {
-    var id: String
-    var restaurantName: String
 }
 
 struct RestaurantsType {

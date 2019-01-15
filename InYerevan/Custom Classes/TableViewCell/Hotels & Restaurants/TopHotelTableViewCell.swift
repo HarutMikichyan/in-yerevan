@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import Firebase
 
 class TopHotelTableViewCell: UITableViewCell {
     
     static let id = "TopHotelTableViewCell"
     
-    private var hotels = [TopHotelsType]()
+    private var hotels = [HotelsType]()
+    var parrentViewController: UIViewController!
     
     @IBOutlet weak var topHotelCollectionView: UICollectionView!
     
@@ -20,15 +22,44 @@ class TopHotelTableViewCell: UITableViewCell {
         super.awakeFromNib()
         topHotelCollectionView.delegate = self
         topHotelCollectionView.dataSource = self
-    }
-    
-    func setUp(with hotels: [TopHotelsType]) {
-        self.hotels = hotels
-        topHotelCollectionView.reloadData()
+        
+        UIApplication.appDelegate.refHotels.observe(.value) { (snapshot) in
+            
+            if snapshot.childrenCount > 0 {
+                self.hotels.removeAll()
+                for hot in snapshot.children.allObjects as! [DataSnapshot] {
+                    let hotelObject = hot.value as! [String: AnyObject]
+                    let id = hotelObject["id"]
+                    let name = hotelObject["hotelName"]
+                    let star = hotelObject["hotelStar"]
+                    let phoneNumber = hotelObject["hotelPhoneNumber"]
+                    let openingHours = hotelObject["openingHoursHotel"]
+                    let locationLong = hotelObject["hotelLocationLong"]
+                    let locationlat = hotelObject["hotelLocationLat"]
+                    
+                    let hotels = HotelsType(id: id as! String, hotelName: name as! String, hotelStar: star as! String, hotelPhoneNumber: phoneNumber as! String, openingHoursHotel: openingHours as! String, hotelLocationLong: locationLong as! Double, hotelLocationLat: locationlat as! Double)
+                    self.hotels.append(hotels)
+                    if self.hotels.count == 10 {
+                        break
+                    }
+                }
+            }
+            self.topHotelCollectionView.reloadData()
+        }
     }
 }
 
 extension TopHotelTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        
+        let storyboard = UIStoryboard(name: "HotelsAndRestaurants", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "HotelDescriptionViewControllerID") as! HotelDescriptionViewController
+        vc.hotel = hotels[indexPath.row]
+        
+        parrentViewController.navigationController?.pushViewController(vc, animated: true)
+    }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         topHotelCollectionView.deselectItem(at: indexPath, animated: true)

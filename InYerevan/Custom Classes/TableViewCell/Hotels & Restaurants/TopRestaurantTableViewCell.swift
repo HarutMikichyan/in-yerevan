@@ -7,10 +7,14 @@
 //
 
 import UIKit
+import Firebase
 
 class TopRestaurantTableViewCell: UITableViewCell {
     
     static let id = "TopRestaurantTableViewCell"
+    
+    private var restaurants = [RestaurantsType]()
+    var parrentViewController: UIViewController!
     
     @IBOutlet weak var topRestaurantCollectionView: UICollectionView!
     
@@ -18,17 +22,53 @@ class TopRestaurantTableViewCell: UITableViewCell {
         super.awakeFromNib()
         topRestaurantCollectionView.delegate = self
         topRestaurantCollectionView.dataSource = self
+        
+        UIApplication.appDelegate.refRestaurants.observe(.value) { (snapshot) in
+            
+            if snapshot.childrenCount > 0 {
+                self.restaurants.removeAll()
+                for res in snapshot.children.allObjects as! [DataSnapshot] {
+                    let restaurantObject = res.value as! [String: AnyObject]
+                    let id = restaurantObject["id"]
+                    let name = restaurantObject["restaurantName"]
+                    let phoneNumber = restaurantObject["restaurantPhoneNumber"]
+                    let openingHours = restaurantObject["openingHoursRestaurant"]
+                    let locationLong = restaurantObject["restaurantLocationLong"]
+                    let locationlat = restaurantObject["restaurantLocationLat"]
+                    
+                    let restaurants = RestaurantsType(id: id as! String, restaurantName: name as! String, restaurantPhoneNumber: phoneNumber as! String, openingHoursRestaurant: openingHours as! String, restaurantLocationLong: locationLong as! Double, restaurantLocationLat: locationlat as! Double)
+                    self.restaurants.append(restaurants)
+                    if self.restaurants.count == 10 {
+                        break
+                    }
+                }
+            }
+            self.topRestaurantCollectionView.reloadData()
+        }
     }
 }
 
 extension TopRestaurantTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        
+        let storyboard = UIStoryboard(name: "HotelsAndRestaurants", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "RestaurantDescriptionViewControllerID") as! RestaurantDescriptionViewController
+        vc.restaurant = restaurants[indexPath.row]
+        
+        parrentViewController.navigationController?.pushViewController(vc, animated: true)
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopRestaurantCollectionViewCell.id, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopRestaurantCollectionViewCell.id, for: indexPath) as! TopRestaurantCollectionViewCell
+        if restaurants.count != 0 {
+            cell.topRestaurantsName.text = restaurants[indexPath.row].restaurantName
+        }
         return cell
     }
 }
