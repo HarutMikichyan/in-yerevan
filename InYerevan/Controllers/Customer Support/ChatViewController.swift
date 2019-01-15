@@ -104,7 +104,6 @@ final class ChatViewController: MessagesViewController {
     
     private func insertNewMessage(_ message: Message) {
         guard !messages.contains(message) else { return }
-        
         messages.append(message)
         messages.sort()
         
@@ -141,9 +140,12 @@ final class ChatViewController: MessagesViewController {
     
     private func configureLayoutAndDataSource() {
         navigationItem.largeTitleDisplayMode = .never
+        
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
+        view.changeBackgroundToGradient(from: [.backgroundDarkSpruce, .backgroundDenimBlue])
+        messagesCollectionView.backgroundColor = UIColor.clear
         if let layout = messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout {
             layout.setMessageIncomingMessagePadding(UIEdgeInsets(top: 0, left: -15, bottom: 0, right: 50))
             layout.setMessageOutgoingMessagePadding(UIEdgeInsets(top: 0, left: 50, bottom: 0, right: -15))
@@ -154,12 +156,15 @@ final class ChatViewController: MessagesViewController {
         // Configuring input bar
         messageInputBar.delegate = self
         maintainPositionOnKeyboardFrameChanged = true
-        messageInputBar.inputTextView.tintColor = .gray
+        messageInputBar.inputTextView.textColor = .white
+        messageInputBar.inputTextView.placeholderTextColor = .placeholderWhite
+        messageInputBar.inputTextView.placeholder = "Type a message..."
+        messageInputBar.backgroundView.backgroundColor = .inputBarDarkCerulian
         
         // Configuring camera item
         let cameraItem = InputBarButtonItem(type: .system)
         cameraItem.setSize(CGSize(width: 60, height: 30), animated: false)
-        cameraItem.tintColor = .blue
+        cameraItem.tintColor = .outgoingLavender
         cameraItem.image = #imageLiteral(resourceName: "camera")
         cameraItem.addTarget(
             self,
@@ -170,7 +175,7 @@ final class ChatViewController: MessagesViewController {
         // Configuring photos item
         let photosItem = InputBarButtonItem(type: .system)
         photosItem.setSize(CGSize(width: 60, height: 30), animated: false)
-        photosItem.tintColor = .blue
+        photosItem.tintColor = .outgoingLavender
         photosItem.image = #imageLiteral(resourceName: "photos")
         photosItem.addTarget(
             self,
@@ -181,7 +186,7 @@ final class ChatViewController: MessagesViewController {
         // Configuring send button item
         let sendItem = InputBarButtonItem(type: .system)
         sendItem.setSize(CGSize(width: 60, height: 30), animated: false)
-        sendItem.tintColor = .blue
+        sendItem.tintColor = .outgoingLavender
         sendItem.image = #imageLiteral(resourceName: "sendMessage")
         sendItem.isEnabled = false
         sendItem.addTarget(
@@ -228,14 +233,28 @@ final class ChatViewController: MessagesViewController {
     }
     
     private func save(_ message: Message) {
-        let sentDate = Date()
-        channel.lastMessageSentDate = sentDate
-        db.collection("channels").document(channel.id!).setData(["lastMessageSent": sentDate], merge: true)
+        
+        channel.lastMessageSentDate = message.sentDate
+        db.collection("channels").document(channel.id!).setData(["lastMessageSent": message.sentDate], merge: true)
         
         if !User.isAdministration {
             channel.isUnseenBySupport = true
             db.collection("channels").document(channel.id!).setData(["unseen": true], merge: true)
         }
+        
+        var lastMessage = ""
+        switch message.kind {
+        case .emoji:
+            lastMessage = message.sender.isAdministration() ? "You: " + message.emoji! : message.emoji!
+        case .photo:
+            lastMessage = message.sender.isAdministration() ? "You sent a picture." :
+            "\(channel.name) sent you a picture."
+        default:
+            lastMessage = message.sender.isAdministration() ? "You: " + message.content : message.content
+        }
+        channel.lastMessagePreview = lastMessage
+        db.collection("channels").document(channel.id!).setData(["lastMessage": lastMessage], merge: true)
+        
         
         reference?.addDocument(data: message.representation) { error in
             if let error = error {
@@ -305,7 +324,7 @@ extension ChatViewController: MessagesDisplayDelegate, MessagesLayoutDelegate {
         case .emoji:
             return .clear
         default:
-            return isFromCurrentSender(message: message) ? .blue : .cyan
+            return isFromCurrentSender(message: message) ? .outgoingLavender : .incomingDarkCerulian
         }
     }
     
@@ -318,6 +337,9 @@ extension ChatViewController: MessagesDisplayDelegate, MessagesLayoutDelegate {
         avatarView.isHidden = true
     }
     
+    func textColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
+        return .white
+    }
 }
 
 // MARK: - MESSAGES DATA SOURCE
@@ -350,7 +372,7 @@ extension ChatViewController: MessageInputBarDelegate {
     func messageInputBar(_ inputBar: MessageInputBar, textViewTextDidChangeTo text: String) {
         let sendItem = InputBarButtonItem(type: .system)
         sendItem.setSize(CGSize(width: 60, height: 30), animated: false)
-        sendItem.tintColor = .blue
+        sendItem.tintColor = .outgoingLavender
         sendItem.image = #imageLiteral(resourceName: "sendMessage")
         sendItem.addTarget(
             self,
@@ -402,4 +424,3 @@ fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [U
 fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
     return input.rawValue
 }
-

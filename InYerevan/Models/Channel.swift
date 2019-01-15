@@ -13,7 +13,7 @@ protocol DatabaseRepresentation {
     var representation: [String: Any] { get }
 }
 
-struct Channel {
+class Channel {
     
     // MARK:- MAIN PROPERTIES
     
@@ -21,6 +21,8 @@ struct Channel {
     let name: String
     var isUnseenBySupport: Bool
     var lastMessageSentDate: Date
+    var lastMessagePreview: String
+    let sentByAdministration: Bool
     
     // MARK:- INITIALIZERS
     
@@ -29,6 +31,8 @@ struct Channel {
         self.name = name
         isUnseenBySupport = true
         lastMessageSentDate = Date()
+        lastMessagePreview = ""
+        sentByAdministration = User.isAdministration
     }
     
     init?(document: QueryDocumentSnapshot) {
@@ -36,11 +40,15 @@ struct Channel {
         guard let name = data["name"] as? String else { return nil }
         guard let sentDate = data["lastMessageSent"] as? Date else { return nil }
         guard let unseenBySupport = data["unseen"] as? Bool else { return nil }
-        
+        guard let lastMessage = data["lastMessage"] as? String else { return nil }
+        guard let sentByAdministration = data["sentByAdministration"] as? Bool else { return nil }
+
         id = document.documentID
         self.name = name
         self.isUnseenBySupport = unseenBySupport
         self.lastMessageSentDate = sentDate
+        self.lastMessagePreview = lastMessage
+        self.sentByAdministration = sentByAdministration
     }
     
 }
@@ -53,7 +61,9 @@ extension Channel: DatabaseRepresentation {
         var rep: [String : Any] = [
             "name": name,
             "unseen": isUnseenBySupport,
-            "lastMessageSent": lastMessageSentDate
+            "lastMessageSent": lastMessageSentDate,
+            "lastMessage": lastMessagePreview,
+            "sentByAdministration" : sentByAdministration
         ]
         
         if let id = id {
