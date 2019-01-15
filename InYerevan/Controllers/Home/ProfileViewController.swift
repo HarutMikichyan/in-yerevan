@@ -38,7 +38,7 @@ class ProfileViewController: UIViewController {
         User.email = ""
         
         let myStoryboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let vc = myStoryboard.instantiateViewController(withIdentifier: "LoginRegistrationViewController")
+        let vc = myStoryboard.instantiateViewController(withIdentifier: "registrationvc")
         
         UIApplication.shared.keyWindow?.rootViewController = vc
     }

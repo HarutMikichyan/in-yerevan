@@ -123,42 +123,42 @@ class LoginRegistrationViewController: UIViewController, GIDSignInUIDelegate {
         loginErrorLabel.text = ""
         loginEmailTextField.text = ""
         loginPasswordTextField.text = ""
-        
+
         loginView.removeFromSuperview()
     }
-    
+
     func registrationClean() {
         registrationErrorLabel.text = ""
         registrationEmailTextField.text = ""
         registrationPasswordTextField.text = ""
         registrationRepeatPasswordTextField.text = ""
-        
+
         registrationView.removeFromSuperview()
     }
-    
+
     func resetClean() {
         resetErrorLabel.text = ""
         resetEmailTextField.text = ""
-        
+
         resetView.removeFromSuperview()
     }
-    
+
     func logIn(userEmail: String) {
         var isAdministration: Bool = false
-        
+
         for item in User.administration {
             if item == userEmail {
                 isAdministration = true
                 break
             }
         }
-        
+
         User.email = userEmail
         User.isAdministration = isAdministration
-        
+
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "TabBarController")
-        
+
         self.show(vc, sender: nil)
     }
 }
