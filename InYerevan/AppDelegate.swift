@@ -57,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
         }
         
-        return true
+      return true
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
