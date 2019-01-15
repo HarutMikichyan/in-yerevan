@@ -12,6 +12,8 @@ import FirebaseFirestore
 
 class HomeViewController: UIViewController {
 
+    @IBOutlet weak var onlineSupportButton: UIButton!
+    
     private var name = User.email
     private let db = Firestore.firestore()
     private var channels = [Channel]()
@@ -34,6 +36,11 @@ class HomeViewController: UIViewController {
             snapshot.documentChanges.forEach { change in
                 self.handleDocumentChange(change)
             }
+        }
+        if User.email == "guest" {
+            onlineSupportButton.isEnabled = false
+            onlineSupportButton.setTitleColor(UIColor.white, for: .normal)
+            onlineSupportButton.backgroundColor = UIColor.white
         }
     }
     
