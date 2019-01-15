@@ -25,7 +25,7 @@ static let id = "EventViewController"
     var imagesForEvent = [#imageLiteral(resourceName: "Trades"),#imageLiteral(resourceName: "City"),#imageLiteral(resourceName: "Technology"),#imageLiteral(resourceName: "Trades"),#imageLiteral(resourceName: "Cinema")]
     override func viewDidLoad() {
         super.viewDidLoad()
-        let dateTuple = event.date!.dateToString()
+        let dateTuple = event.date!.toString()
         dayLabel.text = dateTuple.day
         monthLabel.text = dateTuple.month
         title = event.title!

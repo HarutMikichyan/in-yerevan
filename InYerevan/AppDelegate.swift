@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     var window: UIWindow?
     var dataManager: DataManager!
     var persistentController: PersistentController!
+    let queue = DispatchQueue(label: "FetchQueue")
     
     // HotelsRestaurants Databse reference
     var refHotels: DatabaseReference!
@@ -26,33 +27,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
-        ///---------subject to change----------///
-//        NotificationCenter.default.addObserver(
-//            self,
-//            selector: #selector(userStateDidChange),
-//            name: Notification.Name.AuthStateDidChange,
-//            object: nil
-//        )
  
         refHotels = Database.database().reference().child("Hotels")
         refRestaurants = Database.database().reference().child("Restaurants")
         
-        ///-----------------------------------///
-        
         persistentController = PersistentController()
         dataManager = DataManager(persistentController)
+        
+        //FetchEvents and replace CoreData
+        queue.async {
+            self.dataManager.fetchEventsFromServerSide()
+        }
+        
         if FirebaseApp.app() == nil {
             FirebaseApp.configure()
         }
         
         GIDSignIn.sharedInstance()?.clientID = "127608008778-kdfb153i4f8kja6gm8o9pu0pra2ms0p9.apps.googleusercontent.com"
         GIDSignIn.sharedInstance().delegate = self
-        
-        persistentController = PersistentController()
-        dataManager = DataManager(persistentController)
 
-        return true
+        if !User.email.isEmpty {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "TabBarController")
+            
+            self.window?.rootViewController = vc
+            self.window?.makeKeyAndVisible()
+
+        }
+        
+      return true
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

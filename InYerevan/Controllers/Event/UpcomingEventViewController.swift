@@ -10,18 +10,18 @@
 import UIKit
 
 class UpcomingEventViewController: UIViewController {
+    static let id = "UpcomingEventViewController"
     @IBOutlet weak var tableView: UITableView!
     
-    
+    var category: Category!
     private var timeGroup = ["today", "thisWeek", "thisMonth"]
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Main"
         
         // TODO: - if admin permissions => 
-        if true {
+        if User.isAdministration {
             timeGroup.insert("New event", at: 0)
         }
         // timeGroup = FetchCategories
@@ -29,7 +29,7 @@ class UpcomingEventViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.isNavigationBarHidden = true
+        navigationController?.isNavigationBarHidden = false
     }
     
 }
@@ -54,25 +54,41 @@ extension UpcomingEventViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        func openEventCategoriesViewController() {
-            if let vc = storyboard?.instantiateViewController(withIdentifier: EventCategoiresViewController.id) {
-                navigationController?.pushViewController(vc, animated: true)
-            } else {
-                fatalError()
-            }
+        func goToEventsVCWith(events: [Event]) {
+            let vc = storyboard?.instantiateViewController(withIdentifier: EventsViewController.id) as! EventsViewController
+            vc.events = events
+            navigationController?.pushViewController(vc, animated: true)
         }
         
-        // TODO: - if admin permissions => 
-        if true {
-            if indexPath.row == 0 {
-                if let vc = storyboard?.instantiateViewController(withIdentifier: NewEventViewController.id) {
-                    navigationController?.pushViewController(vc, animated: true)
-                } else {
-                    openEventCategoriesViewController()
-                } 
-            } else {
-                openEventCategoriesViewController()
-            }   
+//         if admin permissions =>
+        if User.isAdministration {
+            switch indexPath.row {
+            case 0 :
+                let vc = storyboard?.instantiateViewController(withIdentifier: NewEventViewController.id)
+                navigationController?.pushViewController(vc!, animated: true)
+                
+            case 1:
+                goToEventsVCWith(events: UIApplication.dataManager.fetchAllEventsFromNowTill(date: Date().endOfDay, for: category))
+            case 2:
+                goToEventsVCWith(events: UIApplication.dataManager.fetchAllEventsFromNowTill(date: Date().endOfWeek, for: category))
+            default:
+                goToEventsVCWith(events: UIApplication.dataManager.fetchAllEventsFromNowTill(date: Date().endOfMonth(), for: category))
+            }
+            
+        }  else {
+            switch indexPath.row {
+            case 0 :
+                goToEventsVCWith(events: UIApplication.dataManager.fetchAllEventsFromNowTill(date: Date().endOfDay, for: category))
+                
+            case 1:
+                goToEventsVCWith(events: UIApplication.dataManager.fetchAllEventsFromNowTill(date: Date().endOfWeek, for: category))
+            default:
+                goToEventsVCWith(events: UIApplication.dataManager.fetchAllEventsFromNowTill(date: Date().endOfMonth(), for: category))
+                
+            }
+            
         }
+        
+        
     }
 }

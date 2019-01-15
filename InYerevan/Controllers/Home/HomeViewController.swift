@@ -12,6 +12,8 @@ import FirebaseFirestore
 
 class HomeViewController: UIViewController {
 
+    @IBOutlet weak var onlineSupportButton: UIButton!
+    
     private var name = User.email
     private let db = Firestore.firestore()
     private var channels = [Channel]()
@@ -22,6 +24,9 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.barStyle = .black
+        navigationController?.navigationBar.tintColor = .outgoingLavender
+
         channelListener = channelReference.addSnapshotListener { querySnapshot, error in
             guard let snapshot = querySnapshot else {
                 print("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
@@ -32,21 +37,21 @@ class HomeViewController: UIViewController {
                 self.handleDocumentChange(change)
             }
         }
-        
+        if User.email == "guest" {
+            onlineSupportButton.isEnabled = false
+            onlineSupportButton.setTitleColor(UIColor.white, for: .normal)
+            onlineSupportButton.backgroundColor = UIColor.white
+        }
     }
     
     private func addChannelToTable(_ channel: Channel) {
-        guard !channels.contains(channel) else {
-            return
-        }
+        guard !channels.contains(channel) else { return }
         channels.append(channel)
         channels.sort()
     }
     
     private func handleDocumentChange(_ change: DocumentChange) {
-        guard let channel = Channel(document: change.document) else { ///-------
-            return
-        }
+        guard let channel = Channel(document: change.document) else { return }
         switch change.type {
         case .added:
             addChannelToTable(channel)
@@ -56,9 +61,7 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func onlineSupportAction() {
-        ChatSettings.displayName = name
         let sb = UIStoryboard(name: "Home", bundle: nil)
-        
         if User.isAdministration {
             let vc = sb.instantiateViewController(withIdentifier: "userlist") as! UserListViewController
             navigationController?.pushViewController(vc, animated: true)
@@ -67,18 +70,15 @@ class HomeViewController: UIViewController {
             if channels.contains(Channel(name: name)) {
                 let index = channels.index(of: Channel(name: name))
                 vc.channel = channels[index!]
-                // vc.user = Auth.auth().currentUser
                 navigationController?.pushViewController(vc, animated: true)
             } else {
                 channelReference.addDocument(data: Channel(name: name).representation) { error in
-                    if let e = error {
-                        print("Error saving channel: \(e.localizedDescription)")
+                    if let error = error {
+                        print("Error saving channel: \(error.localizedDescription)")
                     }
                 }
             }
             vc.title = "Customer Support"
-            //            vc.newlyCreatedChannelName = name
-            //            vc.shouldOpenChatInstantly = true
         }
     }
     

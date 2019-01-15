@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wcb-Oo-aOX">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SsM-IA-oA3" userLabel="TitleView">
                                         <rect key="frame" x="0.0" y="4" width="414" height="40"/>
@@ -110,7 +110,7 @@
                                         </constraints>
                                     </view>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="nSu-0j-Zuf">
-                                        <rect key="frame" x="4" y="156" width="406" height="145"/>
+                                        <rect key="frame" x="4" y="156" width="406" height="163.5"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.1122913099" colorSpace="custom" customColorSpace="sRGB"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="1" minimumInteritemSpacing="4" id="ODX-s3-C5d">
                                             <size key="itemSize" width="47" height="42"/>
@@ -120,7 +120,7 @@
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ImportImages" id="ift-Ud-av6">
-                                                <rect key="frame" x="4" y="44" width="69" height="57"/>
+                                                <rect key="frame" x="14.5" y="1" width="69" height="57"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                     <rect key="frame" x="0.0" y="0.0" width="69" height="57"/>
@@ -144,19 +144,21 @@
                                                 <size key="customSize" width="69" height="57"/>
                                             </collectionViewCell>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="NewEventCollectionViewCellWithPicture" id="X0e-6i-6pp" customClass="NewEventCollectionViewCellWithPicture" customModule="InYerevan" customModuleProvider="target">
-                                                <rect key="frame" x="77" y="28" width="90" height="89"/>
+                                                <rect key="frame" x="4" y="59" width="90" height="89"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                     <rect key="frame" x="0.0" y="0.0" width="90" height="89"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Activity" translatesAutoresizingMaskIntoConstraints="NO" id="beD-K4-bhM">
-                                                            <rect key="frame" x="0.0" y="0.0" width="78" height="69"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Activity" translatesAutoresizingMaskIntoConstraints="NO" id="beD-K4-bhM">
+                                                            <rect key="frame" x="0.0" y="0.0" width="90" height="89"/>
                                                         </imageView>
-                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YZO-LE-zuD">
-                                                            <rect key="frame" x="48" y="0.0" width="30" height="30"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YZO-LE-zuD">
+                                                            <rect key="frame" x="60" y="0.0" width="30" height="30"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="30" id="qH6-B4-PvX"/>
+                                                                <constraint firstAttribute="height" constant="30" id="r8B-NR-Jpr"/>
+                                                            </constraints>
                                                             <state key="normal" title="X"/>
                                                             <connections>
                                                                 <action selector="deleteAction" destination="X0e-6i-6pp" eventType="touchUpInside" id="3ko-QE-Bcl"/>
@@ -164,6 +166,14 @@
                                                         </button>
                                                     </subviews>
                                                 </view>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="beD-K4-bhM" secondAttribute="bottom" id="2jQ-mk-J3O"/>
+                                                    <constraint firstItem="beD-K4-bhM" firstAttribute="top" secondItem="X0e-6i-6pp" secondAttribute="top" id="G2Z-Bg-NIF"/>
+                                                    <constraint firstItem="YZO-LE-zuD" firstAttribute="top" secondItem="X0e-6i-6pp" secondAttribute="top" id="M8U-Vs-HV0"/>
+                                                    <constraint firstAttribute="trailing" secondItem="beD-K4-bhM" secondAttribute="trailing" id="XHP-2t-AnG"/>
+                                                    <constraint firstItem="beD-K4-bhM" firstAttribute="leading" secondItem="X0e-6i-6pp" secondAttribute="leading" id="kUr-Eo-qdk"/>
+                                                    <constraint firstAttribute="trailing" secondItem="YZO-LE-zuD" secondAttribute="trailing" id="phq-cW-MAG"/>
+                                                </constraints>
                                                 <size key="customSize" width="90" height="89"/>
                                                 <connections>
                                                     <outlet property="imageView" destination="beD-K4-bhM" id="XpJ-Wm-W1Z"/>
@@ -176,7 +186,7 @@
                                         </connections>
                                     </collectionView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HxC-cd-Hbb">
-                                        <rect key="frame" x="4" y="305" width="406" height="290"/>
+                                        <rect key="frame" x="4" y="323.5" width="406" height="327.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -284,13 +294,13 @@
         <!--Upcoming Event View Controller-->
         <scene sceneID="M6k-dh-Cxi">
             <objects>
-                <viewController id="TL0-h0-3a3" customClass="UpcomingEventViewController" customModule="InYerevan" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UpcomingEventViewController" id="TL0-h0-3a3" customClass="UpcomingEventViewController" customModule="InYerevan" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QLr-ra-uEb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yaL-r1-boJ">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UpcomingTableViewCell" rowHeight="196" id="w3p-CE-nUA" customClass="UpcomingTableViewCell" customModule="InYerevan" customModuleProvider="target">
@@ -370,7 +380,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xdp-fQ-m4c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1103" y="-355"/>
+            <point key="canvasLocation" x="1743" y="-356"/>
         </scene>
         <!--Categories-->
         <scene sceneID="icq-WP-y9V">
@@ -381,7 +391,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bBE-za-g6f">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jB4-ry-zgu">
                                     <size key="itemSize" width="171" height="235"/>
@@ -466,7 +476,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DPI-mK-JCj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1878" y="-356"/>
+            <point key="canvasLocation" x="1041" y="-356"/>
         </scene>
         <!--Events-->
         <scene sceneID="rtb-Uo-3X8">
@@ -799,7 +809,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="TL0-h0-3a3" kind="relationship" relationship="rootViewController" id="etu-D4-yxb"/>
+                        <segue destination="qYB-e1-obd" kind="relationship" relationship="rootViewController" id="6eg-wb-Fhk"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VFi-8N-hcJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
