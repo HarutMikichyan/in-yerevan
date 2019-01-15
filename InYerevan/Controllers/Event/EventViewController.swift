@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
 class EventViewController: UIViewController {
 static let id = "EventViewController"
@@ -32,7 +33,27 @@ static let id = "EventViewController"
         visitorsLabel.text = "We have \(event.visitorsCount) visitors"
         detailsTextView.text = event.details
         detailsTextView.isEditable = false
+        let locationManager = CLLocationManager()
+        locationManager.requestWhenInUseIfNeeded()
+        mapView.showsUserLocation = true
+        if  let location =  locationManager.location {
+            let region =  MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 20000.0, longitudinalMeters: 20000.0)
+            mapView.setRegion(region, animated: true)
+        }
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let location = event.location
+        let coordinates = CLLocationCoordinate2D(latitude: CLLocationDegrees(exactly: location!.latitude)!, longitude: CLLocationDegrees(exactly: location!.longitude)!)
+        let region = MKCoordinateRegion(center: coordinates, latitudinalMeters: 200.0, longitudinalMeters: 200.0)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = coordinates
+        mapView.addAnnotation(annotation)
+        mapView.setRegion(region, animated: true)
+        
+        
     }
     
     @IBAction func addToCalendarAction() {

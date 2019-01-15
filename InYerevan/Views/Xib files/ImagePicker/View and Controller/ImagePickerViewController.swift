@@ -29,12 +29,12 @@ class ImagePickerViewController: UIViewController {
     // MARK: - LifeCycle 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        prepare()
+        configure()
     } 
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        prepare()
+        configure()
     }
     
     override func viewDidLoad() {
@@ -53,7 +53,7 @@ class ImagePickerViewController: UIViewController {
     }
     
     // MARK: - PRIVATE INTERFACE 
-    private func prepare() {
+    private func configure() {
         modalPresentationStyle = .overFullScreen
         modalTransitionStyle = .crossDissolve
         view.backgroundColor = .clear

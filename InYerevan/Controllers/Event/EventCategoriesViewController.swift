@@ -21,7 +21,11 @@ class EventCategoiresViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.isNavigationBarHidden = true 
+        if !User.isAdministration {
+            navigationController?.isNavigationBarHidden = true 
+        } else {
+            navigationController?.isNavigationBarHidden = false 
+        }
         // Won't show category with unavailable events 
         guard let categories = UIApplication.dataManager.fetchCategories() else {
             let alert = UIAlertController(title: "Sorry", message: "No available Data, try again", preferredStyle: .alert)
@@ -39,6 +43,12 @@ class EventCategoiresViewController: UIViewController {
        
     }
     
+    @IBAction func addNewEvent() {
+        let vc = storyboard?.instantiateViewController(withIdentifier: NewEventViewController.id)
+        navigationController?.pushViewController(vc!, animated: true)
+    }
+    
+    
 }
 extension EventCategoiresViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -48,7 +58,7 @@ extension EventCategoiresViewController: UICollectionViewDelegate, UICollectionV
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let count: CGFloat = 2
         let width: CGFloat =  collectionView.bounds.width / count - 16
-        var height: CGFloat = (collectionView.bounds.width / count - 16 ) * 1.5
+        let height: CGFloat = (collectionView.bounds.width / count - 16 ) * 1.5
         return CGSize(width: width, height: height)
     }
     

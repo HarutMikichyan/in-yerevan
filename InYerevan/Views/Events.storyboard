@@ -198,7 +198,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K3d-2r-jWK" userLabel="DateView">
                                         <rect key="frame" x="0.0" y="114" width="414" height="38"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Category" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hxv-3A-Z5V">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Category" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hxv-3A-Z5V" customClass="TextPickerInputTextField" customModule="InYerevan" customModuleProvider="target">
                                                 <rect key="frame" x="4" y="4" width="272" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -206,9 +206,9 @@
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xtj-r5-Qik">
                                                 <rect key="frame" x="276" y="4" width="134" height="30"/>
-                                                <state key="normal" title="City Event"/>
+                                                <state key="normal" title="New Category"/>
                                                 <connections>
-                                                    <action selector="setCityEvent" destination="Cva-c7-hLQ" eventType="touchUpInside" id="9Uh-Tt-UIF"/>
+                                                    <action selector="newCategoryAction" destination="Cva-c7-hLQ" eventType="touchUpInside" id="C6k-Aq-Tk3"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -469,6 +469,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="Categories" id="sLC-UG-suj">
                         <barButtonItem key="backBarButtonItem" title="Categories" id="ZUE-Xm-FNy"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ASK-rn-wEt">
+                            <connections>
+                                <action selector="addNewEvent" destination="qYB-e1-obd" id="OTB-gG-YYn"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="bBE-za-g6f" id="s7z-Dx-BNa"/>

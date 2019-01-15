@@ -16,4 +16,6 @@ class User {
         let bool = UserDefaults.standard.object(forKey: "isAdministration") as! Bool
         return bool
     }
+    
+    private init(){ }
 }

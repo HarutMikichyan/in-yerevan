@@ -28,9 +28,9 @@ class DoneButton: UIButton {
     
     //MARK: - Prepare Button 
     private func prepare() { 
-        frame = CGRect(x: 0, y: 0, width: 0, height: 20)
+        frame = CGRect(x: 0, y: 0, width: 0, height: 40)
         setTitle("Done", for: .normal)
-        tintColor = .red
+        tintColor = .white
         backgroundColor = .orange
     }
     

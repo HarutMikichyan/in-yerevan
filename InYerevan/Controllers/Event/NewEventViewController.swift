@@ -17,7 +17,7 @@ class NewEventViewController: UIViewController {
     @IBOutlet weak var locationFIeld: UIMapInputTextField!
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var imagesCollectionView: UICollectionView!
-    @IBOutlet weak var categoryField: UITextField!
+    @IBOutlet weak var categoryField: TextPickerInputTextField!
     
     
     var images = [UIImage]()
@@ -25,6 +25,7 @@ class NewEventViewController: UIViewController {
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "New Event"
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -34,6 +35,14 @@ class NewEventViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = false
+        if let categories = UIApplication.dataManager.fetchCategories() {
+            categoryField.rowContents.removeAll()
+            for category in categories {
+                categoryField.rowContents.append(category.name!)
+            }
+            categoryField.rowContents.sort {$0 > $1}
+        }
+        
     }
     
     
@@ -53,7 +62,7 @@ class NewEventViewController: UIViewController {
             }
         }
     }
-    
+    // MARK: - BUTTONS
     @IBAction func todayAction() {
         dateFIeld.setTommorow()
     }
@@ -62,8 +71,23 @@ class NewEventViewController: UIViewController {
         locationFIeld.setCurrentLocation()
     }
     
-    @IBAction func setCityEvent() {
-        
+    @IBAction func newCategoryAction() {
+        let alert = UIAlertController(title: "New Category", message: "Enter name of categorty and pres OK", preferredStyle: .alert)
+        var textField = UITextField()
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (_) in
+            if !textField.text!.isEmpty {
+                UIApplication.dataManager.newCategoryWith(name: textField.text!, completion: { (category) in
+                    self.categoryField.rowContents.append(category.name!)
+                    self.categoryField.text = category.name!
+                    self.categoryField.rowContents.sort {$0 > $1}
+                })  
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
+        alert.addTextField { (field) in
+            textField = field
+        }
+        present(alert, animated: true, completion: nil)
     }
     
     @IBAction func saveAction() {

@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 import Firebase
-import FirebaseFirestore
+//import FirebaseFirestore
 
 class DataManager {
     private let persistentController: PersistentController
@@ -67,6 +67,11 @@ class DataManager {
         
     }
     
+    func newCategoryWith(name:String, completion: (Category) -> Void) {
+        let context = persistentController.viewContext 
+        let category = requestCategoryWith(name: name, in: context)
+        completion(category)
+    }
     //Private Interface
     //  Write only functions which will support your public functions 
     
@@ -138,6 +143,42 @@ class DataManager {
         event.organizer = requestOrganizerWith(name: company, in: context)
         persistentController.saveContext(context)
         persistentController.viewContext.refreshAllObjects()
+    }
+    
+    private func saveEventImages(_ images: [UIImage], event: Event, completion: ([String]?) -> Void ) {
+        let storageReferance = Storage.storage().reference().child("event/\(User.email)")
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/jpeg"
+        let urls: [String]
+        
+        for image in images {
+            guard let scaledImage = image.scaledToSafeUploadSize,
+                let data = scaledImage.jpegData(compressionQuality: 0.4) else {
+                    completion(nil)
+                    return
+            }
+//            let imageName = [UUID().uuidString, String(Date().timeIntervalSince1970)].joined()
+            storageReferance.child(event.title!).putData(data, metadata: metadata) { meta, error in
+                if let error = error {
+                    print(error)
+                }
+                
+            }
+                
+//           storageReferance.child(event.title!).downloadURL(completion: { (url, error) in
+//                if error != nil {
+//                    print(error as Any)
+//                } else {
+//                    guard let imageURL = url?.absoluteURL else { return }
+//                    completion(imageURL)
+//                }
+//                
+//            })
+//        
+        
+                        
+        }
+        
     }
     
     private func eraseLocalCache() {

@@ -306,9 +306,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="AdditionalAbilitiesRPG-Compact" width="25.5" height="25.5"/>
-        <image name="EventRPG-Compact" width="25.5" height="25.5"/>
-        <image name="HomeRPG-Compact" width="25.5" height="25.5"/>
+        <image name="AdditionalAbilitiesRPG-Compact" width="34" height="34"/>
+        <image name="EventRPG-Compact" width="34" height="34"/>
+        <image name="HomeRPG-Compact" width="34" height="34"/>
         <image name="Main-Yerevan" width="2448" height="1377"/>
     </resources>
 </document>

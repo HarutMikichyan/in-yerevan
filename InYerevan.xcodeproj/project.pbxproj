@@ -25,9 +25,10 @@
 		86043CBE21EA1A80001C78F3 /* ChannelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86043CBC21EA1A80001C78F3 /* ChannelCell.xib */; };
 		86043CC121EA1AE9001C78F3 /* FirebaseEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86043CC021EA1AE8001C78F3 /* FirebaseEvent.swift */; };
 		86043CC321EAB245001C78F3 /* Date+ Date().swift in Sources */ = {isa = PBXBuildFile; fileRef = 86043CC221EAB245001C78F3 /* Date+ Date().swift */; };
+		864E81BA21ECA43D004E3113 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 864E81B921ECA43D004E3113 /* Main.storyboard */; };
+		86584B0721ED22690020968F /* TextPickerInputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86584B0621ED22690020968F /* TextPickerInputTextField.swift */; };
 		86AFF76C21E4D1D100990FA8 /* TopHotelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AFF76B21E4D1D100990FA8 /* TopHotelCollectionViewCell.swift */; };
 		86AFF76E21E4D22800990FA8 /* TopRestaurantCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AFF76D21E4D22700990FA8 /* TopRestaurantCollectionViewCell.swift */; };
-		86D1EF0021E4AEBD00738187 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86D1EEFE21E4AEBD00738187 /* Main.storyboard */; };
 		86D1EF0221E4AECF00738187 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86D1EF0121E4AECF00738187 /* Assets.xcassets */; };
 		86D1EF0521E4AECF00738187 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86D1EF0321E4AECF00738187 /* LaunchScreen.storyboard */; };
 		86D1EF1921E4B57100738187 /* DoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D1EF1521E4B57000738187 /* DoneButton.swift */; };
@@ -104,10 +105,11 @@
 		86043CBC21EA1A80001C78F3 /* ChannelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ChannelCell.xib; path = "InYerevan/Views/Xib files/ChannelCell/ChannelCell.xib"; sourceTree = SOURCE_ROOT; };
 		86043CC021EA1AE8001C78F3 /* FirebaseEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FirebaseEvent.swift; path = InYerevan/Models/Events/FirebaseEvent.swift; sourceTree = SOURCE_ROOT; };
 		86043CC221EAB245001C78F3 /* Date+ Date().swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+ Date().swift"; sourceTree = "<group>"; };
+		864E81B921ECA43D004E3113 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		86584B0621ED22690020968F /* TextPickerInputTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextPickerInputTextField.swift; sourceTree = "<group>"; };
 		86AFF76B21E4D1D100990FA8 /* TopHotelCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopHotelCollectionViewCell.swift; sourceTree = "<group>"; };
 		86AFF76D21E4D22700990FA8 /* TopRestaurantCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopRestaurantCollectionViewCell.swift; sourceTree = "<group>"; };
 		86D1EEF721E4AEBD00738187 /* InYerevan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InYerevan.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		86D1EEFF21E4AEBD00738187 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		86D1EF0121E4AECF00738187 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		86D1EF0421E4AECF00738187 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		86D1EF0621E4AECF00738187 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -294,7 +296,7 @@
 		86D1EF0C21E4B48700738187 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				86D1EEFE21E4AEBD00738187 /* Main.storyboard */,
+				864E81B921ECA43D004E3113 /* Main.storyboard */,
 				86D1EF2121E4B67A00738187 /* Home.storyboard */,
 				86D1EF2321E4B6F600738187 /* Events.storyboard */,
 				86D1EF2521E4B73700738187 /* HotelsAndRestaurants.storyboard */,
@@ -549,6 +551,7 @@
 			children = (
 				86D1EF1621E4B57100738187 /* DatePickerInputTextField.swift */,
 				86D1EF1721E4B57100738187 /* MapInputTextField.swift */,
+				86584B0621ED22690020968F /* TextPickerInputTextField.swift */,
 			);
 			path = TextField;
 			sourceTree = "<group>";
@@ -653,10 +656,10 @@
 				70E7072721E78E6F007CE603 /* HotelRestaurantImageTableViewCell.xib in Resources */,
 				70E7072F21E79034007CE603 /* HotelRestaurantCollectionViewCell.xib in Resources */,
 				86D1EF9B21E4C9BD00738187 /* GoogleService-Info.plist in Resources */,
-				86D1EF0021E4AEBD00738187 /* Main.storyboard in Resources */,
 				86043CBE21EA1A80001C78F3 /* ChannelCell.xib in Resources */,
 				86D1EF2221E4B67A00738187 /* Home.storyboard in Resources */,
 				86D1EF2D21E4B7D500738187 /* ImagePickerViewController.xib in Resources */,
+				864E81BA21ECA43D004E3113 /* Main.storyboard in Resources */,
 				86D1EF3121E4B7F200738187 /* ImagePickerCollectionViewCell.xib in Resources */,
 				86D1EF2421E4B6F700738187 /* Events.storyboard in Resources */,
 				708A691221E4E6A200932BFA /* ReserveRegistrationTableViewCell.xib in Resources */,
@@ -797,6 +800,7 @@
 				70E7072E21E79034007CE603 /* HotelRestaurantCollectionViewCell.swift in Sources */,
 				708A691D21E521C700932BFA /* HotelOverviewTableViewCell.swift in Sources */,
 				D4C8F9E221E4DBFE00EF213C /* UIScrollView+Bottom.swift in Sources */,
+				86584B0721ED22690020968F /* TextPickerInputTextField.swift in Sources */,
 				86D1EF3221E4B7F200738187 /* ImagePickerCollectionViewCell.swift in Sources */,
 				D4C8F9E421E4DBFE00EF213C /* UIImage+Scaling.swift in Sources */,
 				86043CC321EAB245001C78F3 /* Date+ Date().swift in Sources */,
@@ -829,14 +833,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		86D1EEFE21E4AEBD00738187 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				86D1EEFF21E4AEBD00738187 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		86D1EF0321E4AECF00738187 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -973,14 +969,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JH43XF7V78;
+				DEVELOPMENT_TEAM = A6635SAL2C;
 				INFOPLIST_FILE = "$(SRCROOT)/InYerevan/Supporting FIles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = lloqshGroup.InYerevan;
+				PRODUCT_BUNDLE_IDENTIFIER = loqshGroup.InYerevan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ENABLE_BATCH_MODE = No;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -996,14 +992,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = JH43XF7V78;
+				DEVELOPMENT_TEAM = A6635SAL2C;
 				INFOPLIST_FILE = "$(SRCROOT)/InYerevan/Supporting FIles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = lloqshGroup.InYerevan;
+				PRODUCT_BUNDLE_IDENTIFIER = loqshGroup.InYerevan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ENABLE_BATCH_MODE = No;
 				SWIFT_VERSION = 4.2;
