@@ -18,7 +18,7 @@ final class ChatViewController: MessagesViewController {
     // MARK:- FIREBASE PROPERTIES
     
     private let db = Firestore.firestore()
-    private let storage = Storage.storage().reference()
+    private let storage = Storage.storage().reference().child("Channels")
     private var reference: CollectionReference?
     private var messages: [Message] = []
     private var messageListener: ListenerRegistration?
@@ -157,10 +157,13 @@ final class ChatViewController: MessagesViewController {
         messageInputBar.delegate = self
         maintainPositionOnKeyboardFrameChanged = true
         messageInputBar.inputTextView.textColor = .white
+        messageInputBar.inputTextView.keyboardAppearance = .dark
         messageInputBar.inputTextView.placeholderTextColor = .placeholderWhite
         messageInputBar.inputTextView.placeholder = "Type a message..."
         messageInputBar.backgroundView.backgroundColor = .inputBarDarkCerulian
-        
+        messageInputBar.shouldAutoUpdateMaxTextViewHeight = false
+        messageInputBar.maxTextViewHeight = 100
+            
         // Configuring camera item
         let cameraItem = InputBarButtonItem(type: .system)
         cameraItem.setSize(CGSize(width: 60, height: 30), animated: false)
@@ -176,7 +179,7 @@ final class ChatViewController: MessagesViewController {
         let photosItem = InputBarButtonItem(type: .system)
         photosItem.setSize(CGSize(width: 60, height: 30), animated: false)
         photosItem.tintColor = .outgoingLavender
-        photosItem.image = #imageLiteral(resourceName: "photos")
+        photosItem.image = #imageLiteral(resourceName: "picture")
         photosItem.addTarget(
             self,
             action: #selector(photosButtonPressed),
@@ -197,6 +200,7 @@ final class ChatViewController: MessagesViewController {
         
         // Configuring all stack view items
         messageInputBar.leftStackView.alignment = .center
+        messageInputBar.rightStackView.alignment = .center
         messageInputBar.setLeftStackViewWidthConstant(to: 90, animated: false)
         messageInputBar.setStackViewItems([cameraItem, photosItem], forStack: .left, animated: false)
         messageInputBar.setStackViewItems([sendItem], forStack: .right, animated: false)

@@ -26,7 +26,7 @@
             </objects>
             <point key="canvasLocation" x="-607" y="243"/>
         </scene>
-        <!--HotelsAndRestaurants-->
+        <!--Hotels/Restaurants-->
         <scene sceneID="Tbu-yY-Hid">
             <objects>
                 <viewController id="1Fm-Gh-tdk" customClass="MainReserveViewController" customModule="InYerevan" customModuleProvider="target" sceneMemberID="viewController">
@@ -254,7 +254,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fpJ-46-B2N"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="HotelsAndRestaurants" image="AdditionalAbilitiesRPG-Compact" id="HRl-NQ-yaU"/>
+                    <tabBarItem key="tabBarItem" title="Hotels/Restaurants" image="resort" id="HRl-NQ-yaU"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="6Ly-O7-aQd"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
@@ -823,9 +823,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="AdditionalAbilitiesRPG-Compact" width="34" height="34"/>
         <image name="Restaurantimages" width="284" height="177"/>
         <image name="hotelImage1" width="550" height="366"/>
         <image name="mainImage" width="660" height="330"/>
+        <image name="resort" width="33" height="33"/>
     </resources>
 </document>

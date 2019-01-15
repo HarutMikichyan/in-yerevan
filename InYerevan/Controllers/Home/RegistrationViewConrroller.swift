@@ -62,6 +62,7 @@ class RegistrationViewController: UIViewController {
         view!.addSubview(backgroundImageView)
         view!.addSubview(stackView)
         customizeSubviews()
+        becomeTextFieldDelegates() 
     }
     
     private func customizeSubviews() {

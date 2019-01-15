@@ -801,7 +801,7 @@
         <scene sceneID="dyA-Ns-0ED">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="O29-pD-hGe" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Events" image="EventRPG-Compact" id="Ckf-XL-e5G"/>
+                    <tabBarItem key="tabBarItem" title="Events" image="calendar" id="Ckf-XL-e5G"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="GC6-ZO-dZf">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -819,7 +819,7 @@
     </scenes>
     <resources>
         <image name="Activity" width="275" height="183"/>
-        <image name="EventRPG-Compact" width="34" height="34"/>
+        <image name="calendar" width="33" height="33"/>
         <image name="thisMonth" width="1920" height="942"/>
         <image name="today" width="3300" height="2200"/>
     </resources>
