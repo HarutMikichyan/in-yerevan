@@ -12,6 +12,8 @@ import FirebaseFirestore
 
 class HomeViewController: UIViewController {
 
+    @IBOutlet weak var onlineSupportButton: UIButton!
+    
     private var name = User.email
     private let db = Firestore.firestore()
     private var channels = [Channel]()
@@ -22,6 +24,10 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.largeTitleDisplayMode = .never
+        navigationController?.navigationBar.barStyle = .black
+        navigationController?.navigationBar.tintColor = .outgoingLavender
+
         channelListener = channelReference.addSnapshotListener { querySnapshot, error in
             guard let snapshot = querySnapshot else {
                 print("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
@@ -33,6 +39,11 @@ class HomeViewController: UIViewController {
             }
         }
         
+        if User.email == "guest" {
+            onlineSupportButton.isEnabled = false
+            onlineSupportButton.setTitleColor(UIColor.white, for: .normal)
+            onlineSupportButton.backgroundColor = UIColor.white
+        }
     }
     
     private func addChannelToTable(_ channel: Channel) {

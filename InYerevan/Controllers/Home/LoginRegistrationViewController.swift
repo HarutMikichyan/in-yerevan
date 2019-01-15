@@ -14,7 +14,9 @@ class LoginRegistrationViewController: UIViewController, GIDSignInUIDelegate {
     
     @IBOutlet weak var uIView: UIView!
     @IBOutlet weak var homeImage: UIImageView!
-    
+    @IBOutlet weak var GSignIn: GIDSignInButton!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+
     @IBOutlet weak var loginView: UIView!
     @IBOutlet weak var loginErrorLabel: UILabel!
     @IBOutlet weak var loginEmailTextField: UITextField!
@@ -28,15 +30,20 @@ class LoginRegistrationViewController: UIViewController, GIDSignInUIDelegate {
     
     @IBOutlet weak var resetView: UIView!
     @IBOutlet weak var resetErrorLabel: UILabel!
-    @IBOutlet weak var GSignIn: GIDSignInButton!
     @IBOutlet weak var resetEmailTextField: UITextField!
-    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     private var isFirstLoad: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        loginEmailTextField.delegate = self
+        loginPasswordTextField.delegate = self
+        registrationEmailTextField.delegate = self
+        registrationPasswordTextField.delegate = self
+        registrationRepeatPasswordTextField.delegate = self
+        resetEmailTextField.delegate = self
         homeImage.layer.cornerRadius = 12
         homeImage.layer.masksToBounds = true
         
@@ -116,42 +123,71 @@ class LoginRegistrationViewController: UIViewController, GIDSignInUIDelegate {
         loginErrorLabel.text = ""
         loginEmailTextField.text = ""
         loginPasswordTextField.text = ""
-        
+
         loginView.removeFromSuperview()
     }
-    
+
     func registrationClean() {
         registrationErrorLabel.text = ""
         registrationEmailTextField.text = ""
         registrationPasswordTextField.text = ""
         registrationRepeatPasswordTextField.text = ""
-        
+
         registrationView.removeFromSuperview()
     }
-    
+
     func resetClean() {
         resetErrorLabel.text = ""
         resetEmailTextField.text = ""
-        
+
         resetView.removeFromSuperview()
     }
-    
+
     func logIn(userEmail: String) {
         var isAdministration: Bool = false
-        
+
         for item in User.administration {
             if item == userEmail {
                 isAdministration = true
                 break
             }
         }
-        
-        UserDefaults.standard.set(userEmail, forKey: "userEmail")
-        UserDefaults.standard.set(isAdministration, forKey: "isAdministration")
-        
+
+        User.email = userEmail
+        User.isAdministration = isAdministration
+
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "TabBarController")
-        
+
         self.show(vc, sender: nil)
+    }
+}
+
+extension LoginRegistrationViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == loginEmailTextField {
+            loginPasswordTextField.becomeFirstResponder()
+        }
+        if textField == loginPasswordTextField {
+            loginPasswordTextField.endEditing(true)
+            loginAction()
+        }
+        
+        if textField == registrationEmailTextField {
+            registrationPasswordTextField.becomeFirstResponder()
+        }
+        if textField == registrationPasswordTextField {
+            registrationRepeatPasswordTextField.becomeFirstResponder()
+        }
+        if textField == registrationRepeatPasswordTextField {
+            registrationRepeatPasswordTextField.endEditing(true)
+            registrationAction()
+        }
+        
+        if textField == resetEmailTextField {
+            resetEmailTextField.endEditing(true)
+            // TO DO: resetAction
+        }
+        return true
     }
 }

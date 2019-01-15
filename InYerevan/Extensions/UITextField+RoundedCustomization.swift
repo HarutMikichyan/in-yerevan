@@ -15,8 +15,8 @@ extension UITextField {
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: cornerRadius / 2, height: self.bounds.height))
         let height = view.bounds.height / 50
         let font = UIFont.init(name: (self.font?.fontName)!, size: height)!
-        let attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-        // make placeholderWhite
+        let attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.placeholderWhite])
+
         self.adjustsFontSizeToFitWidth = true
         self.translatesAutoresizingMaskIntoConstraints = false
         self.layer.cornerRadius = cornerRadius

@@ -11,7 +11,7 @@ import UIKit
 extension Date {
     
     // return tuple of Date as (YYYY, MMM, DD, HH, MM )
-    func dateToString() -> (year: String, month: String, day: String, time: String ) {
+    func toString() -> (year: String, month: String, day: String, time: String ) {
         let _ = "2018-12-16 10:11:16 PM +0000"
         let stringDate = description
         let year = stringDate.components(separatedBy: "-").first!

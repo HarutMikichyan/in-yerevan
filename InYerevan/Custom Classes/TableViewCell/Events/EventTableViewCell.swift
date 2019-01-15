@@ -30,7 +30,7 @@ class EventTableViewCell: UITableViewCell {
     func prepareCellWith(title: String, background: UIImage, date: Date) {
         backgroundImageView.image = background
         titleLabel.text = title
-        let dateTuple = date.dateToString()
+        let dateTuple = date.toString()
         dayLabel.text = dateTuple.day
         monthLabel.text = dateTuple.month
     } 

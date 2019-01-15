@@ -45,7 +45,7 @@ class DatePickerInputTextField: UITextField {
     }
     
     @objc private func valueChange() {
-       let dateAsString = datePicker.date.dateToString()
+       let dateAsString = datePicker.date.toString()
         text = "\(dateAsString.day) \(dateAsString.month) \(dateAsString.year) \(dateAsString.time)"
     }
     
@@ -56,7 +56,7 @@ class DatePickerInputTextField: UITextField {
     
     func setTommorow() {
         datePicker.date = Date() + (60 * 60 * 24 ) // (sec * min * hrs ) to get tomorrow 
-        let dateAsString = datePicker.date.dateToString()
+        let dateAsString = datePicker.date.toString()
         text = "\(dateAsString.day) \(dateAsString.month) \(dateAsString.year) \(dateAsString.time)"
     }
     
