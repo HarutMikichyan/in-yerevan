@@ -21,10 +21,11 @@ class RegistrationViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
-
-    
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet var additionalButtons: [UIButton]!
+  
     // MARK:- OTHER PROPERTIES
-
+  
     private var isSigningUp: Bool = false
     private var isResettingPassword: Bool = false
     
@@ -63,6 +64,15 @@ class RegistrationViewController: UIViewController {
         } else {
             signIn()
         }
+    }
+    
+  @IBAction func resetPasswordButtonIsTapped(_ sender: UIButton) {
+        isResettingPassword = !isResettingPassword
+        passwordTextField.isHidden = true
+        confirmPasswordTextField.isHidden = true
+        loginButton.setTitle("RESET PASSWORD", for: .normal)
+        additionalButtons[1].setTitle("Create Account", for: .normal)
+        sender.isHidden = true
     }
     
     // MARK:- VIEW LIFE CYCLE METHODS
@@ -112,7 +122,15 @@ class RegistrationViewController: UIViewController {
     private func signIn() {
         Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: {(user, error) in
             if let firebaseError = error {
-                self.errorLabel.text = firebaseError.localizedDescription
+                let blurredSubview = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+                self.view.addBlurredSubview(blurredSubview)
+                let alert = UIAlertController(title: "Sign In Error", message: firebaseError.localizedDescription, preferredStyle: .alert)
+                alert.view.tintColor = .outgoingLavender
+                alert.view.backgroundColor = .black
+                alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: {(_) in
+                    blurredSubview.removeFromSuperview()
+                }))
+                UIApplication.shared.keyWindow!.rootViewController?.present(alert, animated: true, completion: nil)
                 return
             }
             self.login(with: self.emailTextField.text!)
@@ -123,14 +141,30 @@ class RegistrationViewController: UIViewController {
         if passwordTextField.text == confirmPasswordTextField.text {
             Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: {(user, error) in
                 if let firebaseError = error {
-                    self.errorLabel.text = firebaseError.localizedDescription
+                    let blurredSubview = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+                    self.view.addBlurredSubview(blurredSubview)
+                    let alert = UIAlertController(title: "Sign Up Error", message: firebaseError.localizedDescription, preferredStyle: .alert)
+                    alert.view.tintColor = .outgoingLavender
+                    alert.view.backgroundColor = .black
+                    alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: {(_) in
+                        blurredSubview.removeFromSuperview()
+                    }))
+                    UIApplication.shared.keyWindow!.rootViewController?.present(alert, animated: true, completion: nil)
                     return
                 }
-                
                 self.login(with: self.emailTextField.text!)
             })
         } else {
-            errorLabel.text = "Passwords do not match."
+            let blurredSubview = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+            self.view.addBlurredSubview(blurredSubview)
+            let alert = UIAlertController(title: "Sign Up Error", message: "Passwords do not match", preferredStyle: .alert)
+            alert.view.tintColor = .outgoingLavender
+            alert.view.backgroundColor = .black
+            alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: {(_) in
+                blurredSubview.removeFromSuperview()
+            }))
+            UIApplication.shared.keyWindow!.rootViewController?.present(alert, animated: true, completion: nil)
+            return
         }
     }
     
@@ -142,7 +176,6 @@ class RegistrationViewController: UIViewController {
         emailTextField.text = ""
         passwordTextField.text = ""
         confirmPasswordTextField.text = ""
-        errorLabel.text = ""
     }
 }
 
