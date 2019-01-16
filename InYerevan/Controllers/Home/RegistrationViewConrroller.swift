@@ -11,17 +11,26 @@ import FirebaseAuth
 
 class RegistrationViewController: UIViewController {
     
-    @IBOutlet weak var backgroundImageView: UIImageView!
+    // MARK:- INTERFACE BUILDER OUTLETS
+
+    @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet var additionalButtons: [UIButton]!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet var additionalButtons: [UIButton]!
-    
+  
+    // MARK:- OTHER PROPERTIES
+  
     private var isSigningUp: Bool = false
     private var isResettingPassword: Bool = false
     
+    // MARK:- ACTIONS
+
     @IBAction func signUpAction(_ sender: UIButton) {
         clean()
         isSigningUp = !isSigningUp
@@ -57,7 +66,7 @@ class RegistrationViewController: UIViewController {
         }
     }
     
-    @IBAction func resetPasswordButtonIsTapped(_ sender: UIButton) {
+  @IBAction func resetPasswordButtonIsTapped(_ sender: UIButton) {
         isResettingPassword = !isResettingPassword
         passwordTextField.isHidden = true
         confirmPasswordTextField.isHidden = true
@@ -66,8 +75,8 @@ class RegistrationViewController: UIViewController {
         sender.isHidden = true
     }
     
-    
-    
+    // MARK:- VIEW LIFE CYCLE METHODS
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view!.addSubview(backgroundImageView)
@@ -76,6 +85,8 @@ class RegistrationViewController: UIViewController {
         becomeTextFieldDelegates() 
     }
     
+    // MARK:- PRIVATE METHODS
+
     private func customizeSubviews() {
         let trailingConstant = backgroundImageView.bounds.width - (0.18 * backgroundImageView.bounds.width)
         backgroundImageView.addConstraints(equalToConstraintsOf: view, withTrailingConstant: trailingConstant,
@@ -167,6 +178,8 @@ class RegistrationViewController: UIViewController {
         confirmPasswordTextField.text = ""
     }
 }
+
+// MARK:- TEXT FIELD DELEGATE
 
 extension RegistrationViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

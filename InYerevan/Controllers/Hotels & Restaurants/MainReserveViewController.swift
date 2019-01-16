@@ -7,11 +7,12 @@
 //
 
 import UIKit
-import Firebase
+//import FirebaseFirestore
+//import Firebase
 
 class MainReserveViewController: UIViewController {
     
-     var topHotelsList = [TopHotelsType]()
+//    private let refStorage = Storage.storage().reference()
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var mainImage: UIImageView!
@@ -19,6 +20,7 @@ class MainReserveViewController: UIViewController {
     var headerView: UIView!
     var newHeaderLayer: CAShapeLayer!
     weak var topHotelCell: TopHotelTableViewCell!
+    weak var topRestaurantCell: TopRestaurantTableViewCell!
     
     private let headerHeight: CGFloat = 218
     
@@ -28,22 +30,6 @@ class MainReserveViewController: UIViewController {
         
         tableView.register(UINib(nibName: ReserveRegistrationTableViewCell.id, bundle: nil), forCellReuseIdentifier: ReserveRegistrationTableViewCell.id)
         tableView.register(UINib(nibName: CategoryTableViewCell.id, bundle: nil), forCellReuseIdentifier: CategoryTableViewCell.id)
-        
-        UIApplication.appDelegate.refHotels.observe(.value) { (snapshot) in
-            
-            if snapshot.childrenCount > 0 {
-                self.topHotelsList.removeAll()
-                for hot in snapshot.children.allObjects as! [DataSnapshot] {
-                    let hotelObject = hot.value as! [String: AnyObject]
-                    let id = hotelObject["id"]
-                    let name = hotelObject["hotelName"]
-                    let hotels = TopHotelsType(id: id as! String, hotelName: name as! String)
-                    
-                    self.topHotelsList.append(hotels)
-                }
-                self.tableView.reloadData()
-            }
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -97,6 +83,36 @@ class MainReserveViewController: UIViewController {
     }
     
     @IBAction func seeAllHotels(_ sender: Any) {
+//        ///////////
+//
+//        guard let scaledImage = image.scaledToSafeUploadSize,
+//            let data = scaledImage.jpegData(compressionQuality: 0.4) else {
+//                completion(nil)
+//                return
+//        }
+//
+//        let metadata = StorageMetadata()
+//        metadata.contentType = "image/jpeg"
+//        
+//        let imageName = [UUID().uuidString, String(Date().timeIntervalSince1970)].joined()
+//        refStorage.child("hyuranociId").child(imageName).putData(data, metadata: metadata) { meta, error in
+//            if let error = error {
+//                print(error)
+//            }
+//            
+//            self.storage.child("hyuranociId").child(imageName).downloadURL(completion: { (url, error) in
+//                if error != nil {
+//                    print(error as Any)
+//                } else {
+//                    guard let imageURL = url?.absoluteURL else { return }
+//                    completion(imageURL)
+//                }
+//                
+//            })
+//        }
+
+        
+        
         let storyboard = UIStoryboard(name: "HotelsAndRestaurants", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "HotelsViewControllerID")
         navigationController?.pushViewController(vc, animated: true)
@@ -141,12 +157,16 @@ extension MainReserveViewController: UITableViewDelegate, UITableViewDataSource 
             if topHotelCell == nil {
                 let cell = tableView.dequeueReusableCell(withIdentifier: TopHotelTableViewCell.id, for: indexPath) as! TopHotelTableViewCell
                 topHotelCell = cell
+                topHotelCell.parrentViewController = self
             }
-            topHotelCell.setUp(with: topHotelsList)
             return topHotelCell
         default:
-            let cell = tableView.dequeueReusableCell(withIdentifier: TopRestaurantTableViewCell.id, for: indexPath) as! TopRestaurantTableViewCell
-            return cell
+            if topRestaurantCell == nil {
+                let cell = tableView.dequeueReusableCell(withIdentifier: TopRestaurantTableViewCell.id, for: indexPath) as! TopRestaurantTableViewCell
+                topRestaurantCell = cell
+                topRestaurantCell.parrentViewController = self
+            }
+            return topRestaurantCell
         }
     }
     

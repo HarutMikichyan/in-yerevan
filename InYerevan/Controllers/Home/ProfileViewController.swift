@@ -10,11 +10,16 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
+    // MARK:- OTHER PROPERTIES
+
     @IBOutlet weak var userNickname: UILabel!
-    @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var changeEmail: UIButton!
     @IBOutlet weak var changePassword: UIButton!
+    @IBOutlet weak var userImageView: UIImageView!
+
     
+    // MARK:- VIEW LIFE CYCLE METHODS
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,10 +34,14 @@ class ProfileViewController: UIViewController {
         }
     }
 
+    // MARK:- ACTIONS
+
     @IBAction func changeEmailAction() {
     }
+    
     @IBAction func changePasswordAction() {
     }
+    
     @IBAction func signOutAction() {
         
         User.email = ""

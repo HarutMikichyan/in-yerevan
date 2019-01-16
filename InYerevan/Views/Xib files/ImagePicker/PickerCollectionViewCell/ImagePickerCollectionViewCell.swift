@@ -23,5 +23,4 @@ class ImagePickerCollectionViewCell: UICollectionViewCell {
     func changeCheckMarkStatus(isSelected: Bool) {
         checkMark.isHidden = isSelected
     }
- 
 }
