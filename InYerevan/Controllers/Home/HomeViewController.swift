@@ -12,15 +12,21 @@ import FirebaseFirestore
 
 class HomeViewController: UIViewController {
 
+    // MARK:- INTERFACE BUILDER OUTLETS
+
     @IBOutlet weak var onlineSupportButton: UIButton!
     
+    // MARK:- OTHER PROPERTIES
+
     private var name = User.email
-    private let db = Firestore.firestore()
     private var channels = [Channel]()
+    private let db = Firestore.firestore()
     private var channelListener: ListenerRegistration?
     private var channelReference: CollectionReference {
         return db.collection("channels")
     }
+
+    // MARK:- VIEW LIFE CYCLE METHODS
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,22 +52,8 @@ class HomeViewController: UIViewController {
         }
     }
     
-    private func addChannelToTable(_ channel: Channel) {
-        guard !channels.contains(channel) else { return }
-        channels.append(channel)
-        channels.sort()
-    }
-    
-    private func handleDocumentChange(_ change: DocumentChange) {
-        guard let channel = Channel(document: change.document) else { return }
-        switch change.type {
-        case .added:
-            addChannelToTable(channel)
-        default:
-            break
-        }
-    }
-    
+    // MARK:- ACTIONS
+
     @IBAction func onlineSupportAction() {
         let sb = UIStoryboard(name: "Home", bundle: nil)
         if User.isAdministration {
@@ -81,6 +73,24 @@ class HomeViewController: UIViewController {
                 }
             }
             vc.title = "Customer Support"
+        }
+    }
+    
+    // MARK:- PRIVATE METHODS
+
+    private func addChannelToTable(_ channel: Channel) {
+        guard !channels.contains(channel) else { return }
+        channels.append(channel)
+        channels.sort()
+    }
+    
+    private func handleDocumentChange(_ change: DocumentChange) {
+        guard let channel = Channel(document: change.document) else { return }
+        switch change.type {
+        case .added:
+            addChannelToTable(channel)
+        default:
+            break
         }
     }
     
