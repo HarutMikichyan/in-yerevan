@@ -67,6 +67,7 @@ extension HotelDescriptionViewController: UITableViewDelegate, UITableViewDataSo
             let cell = tableView.dequeueReusableCell(withIdentifier: HotelOverviewTableViewCell.id, for: indexPath) as! HotelOverviewTableViewCell
             cell.hotelPhoneNumber.text = hotel.hotelPhoneNumber
             cell.star.text = hotel.hotelStar
+            cell.hotPrice = hotel.priceHotel
             cell.openingHours.text = hotel.openingHoursHotel
 //            cell.hotelId = hotel.id
             return cell

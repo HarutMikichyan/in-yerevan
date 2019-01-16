@@ -26,6 +26,7 @@ class HotelOverviewTableViewCell: UITableViewCell {
         return view
     }()
     
+    var hotPrice: Double!
     var hotelId: String!
     
     @IBOutlet weak var hotelPhoneNumber: UILabel!
@@ -41,6 +42,7 @@ class HotelOverviewTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
+        hotelPrice.text = "AMD \(hotPrice)"
         contentView.addSubview(cosmosView)
         
         cosmosConstraint()
@@ -54,14 +56,14 @@ class HotelOverviewTableViewCell: UITableViewCell {
     }
     
     @IBAction func priceHotel(_ sender: Any) {
-//        if fromDateField.text != "" && toDateField.text != "" {
-//            var timeInterval = fromDateField.getValue().timeIntervalSince(toDateField.getValue())
-//            if timeInterval < 0 {
-//                var day = timeInterval as! Double / 1440.0 * 60.0
-//                print()
-//
-//            }
-//        }
+        if fromDateField.text != "" && toDateField.text != "" {
+            let timeInterval = toDateField.getValue().timeIntervalSince(fromDateField.getValue())
+            if timeInterval > 0 {
+                let day = timeInterval as! Double / 1440.0 * 60.0
+                hotelPrice.text = "AMD \((day * hotPrice) / 1.00)"
+
+            }
+        }
     }
     
     @IBAction func rateHotel(_ sender: Any) {

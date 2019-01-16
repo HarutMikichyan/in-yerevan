@@ -15,6 +15,9 @@ struct HotelsType {
     var openingHoursHotel: String
     var hotelLocationLong: Double
     var hotelLocationLat: Double
+    var priceHotel: Double
+    var hotelRateSum: Double
+    var hotelRateCount: Int
 }
 
 struct RestaurantsType {
@@ -24,4 +27,7 @@ struct RestaurantsType {
     var openingHoursRestaurant: String
     var restaurantLocationLong: Double
     var restaurantLocationLat: Double
+    var priceRestaurant: Double
+    var restaurantRateSum: Double
+    var restaurantRateCount: Int
 }

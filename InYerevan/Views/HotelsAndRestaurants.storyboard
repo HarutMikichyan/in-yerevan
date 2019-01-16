@@ -532,6 +532,8 @@
                         <outlet property="imageButton" destination="6si-QV-8IW" id="LBt-d0-6FK"/>
                         <outlet property="openingHoursHotel" destination="ZVp-cp-hUK" id="JQm-rB-nan"/>
                         <outlet property="openingHoursRestaurant" destination="6pY-yw-4DW" id="bq3-2c-W36"/>
+                        <outlet property="priceHotel" destination="FEB-7q-reK" id="Wo2-09-Hbf"/>
+                        <outlet property="priceRestaurant" destination="vl5-KG-vw5" id="3Id-ME-7ez"/>
                         <outlet property="registrationView" destination="MLC-26-VvO" id="9nL-4t-b7f"/>
                         <outlet property="restaurantLocation" destination="uYV-91-1cS" id="uDM-VI-3TP"/>
                         <outlet property="restaurantName" destination="EwI-i9-kpK" id="zCw-uW-N1a"/>
@@ -580,17 +582,8 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Hotel Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z0Y-p9-ZYz" customClass="UIMapInputTextField" customModule="InYerevan" customModuleProvider="target">
-                            <rect key="frame" x="24" y="180" width="323" height="30"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="30" id="Gg9-N5-vVN"/>
-                            </constraints>
-                            <nil key="textColor"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fHV-a9-j4y">
-                            <rect key="frame" x="40" y="234" width="291" height="40"/>
+                            <rect key="frame" x="40" y="272" width="291" height="40"/>
                             <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="NtN-NF-Tfd"/>
@@ -602,6 +595,24 @@
                                 <action selector="addHotel:" destination="rBE-oD-862" eventType="touchUpInside" id="Nk0-1G-8Xr"/>
                             </connections>
                         </button>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Price" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FEB-7q-reK">
+                            <rect key="frame" x="24" y="180" width="323" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="dZe-ky-TqI"/>
+                            </constraints>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Hotel Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z0Y-p9-ZYz" customClass="UIMapInputTextField" customModule="InYerevan" customModuleProvider="target">
+                            <rect key="frame" x="24" y="218" width="323" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="Gg9-N5-vVN"/>
+                            </constraints>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -614,15 +625,18 @@
                         <constraint firstItem="ZVp-cp-hUK" firstAttribute="leading" secondItem="NiE-U7-S74" secondAttribute="leading" constant="24" id="OOA-bp-pDG"/>
                         <constraint firstItem="NiE-U7-S74" firstAttribute="trailing" secondItem="ZVp-cp-hUK" secondAttribute="trailing" constant="24" id="Z9K-Lo-0ib"/>
                         <constraint firstItem="ZVp-cp-hUK" firstAttribute="top" secondItem="ny9-WS-b6B" secondAttribute="bottom" constant="8" id="ZPR-cY-xuQ"/>
-                        <constraint firstItem="fHV-a9-j4y" firstAttribute="top" secondItem="Z0Y-p9-ZYz" secondAttribute="bottom" constant="24" id="ZZG-QM-b9v"/>
+                        <constraint firstItem="Z0Y-p9-ZYz" firstAttribute="top" secondItem="FEB-7q-reK" secondAttribute="bottom" constant="8" id="ZfM-pn-P9q"/>
+                        <constraint firstItem="FEB-7q-reK" firstAttribute="top" secondItem="ZVp-cp-hUK" secondAttribute="bottom" constant="8" id="aZ0-Ie-cKH"/>
                         <constraint firstItem="fHV-a9-j4y" firstAttribute="leading" secondItem="NiE-U7-S74" secondAttribute="leading" constant="40" id="bCf-DA-Slj"/>
                         <constraint firstItem="NiE-U7-S74" firstAttribute="trailing" secondItem="ny9-WS-b6B" secondAttribute="trailing" constant="24" id="ci6-h6-Rfo"/>
+                        <constraint firstItem="fHV-a9-j4y" firstAttribute="top" secondItem="Z0Y-p9-ZYz" secondAttribute="bottom" constant="24" id="eog-T2-7kN"/>
                         <constraint firstItem="Z0Y-p9-ZYz" firstAttribute="leading" secondItem="NiE-U7-S74" secondAttribute="leading" constant="24" id="fyP-UA-gfA"/>
                         <constraint firstItem="NiE-U7-S74" firstAttribute="trailing" secondItem="Z0Y-p9-ZYz" secondAttribute="trailing" constant="24" id="gPl-50-JWv"/>
                         <constraint firstItem="IkA-1a-uxF" firstAttribute="top" secondItem="fI2-65-lNU" secondAttribute="bottom" constant="8" id="hyu-yd-s26"/>
+                        <constraint firstItem="NiE-U7-S74" firstAttribute="trailing" secondItem="FEB-7q-reK" secondAttribute="trailing" constant="24" id="kdK-Sy-fFV"/>
+                        <constraint firstItem="FEB-7q-reK" firstAttribute="leading" secondItem="NiE-U7-S74" secondAttribute="leading" constant="24" id="t8I-m4-HHe"/>
                         <constraint firstItem="fHV-a9-j4y" firstAttribute="centerX" secondItem="AGi-Je-c8Q" secondAttribute="centerX" id="u0X-a1-Qu1"/>
                         <constraint firstItem="IkA-1a-uxF" firstAttribute="leading" secondItem="NiE-U7-S74" secondAttribute="leading" constant="24" id="yB9-YU-OkY"/>
-                        <constraint firstItem="Z0Y-p9-ZYz" firstAttribute="top" secondItem="ZVp-cp-hUK" secondAttribute="bottom" constant="8" id="yKi-g2-7tx"/>
                         <constraint firstItem="NiE-U7-S74" firstAttribute="trailing" secondItem="fI2-65-lNU" secondAttribute="trailing" constant="24" id="yNN-sE-v9D"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="NiE-U7-S74"/>
@@ -658,17 +672,8 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Restaurant Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uYV-91-1cS" customClass="UIMapInputTextField" customModule="InYerevan" customModuleProvider="target">
-                            <rect key="frame" x="24" y="142" width="318" height="30"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="30" id="DgO-FJ-hnc"/>
-                            </constraints>
-                            <nil key="textColor"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DNi-M7-4Yd">
-                            <rect key="frame" x="40" y="196" width="286" height="40"/>
+                            <rect key="frame" x="40" y="234" width="286" height="40"/>
                             <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="YJS-Qp-fkp"/>
@@ -680,22 +685,40 @@
                                 <action selector="addRestaurant:" destination="rBE-oD-862" eventType="touchUpInside" id="Vh4-f7-L3H"/>
                             </connections>
                         </button>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Price" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vl5-KG-vw5">
+                            <rect key="frame" x="24" y="142" width="318" height="30"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Restaurant Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uYV-91-1cS" customClass="UIMapInputTextField" customModule="InYerevan" customModuleProvider="target">
+                            <rect key="frame" x="24" y="180" width="318" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="DgO-FJ-hnc"/>
+                            </constraints>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="uYV-91-1cS" firstAttribute="leading" secondItem="eOf-yO-Kgw" secondAttribute="leading" constant="24" id="0kM-ew-dhj"/>
+                        <constraint firstItem="vl5-KG-vw5" firstAttribute="leading" secondItem="eOf-yO-Kgw" secondAttribute="leading" constant="24" id="Dph-GE-xxk"/>
                         <constraint firstItem="eOf-yO-Kgw" firstAttribute="trailing" secondItem="DNi-M7-4Yd" secondAttribute="trailing" constant="40" id="F72-rh-XL3"/>
                         <constraint firstItem="tWH-rI-WTk" firstAttribute="leading" secondItem="eOf-yO-Kgw" secondAttribute="leading" constant="24" id="HgA-Fm-caV"/>
                         <constraint firstItem="EwI-i9-kpK" firstAttribute="leading" secondItem="eOf-yO-Kgw" secondAttribute="leading" constant="24" id="JZa-uX-FQq"/>
                         <constraint firstItem="tWH-rI-WTk" firstAttribute="top" secondItem="EwI-i9-kpK" secondAttribute="bottom" constant="8" id="Lr2-JM-vuQ"/>
+                        <constraint firstItem="eOf-yO-Kgw" firstAttribute="trailing" secondItem="vl5-KG-vw5" secondAttribute="trailing" constant="24" id="OBh-ZE-Oxb"/>
                         <constraint firstItem="DNi-M7-4Yd" firstAttribute="top" secondItem="uYV-91-1cS" secondAttribute="bottom" constant="24" id="OHx-gP-erN"/>
                         <constraint firstItem="eOf-yO-Kgw" firstAttribute="trailing" secondItem="EwI-i9-kpK" secondAttribute="trailing" constant="24" id="OfN-tP-VwH"/>
-                        <constraint firstItem="uYV-91-1cS" firstAttribute="top" secondItem="6pY-yw-4DW" secondAttribute="bottom" constant="8" id="PZ4-nb-Wkr"/>
                         <constraint firstItem="6pY-yw-4DW" firstAttribute="leading" secondItem="eOf-yO-Kgw" secondAttribute="leading" constant="24" id="U5q-zh-fRX"/>
+                        <constraint firstItem="uYV-91-1cS" firstAttribute="top" secondItem="vl5-KG-vw5" secondAttribute="bottom" constant="8" id="Vnw-Kp-F5M"/>
                         <constraint firstItem="eOf-yO-Kgw" firstAttribute="trailing" secondItem="6pY-yw-4DW" secondAttribute="trailing" constant="24" id="ZPv-XA-y58"/>
                         <constraint firstItem="6pY-yw-4DW" firstAttribute="top" secondItem="tWH-rI-WTk" secondAttribute="bottom" constant="8" id="dHY-1Y-nDm"/>
                         <constraint firstItem="eOf-yO-Kgw" firstAttribute="trailing" secondItem="uYV-91-1cS" secondAttribute="trailing" constant="24" id="h2X-DF-KRr"/>
                         <constraint firstItem="DNi-M7-4Yd" firstAttribute="leading" secondItem="eOf-yO-Kgw" secondAttribute="leading" constant="40" id="i0u-Yc-TN1"/>
+                        <constraint firstItem="vl5-KG-vw5" firstAttribute="top" secondItem="6pY-yw-4DW" secondAttribute="bottom" constant="8" id="reB-3n-2Aq"/>
                         <constraint firstItem="eOf-yO-Kgw" firstAttribute="trailing" secondItem="tWH-rI-WTk" secondAttribute="trailing" constant="24" id="tG8-MB-EFe"/>
                         <constraint firstItem="EwI-i9-kpK" firstAttribute="top" secondItem="eOf-yO-Kgw" secondAttribute="top" constant="8" id="xOf-og-g7h"/>
                     </constraints>

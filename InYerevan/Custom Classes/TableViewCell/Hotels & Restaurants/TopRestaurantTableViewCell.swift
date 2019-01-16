@@ -35,8 +35,11 @@ class TopRestaurantTableViewCell: UITableViewCell {
                     let openingHours = restaurantObject["openingHoursRestaurant"]
                     let locationLong = restaurantObject["restaurantLocationLong"]
                     let locationlat = restaurantObject["restaurantLocationLat"]
+                    let price = restaurantObject["priceRestaurant"]
+                    let rateSum = restaurantObject["rateSum"]
+                    let rateCount = restaurantObject["rateCount"]
                     
-                    let restaurants = RestaurantsType(id: id as! String, restaurantName: name as! String, restaurantPhoneNumber: phoneNumber as! String, openingHoursRestaurant: openingHours as! String, restaurantLocationLong: locationLong as! Double, restaurantLocationLat: locationlat as! Double)
+                    let restaurants = RestaurantsType(id: id as! String, restaurantName: name as! String, restaurantPhoneNumber: phoneNumber as! String, openingHoursRestaurant: openingHours as! String, restaurantLocationLong: locationLong as! Double, restaurantLocationLat: locationlat as! Double, priceRestaurant: price as! Double, restaurantRateSum: rateSum as! Double, restaurantRateCount: rateCount as! Int)
                     self.restaurants.append(restaurants)
                     if self.restaurants.count == 10 {
                         break

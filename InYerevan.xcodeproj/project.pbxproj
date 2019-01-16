@@ -227,42 +227,6 @@
 			path = ../ChannelCell;
 			sourceTree = "<group>";
 		};
-		708A691321E4EBE700932BFA /* Restaurants Description View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Restaurants Description View";
-			sourceTree = "<group>";
-		};
-		708A691421E4EBF800932BFA /* Restaurants View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Restaurants View";
-			sourceTree = "<group>";
-		};
-		708A691521E4EC0C00932BFA /* Hotels Description View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Hotels Description View";
-			sourceTree = "<group>";
-		};
-		708A691621E4EC1000932BFA /* Hotels View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Hotels View";
-			sourceTree = "<group>";
-		};
-		708A691721E4EC1300932BFA /* Main View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "Main View";
-			path = "New Group2";
-			sourceTree = "<group>";
-		};
 		86043CBF21EA1ADF001C78F3 /* Event */ = {
 			isa = PBXGroup;
 			children = (
@@ -457,7 +421,6 @@
 			children = (
 				708A691B21E521C700932BFA /* HotelOverviewTableViewCell.swift */,
 				708A691C21E521C700932BFA /* HotelOverviewTableViewCell.xib */,
-				86D1EF5121E4BE1400738187 /* HotelOverviewTableViewCell */,
 			);
 			path = Hotels;
 			sourceTree = "<group>";
@@ -469,13 +432,6 @@
 				7014E65621E9F4840058433D /* RestaurantOverviewTableViewCell.xib */,
 			);
 			path = Restaurants;
-			sourceTree = "<group>";
-		};
-		86D1EF5121E4BE1400738187 /* HotelOverviewTableViewCell */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = HotelOverviewTableViewCell;
 			sourceTree = "<group>";
 		};
 		86D1EF6021E4C01700738187 /* TableViewCell */ = {
@@ -547,11 +503,6 @@
 				86D1EF8821E4C4D700738187 /* HotelDescriptionViewController.swift */,
 				86D1EF8721E4C4D700738187 /* RestaurantsViewController.swift */,
 				86D1EF8521E4C4D600738187 /* RestaurantDescriptionViewController.swift */,
-				708A691721E4EC1300932BFA /* Main View */,
-				708A691621E4EC1000932BFA /* Hotels View */,
-				708A691521E4EC0C00932BFA /* Hotels Description View */,
-				708A691421E4EBF800932BFA /* Restaurants View */,
-				708A691321E4EBE700932BFA /* Restaurants Description View */,
 			);
 			path = "Hotels & Restaurants";
 			sourceTree = "<group>";
