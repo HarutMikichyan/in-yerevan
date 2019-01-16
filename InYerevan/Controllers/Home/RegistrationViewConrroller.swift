@@ -17,7 +17,6 @@ class RegistrationViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet var additionalButtons: [UIButton]!
     
     private var isSigningUp: Bool = false
@@ -166,7 +165,6 @@ class RegistrationViewController: UIViewController {
         emailTextField.text = ""
         passwordTextField.text = ""
         confirmPasswordTextField.text = ""
-        errorLabel.text = ""
     }
 }
 

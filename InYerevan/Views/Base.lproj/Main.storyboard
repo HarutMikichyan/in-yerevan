@@ -113,12 +113,6 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="5iY-gi-U1V">
                                         <rect key="frame" x="0.0" y="0.0" width="129" height="0.0"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sO9-6d-WnI">
-                                                <rect key="frame" x="0.0" y="0.0" width="129" height="0.0"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                                                <color key="textColor" red="0.62698286802030456" green="0.59624841370558368" blue="0.62346382543125456" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RjZ-5Y-rna">
                                                 <rect key="frame" x="0.0" y="0.0" width="129" height="0.0"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -146,7 +140,6 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="sO9-6d-WnI" firstAttribute="height" secondItem="RjZ-5Y-rna" secondAttribute="height" id="GHZ-mB-rob"/>
                                             <constraint firstItem="Vpb-jf-SdV" firstAttribute="height" secondItem="RjZ-5Y-rna" secondAttribute="height" id="bfn-vT-DwA"/>
                                         </constraints>
                                     </stackView>
@@ -166,7 +159,6 @@
                         <outlet property="backgroundImageView" destination="Hxw-bJ-Scf" id="VV0-RX-VHI"/>
                         <outlet property="confirmPasswordTextField" destination="6aM-Bg-Yf7" id="g40-ns-Htl"/>
                         <outlet property="emailTextField" destination="Y56-QL-WsV" id="Yrf-cm-CLP"/>
-                        <outlet property="errorLabel" destination="sO9-6d-WnI" id="pIr-O3-lY1"/>
                         <outlet property="loginButton" destination="qLn-YA-3ZL" id="dzx-nK-HW0"/>
                         <outlet property="passwordTextField" destination="ZZZ-vm-3d5" id="BxE-xH-HwU"/>
                         <outlet property="stackView" destination="b2A-C4-5rd" id="O95-aN-yMh"/>
