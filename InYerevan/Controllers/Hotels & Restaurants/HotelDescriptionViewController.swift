@@ -11,12 +11,13 @@ import Firebase
 
 class HotelDescriptionViewController: UIViewController {
     
-     var hotel: HotelsType!
+    var hotel: HotelsType!
     
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.register(UINib(nibName: HotelRestaurantImageTableViewCell.id, bundle: nil), forCellReuseIdentifier: HotelRestaurantImageTableViewCell.id)
         tableView.register(UINib(nibName: HotelOverviewTableViewCell.id, bundle: nil), forCellReuseIdentifier: HotelOverviewTableViewCell.id)
         tableView.register(UINib(nibName: HotelRestaurantMapTableViewCell.id, bundle: nil), forCellReuseIdentifier: HotelRestaurantMapTableViewCell.id)
     }
@@ -44,6 +45,8 @@ extension HotelDescriptionViewController: UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.row {
         case 0:
+            return 240
+        case 1:
             return 300
         default:
             return 450
@@ -51,16 +54,22 @@ extension HotelDescriptionViewController: UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:
+            let cell = tableView.dequeueReusableCell(withIdentifier: HotelRestaurantImageTableViewCell.id, for: indexPath) as! HotelRestaurantImageTableViewCell
+            cell.textPhotos.text = "Hotel Photos"
+            return cell
+        case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: HotelOverviewTableViewCell.id, for: indexPath) as! HotelOverviewTableViewCell
             cell.hotelPhoneNumber.text = hotel.hotelPhoneNumber
-            cell.ratelbl.text = hotel.hotelStar
+            cell.star.text = hotel.hotelStar
+            cell.hotPrice = hotel.priceHotel
             cell.openingHours.text = hotel.openingHoursHotel
+//            cell.hotelId = hotel.id
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: HotelRestaurantMapTableViewCell.id, for: indexPath) as! HotelRestaurantMapTableViewCell

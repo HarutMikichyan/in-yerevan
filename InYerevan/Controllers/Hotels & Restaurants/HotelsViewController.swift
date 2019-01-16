@@ -32,7 +32,11 @@ class HotelsViewController: UIViewController {
                     let openingHours = hotelObject["openingHoursHotel"]
                     let locationLong = hotelObject["hotelLocationLong"]
                     let locationlat = hotelObject["hotelLocationLat"]
-                    let hotels = HotelsType(id: id as! String, hotelName: name as! String, hotelStar: star as! String, hotelPhoneNumber: phoneNumber as! String, openingHoursHotel: openingHours as! String, hotelLocationLong: locationLong as! Double, hotelLocationLat: locationlat as! Double)
+                    let price = hotelObject["priceHotel"]
+                    let rateSum = hotelObject["rateSum"]
+                    let rateCount = hotelObject["rateCount"]
+                    
+                    let hotels = HotelsType(id: id as! String, hotelName: name as! String, hotelStar: star as! String, hotelPhoneNumber: phoneNumber as! String, openingHoursHotel: openingHours as! String, hotelLocationLong: locationLong as! Double, hotelLocationLat: locationlat as! Double, priceHotel: price as! Double, hotelRateSum: rateSum as! Double, hotelRateCount: rateCount as! Int)
                     self.hotelsList.append(hotels)
                 }
             }
@@ -63,7 +67,7 @@ extension HotelsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return hotelsList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
