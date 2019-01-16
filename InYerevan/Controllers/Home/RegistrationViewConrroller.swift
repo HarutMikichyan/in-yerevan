@@ -112,7 +112,15 @@ class RegistrationViewController: UIViewController {
     private func signIn() {
         Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: {(user, error) in
             if let firebaseError = error {
-                self.errorLabel.text = firebaseError.localizedDescription
+                let blurredSubview = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+                self.view.addBlurredSubview(blurredSubview)
+                let alert = UIAlertController(title: "Sign In Error", message: firebaseError.localizedDescription, preferredStyle: .alert)
+                alert.view.tintColor = .outgoingLavender
+                alert.view.backgroundColor = .black
+                alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: {(_) in
+                    blurredSubview.removeFromSuperview()
+                }))
+                UIApplication.shared.keyWindow!.rootViewController?.present(alert, animated: true, completion: nil)
                 return
             }
             self.login(with: self.emailTextField.text!)
@@ -123,14 +131,30 @@ class RegistrationViewController: UIViewController {
         if passwordTextField.text == confirmPasswordTextField.text {
             Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: {(user, error) in
                 if let firebaseError = error {
-                    self.errorLabel.text = firebaseError.localizedDescription
+                    let blurredSubview = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+                    self.view.addBlurredSubview(blurredSubview)
+                    let alert = UIAlertController(title: "Sign Up Error", message: firebaseError.localizedDescription, preferredStyle: .alert)
+                    alert.view.tintColor = .outgoingLavender
+                    alert.view.backgroundColor = .black
+                    alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: {(_) in
+                        blurredSubview.removeFromSuperview()
+                    }))
+                    UIApplication.shared.keyWindow!.rootViewController?.present(alert, animated: true, completion: nil)
                     return
                 }
-                
                 self.login(with: self.emailTextField.text!)
             })
         } else {
-            errorLabel.text = "Passwords do not match."
+            let blurredSubview = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+            self.view.addBlurredSubview(blurredSubview)
+            let alert = UIAlertController(title: "Sign Up Error", message: "Passwords do not match", preferredStyle: .alert)
+            alert.view.tintColor = .outgoingLavender
+            alert.view.backgroundColor = .black
+            alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: {(_) in
+                blurredSubview.removeFromSuperview()
+            }))
+            UIApplication.shared.keyWindow!.rootViewController?.present(alert, animated: true, completion: nil)
+            return
         }
     }
     

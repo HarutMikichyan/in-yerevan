@@ -116,7 +116,6 @@ extension UserListViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ChannelCell.id, for: indexPath) as! ChannelCell
-//        cell.accessoryType = .disclosureIndicator
         cell.channel = channels[indexPath.row]
         cell.backgroundColor = .clear
         cell.contentView.backgroundColor = .clear

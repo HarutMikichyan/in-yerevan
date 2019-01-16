@@ -63,14 +63,11 @@ final class ChatViewController: MessagesViewController {
         let picker = UIImagePickerController()
         picker.delegate = self
         
-        /// ––––––––––––––––– subject to change ––––––––––––––––––––– ///
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             picker.sourceType = .camera
         } else {
             
         }
-        /// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––– ///
-        
         present(picker, animated: true, completion: nil)
     }
     
@@ -78,14 +75,11 @@ final class ChatViewController: MessagesViewController {
         let picker = UIImagePickerController()
         picker.delegate = self
         
-        /// ––––––––––––––––– subject to change ––––––––––––––––––––– ///
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             picker.sourceType = .photoLibrary
         } else {
             
         }
-        /// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––– ///
-        
         present(picker, animated: true, completion: nil)
     }
     
