@@ -1,32 +1,28 @@
 //
-//  TopHotelTableViewCell.swift
+//  HotelsViewController.swift
 //  In Yerevan
 //
-//  Created by HarutMikichyan on 12/19/18.
+//  Created by HarutMikichyan on 12/20/18.
 //  Copyright © 2018 com.inYerevan. All rights reserved.
 //
 
 import UIKit
 import Firebase
 
-class TopHotelTableViewCell: UITableViewCell {
+class HotelsViewController: UIViewController {
+
+    var hotelsList = [HotelsType]()
     
-    static let id = "TopHotelTableViewCell"
+    @IBOutlet weak var tableView: UITableView!
     
-    private var hotels = [HotelsType]()
-    var parrentViewController: UIViewController!
-    
-    @IBOutlet weak var topHotelCollectionView: UICollectionView!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        topHotelCollectionView.delegate = self
-        topHotelCollectionView.dataSource = self
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        title = "Hotels"
         
         UIApplication.appDelegate.refHotels.observe(.value) { (snapshot) in
             
             if snapshot.childrenCount > 0 {
-                self.hotels.removeAll()
+                self.hotelsList.removeAll()
                 for hot in snapshot.children.allObjects as! [DataSnapshot] {
                     let hotelObject = hot.value as! [String: AnyObject]
                     let id = hotelObject["id"]
@@ -41,42 +37,43 @@ class TopHotelTableViewCell: UITableViewCell {
                     let rateCount = hotelObject["rateCount"]
                     
                     let hotels = HotelsType(id: id as! String, hotelName: name as! String, hotelStar: star as! String, hotelPhoneNumber: phoneNumber as! String, openingHoursHotel: openingHours as! String, hotelLocationLong: locationLong as! Double, hotelLocationLat: locationlat as! Double, priceHotel: price as! Double, hotelRateSum: rateSum as! Double, hotelRateCount: rateCount as! Int)
-                    self.hotels.append(hotels)
-                    if self.hotels.count == 10 {
-                        break
-                    }
+                    self.hotelsList.append(hotels)
                 }
             }
-            self.topHotelCollectionView.reloadData()
+            self.tableView.reloadData()
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear( animated )
+        navigationController?.isNavigationBarHidden = false
     }
 }
 
-extension TopHotelTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
+extension HotelsViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.deselectItem(at: indexPath, animated: true)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         
         let storyboard = UIStoryboard(name: "HotelsAndRestaurants", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "HotelDescriptionViewControllerID") as! HotelDescriptionViewController
-        vc.hotel = hotels[indexPath.row]
+        vc.hotel = hotelsList[indexPath.row]
         
-        parrentViewController.navigationController?.pushViewController(vc, animated: true)
+        navigationController?.pushViewController(vc, animated: true)
     }
     
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        topHotelCollectionView.deselectItem(at: indexPath, animated: true)
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 270
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return hotelsList.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopHotelCollectionViewCell.id, for: indexPath) as! TopHotelCollectionViewCell
-        if hotels.count != 0 {
-            cell.topHotelsName.text = hotels[indexPath.row].hotelName
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: HotelTableViewCell.id, for: indexPath) as! HotelTableViewCell
+        if hotelsList.count != 0 {
+            cell.nameHotel.text = hotelsList[indexPath.row].hotelName
         }
         return cell
     }

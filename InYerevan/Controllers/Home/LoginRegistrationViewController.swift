@@ -12,28 +12,38 @@ import GoogleSignIn
 
 class LoginRegistrationViewController: UIViewController, GIDSignInUIDelegate {
     
+    // MARK:- INTERFACE BUILDER OUTLETS
+
     @IBOutlet weak var uIView: UIView!
     @IBOutlet weak var homeImage: UIImageView!
     @IBOutlet weak var GSignIn: GIDSignInButton!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+
+    // MARK:- INTERFACE BUILDER OUTLETS "LOGIN VIEW"
 
     @IBOutlet weak var loginView: UIView!
     @IBOutlet weak var loginErrorLabel: UILabel!
     @IBOutlet weak var loginEmailTextField: UITextField!
     @IBOutlet weak var loginPasswordTextField: UITextField!
     
+    // MARK:- INTERFACE BUILDER OUTLETS "REGISTRATION VIEW"
+
     @IBOutlet weak var registrationView: UIView!
     @IBOutlet weak var registrationErrorLabel: UILabel!
     @IBOutlet weak var registrationEmailTextField: UITextField!
     @IBOutlet weak var registrationPasswordTextField: UITextField!
     @IBOutlet weak var registrationRepeatPasswordTextField: UITextField!
     
+    // MARK:- INTERFACE BUILDER OUTLETS "RESET VIEW"
+
     @IBOutlet weak var resetView: UIView!
     @IBOutlet weak var resetErrorLabel: UILabel!
     @IBOutlet weak var resetEmailTextField: UITextField!
     
     private var isFirstLoad: Bool = true
     
+    // MARK:- VIEW LIFE CYCLE METHODS
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -64,6 +74,8 @@ class LoginRegistrationViewController: UIViewController, GIDSignInUIDelegate {
         }
     }
     
+    // MARK:- ACTIONS
+
     @IBAction func loginAction() {
         Auth.auth().signIn(withEmail: loginEmailTextField.text!, password: loginPasswordTextField.text!, completion: {(user, error) in
             if let firebaseError = error {
@@ -119,49 +131,53 @@ class LoginRegistrationViewController: UIViewController, GIDSignInUIDelegate {
         }
     }
     
-    func loginClean() {
+    // MARK:- PRIVATE METHODS
+
+    private func loginClean() {
         loginErrorLabel.text = ""
         loginEmailTextField.text = ""
         loginPasswordTextField.text = ""
-        
+
         loginView.removeFromSuperview()
     }
-    
-    func registrationClean() {
+
+    private func registrationClean() {
         registrationErrorLabel.text = ""
         registrationEmailTextField.text = ""
         registrationPasswordTextField.text = ""
         registrationRepeatPasswordTextField.text = ""
-        
+
         registrationView.removeFromSuperview()
     }
-    
-    func resetClean() {
+
+    private func resetClean() {
         resetErrorLabel.text = ""
         resetEmailTextField.text = ""
-        
+
         resetView.removeFromSuperview()
     }
-    
-    func logIn(userEmail: String) {
+
+    private func logIn(userEmail: String) {
         var isAdministration: Bool = false
-        
+
         for item in User.administration {
             if item == userEmail {
                 isAdministration = true
                 break
             }
         }
-        
+
         User.email = userEmail
         User.isAdministration = isAdministration
-        
+
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "TabBarController")
-        
+
         self.show(vc, sender: nil)
     }
 }
+
+// MARK:- TEXT FIELD DELEGATE
 
 extension LoginRegistrationViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

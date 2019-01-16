@@ -9,7 +9,7 @@ class User {
     
     public static var email: String {
         get {
-            let email = UserDefaults.standard.object(forKey: "userEmail") as! String
+            let email = UserDefaults.standard.object(forKey: "userEmail") as? String ?? ""
             return email
         }
         

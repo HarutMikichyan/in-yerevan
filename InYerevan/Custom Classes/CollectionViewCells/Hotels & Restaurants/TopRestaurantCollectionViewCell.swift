@@ -17,7 +17,7 @@ class TopRestaurantCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        layer.cornerRadius = 12
+        topRestaurantsImage.layer.cornerRadius = 12
         topRestaurantsImage.clipsToBounds = true
     }
 }

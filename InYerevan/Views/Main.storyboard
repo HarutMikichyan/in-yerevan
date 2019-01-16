@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OJu-xE-tPp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="urK-s7-HY3">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -18,8 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="barTintColor" red="0.58916455509999999" green="0.64601045850000005" blue="0.69420760869999998" alpha="0.38014603029999999" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="selectedImageTintColor" red="0.58039215690000001" green="0.19215686269999999" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.0039651241103709879" green="0.00061414324205732616" blue="0.015367227157360386" alpha="0.38014603029999999" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="selectedImageTintColor" red="0.534838339" green="0.44054401900000001" blue="0.69455901019999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </tabBar>
                     <connections>
                         <segue destination="qop-pj-YfA" kind="relationship" relationship="viewControllers" id="W5W-2U-pOC"/>
@@ -64,7 +64,7 @@
         <!--Registration View Controller-->
         <scene sceneID="hTS-JK-hag">
             <objects>
-                <viewController id="urK-s7-HY3" customClass="RegistrationViewController" customModule="InYerevan" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="registrationvc" id="urK-s7-HY3" customClass="RegistrationViewController" customModule="InYerevan" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="w68-Gw-l8A">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -82,21 +82,21 @@
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.46000000000000002" colorSpace="custom" customColorSpace="displayP3"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" keyboardAppearance="alert" returnKeyType="next" enablesReturnKeyAutomatically="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="email"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZZZ-vm-3d5">
                                         <rect key="frame" x="0.0" y="0.0" width="129" height="0.0"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.46000000000000002" colorSpace="custom" customColorSpace="displayP3"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" returnKeyType="next" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="password"/>
                                     </textField>
                                     <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="6aM-Bg-Yf7" userLabel="Confirm Password">
                                         <rect key="frame" x="0.0" y="0.0" width="129" height="0.0"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.46000000000000002" colorSpace="custom" customColorSpace="displayP3"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="password"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qLn-YA-3ZL" userLabel="Log In">
                                         <rect key="frame" x="0.0" y="0.0" width="129" height="0.0"/>
@@ -106,10 +106,19 @@
                                         <state key="normal" title="LOGIN">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="loginAction" destination="urK-s7-HY3" eventType="touchUpInside" id="NOO-0P-7x4"/>
+                                        </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="5iY-gi-U1V">
                                         <rect key="frame" x="0.0" y="0.0" width="129" height="0.0"/>
                                         <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sO9-6d-WnI">
+                                                <rect key="frame" x="0.0" y="0.0" width="129" height="0.0"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                                <color key="textColor" red="0.62698286802030456" green="0.59624841370558368" blue="0.62346382543125456" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RjZ-5Y-rna">
                                                 <rect key="frame" x="0.0" y="0.0" width="129" height="0.0"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -118,6 +127,9 @@
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="signUpAction:" destination="urK-s7-HY3" eventType="touchUpInside" id="jTJ-IT-455"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vpb-jf-SdV">
                                                 <rect key="frame" x="0.0" y="0.0" width="129" height="0.0"/>
@@ -127,9 +139,16 @@
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="forgotPasswordAction:" destination="urK-s7-HY3" eventType="touchUpInside" id="bLl-Ri-jMo"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="sO9-6d-WnI" firstAttribute="height" secondItem="RjZ-5Y-rna" secondAttribute="height" id="GHZ-mB-rob"/>
+                                            <constraint firstItem="Vpb-jf-SdV" firstAttribute="height" secondItem="RjZ-5Y-rna" secondAttribute="height" id="bfn-vT-DwA"/>
+                                        </constraints>
                                     </stackView>
                                 </subviews>
                                 <constraints>
@@ -147,6 +166,7 @@
                         <outlet property="backgroundImageView" destination="Hxw-bJ-Scf" id="VV0-RX-VHI"/>
                         <outlet property="confirmPasswordTextField" destination="6aM-Bg-Yf7" id="g40-ns-Htl"/>
                         <outlet property="emailTextField" destination="Y56-QL-WsV" id="Yrf-cm-CLP"/>
+                        <outlet property="errorLabel" destination="sO9-6d-WnI" id="pIr-O3-lY1"/>
                         <outlet property="loginButton" destination="qLn-YA-3ZL" id="dzx-nK-HW0"/>
                         <outlet property="passwordTextField" destination="ZZZ-vm-3d5" id="BxE-xH-HwU"/>
                         <outlet property="stackView" destination="b2A-C4-5rd" id="O95-aN-yMh"/>
@@ -403,10 +423,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="AdditionalAbilitiesRPG-Compact" width="34" height="34"/>
-        <image name="EventRPG-Compact" width="34" height="34"/>
-        <image name="HomeRPG-Compact" width="34" height="34"/>
+        <image name="AdditionalAbilitiesRPG-Compact" width="25.5" height="25.5"/>
+        <image name="EventRPG-Compact" width="25.5" height="25.5"/>
+        <image name="HomeRPG-Compact" width="25.5" height="25.5"/>
         <image name="Main-Yerevan" width="2448" height="1377"/>
-        <image name="bgLogin" width="1706" height="1066"/>
+        <image name="bgLogin" width="1706.6666259765625" height="1066.6666259765625"/>
     </resources>
 </document>
