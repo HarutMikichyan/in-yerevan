@@ -19,7 +19,6 @@ class EventCategoiresViewController: UIViewController {
     
     }
     
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if !User.isAdministration {
@@ -68,10 +67,24 @@ extension EventCategoiresViewController: UICollectionViewDelegate, UICollectionV
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EventCategoryCollectionViewCell.id, for: indexPath) as! EventCategoryCollectionViewCell
         let category = eventCategories[indexPath.row]
         //TODO: Fetch Picture from first event and show it!
-        //let picture = (category.events?.allObjects.first as? Event)?.pictureURL
-        cell.prepareCellWith(label: category.name!, background: #imageLiteral(resourceName: "Technology"))
-        return cell
+        if let  firstEvent = (category.events!.allObjects.first as? Event) {
+            if let images = firstEvent.images?.allObjects as? [String] {
+                if let imageURL = images.first {
+                    UIApplication.dataManager.downloadImage(at: URL.init(string: imageURL)!) { (image) in
+                        if let image = image {
+                            cell.prepareCellWith(label: category.name!, background: image)
+                        } else { 
+                            cell.prepareCellWith(label: category.name!, background: #imageLiteral(resourceName: "Main-Yerevan"))
+                        }
+                    }
+                }
+            }
+        }
         
+         
+       
+        
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

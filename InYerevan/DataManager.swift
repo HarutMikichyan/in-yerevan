@@ -77,6 +77,23 @@ class DataManager {
         let category = requestCategoryWith(name: name, in: context)
         completion(category)
     }
+    
+    func downloadImage(at url: URL, in event: Event, completion: @escaping (UIImage?) -> Void) {
+        let storageReferance = Storage.storage().reference().child("event/\(User.email)")
+        let ref = Storage.storage().reference(forURL: url.absoluteString)
+        let megaByte = Int64(1 * 1024 * 1024)
+        
+        
+        ref.getData(maxSize: megaByte) { data, error in
+            guard let imageData = data else {
+                completion(nil)
+                return
+            }
+            
+            completion(UIImage(data: imageData))
+        }
+    }
+    
     //Private Interface
     //  Write only functions which will support your public functions 
     
@@ -147,6 +164,11 @@ class DataManager {
         event.location = location
         event.category = requestCategoryWith(name: category, in: context)
         event.organizer = requestOrganizerWith(name: company, in: context)
+        for url in pictureURLs {
+            let pictureURL = Picture(context: context)
+            pictureURL.url = url
+            pictureURL.event = event
+        }
         persistentController.saveContext(context)
         persistentController.viewContext.refreshAllObjects()
     }
