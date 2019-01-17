@@ -21,8 +21,6 @@ class RegistrationViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
-    @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet var additionalButtons: [UIButton]!
   
     // MARK:- OTHER PROPERTIES
   

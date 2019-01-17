@@ -100,14 +100,9 @@ final class ChatViewController: MessagesViewController {
         guard !messages.contains(message) else { return }
         messages.append(message)
         messages.sort()
-        
-        let isLatestMessage = messages.index(of: message) == (messages.count - 1)
-        let shouldScrollToBottom = messagesCollectionView.isAtBottom && isLatestMessage
         messagesCollectionView.reloadData()
-        if shouldScrollToBottom {
-            DispatchQueue.main.async {
-                self.messagesCollectionView.scrollToBottom(animated: true)
-            }
+        DispatchQueue.main.async {
+            self.messagesCollectionView.scrollToBottom(animated: true)
         }
     }
     
@@ -259,7 +254,9 @@ final class ChatViewController: MessagesViewController {
                 print("Error sending message: \(error.localizedDescription)")
                 return
             }
-            self.messagesCollectionView.scrollToBottom()
+            DispatchQueue.main.async {
+                self.messagesCollectionView.scrollToBottom(animated: true)
+            }
         }
     }
     
