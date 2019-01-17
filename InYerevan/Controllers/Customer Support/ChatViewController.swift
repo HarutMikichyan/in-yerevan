@@ -18,7 +18,7 @@ final class ChatViewController: MessagesViewController {
     // MARK:- FIREBASE PROPERTIES
     
     private let db = Firestore.firestore()
-    private let storage = Storage.storage().reference()
+    private let storage = Storage.storage().reference().child("Channels")
     private var reference: CollectionReference?
     private var messages: [Message] = []
     private var messageListener: ListenerRegistration?
@@ -63,14 +63,11 @@ final class ChatViewController: MessagesViewController {
         let picker = UIImagePickerController()
         picker.delegate = self
         
-        /// ––––––––––––––––– subject to change ––––––––––––––––––––– ///
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             picker.sourceType = .camera
         } else {
             
         }
-        /// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––– ///
-        
         present(picker, animated: true, completion: nil)
     }
     
@@ -78,14 +75,11 @@ final class ChatViewController: MessagesViewController {
         let picker = UIImagePickerController()
         picker.delegate = self
         
-        /// ––––––––––––––––– subject to change ––––––––––––––––––––– ///
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             picker.sourceType = .photoLibrary
         } else {
             
         }
-        /// ––––––––––––––––––––––––––––––––––––––––––––––––––––––––– ///
-        
         present(picker, animated: true, completion: nil)
     }
     
@@ -106,14 +100,9 @@ final class ChatViewController: MessagesViewController {
         guard !messages.contains(message) else { return }
         messages.append(message)
         messages.sort()
-        
-        let isLatestMessage = messages.index(of: message) == (messages.count - 1)
-        let shouldScrollToBottom = messagesCollectionView.isAtBottom && isLatestMessage
         messagesCollectionView.reloadData()
-        if shouldScrollToBottom {
-            DispatchQueue.main.async {
-                self.messagesCollectionView.scrollToBottom(animated: true)
-            }
+        DispatchQueue.main.async {
+            self.messagesCollectionView.scrollToBottom(animated: true)
         }
     }
     
@@ -157,10 +146,13 @@ final class ChatViewController: MessagesViewController {
         messageInputBar.delegate = self
         maintainPositionOnKeyboardFrameChanged = true
         messageInputBar.inputTextView.textColor = .white
+        messageInputBar.inputTextView.keyboardAppearance = .dark
         messageInputBar.inputTextView.placeholderTextColor = .placeholderWhite
         messageInputBar.inputTextView.placeholder = "Type a message..."
         messageInputBar.backgroundView.backgroundColor = .inputBarDarkCerulian
-        
+        messageInputBar.shouldAutoUpdateMaxTextViewHeight = false
+        messageInputBar.maxTextViewHeight = 100
+            
         // Configuring camera item
         let cameraItem = InputBarButtonItem(type: .system)
         cameraItem.setSize(CGSize(width: 60, height: 30), animated: false)
@@ -176,7 +168,7 @@ final class ChatViewController: MessagesViewController {
         let photosItem = InputBarButtonItem(type: .system)
         photosItem.setSize(CGSize(width: 60, height: 30), animated: false)
         photosItem.tintColor = .outgoingLavender
-        photosItem.image = #imageLiteral(resourceName: "photos")
+        photosItem.image = #imageLiteral(resourceName: "picture")
         photosItem.addTarget(
             self,
             action: #selector(photosButtonPressed),
@@ -197,6 +189,7 @@ final class ChatViewController: MessagesViewController {
         
         // Configuring all stack view items
         messageInputBar.leftStackView.alignment = .center
+        messageInputBar.rightStackView.alignment = .center
         messageInputBar.setLeftStackViewWidthConstant(to: 90, animated: false)
         messageInputBar.setStackViewItems([cameraItem, photosItem], forStack: .left, animated: false)
         messageInputBar.setStackViewItems([sendItem], forStack: .right, animated: false)
@@ -261,7 +254,9 @@ final class ChatViewController: MessagesViewController {
                 print("Error sending message: \(error.localizedDescription)")
                 return
             }
-            self.messagesCollectionView.scrollToBottom()
+            DispatchQueue.main.async {
+                self.messagesCollectionView.scrollToBottom(animated: true)
+            }
         }
     }
     
