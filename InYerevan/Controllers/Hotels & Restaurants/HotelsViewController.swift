@@ -10,17 +10,16 @@ import UIKit
 import Firebase
 
 class HotelsViewController: UIViewController {
-
-    var hotelsList = [HotelsType]()
     
     @IBOutlet weak var tableView: UITableView!
+    var hotelsList = [HotelsType]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Hotels"
+        view.changeBackgroundToGradient(from: [.backgroundDarkSpruce, .backgroundDenimBlue])
         
         UIApplication.appDelegate.refHotels.observe(.value) { (snapshot) in
-            
             if snapshot.childrenCount > 0 {
                 self.hotelsList.removeAll()
                 for hot in snapshot.children.allObjects as! [DataSnapshot] {
@@ -74,6 +73,7 @@ extension HotelsViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: HotelTableViewCell.id, for: indexPath) as! HotelTableViewCell
         if hotelsList.count != 0 {
             cell.nameHotel.text = hotelsList[indexPath.row].hotelName
+            cell.starHotel.text = hotelsList[indexPath.row].hotelStar
         }
         return cell
     }

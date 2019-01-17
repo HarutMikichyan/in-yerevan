@@ -66,21 +66,21 @@ class ReserveRegistrationViewController: UIViewController, UIImagePickerControll
             restaurantRegistrationView.removeFromSuperview()
             registrationView.addSubview(hotelRegistrationView)
             hotelRegistrationView.frame = registrationView.bounds
+            images.removeAll()
         case 1:
             hotelRegistrationView.removeFromSuperview()
             registrationView.addSubview(restaurantRegistrationView)
             restaurantRegistrationView.frame = registrationView.bounds
+            images.removeAll()
         default:
             dismiss(animated: true, completion: nil)
         }
     }
     
     @IBAction func addHotel(_ sender: Any) {
-        
-        if hotelName.text != "" && hotelStar.text != "" && hotelPhoneNumber.text != ""
-            && openingHoursHotel.text != "" && hotelLocation.text != "" && priceHotel.text != "" {
-//             && images.count > 0
+        if hotelName.text != "" && hotelStar.text != "" && hotelPhoneNumber.text != "" && openingHoursHotel.text != "" && hotelLocation.text != "" && priceHotel.text != "" && images.count > 0 {
     
+            
             //realTime Firebase
             let keyHotel: String = UIApplication.appDelegate.refHotels.childByAutoId().key!
             
@@ -88,24 +88,70 @@ class ReserveRegistrationViewController: UIViewController, UIImagePickerControll
             let rateSum: Double = 0.0
             let rateCount: Int = 0
             guard let priceHot = Double(priceHotel.text!) else { return }
-            
-            let hotel: [String: Any] = ["id": keyHotel, "hotelName": hotelName.text! , "hotelStar": hotelStar.text! , "hotelPhoneNumber": hotelPhoneNumber.text! , "openingHoursHotel": openingHoursHotel.text!, "hotelLocationLong": hotLoc.long , "hotelLocationLat": hotLoc.lat, "priceHotel": priceHot, "rateSum": rateSum, "rateCount": rateCount]
-            
-            UIApplication.appDelegate.refHotels.child(keyHotel).setValue(hotel)
+            var urls: [String] = []
             
             //storage Firebase
-//            for img in 0...images.count - 1 {
-//                saveFirebaseStorage(images[img], to: keyHotel) { (url) in
-//                    if url != nil {
-//                        print()
-//                    }
-//                }
-//            }
+            for img in 0...images.count - 1 {
+                saveFirebaseStorage(images[img], to: keyHotel) { (url) in
+                    if url != nil {
+                        urls.append(url!.absoluteString)
+                        if urls.count == self.images.count {
+                            //RealTime Database
+                            let hotel: [String: Any] = ["id": keyHotel, "hotelName": self.hotelName.text! , "hotelStar": self.hotelStar.text! , "hotelPhoneNumber": self.hotelPhoneNumber.text! , "openingHoursHotel": self.openingHoursHotel.text!, "hotelLocationLong": hotLoc.long , "hotelLocationLat": hotLoc.lat, "priceHotel": priceHot, "rateSum": rateSum, "rateCount": rateCount, "imageUrls": urls]
+                            UIApplication.appDelegate.refHotels.child(keyHotel).setValue(hotel)
+                        }
+                    }
+                }
+            }
         }
     }
     
+    private func downloadImage(at url: URL, completion: @escaping (UIImage?) -> Void) {
+        let ref = Storage.storage().reference(forURL: url.absoluteString)
+        let megaByte = Int64(1 * 1024 * 1024)
+        
+        ref.getData(maxSize: megaByte) { data, error in
+            guard let imageData = data else {
+                completion(nil)
+                return
+            }
+            
+            completion(UIImage(data: imageData))
+        }
+    }
+    
+    @IBAction func addRestaurant(_ sender: Any) {
+        if restaurantName.text != "" && restaurantPhoneNumber.text != ""
+            && openingHoursRestaurant.text != "" && restaurantLocation.text != ""  && priceRestaurant.text != ""  && images.count > 0 {
+            
+            let keyRestaurant: String = UIApplication.appDelegate.refRestaurants.childByAutoId().key!
+            let resLoc: (lat: Double, long: Double) = self.restaurantLocation.getCoordinatesAsTuple()
+            let rateSum: Double = 0.0
+            let rateCount: Int = 0
+            guard let priceRes = Double(priceRestaurant.text!) else { return }
+            var urls: [String] = []
+            
+            //storage Firebase
+            for img in 0...images.count - 1 {
+                saveFirebaseStorage(images[img], to: keyRestaurant) { (url) in
+                    if url != nil {
+                        urls.append(url!.absoluteString)
+                        if urls.count == self.images.count {
+                            //RealTime database
+                            let restaurant: [String: Any] = ["id": keyRestaurant, "restaurantName": self.restaurantName.text!, "restaurantPhoneNumber": self.restaurantPhoneNumber.text!, "openingHoursRestaurant": self.openingHoursRestaurant.text!, "restaurantLocationLong": resLoc.long, "restaurantLocationLat": resLoc.lat, "priceRestaurant": priceRes, "rateSum": rateSum, "rateCount": rateCount , "imageUrls": urls]
+                            
+                            UIApplication.appDelegate.refRestaurants.child(keyRestaurant).setValue(restaurant)
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    //MARK: - Save Storage
     private func saveFirebaseStorage(_ image: UIImage, to hotelID: String?, completion: @escaping (URL?) -> Void) {
-         guard let id = hotelID else {
+        guard let id = hotelID else {
             completion(nil)
             return
         }
@@ -133,33 +179,6 @@ class ReserveRegistrationViewController: UIViewController, UIImagePickerControll
                 }
                 
             })
-        }
-        
-    }
-    
-//    func saveFirebaseStorage() {
-//        for img in images {
-//            guard let scaledImage = img.scaledToSafeUploadSize,
-//                let data = scaledImage.jpegData(compressionQuality: 0.4) else {
-//                    completion(nil)
-//                    return
-//            }
-//        }
-//    }
-    
-    @IBAction func addRestaurant(_ sender: Any) {
-        if restaurantName.text != "" && restaurantPhoneNumber.text != ""
-            && openingHoursRestaurant.text != "" && restaurantLocation.text != ""  && priceRestaurant.text != "" {
-            
-            let keyRestaurant: String = UIApplication.appDelegate.refRestaurants.childByAutoId().key!
-            let resLoc: (lat: Double, long: Double) = self.restaurantLocation.getCoordinatesAsTuple()
-            let rateSum: Double = 0.0
-            let rateCount: Int = 0
-            guard let priceRes = Double(priceRestaurant.text!) else { return }
-            
-            let restaurant: [String: Any] = ["id": keyRestaurant, "restaurantName": restaurantName.text!, "restaurantPhoneNumber": restaurantPhoneNumber.text!, "openingHoursRestaurant": openingHoursRestaurant.text!, "restaurantLocationLong": resLoc.long, "restaurantLocationLat": resLoc.lat, "priceRestaurant": priceRes, "rateSum": rateSum, "rateCount": rateCount]
-            
-            UIApplication.appDelegate.refRestaurants.child(keyRestaurant).setValue(restaurant)
         }
     }
     

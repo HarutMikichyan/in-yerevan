@@ -9,7 +9,6 @@
 import UIKit
 
 class TopRestaurantCollectionViewCell: UICollectionViewCell {
-    
     static let id = "TopRestaurantCollectionViewCell"
     
     @IBOutlet weak var topRestaurantsImage: UIImageView!
