@@ -10,8 +10,17 @@ import UIKit
 import Cosmos
 
 class HotelOverviewTableViewCell: UITableViewCell {
-    
     static let id = "HotelOverviewTableViewCell"
+    
+    @IBOutlet weak var hotelPhoneNumber: UILabel!
+    @IBOutlet weak var hotelPrice: UILabel!
+    @IBOutlet weak var star: UILabel!
+    @IBOutlet weak var openingHours: UILabel!
+    @IBOutlet weak var fromDateField: DatePickerInputTextField!
+    @IBOutlet weak var toDateField: DatePickerInputTextField!
+    @IBOutlet weak var rateView: UIView!
+    var hotPrice: Double!
+    var hotelId: String!
     
     //Mark: - reviews view
     lazy var cosmosView: CosmosView = {
@@ -26,31 +35,16 @@ class HotelOverviewTableViewCell: UITableViewCell {
         return view
     }()
     
-    var hotPrice: Double!
-    var hotelId: String!
-    
-    @IBOutlet weak var hotelPhoneNumber: UILabel!
-    @IBOutlet weak var hotelPrice: UILabel!
-    
-    @IBOutlet weak var star: UILabel!
-    @IBOutlet weak var openingHours: UILabel!
-    @IBOutlet weak var fromDateField: DatePickerInputTextField!
-    @IBOutlet weak var toDateField: DatePickerInputTextField!
-    
-    @IBOutlet weak var rateView: UIView!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
         hotelPrice.text = "AMD \(hotPrice)"
         contentView.addSubview(cosmosView)
-        
         cosmosConstraint()
     }
     
     func cosmosConstraint() {
         cosmosView.translatesAutoresizingMaskIntoConstraints = false
-        
         cosmosView.topAnchor.constraint(equalTo: rateView.topAnchor, constant: 16).isActive = true
         cosmosView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16).isActive = true
     }
@@ -61,7 +55,6 @@ class HotelOverviewTableViewCell: UITableViewCell {
             if timeInterval > 0 {
                 let day = timeInterval as! Double / 1440.0 * 60.0
                 hotelPrice.text = "AMD \((day * hotPrice) / 1.00)"
-
             }
         }
     }

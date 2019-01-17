@@ -9,13 +9,11 @@
 import UIKit
 
 class HotelRestaurantImageTableViewCell: UITableViewCell {
-
-    var hotelRestaurantImages = [UIImage]()
-    
     static let id = "HotelRestaurantImageTableViewCell"
     
     @IBOutlet weak var textPhotos: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
+    var hotelRestaurantImages = [UIImage]()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,6 +21,7 @@ class HotelRestaurantImageTableViewCell: UITableViewCell {
         collectionView.delegate = self
         collectionView.dataSource = self
         
+        //register TableViewCell
         collectionView.register(UINib(nibName: HotelRestaurantCollectionViewCell.id, bundle: nil), forCellWithReuseIdentifier: HotelRestaurantCollectionViewCell.id)
     }
 }

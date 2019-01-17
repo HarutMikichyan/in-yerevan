@@ -10,8 +10,11 @@ import UIKit
 import Cosmos
 
 class RestaurantOverviewTableViewCell: UITableViewCell {
-
     static let id = "RestaurantOverviewTableViewCell"
+    
+    @IBOutlet weak var restaurantPhoneNumber: UILabel!
+    @IBOutlet weak var restaurantOpeningHours: UILabel!
+    @IBOutlet weak var rateView: UIView!
     
     //Mark: - reviews view
     lazy var cosmosView: CosmosView = {
@@ -26,10 +29,6 @@ class RestaurantOverviewTableViewCell: UITableViewCell {
         return view
     }()
     
-    @IBOutlet weak var restaurantPhoneNumber: UILabel!
-    @IBOutlet weak var restaurantOpeningHours: UILabel!
-    @IBOutlet weak var rateView: UIView!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
@@ -39,7 +38,6 @@ class RestaurantOverviewTableViewCell: UITableViewCell {
     
     func cosmosConstraint() {
         cosmosView.translatesAutoresizingMaskIntoConstraints = false
-        
         cosmosView.topAnchor.constraint(equalTo: rateView.topAnchor, constant: 16).isActive = true
         cosmosView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16).isActive = true
     }

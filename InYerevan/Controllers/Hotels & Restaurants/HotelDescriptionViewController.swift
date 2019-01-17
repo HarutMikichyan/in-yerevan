@@ -11,12 +11,14 @@ import Firebase
 
 class HotelDescriptionViewController: UIViewController {
     
-    var hotel: HotelsType!
-    
     @IBOutlet weak var tableView: UITableView!
+    var hotel: HotelsType!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.changeBackgroundToGradient(from: [.backgroundDarkSpruce, .backgroundDenimBlue])
+        
+        //register TableViewCell
         tableView.register(UINib(nibName: HotelRestaurantImageTableViewCell.id, bundle: nil), forCellReuseIdentifier: HotelRestaurantImageTableViewCell.id)
         tableView.register(UINib(nibName: HotelOverviewTableViewCell.id, bundle: nil), forCellReuseIdentifier: HotelOverviewTableViewCell.id)
         tableView.register(UINib(nibName: HotelRestaurantMapTableViewCell.id, bundle: nil), forCellReuseIdentifier: HotelRestaurantMapTableViewCell.id)
@@ -28,14 +30,13 @@ class HotelDescriptionViewController: UIViewController {
     }
     
     @IBAction func segmentControl(_ sender: UISegmentedControl) {
-        
         switch sender.selectedSegmentIndex {
         case 0:
             tableView.setContentOffset(.zero, animated: true)
         case 1:
             tableView.setContentOffset(CGPoint(x: 0, y: 300), animated: true)
         default:
-            break
+            fatalError()
         }
     }
 }
@@ -69,7 +70,7 @@ extension HotelDescriptionViewController: UITableViewDelegate, UITableViewDataSo
             cell.star.text = hotel.hotelStar
             cell.hotPrice = hotel.priceHotel
             cell.openingHours.text = hotel.openingHoursHotel
-//            cell.hotelId = hotel.id
+            cell.hotelId = hotel.id
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: HotelRestaurantMapTableViewCell.id, for: indexPath) as! HotelRestaurantMapTableViewCell

@@ -10,13 +10,11 @@ import UIKit
 import Firebase
 
 class TopRestaurantTableViewCell: UITableViewCell {
-    
     static let id = "TopRestaurantTableViewCell"
     
-    private var restaurants = [RestaurantsType]()
-    var parrentViewController: UIViewController!
-    
     @IBOutlet weak var topRestaurantCollectionView: UICollectionView!
+    var parrentViewController: UIViewController!
+    private var restaurants = [RestaurantsType]()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,7 +22,6 @@ class TopRestaurantTableViewCell: UITableViewCell {
         topRestaurantCollectionView.dataSource = self
         
         UIApplication.appDelegate.refRestaurants.observe(.value) { (snapshot) in
-            
             if snapshot.childrenCount > 0 {
                 self.restaurants.removeAll()
                 for res in snapshot.children.allObjects as! [DataSnapshot] {
@@ -55,7 +52,6 @@ extension TopRestaurantTableViewCell: UICollectionViewDelegate, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        
         let storyboard = UIStoryboard(name: "HotelsAndRestaurants", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "RestaurantDescriptionViewControllerID") as! RestaurantDescriptionViewController
         vc.restaurant = restaurants[indexPath.row]

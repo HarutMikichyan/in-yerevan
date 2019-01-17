@@ -9,16 +9,16 @@
 import UIKit
 
 class RestaurantDescriptionViewController: UIViewController {
-
-    var restaurant: RestaurantsType!
     
     @IBOutlet weak var tableView: UITableView!
+    var restaurant: RestaurantsType!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear( animated )
         navigationController?.isNavigationBarHidden = false
+        view.changeBackgroundToGradient(from: [.backgroundDarkSpruce, .backgroundDenimBlue])
         
-        
+        //register TableViewCell
         tableView.register(UINib(nibName: HotelRestaurantImageTableViewCell.id, bundle: nil), forCellReuseIdentifier: HotelRestaurantImageTableViewCell.id)
         tableView.register(UINib(nibName: RestaurantOverviewTableViewCell.id, bundle: nil), forCellReuseIdentifier: RestaurantOverviewTableViewCell.id)
         tableView.register(UINib(nibName: HotelRestaurantMapTableViewCell.id, bundle: nil), forCellReuseIdentifier: HotelRestaurantMapTableViewCell.id)

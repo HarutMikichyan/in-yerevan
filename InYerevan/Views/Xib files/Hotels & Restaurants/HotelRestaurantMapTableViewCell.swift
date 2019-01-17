@@ -15,38 +15,34 @@ final class Annotation: NSObject, MKAnnotation {
     var title: String?
     var subtitle: String?
     
+    var region: MKCoordinateRegion {
+        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+        return MKCoordinateRegion(center: coordinate, span: span)
+    }
+    
     init(coordinate: CLLocationCoordinate2D, title: String?, subtitle: String?) {
         self.coordinate = coordinate
         self.title = title
         self.subtitle = subtitle
-        
         super.init()
-    }
-    
-    var region: MKCoordinateRegion {
-        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
-        
-        return MKCoordinateRegion(center: coordinate, span: span)
     }
 }
 
 class HotelRestaurantMapTableViewCell: UITableViewCell, CLLocationManagerDelegate {
-
     static let id = "HotelRestaurantMapTableViewCell"
-    var locationLat: Double!
-    var locationLong: Double!
-    var name: String!
-    var openingHours: String!
 
     @IBOutlet weak var textMap: UILabel!
     @IBOutlet weak var mapView: MKMapView!
-    
     private let locationManager = CLLocationManager()
+    var locationLat: Double!
+    var locationLong: Double!
+    var openingHours: String!
+    var name: String!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
-//        showUserLocation()
+        showUserLocation()
         
         if locationLong != nil && locationLat != nil {
             mapView.register(MKMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
