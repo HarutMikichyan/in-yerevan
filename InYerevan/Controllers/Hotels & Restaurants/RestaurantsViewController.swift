@@ -33,8 +33,9 @@ class RestaurantsViewController: UIViewController {
                     let price = restaurantObject["priceRestaurant"]
                     let rateSum = restaurantObject["rateSum"]
                     let rateCount = restaurantObject["rateCount"]
+                    let urls = restaurantObject["imageUrls"]
 
-                    let restaurants = RestaurantsType(id: id as! String, restaurantName: name as! String, restaurantPhoneNumber: phoneNumber as! String, openingHoursRestaurant: openingHours as! String, restaurantLocationLong: locationLong as! Double, restaurantLocationLat: locationlat as! Double, priceRestaurant: price as! Double, restaurantRateSum: rateSum as! Double, restaurantRateCount: rateCount as! Int)
+                    let restaurants = RestaurantsType(id: id as! String, restaurantName: name as! String, restaurantPhoneNumber: phoneNumber as! String, openingHoursRestaurant: openingHours as! String, restaurantLocationLong: locationLong as! Double, restaurantLocationLat: locationlat as! Double, priceRestaurant: price as! Double, restaurantRateSum: rateSum as! Double, restaurantRateCount: rateCount as! Int, restaurantImageUrl: urls as! [String])
                     self.restaurantsList.append(restaurants)
                 }
             }
