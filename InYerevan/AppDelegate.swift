@@ -65,12 +65,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     }
     
 //    // Kardal incha anum -------
-//    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-//
-//        return GIDSignIn.sharedInstance().handle(url,
-//                                                 sourceApplication: sourceApplication,
-//                                                 annotation: annotation)
-//    }
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+
+        return GIDSignIn.sharedInstance().handle(url,
+                                                 sourceApplication: sourceApplication,
+                                                 annotation: annotation)
+    }
     
     // MARK: GIDSignInDelegate conform
     

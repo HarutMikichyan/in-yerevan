@@ -86,9 +86,9 @@ class LoginRegistrationViewController: UIViewController, GIDSignInUIDelegate {
         })
     }
     
-    @IBAction func scipForNowAction() {
-        logIn(userEmail: "guest")
-    }
+//    @IBAction func scipForNowAction() {
+//        logIn(userEmail: "guest")
+//    }
     
     @IBAction func registrationAction() {
         if registrationPasswordTextField.text! != registrationRepeatPasswordTextField.text! {

@@ -14,6 +14,11 @@ class HomeViewController: UIViewController {
 
     // MARK:- INTERFACE BUILDER OUTLETS
 
+    @IBOutlet weak var courseUSD: UILabel!
+    @IBOutlet weak var courseRUR: UILabel!
+    @IBOutlet weak var courseEUR: UILabel!
+    @IBOutlet weak var weatherYerevan: UILabel!
+    @IBOutlet weak var profileButton: UIButton!
     @IBOutlet weak var onlineSupportButton: UIButton!
     
     // MARK:- OTHER PROPERTIES
@@ -34,6 +39,14 @@ class HomeViewController: UIViewController {
         navigationController?.navigationBar.barStyle = .black
         navigationController?.navigationBar.tintColor = .outgoingLavender
 
+        profileButton.layer.cornerRadius = 12
+        profileButton.layer.masksToBounds = true
+
+        onlineSupportButton.layer.cornerRadius = 12
+        onlineSupportButton.layer.masksToBounds = true
+
+        view.changeBackgroundToGradient(from: [.backgroundDarkSpruce, .backgroundDenimBlue])
+        
         channelListener = channelReference.addSnapshotListener { querySnapshot, error in
             guard let snapshot = querySnapshot else {
                 print("Error listening for channel updates: \(error?.localizedDescription ?? "No error")")
@@ -45,11 +58,11 @@ class HomeViewController: UIViewController {
             }
         }
         
-        if User.email == "guest" {
-            onlineSupportButton.isEnabled = false
-            onlineSupportButton.setTitleColor(UIColor.white, for: .normal)
-            onlineSupportButton.backgroundColor = UIColor.white
-        }
+//        if User.email == "guest" {
+//            onlineSupportButton.isEnabled = false
+//            onlineSupportButton.setTitleColor(UIColor.white, for: .normal)
+//            onlineSupportButton.backgroundColor = UIColor.white
+//        }
     }
     
     // MARK:- ACTIONS
