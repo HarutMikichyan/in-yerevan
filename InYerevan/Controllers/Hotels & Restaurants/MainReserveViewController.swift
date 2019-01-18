@@ -24,7 +24,9 @@ class MainReserveViewController: UIViewController {
         view.changeBackgroundToGradient(from: [.backgroundDarkSpruce, .backgroundDenimBlue])
         
         //register TableViewCell
-        tableView.register(UINib(nibName: ReserveRegistrationTableViewCell.id, bundle: nil), forCellReuseIdentifier: ReserveRegistrationTableViewCell.id)
+        if User.isAdministration {
+            tableView.register(UINib(nibName: ReserveRegistrationTableViewCell.id, bundle: nil), forCellReuseIdentifier: ReserveRegistrationTableViewCell.id)
+        }
         tableView.register(UINib(nibName: CategoryTableViewCell.id, bundle: nil), forCellReuseIdentifier: CategoryTableViewCell.id)
     }
     
@@ -99,14 +101,20 @@ extension MainReserveViewController: UITableViewDelegate, UITableViewDataSource 
         case 0:
             return 218
         case 1:
-            return 60
+            if User.isAdministration {
+                return 60
+            }
+            fallthrough
         default:
             return 200
         }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        if User.isAdministration {
+            return 4
+        }
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -117,8 +125,18 @@ extension MainReserveViewController: UITableViewDelegate, UITableViewDataSource 
             cell.selectionStyle = .none
             return cell
         case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: ReserveRegistrationTableViewCell.id, for: indexPath) as! ReserveRegistrationTableViewCell
-            return cell
+            if User.isAdministration {
+                let cell = tableView.dequeueReusableCell(withIdentifier: ReserveRegistrationTableViewCell.id, for: indexPath) as! ReserveRegistrationTableViewCell
+                return cell
+            } else {
+                if topRestaurantCell == nil {
+                    let cell = tableView.dequeueReusableCell(withIdentifier: TopRestaurantTableViewCell.id, for: indexPath) as! TopRestaurantTableViewCell
+                    cell.selectionStyle = .none
+                    topRestaurantCell = cell
+                    topRestaurantCell.parrentViewController = self
+                }
+                return topRestaurantCell
+            }
         case 2:
             if topHotelCell == nil {
                 let cell = tableView.dequeueReusableCell(withIdentifier: TopHotelTableViewCell.id, for: indexPath) as! TopHotelTableViewCell
@@ -140,14 +158,16 @@ extension MainReserveViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        switch indexPath.row {
-        case 1:
-            let storyboard = UIStoryboard(name: "HotelsAndRestaurants", bundle: nil)
-            let vc =  storyboard.instantiateViewController(withIdentifier: "ReserveRegistrationViewControllerID")
-            
-            navigationController?.present(vc, animated: true, completion: nil)
-        default:
-            break
+        if User.isAdministration {
+            switch indexPath.row {
+            case 1:
+                let storyboard = UIStoryboard(name: "HotelsAndRestaurants", bundle: nil)
+                let vc =  storyboard.instantiateViewController(withIdentifier: "ReserveRegistrationViewControllerID")
+                
+                navigationController?.present(vc, animated: true, completion: nil)
+            default:
+                break
+            }
         }
     }
 }

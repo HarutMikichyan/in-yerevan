@@ -12,9 +12,12 @@ import Firebase
 class TopHotelTableViewCell: UITableViewCell {
     static let id = "TopHotelTableViewCell"
     
+    private let db = Firestore.firestore()
+    private let storage = Storage.storage().reference().child("Hotels")
     @IBOutlet weak var topHotelCollectionView: UICollectionView!
     var parrentViewController: UIViewController!
     private var hotels = [HotelsType]()
+    var images = [[UIImage]]()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -36,16 +39,44 @@ class TopHotelTableViewCell: UITableViewCell {
                     let price = hotelObject["priceHotel"]
                     let rateSum = hotelObject["rateSum"]
                     let rateCount = hotelObject["rateCount"]
+                    let urls = hotelObject["imageUrls"]
                     
-                    let hotels = HotelsType(id: id as! String, hotelName: name as! String, hotelStar: star as! String, hotelPhoneNumber: phoneNumber as! String, openingHoursHotel: openingHours as! String, hotelLocationLong: locationLong as! Double, hotelLocationLat: locationlat as! Double, priceHotel: price as! Double, hotelRateSum: rateSum as! Double, hotelRateCount: rateCount as! Int)
+                    let hotels = HotelsType(id: id as! String, hotelName: name as! String, hotelStar: star as! String, hotelPhoneNumber: phoneNumber as! String, openingHoursHotel: openingHours as! String, hotelLocationLong: locationLong as! Double, hotelLocationLat: locationlat as! Double, priceHotel: price as! Double, hotelRateSum: rateSum as! Double, hotelRateCount: rateCount as! Int, hotelImageUrl: urls as! [String])
                     self.hotels.append(hotels)
                     if self.hotels.count == 10 {
                         break
                     }
+                    self.topHotelCollectionView.reloadData()
                 }
+                
+                for i in 0..<10 {
+                    self.downloadImage(at: self.hotels[i].hotelImageUrl, completion: { (images) in
+                        guard let image = images else { return }
+                        print(image)
+                        self.images.append(image)
+                    })
+                    print(self.images)
+                }
+                self.topHotelCollectionView.reloadData()
             }
-            self.topHotelCollectionView.reloadData()
         }
+    }
+    
+    private func downloadImage(at urls: [String], completion: @escaping ([UIImage]?) -> Void) {
+        var images = [UIImage]()
+        for urlStr in urls {
+            let ref = Storage.storage().reference(forURL: urlStr)
+            let megaByte = Int64(1 * 1024 * 1024)
+            
+            ref.getData(maxSize: megaByte) { data, error in
+                guard let imageData = data else {
+                    completion(nil)
+                    return
+                }
+                images.append(UIImage(data: imageData)!)
+            }
+        }
+        completion(images)
     }
 }
 
@@ -66,8 +97,11 @@ extension TopHotelTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopHotelCollectionViewCell.id, for: indexPath) as! TopHotelCollectionViewCell
-//        if hotels.count != 0 {
-//            cell.topHotelsName.text = hotels[indexPath.row].hotelName
+        if hotels.count != 0 {
+            cell.topHotelsName.text = hotels[indexPath.row].hotelName
+        }
+//        if images.count != 0 {
+//            cell.topHotelsImage.image = images[indexPath.row][0]
 //        }
         return cell
     }

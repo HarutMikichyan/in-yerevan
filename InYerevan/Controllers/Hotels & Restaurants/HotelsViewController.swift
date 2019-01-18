@@ -34,8 +34,9 @@ class HotelsViewController: UIViewController {
                     let price = hotelObject["priceHotel"]
                     let rateSum = hotelObject["rateSum"]
                     let rateCount = hotelObject["rateCount"]
+                    let urls = hotelObject["imageUrls"]
                     
-                    let hotels = HotelsType(id: id as! String, hotelName: name as! String, hotelStar: star as! String, hotelPhoneNumber: phoneNumber as! String, openingHoursHotel: openingHours as! String, hotelLocationLong: locationLong as! Double, hotelLocationLat: locationlat as! Double, priceHotel: price as! Double, hotelRateSum: rateSum as! Double, hotelRateCount: rateCount as! Int)
+                    let hotels = HotelsType(id: id as! String, hotelName: name as! String, hotelStar: star as! String, hotelPhoneNumber: phoneNumber as! String, openingHoursHotel: openingHours as! String, hotelLocationLong: locationLong as! Double, hotelLocationLat: locationlat as! Double, priceHotel: price as! Double, hotelRateSum: rateSum as! Double, hotelRateCount: rateCount as! Int, hotelImageUrl: urls as! [String])
                     self.hotelsList.append(hotels)
                 }
             }

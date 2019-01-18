@@ -38,7 +38,7 @@ class HotelOverviewTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
-        hotelPrice.text = "AMD \(hotPrice)"
+        hotelPrice.text = "AMD  \(0)"
         contentView.addSubview(cosmosView)
         cosmosConstraint()
     }

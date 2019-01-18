@@ -10,23 +10,23 @@ import UIKit
 import MapKit
 import CoreLocation
 
-final class Annotation: NSObject, MKAnnotation {
-    var coordinate: CLLocationCoordinate2D
-    var title: String?
-    var subtitle: String?
-    
-    var region: MKCoordinateRegion {
-        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
-        return MKCoordinateRegion(center: coordinate, span: span)
-    }
-    
-    init(coordinate: CLLocationCoordinate2D, title: String?, subtitle: String?) {
-        self.coordinate = coordinate
-        self.title = title
-        self.subtitle = subtitle
-        super.init()
-    }
-}
+//final class Annotation: NSObject, MKAnnotation {
+//    var coordinate: CLLocationCoordinate2D
+//    var title: String?
+//    var subtitle: String?
+//    
+//    var region: MKCoordinateRegion {
+//        let span = MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+//        return MKCoordinateRegion(center: coordinate, span: span)
+//    }
+//    
+//    init(coordinate: CLLocationCoordinate2D, title: String?, subtitle: String?) {
+//        self.coordinate = coordinate
+//        self.title = title
+//        self.subtitle = subtitle
+//        super.init()
+//    }
+//}
 
 class HotelRestaurantMapTableViewCell: UITableViewCell, CLLocationManagerDelegate {
     static let id = "HotelRestaurantMapTableViewCell"
@@ -44,15 +44,15 @@ class HotelRestaurantMapTableViewCell: UITableViewCell, CLLocationManagerDelegat
         selectionStyle = .none
         showUserLocation()
         
-        if locationLong != nil && locationLat != nil {
-            mapView.register(MKMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
-            
-            let coordinate = CLLocationCoordinate2D(latitude: locationLat, longitude: locationLong)
-            let annotation = Annotation(coordinate: coordinate, title: name, subtitle: openingHours)
-            
-            mapView.addAnnotation(annotation)
-            mapView.setRegion(annotation.region, animated: true)
-        }
+//        if locationLong != nil && locationLat != nil {
+//            mapView.register(MKMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
+//
+//            let coordinate = CLLocationCoordinate2D(latitude: locationLat, longitude: locationLong)
+//            let annotation = Annotation(coordinate: coordinate, title: name, subtitle: openingHours)
+//
+//            mapView.addAnnotation(annotation)
+//            mapView.setRegion(annotation.region, animated: true)
+//        }
     }
     
     func showUserLocation() {

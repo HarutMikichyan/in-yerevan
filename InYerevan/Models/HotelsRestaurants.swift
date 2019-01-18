@@ -18,6 +18,7 @@ struct HotelsType {
     var priceHotel: Double
     var hotelRateSum: Double
     var hotelRateCount: Int
+    var hotelImageUrl: [String]
 }
 
 struct RestaurantsType {
@@ -30,4 +31,5 @@ struct RestaurantsType {
     var priceRestaurant: Double
     var restaurantRateSum: Double
     var restaurantRateCount: Int
+    var restaurantImageUrl: [String]
 }

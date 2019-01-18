@@ -25,13 +25,21 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hotels" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rov-NA-Caj">
                                 <rect key="frame" x="168" y="76" width="50" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hotelIcon" translatesAutoresizingMaskIntoConstraints="NO" id="7YE-Pj-LSA">
+                                <rect key="frame" x="172" y="26" width="42" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="42" id="Lbb-3E-GsG"/>
+                                    <constraint firstAttribute="height" constant="42" id="ypc-Co-yay"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="Rov-NA-Caj" secondAttribute="bottom" constant="12" id="2a1-SM-teN"/>
+                            <constraint firstItem="7YE-Pj-LSA" firstAttribute="centerX" secondItem="sdL-ZX-ydX" secondAttribute="centerX" id="2o6-3Q-Y39"/>
+                            <constraint firstItem="Rov-NA-Caj" firstAttribute="top" secondItem="7YE-Pj-LSA" secondAttribute="bottom" constant="8" id="HKp-Fn-l10"/>
                             <constraint firstAttribute="height" constant="109" id="KBR-9G-bVt"/>
                             <constraint firstItem="Rov-NA-Caj" firstAttribute="centerX" secondItem="sdL-ZX-ydX" secondAttribute="centerX" id="Zi5-eU-Tpz"/>
                         </constraints>
@@ -42,7 +50,6 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurants" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="87z-a9-70t">
                                 <rect key="frame" x="147" y="76" width="92" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bz4-YO-Uhg">
@@ -53,9 +60,18 @@
                                     <constraint firstAttribute="height" constant="2" id="raz-Lh-aOs"/>
                                 </constraints>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconRestaurants" translatesAutoresizingMaskIntoConstraints="NO" id="gru-lq-duF">
+                                <rect key="frame" x="172" y="26" width="42" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="Mbn-lv-cKF"/>
+                                    <constraint firstAttribute="width" constant="42" id="yvn-jC-4Vk"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="87z-a9-70t" firstAttribute="top" secondItem="gru-lq-duF" secondAttribute="bottom" constant="8" id="BdN-5H-ORn"/>
+                            <constraint firstItem="gru-lq-duF" firstAttribute="centerX" secondItem="GOU-W3-tWN" secondAttribute="centerX" id="QPB-jG-WqY"/>
                             <constraint firstItem="bz4-YO-Uhg" firstAttribute="leading" secondItem="GOU-W3-tWN" secondAttribute="leading" constant="26" id="QSx-eE-RyH"/>
                             <constraint firstItem="bz4-YO-Uhg" firstAttribute="top" secondItem="GOU-W3-tWN" secondAttribute="top" id="fps-GJ-oOT"/>
                             <constraint firstItem="87z-a9-70t" firstAttribute="centerX" secondItem="GOU-W3-tWN" secondAttribute="centerX" id="fsh-pR-2at"/>
@@ -65,7 +81,7 @@
                         </constraints>
                     </view>
                 </subviews>
-                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                 <constraints>
                     <constraint firstItem="GOU-W3-tWN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="bev-ey-oLv"/>
                     <constraint firstAttribute="bottom" secondItem="GOU-W3-tWN" secondAttribute="bottom" id="c3Q-Si-gB6"/>
@@ -83,4 +99,8 @@
             <point key="canvasLocation" x="56" y="79.160419790104953"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="hotelIcon" width="344" height="328"/>
+        <image name="iconRestaurants" width="225" height="225"/>
+    </resources>
 </document>

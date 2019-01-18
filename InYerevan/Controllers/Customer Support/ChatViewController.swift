@@ -306,7 +306,6 @@ final class ChatViewController: MessagesViewController {
             completion(UIImage(data: imageData))
         }
     }
-    
 }
 
 // MARK: - MESSAGES DISPLAY DELEGATE
