@@ -9,7 +9,6 @@
 import UIKit
 
 class HotelRestaurantImagePickerCollectionViewCell: UICollectionViewCell {
-    
     static let id = "HotelRestaurantImagePickerCollectionViewCell"
     
     @IBOutlet weak var imagePicker: UIImageView!

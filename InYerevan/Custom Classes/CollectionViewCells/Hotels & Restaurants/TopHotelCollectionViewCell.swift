@@ -9,7 +9,6 @@
 import UIKit
 
 class TopHotelCollectionViewCell: UICollectionViewCell {
-    
     static let id = "TopHotelCollectionViewCell"
     
     @IBOutlet weak var topHotelsImage: UIImageView!

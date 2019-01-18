@@ -8,15 +8,13 @@
 
 import UIKit
 import FirebaseAuth
-import GoogleSignIn
 
-class LoginRegistrationViewController: UIViewController, GIDSignInUIDelegate {
+class LoginRegistrationViewController: UIViewController {
     
     // MARK:- INTERFACE BUILDER OUTLETS
 
     @IBOutlet weak var uIView: UIView!
     @IBOutlet weak var homeImage: UIImageView!
-    @IBOutlet weak var GSignIn: GIDSignInButton!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
 
     // MARK:- INTERFACE BUILDER OUTLETS "LOGIN VIEW"
@@ -47,21 +45,15 @@ class LoginRegistrationViewController: UIViewController, GIDSignInUIDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         loginEmailTextField.delegate = self
         loginPasswordTextField.delegate = self
         registrationEmailTextField.delegate = self
         registrationPasswordTextField.delegate = self
         registrationRepeatPasswordTextField.delegate = self
         resetEmailTextField.delegate = self
+        
         homeImage.layer.cornerRadius = 12
         homeImage.layer.masksToBounds = true
-        
-        GIDSignIn.sharedInstance().uiDelegate = self
-        // GIDSignIn.sharedInstance()?.signInSilently()
-        
-        // Log out-i jamanak ogtagorcel
-        // GIDSignIn.sharedInstance()?.signOut()
     }
     
     override func viewDidLayoutSubviews() {
@@ -84,10 +76,6 @@ class LoginRegistrationViewController: UIViewController, GIDSignInUIDelegate {
             }
             self.logIn(userEmail: self.loginEmailTextField.text!)
         })
-    }
-    
-    @IBAction func scipForNowAction() {
-        logIn(userEmail: "guest")
     }
     
     @IBAction func registrationAction() {

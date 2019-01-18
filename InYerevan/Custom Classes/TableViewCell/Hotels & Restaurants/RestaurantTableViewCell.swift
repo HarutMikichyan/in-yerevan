@@ -9,11 +9,11 @@
 import UIKit
 
 class RestaurantTableViewCell: UITableViewCell {
-
     static let id = "RestaurantTableViewCell"
     
     @IBOutlet weak var imageRestaurant: UIImageView!
     @IBOutlet weak var nameRestaurant: UILabel!
+    @IBOutlet weak var priceRestaurant: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

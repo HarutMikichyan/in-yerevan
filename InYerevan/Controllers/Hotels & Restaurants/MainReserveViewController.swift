@@ -7,27 +7,23 @@
 //
 
 import UIKit
-//import FirebaseFirestore
-//import Firebase
 
 class MainReserveViewController: UIViewController {
     
-//    private let refStorage = Storage.storage().reference()
-    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var mainImage: UIImageView!
-    
-    var headerView: UIView!
-    var newHeaderLayer: CAShapeLayer!
-    weak var topHotelCell: TopHotelTableViewCell!
     weak var topRestaurantCell: TopRestaurantTableViewCell!
-    
+    weak var topHotelCell: TopHotelTableViewCell!
+    private var newHeaderLayer: CAShapeLayer!
     private let headerHeight: CGFloat = 218
+    private var headerView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Main"
+        view.changeBackgroundToGradient(from: [.backgroundDarkSpruce, .backgroundDenimBlue])
         
+        //register TableViewCell
         tableView.register(UINib(nibName: ReserveRegistrationTableViewCell.id, bundle: nil), forCellReuseIdentifier: ReserveRegistrationTableViewCell.id)
         tableView.register(UINib(nibName: CategoryTableViewCell.id, bundle: nil), forCellReuseIdentifier: CategoryTableViewCell.id)
     }
@@ -42,8 +38,8 @@ class MainReserveViewController: UIViewController {
         upDateView()
     }
     
-    // Main Image Animate Methods
-    func upDateView() {
+    //MARK: --Main Image Animate Methods
+    private func upDateView() {
         tableView.backgroundColor = .white
         headerView = tableView.tableHeaderView
         tableView.tableHeaderView = nil
@@ -60,7 +56,7 @@ class MainReserveViewController: UIViewController {
         setupNewView()
     }
     
-    func setupNewView() {
+    private func setupNewView() {
         let newheight = headerHeight - headerHeight / 10
         var getHeaderFrame = CGRect(x: 0, y: -newheight, width: tableView.bounds.width, height: headerHeight)
         if tableView.contentOffset.y < newheight {
@@ -83,36 +79,6 @@ class MainReserveViewController: UIViewController {
     }
     
     @IBAction func seeAllHotels(_ sender: Any) {
-//        ///////////
-//
-//        guard let scaledImage = image.scaledToSafeUploadSize,
-//            let data = scaledImage.jpegData(compressionQuality: 0.4) else {
-//                completion(nil)
-//                return
-//        }
-//
-//        let metadata = StorageMetadata()
-//        metadata.contentType = "image/jpeg"
-//        
-//        let imageName = [UUID().uuidString, String(Date().timeIntervalSince1970)].joined()
-//        refStorage.child("hyuranociId").child(imageName).putData(data, metadata: metadata) { meta, error in
-//            if let error = error {
-//                print(error)
-//            }
-//            
-//            self.storage.child("hyuranociId").child(imageName).downloadURL(completion: { (url, error) in
-//                if error != nil {
-//                    print(error as Any)
-//                } else {
-//                    guard let imageURL = url?.absoluteURL else { return }
-//                    completion(imageURL)
-//                }
-//                
-//            })
-//        }
-
-        
-        
         let storyboard = UIStoryboard(name: "HotelsAndRestaurants", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "HotelsViewControllerID")
         navigationController?.pushViewController(vc, animated: true)
@@ -156,6 +122,7 @@ extension MainReserveViewController: UITableViewDelegate, UITableViewDataSource 
         case 2:
             if topHotelCell == nil {
                 let cell = tableView.dequeueReusableCell(withIdentifier: TopHotelTableViewCell.id, for: indexPath) as! TopHotelTableViewCell
+                cell.selectionStyle = .none
                 topHotelCell = cell
                 topHotelCell.parrentViewController = self
             }
@@ -163,6 +130,7 @@ extension MainReserveViewController: UITableViewDelegate, UITableViewDataSource 
         default:
             if topRestaurantCell == nil {
                 let cell = tableView.dequeueReusableCell(withIdentifier: TopRestaurantTableViewCell.id, for: indexPath) as! TopRestaurantTableViewCell
+                cell.selectionStyle = .none
                 topRestaurantCell = cell
                 topRestaurantCell.parrentViewController = self
             }

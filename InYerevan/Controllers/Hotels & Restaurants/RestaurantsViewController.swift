@@ -11,16 +11,15 @@ import Firebase
 
 class RestaurantsViewController: UIViewController {
 
-    var restaurantsList = [RestaurantsType]()
-    
     @IBOutlet weak var tableView: UITableView!
+    var restaurantsList = [RestaurantsType]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Restaurants"
+        view.changeBackgroundToGradient(from: [.backgroundDarkSpruce, .backgroundDenimBlue])
         
         UIApplication.appDelegate.refRestaurants.observe(.value) { (snapshot) in
-
             if snapshot.childrenCount > 0 {
                 self.restaurantsList.removeAll()
                 for res in snapshot.children.allObjects as! [DataSnapshot] {
@@ -37,7 +36,6 @@ class RestaurantsViewController: UIViewController {
 
                     let restaurants = RestaurantsType(id: id as! String, restaurantName: name as! String, restaurantPhoneNumber: phoneNumber as! String, openingHoursRestaurant: openingHours as! String, restaurantLocationLong: locationLong as! Double, restaurantLocationLat: locationlat as! Double, priceRestaurant: price as! Double, restaurantRateSum: rateSum as! Double, restaurantRateCount: rateCount as! Int)
                     self.restaurantsList.append(restaurants)
-
                 }
             }
             self.tableView.reloadData()
@@ -54,7 +52,6 @@ extension RestaurantsViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
         let storyboard = UIStoryboard(name: "HotelsAndRestaurants", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "RestaurantDescriptionViewControllerID") as! RestaurantDescriptionViewController
         vc.restaurant = restaurantsList[indexPath.row]
@@ -74,6 +71,7 @@ extension RestaurantsViewController: UITableViewDelegate, UITableViewDataSource 
         let cell = tableView.dequeueReusableCell(withIdentifier: RestaurantTableViewCell.id, for: indexPath) as! RestaurantTableViewCell
         if restaurantsList.count != 0 {
            cell.nameRestaurant.text = restaurantsList[indexPath.row].restaurantName
+            cell.priceRestaurant.text = String(restaurantsList[indexPath.row].priceRestaurant)
         }
         return cell
     }
