@@ -35,7 +35,7 @@
         <scene sceneID="Wgt-9U-b8s">
             <objects>
                 <viewControllerPlaceholder storyboardIdentifier="Home" storyboardName="Home" id="qop-pj-YfA" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" image="HomeRPG-Compact" id="5Xk-bd-VQx"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="home" id="5Xk-bd-VQx"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jiu-O8-RRK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -45,7 +45,7 @@
         <scene sceneID="5XF-kx-gWx">
             <objects>
                 <viewControllerPlaceholder storyboardName="Events" id="yBV-Gv-41h" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="AllEvents" image="EventRPG-Compact" id="g7S-3r-9A8"/>
+                    <tabBarItem key="tabBarItem" title="AllEvents" image="calendar" id="g7S-3r-9A8"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l7k-cz-sMz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -55,7 +55,7 @@
         <scene sceneID="885-gC-YzC">
             <objects>
                 <viewControllerPlaceholder storyboardName="HotelsAndRestaurants" id="yEt-I8-Yfv" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="AdditionalAbilities" image="AdditionalAbilitiesRPG-Compact" id="tiL-L2-MDG"/>
+                    <tabBarItem key="tabBarItem" title="AdditionalAbilities" image="resort" id="tiL-L2-MDG"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="New-eF-gW4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -415,10 +415,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="AdditionalAbilitiesRPG-Compact" width="25.5" height="25.5"/>
-        <image name="EventRPG-Compact" width="25.5" height="25.5"/>
-        <image name="HomeRPG-Compact" width="25.5" height="25.5"/>
         <image name="Main-Yerevan" width="2448" height="1377"/>
         <image name="bgLogin" width="1706.6666259765625" height="1066.6666259765625"/>
+        <image name="calendar" width="33.333332061767578" height="33.333332061767578"/>
+        <image name="home" width="33.333332061767578" height="33.333332061767578"/>
+        <image name="resort" width="33.333332061767578" height="33.333332061767578"/>
     </resources>
 </document>
