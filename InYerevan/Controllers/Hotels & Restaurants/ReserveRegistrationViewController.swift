@@ -155,6 +155,7 @@ class ReserveRegistrationViewController: UIViewController, UIImagePickerControll
             completion(nil)
             return
         }
+        
         guard let scaledImage = image.scaledToSafeUploadSize,
             let data = scaledImage.jpegData(compressionQuality: 0.4) else {
                 completion(nil)
