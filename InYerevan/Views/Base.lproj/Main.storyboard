@@ -217,7 +217,6 @@
                     <navigationItem key="navigationItem" id="bEU-dY-884"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="GSignIn" destination="yPY-Bn-N7P" id="haZ-3y-f4s"/>
                         <outlet property="homeImage" destination="CCH-6d-Sci" id="byJ-Zd-PRc"/>
                         <outlet property="loginEmailTextField" destination="hwo-sM-RRr" id="z4T-lg-FkU"/>
                         <outlet property="loginErrorLabel" destination="XVx-fo-yVZ" id="H9o-We-zLj"/>
@@ -237,7 +236,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WVT-4y-l46" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <view contentMode="scaleToFill" id="nb5-5t-yeM">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="265"/>
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="227"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IaN-UW-Lo5">
@@ -338,7 +337,7 @@
                     <viewLayoutGuide key="safeArea" id="MgC-6T-KCT"/>
                 </view>
                 <view contentMode="scaleToFill" id="Asd-aq-4RV">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="320"/>
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="224"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hwo-sM-RRr">
@@ -379,13 +378,6 @@
                                 <action selector="scipForNowAction" destination="OJu-xE-tPp" eventType="touchUpInside" id="PvE-7U-ELC"/>
                             </connections>
                         </button>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yPY-Bn-N7P" customClass="GIDSignInButton">
-                            <rect key="frame" x="48" y="204" width="144" height="30"/>
-                            <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="30" id="nwz-oN-MSR"/>
-                            </constraints>
-                        </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -395,10 +387,7 @@
                         <constraint firstItem="qKh-gF-sYi" firstAttribute="width" secondItem="hwo-sM-RRr" secondAttribute="width" id="BiY-K0-jmI"/>
                         <constraint firstItem="hwo-sM-RRr" firstAttribute="top" secondItem="Asd-aq-4RV" secondAttribute="top" constant="20" id="Iql-Gw-wg4"/>
                         <constraint firstItem="XVx-fo-yVZ" firstAttribute="centerX" secondItem="Asd-aq-4RV" secondAttribute="centerX" id="JG2-K9-cKB"/>
-                        <constraint firstItem="yPY-Bn-N7P" firstAttribute="top" secondItem="1dE-9B-dEA" secondAttribute="bottom" constant="12" id="PGa-HS-4oo"/>
                         <constraint firstItem="qKh-gF-sYi" firstAttribute="centerX" secondItem="Asd-aq-4RV" secondAttribute="centerX" id="PlV-fj-jSN"/>
-                        <constraint firstItem="yPY-Bn-N7P" firstAttribute="centerX" secondItem="Asd-aq-4RV" secondAttribute="centerX" id="RgW-Ya-J9z"/>
-                        <constraint firstItem="yPY-Bn-N7P" firstAttribute="width" secondItem="1dE-9B-dEA" secondAttribute="width" id="WcU-tq-Osd"/>
                         <constraint firstItem="XVx-fo-yVZ" firstAttribute="width" secondItem="qKh-gF-sYi" secondAttribute="width" id="fbP-D8-dlY"/>
                         <constraint firstItem="fEI-bF-vT5" firstAttribute="centerX" secondItem="Asd-aq-4RV" secondAttribute="centerX" id="iHO-Hg-Swq"/>
                         <constraint firstItem="fEI-bF-vT5" firstAttribute="width" secondItem="qKh-gF-sYi" secondAttribute="width" id="kif-OD-lEH"/>
@@ -419,6 +408,6 @@
         <image name="EventRPG-Compact" width="25.5" height="25.5"/>
         <image name="HomeRPG-Compact" width="25.5" height="25.5"/>
         <image name="Main-Yerevan" width="2448" height="1377"/>
-        <image name="bgLogin" width="1706.6666259765625" height="1066.6666259765625"/>
+        <image name="bgLogin" width="1706" height="1066"/>
     </resources>
 </document>

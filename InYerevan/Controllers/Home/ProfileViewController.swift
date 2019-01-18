@@ -35,18 +35,7 @@ class ProfileViewController: UIViewController {
         signOutButton.layer.cornerRadius = 12
         signOutButton.layer.masksToBounds = true
 
-//        if User.email == "guest" {
-//            changeEmail.isEnabled = false
-//            changeEmail.setTitleColor(UIColor.white, for: .normal)
-//            changeEmail.backgroundColor = UIColor.white
-//
-//            changePassword.isEnabled = false
-//            changePassword.setTitleColor(UIColor.white, for: .normal)
-//            changePassword.backgroundColor = UIColor.white
-//
-//        }
         view.changeBackgroundToGradient(from: [.backgroundDarkSpruce, .backgroundDenimBlue])
-
     }
 
     // MARK:- ACTIONS
