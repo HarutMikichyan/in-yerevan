@@ -13,6 +13,7 @@ class HotelsViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     var hotelsList = [HotelsType]()
+    var images = [UIImage]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +49,21 @@ class HotelsViewController: UIViewController {
         super.viewWillAppear( animated )
         navigationController?.isNavigationBarHidden = false
     }
+    
+    private func downloadImage(at urls: String, completion: @escaping (UIImage?) -> Void) {
+        let ref = Storage.storage().reference(forURL: urls)
+        let megaByte = Int64(1 * 1024 * 1024)
+        ref.getData(maxSize: megaByte) { data, error in
+            guard let imageData = data else {
+                completion(nil)
+                return
+            }
+            
+            DispatchQueue.main.async {
+                completion(UIImage(data: imageData))
+            }
+        }
+    }
 }
 
 extension HotelsViewController: UITableViewDelegate, UITableViewDataSource {
@@ -75,6 +91,18 @@ extension HotelsViewController: UITableViewDelegate, UITableViewDataSource {
         if hotelsList.count != 0 {
             cell.nameHotel.text = hotelsList[indexPath.row].hotelName
             cell.starHotel.text = hotelsList[indexPath.row].hotelStar
+            if self.images.count <= indexPath.row {
+                DispatchQueue.main.async {
+                    self.downloadImage(at: self.hotelsList[indexPath.row].hotelImageUrl[0], completion: { (image) in
+                        guard let image = image else { return }
+                        
+                        cell.imageHotel.image = image
+                        self.images.append(image)
+                    })
+                }
+            } else {
+                cell.imageHotel.image = self.images[indexPath.row]
+            }
         }
         return cell
     }

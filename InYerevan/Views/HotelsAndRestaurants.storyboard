@@ -88,7 +88,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="133" height="140"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hotelImage1" translatesAutoresizingMaskIntoConstraints="NO" id="GTR-05-BgU">
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GTR-05-BgU">
                                                                         <rect key="frame" x="4" y="4" width="125" height="100"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="100" id="WfH-BY-egl"/>
@@ -182,7 +182,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="141" height="147"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Restaurantimages" translatesAutoresizingMaskIntoConstraints="NO" id="tVn-We-qu6">
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tVn-We-qu6">
                                                                         <rect key="frame" x="4" y="4" width="133" height="100"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="100" id="erz-sI-KqD"/>
@@ -305,7 +305,7 @@
                                                                 <constraint firstAttribute="height" constant="32" id="R9u-CP-LVS"/>
                                                                 <constraint firstAttribute="width" constant="200" id="cep-z0-ls3"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -761,7 +761,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CVO-cx-jxr">
                                                     <rect key="frame" x="15" y="11" width="345" height="256"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hotelImage1" translatesAutoresizingMaskIntoConstraints="NO" id="qQW-Y6-Gn3">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qQW-Y6-Gn3">
                                                             <rect key="frame" x="8" y="8" width="329" height="200"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="200" id="jyW-ku-6cU"/>
@@ -773,7 +773,7 @@
                                                                 <constraint firstAttribute="height" constant="30" id="Ff5-9z-xpH"/>
                                                                 <constraint firstAttribute="width" constant="160" id="R4E-1X-7dc"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -925,7 +925,7 @@
         <image name="hotelImage1" width="550" height="366"/>
         <image name="mainImage" width="660" height="330"/>
         <image name="priceIcon" width="396" height="396"/>
-        <image name="starIcon" width="56" height="54"/>
         <image name="resort" width="33" height="33"/>
+        <image name="starIcon" width="56" height="54"/>
     </resources>
 </document>

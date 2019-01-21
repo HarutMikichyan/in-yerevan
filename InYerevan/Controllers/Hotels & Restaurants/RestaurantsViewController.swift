@@ -13,6 +13,7 @@ class RestaurantsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     var restaurantsList = [RestaurantsType]()
+    var images = [UIImage]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +48,21 @@ class RestaurantsViewController: UIViewController {
         super.viewWillAppear( animated )
         navigationController?.isNavigationBarHidden = false
     }
+    
+    private func downloadImage(at urls: String, completion: @escaping (UIImage?) -> Void) {
+        let ref = Storage.storage().reference(forURL: urls)
+        let megaByte = Int64(1 * 1024 * 1024)
+        ref.getData(maxSize: megaByte) { data, error in
+            guard let imageData = data else {
+                completion(nil)
+                return
+            }
+            
+            DispatchQueue.main.async {
+                completion(UIImage(data: imageData))
+            }
+        }
+    }
 }
 
 extension RestaurantsViewController: UITableViewDelegate, UITableViewDataSource {
@@ -71,8 +87,20 @@ extension RestaurantsViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: RestaurantTableViewCell.id, for: indexPath) as! RestaurantTableViewCell
         if restaurantsList.count != 0 {
-           cell.nameRestaurant.text = restaurantsList[indexPath.row].restaurantName
+            cell.nameRestaurant.text = restaurantsList[indexPath.row].restaurantName
             cell.priceRestaurant.text = String(restaurantsList[indexPath.row].priceRestaurant)
+            if self.images.count <= indexPath.row {
+                DispatchQueue.main.async {
+                    self.downloadImage(at: self.restaurantsList[indexPath.row].restaurantImageUrl[0], completion: { (image) in
+                        guard let image = image else { return }
+                        
+                        cell.imageRestaurant.image = image
+                        self.images.append(image)
+                    })
+                }
+            } else {
+                cell.imageRestaurant.image = self.images[indexPath.row]
+            }
         }
         return cell
     }

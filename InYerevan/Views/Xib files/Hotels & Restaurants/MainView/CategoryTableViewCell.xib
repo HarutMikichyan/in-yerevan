@@ -30,18 +30,18 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hotelIcon" translatesAutoresizingMaskIntoConstraints="NO" id="7YE-Pj-LSA">
                                 <rect key="frame" x="172" y="26" width="42" height="42"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="42" id="Lbb-3E-GsG"/>
-                                    <constraint firstAttribute="height" constant="42" id="ypc-Co-yay"/>
+                                    <constraint firstAttribute="height" constant="42" id="aYT-HF-G4z"/>
+                                    <constraint firstAttribute="width" constant="42" id="mWz-bA-6OU"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="Rov-NA-Caj" secondAttribute="bottom" constant="12" id="2a1-SM-teN"/>
-                            <constraint firstItem="7YE-Pj-LSA" firstAttribute="centerX" secondItem="sdL-ZX-ydX" secondAttribute="centerX" id="2o6-3Q-Y39"/>
-                            <constraint firstItem="Rov-NA-Caj" firstAttribute="top" secondItem="7YE-Pj-LSA" secondAttribute="bottom" constant="8" id="HKp-Fn-l10"/>
-                            <constraint firstAttribute="height" constant="109" id="KBR-9G-bVt"/>
-                            <constraint firstItem="Rov-NA-Caj" firstAttribute="centerX" secondItem="sdL-ZX-ydX" secondAttribute="centerX" id="Zi5-eU-Tpz"/>
+                            <constraint firstItem="7YE-Pj-LSA" firstAttribute="centerX" secondItem="sdL-ZX-ydX" secondAttribute="centerX" id="Fh6-nb-DK2"/>
+                            <constraint firstAttribute="height" constant="109" id="KQl-MV-F69"/>
+                            <constraint firstAttribute="bottom" secondItem="Rov-NA-Caj" secondAttribute="bottom" constant="12" id="UWy-OR-sMa"/>
+                            <constraint firstItem="Rov-NA-Caj" firstAttribute="top" secondItem="7YE-Pj-LSA" secondAttribute="bottom" constant="8" id="dOI-Lx-lK9"/>
+                            <constraint firstItem="Rov-NA-Caj" firstAttribute="centerX" secondItem="sdL-ZX-ydX" secondAttribute="centerX" id="qJe-VJ-mIs"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GOU-W3-tWN">
@@ -62,6 +62,7 @@
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconRestaurants" translatesAutoresizingMaskIntoConstraints="NO" id="gru-lq-duF">
                                 <rect key="frame" x="172" y="26" width="42" height="42"/>
+                                <color key="tintColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="Mbn-lv-cKF"/>
                                     <constraint firstAttribute="width" constant="42" id="yvn-jC-4Vk"/>
@@ -83,12 +84,12 @@
                 </subviews>
                 <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                 <constraints>
+                    <constraint firstItem="sdL-ZX-ydX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="A2F-DJ-wLr"/>
+                    <constraint firstAttribute="trailing" secondItem="sdL-ZX-ydX" secondAttribute="trailing" id="HmD-sY-Lkk"/>
+                    <constraint firstItem="sdL-ZX-ydX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="O9b-fE-YnZ"/>
                     <constraint firstItem="GOU-W3-tWN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="bev-ey-oLv"/>
                     <constraint firstAttribute="bottom" secondItem="GOU-W3-tWN" secondAttribute="bottom" id="c3Q-Si-gB6"/>
-                    <constraint firstAttribute="trailing" secondItem="sdL-ZX-ydX" secondAttribute="trailing" id="dbf-Kd-dZ8"/>
                     <constraint firstAttribute="trailing" secondItem="GOU-W3-tWN" secondAttribute="trailing" id="lPg-N2-ewq"/>
-                    <constraint firstItem="sdL-ZX-ydX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="por-x3-dx3"/>
-                    <constraint firstItem="sdL-ZX-ydX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="xcG-om-2ss"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
