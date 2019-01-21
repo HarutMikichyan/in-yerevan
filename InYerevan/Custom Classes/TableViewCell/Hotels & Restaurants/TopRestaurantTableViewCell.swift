@@ -15,6 +15,7 @@ class TopRestaurantTableViewCell: UITableViewCell {
     @IBOutlet weak var topRestaurantCollectionView: UICollectionView!
     var parrentViewController: UIViewController!
     private var restaurants = [RestaurantsType]()
+    var images = [UIImage]()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -47,6 +48,23 @@ class TopRestaurantTableViewCell: UITableViewCell {
             self.topRestaurantCollectionView.reloadData()
         }
     }
+    
+    private func downloadImage(at urls: String, completion: @escaping (UIImage?) -> Void) {
+        let ref = Storage.storage().reference(forURL: urls)
+        let megaByte = Int64(1 * 1024 * 1024)
+        ref.getData(maxSize: megaByte) { data, error in
+            guard let imageData = data else {
+                completion(nil)
+                return
+            }
+            
+            DispatchQueue.main.async {
+                completion(UIImage(data: imageData))
+            }
+            
+        }
+        
+    }
 }
 
 extension TopRestaurantTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -68,6 +86,18 @@ extension TopRestaurantTableViewCell: UICollectionViewDelegate, UICollectionView
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopRestaurantCollectionViewCell.id, for: indexPath) as! TopRestaurantCollectionViewCell
         if restaurants.count != 0 {
             cell.topRestaurantsName.text = restaurants[indexPath.row].restaurantName
+            if self.images.count <= indexPath.row {
+                DispatchQueue.main.async {
+                    self.downloadImage(at: self.restaurants[indexPath.row].restaurantImageUrl[0], completion: { (image) in
+                        guard let image = image else { return }
+                        
+                        cell.topRestaurantsImage.image = image
+                        self.images.append(image)
+                    })
+                }
+            } else {
+                cell.topRestaurantsImage.image = self.images[indexPath.row]
+            }
         }
         return cell
     }
