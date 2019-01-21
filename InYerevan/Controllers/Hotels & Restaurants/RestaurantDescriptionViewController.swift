@@ -69,6 +69,8 @@ extension RestaurantDescriptionViewController: UITableViewDelegate, UITableViewD
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: HotelRestaurantMapTableViewCell.id, for: indexPath) as! HotelRestaurantMapTableViewCell
             cell.textMap.text = "Restaurant Location"
+            cell.locationLat = restaurant.restaurantLocationLat
+            cell.locationLong = restaurant.restaurantLocationLong
             return cell
         default:
             fatalError()

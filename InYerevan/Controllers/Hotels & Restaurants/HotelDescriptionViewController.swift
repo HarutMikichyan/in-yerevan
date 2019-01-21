@@ -12,7 +12,9 @@ import Firebase
 class HotelDescriptionViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    weak var hotelImagesCell: HotelRestaurantImageTableViewCell!
     var hotel: HotelsType!
+    var images = [UIImage]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,9 +63,14 @@ extension HotelDescriptionViewController: UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: HotelRestaurantImageTableViewCell.id, for: indexPath) as! HotelRestaurantImageTableViewCell
-            cell.textPhotos.text = "Hotel Photos"
-            return cell
+            if hotelImagesCell == nil {
+                let cell = tableView.dequeueReusableCell(withIdentifier: HotelRestaurantImageTableViewCell.id, for: indexPath) as! HotelRestaurantImageTableViewCell
+                cell.selectionStyle = .none
+                cell.textPhotos.text = "Hotel Photos"
+                cell.imagesUrl = self.hotel.hotelImageUrl
+                hotelImagesCell = cell
+            }
+            return hotelImagesCell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: HotelOverviewTableViewCell.id, for: indexPath) as! HotelOverviewTableViewCell
             cell.hotelPhoneNumber.text = hotel.hotelPhoneNumber
