@@ -41,7 +41,7 @@ extension RestaurantDescriptionViewController: UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.row {
         case 0:
-            return 240
+            return 130
         case 1:
             return 225
         case 2:
@@ -59,7 +59,6 @@ extension RestaurantDescriptionViewController: UITableViewDelegate, UITableViewD
         switch indexPath.row {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: HotelRestaurantImageTableViewCell.id, for: indexPath) as! HotelRestaurantImageTableViewCell
-            cell.textPhotos.text = "Restaurant Photos"
             return cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: RestaurantOverviewTableViewCell.id, for: indexPath) as! RestaurantOverviewTableViewCell

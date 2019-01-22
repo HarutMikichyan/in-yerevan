@@ -41,17 +41,19 @@ class HotelRestaurantMapTableViewCell: UITableViewCell {
             mapView.setRegion(region, animated: true)
         }
     }
+    
+
 }
 
 extension HotelRestaurantMapTableViewCell: MKMapViewDelegate, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        let pin = MKPointAnnotation()
-        pin.coordinate = CLLocationCoordinate2DMake(locationLat, locationLong)
-        self.mapView.addAnnotation(pin)
-        
-        let region = MKCoordinateRegion(center: pin.coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
-        self.mapView.setRegion(region, animated: true)
+            let pin = MKPointAnnotation()
+            pin.coordinate = CLLocationCoordinate2DMake(locationLat, locationLong)
+            self.mapView.addAnnotation(pin)
+
+            let region = MKCoordinateRegion(center: pin.coordinate, latitudinalMeters: 10000, longitudinalMeters: 10000)
+            self.mapView.setRegion(region, animated: true)
+
     }
 }
 
