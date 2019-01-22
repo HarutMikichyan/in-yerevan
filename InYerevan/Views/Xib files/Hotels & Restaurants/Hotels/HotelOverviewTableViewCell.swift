@@ -38,7 +38,7 @@ class HotelOverviewTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
-        hotelPrice.text = "AMD  \(0)"
+        hotelPrice.text = "AMD "
         contentView.addSubview(cosmosView)
         cosmosConstraint()
     }
@@ -51,10 +51,13 @@ class HotelOverviewTableViewCell: UITableViewCell {
     
     @IBAction func priceHotel(_ sender: Any) {
         if fromDateField.text != "" && toDateField.text != "" {
-            let timeInterval = toDateField.getValue().timeIntervalSince(fromDateField.getValue())
-            if timeInterval > 0 {
-                let day = timeInterval as! Double / 1440.0 * 60.0
-                hotelPrice.text = "AMD \((day * hotPrice) / 1.00)"
+            let timeInterval: Double = toDateField.getValue().timeIntervalSince(fromDateField.getValue())
+            if timeInterval > 0.0 {
+                let day = timeInterval / 1440.0 * 60.0
+                
+                let dayPrice = (String)(format: "%.2f", day * hotPrice)
+                hotelPrice.text = dayPrice
+                print(hotPrice)
             }
         }
     }
@@ -71,6 +74,8 @@ class HotelOverviewTableViewCell: UITableViewCell {
                 theButton.bounds = baunds
             }
         })
+        
+//        cosmosView.didFinishTouchingCosmos = {  }
         
 //        UIApplication.appDelegate.refHotels.observe(.value) { (snapshot) in
 //            
