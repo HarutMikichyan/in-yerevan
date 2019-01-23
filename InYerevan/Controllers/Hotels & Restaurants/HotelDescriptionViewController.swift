@@ -48,7 +48,7 @@ extension HotelDescriptionViewController: UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.row {
         case 0:
-            return 240
+            return 130
         case 1:
             return 300
         default:
@@ -66,8 +66,8 @@ extension HotelDescriptionViewController: UITableViewDelegate, UITableViewDataSo
             if hotelImagesCell == nil {
                 let cell = tableView.dequeueReusableCell(withIdentifier: HotelRestaurantImageTableViewCell.id, for: indexPath) as! HotelRestaurantImageTableViewCell
                 cell.selectionStyle = .none
-                cell.textPhotos.text = "Hotel Photos"
                 cell.imagesUrl = self.hotel.hotelImageUrl
+                cell.hotelRestaurants = self
                 hotelImagesCell = cell
             }
             return hotelImagesCell

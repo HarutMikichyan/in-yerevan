@@ -12,10 +12,10 @@ import Firebase
 class HotelRestaurantImageTableViewCell: UITableViewCell {
     static let id = "HotelRestaurantImageTableViewCell"
     
-    @IBOutlet weak var textPhotos: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     var imagesUrl = [String]()
     var hotelRestaurantImages = [UIImage]()
+    var hotelRestaurants = UIViewController()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -50,11 +50,12 @@ extension HotelRestaurantImageTableViewCell: UICollectionViewDelegate, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4 //HotelRestaurantImages.count
+        return 3 /////hotelImageCount
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: CGFloat(0), left: CGFloat(0), bottom: CGFloat(0), right: CGFloat(0))
+        let num = CGFloat(0)
+        return UIEdgeInsets(top: num, left: num, bottom: num, right: num)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
