@@ -10,14 +10,18 @@ import UIKit
 
 class MainReserveViewController: UIViewController {
     
+    //MARK:- Interface Builder Outlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var mainImage: UIImageView!
+    
+    //MARK:- Other Properties
     weak var topRestaurantCell: TopRestaurantTableViewCell!
     weak var topHotelCell: TopHotelTableViewCell!
     private var newHeaderLayer: CAShapeLayer!
     private let headerHeight: CGFloat = 218
     private var headerView: UIView!
     
+    //MARK:- View Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Main"
@@ -40,7 +44,7 @@ class MainReserveViewController: UIViewController {
         upDateView()
     }
     
-    //MARK: --Main Image Animate Methods
+    //MARK:- Main Image Animate Methods
     private func upDateView() {
         tableView.backgroundColor = .white
         headerView = tableView.tableHeaderView
@@ -80,6 +84,7 @@ class MainReserveViewController: UIViewController {
         self.setupNewView()
     }
     
+    //MARK:- Actions
     @IBAction func seeAllHotels(_ sender: Any) {
         let storyboard = UIStoryboard(name: "HotelsAndRestaurants", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "HotelsViewControllerID")
@@ -93,9 +98,9 @@ class MainReserveViewController: UIViewController {
     }
 }
 
+//MARK:- TableView Delegate DataSource
 extension MainReserveViewController: UITableViewDelegate, UITableViewDataSource {
     
-    //TableView Methods
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         if User.isAdministration {
             tableView.deselectRow(at: indexPath, animated: true)

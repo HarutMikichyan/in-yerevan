@@ -12,11 +12,17 @@ import Cosmos
 class RestaurantOverviewTableViewCell: UITableViewCell {
     static let id = "RestaurantOverviewTableViewCell"
     
+    //MARK:- Interface Builder Outlets
     @IBOutlet weak var restaurantPhoneNumber: UILabel!
     @IBOutlet weak var restaurantOpeningHours: UILabel!
     @IBOutlet weak var rateView: UIView!
     
-    //Mark: - reviews view
+    var resPrice: Double!
+    var restaurantId: String!
+    var restaurantRateCount: Int!
+    var restaurantRatesSum: Double!
+    
+    //MARK:- Rate View
     lazy var cosmosView: CosmosView = {
         let view = CosmosView()
         
@@ -36,12 +42,15 @@ class RestaurantOverviewTableViewCell: UITableViewCell {
         cosmosConstraint()
     }
     
+    
+    //MARK: Rate Methods
     func cosmosConstraint() {
         cosmosView.translatesAutoresizingMaskIntoConstraints = false
         cosmosView.topAnchor.constraint(equalTo: rateView.topAnchor, constant: 16).isActive = true
         cosmosView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16).isActive = true
     }
     
+    //MARK:- Action
     @IBAction func rateRestaurant(_ sender: Any) {
         //animate
         let theButton = sender as! UIButton
@@ -55,5 +64,8 @@ class RestaurantOverviewTableViewCell: UITableViewCell {
             }
         })
         
+        UIApplication.appDelegate.refRestaurants.child(restaurantId).child("rateCount").setValue(restaurantRateCount + 1)
+        let ratesSum = (String)(format: "%.4f", restaurantRatesSum + cosmosView.rating)
+        UIApplication.appDelegate.refRestaurants.child(restaurantId).child("rateSum").setValue(Double(ratesSum))
     }
 }

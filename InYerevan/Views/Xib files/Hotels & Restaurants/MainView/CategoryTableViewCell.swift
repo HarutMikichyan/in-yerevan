@@ -9,18 +9,22 @@
 import UIKit
 
 class CategoryTableViewCell: UITableViewCell {
-    
     static let id = "CategoryTableViewCell"
     
+    //MARK:- Interface Builder Outlets
     @IBOutlet weak var addHotels: UIView!
     @IBOutlet weak var addRestaurants: UIView!
     
+    //MARK: -GestureRecognizer
     var parrentViewController: UIViewController!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        //MARK: -GestureRecognizer
+        hotelRestaurantGestureRecognzer()
+    }
+    
+    //MARK: -GestureRecognizer
+    func hotelRestaurantGestureRecognzer() {
         let hotelViewGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(pushHotels))
         hotelViewGestureRecognizer.numberOfTapsRequired = 1
         addHotels.isUserInteractionEnabled = true

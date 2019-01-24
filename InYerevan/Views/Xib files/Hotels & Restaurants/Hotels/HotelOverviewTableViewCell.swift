@@ -12,6 +12,7 @@ import Cosmos
 class HotelOverviewTableViewCell: UITableViewCell {
     static let id = "HotelOverviewTableViewCell"
     
+    //MARK:- Interface Builder Outlets
     @IBOutlet weak var hotelPhoneNumber: UILabel!
     @IBOutlet weak var hotelPrice: UILabel!
     @IBOutlet weak var star: UILabel!
@@ -19,13 +20,15 @@ class HotelOverviewTableViewCell: UITableViewCell {
     @IBOutlet weak var fromDateField: DatePickerInputTextField!
     @IBOutlet weak var toDateField: DatePickerInputTextField!
     @IBOutlet weak var rateView: UIView!
+    
+    //MARK:- Other Properties
     var hotPrice: Double!
     var hotelId: String!
+    var hotelRateCount: Int!
+    var hotelRatesSum: Double!
     
-    //Mark: - reviews view
     lazy var cosmosView: CosmosView = {
         let view = CosmosView()
-        
         view.settings.starSize = 32
         view.settings.starMargin = 8.8
         view.settings.fillMode = .precise
@@ -38,17 +41,20 @@ class HotelOverviewTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
-        hotelPrice.text = "AMD "
+        hotelPrice.text = "AMD"
         contentView.addSubview(cosmosView)
         cosmosConstraint()
+        
     }
     
+    //MARK: Rate Methods
     func cosmosConstraint() {
         cosmosView.translatesAutoresizingMaskIntoConstraints = false
         cosmosView.topAnchor.constraint(equalTo: rateView.topAnchor, constant: 16).isActive = true
         cosmosView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16).isActive = true
     }
     
+    //MARK: Actions
     @IBAction func priceHotel(_ sender: Any) {
         if fromDateField.text != "" && toDateField.text != "" {
             let timeInterval: Double = toDateField.getValue().timeIntervalSince(fromDateField.getValue())
@@ -57,7 +63,6 @@ class HotelOverviewTableViewCell: UITableViewCell {
                 
                 let dayPrice = (String)(format: "%.2f", day * hotPrice)
                 hotelPrice.text = dayPrice
-                print(hotPrice)
             }
         }
     }
@@ -75,20 +80,8 @@ class HotelOverviewTableViewCell: UITableViewCell {
             }
         })
         
-//        cosmosView.didFinishTouchingCosmos = {  }
-        
-//        UIApplication.appDelegate.refHotels.observe(.value) { (snapshot) in
-//            
-//            if snapshot.childrenCount > 0 {
-//                self.hotelId.removeAll()
-//                for hot in snapshot.children.allObjects as! [DataSnapshot] {
-//                    let hotelObject = hot.value as! [String: AnyObject]
-//                    let id = hotelObject["id"]
-//                    self.hotelId = id as! String
-//                    break
-//                }
-//            }
-//        }
-//        UIApplication.appDelegate.refHotels.child("Hotels").child(self.hotelId).updateChildValues(["openingHoursHotel": "eeeeeee"])
+        UIApplication.appDelegate.refHotels.child(hotelId).child("rateCount").setValue(hotelRateCount + 1)
+        let ratesSum = (String)(format: "%.4f", hotelRatesSum + cosmosView.rating)
+        UIApplication.appDelegate.refHotels.child(hotelId).child("rateSum").setValue(Double(ratesSum))
     }
 }

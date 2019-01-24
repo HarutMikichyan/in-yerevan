@@ -9,7 +9,6 @@
 import UIKit
 
 class ReserveRegistrationTableViewCell: UITableViewCell {
-    
     static let id = "ReserveRegistrationTableViewCell"
     
     @IBOutlet weak var addIcon: UIImageView!
