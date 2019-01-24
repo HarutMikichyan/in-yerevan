@@ -12,16 +12,19 @@ import Firebase
 class TopHotelTableViewCell: UITableViewCell {
     static let id = "TopHotelTableViewCell"
     
+    //MARK:- Interface Builder Outlets
     @IBOutlet weak var topHotelCollectionView: UICollectionView!
-    var parrentViewController: UIViewController!
-    private var hotels = [HotelsType]()
-    var images = [UIImage]()
     
+    //MARK:- Other Properties
+    var parrentViewController: UIViewController!
+    var images = [UIImage]()
+    private var hotels = [HotelsType]()
+   
     override func awakeFromNib() {
         super.awakeFromNib()
         topHotelCollectionView.delegate = self
         topHotelCollectionView.dataSource = self
-        
+        self.backgroundColor = .clear
         UIApplication.appDelegate.refHotels.observe(.value) { (snapshot) in
             if snapshot.childrenCount > 0 {
                 self.hotels.removeAll()
@@ -50,6 +53,7 @@ class TopHotelTableViewCell: UITableViewCell {
         }
     }
     
+    //MARK:- Storage Private Method
     private func downloadImage(at urls: String, completion: @escaping (UIImage?) -> Void) {
         let ref = Storage.storage().reference(forURL: urls)
         let megaByte = Int64(1 * 1024 * 1024)
@@ -66,6 +70,7 @@ class TopHotelTableViewCell: UITableViewCell {
     }
 }
 
+//MARK:- CollectionView Delegate DataSource
 extension TopHotelTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="424" height="222.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconRestaurants" translatesAutoresizingMaskIntoConstraints="NO" id="bds-tu-RSh">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phoneNumberIcon" translatesAutoresizingMaskIntoConstraints="NO" id="bds-tu-RSh">
                         <rect key="frame" x="9" y="8" width="35" height="35"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="35" id="8I1-fg-rei"/>
@@ -35,7 +35,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconRestaurants" translatesAutoresizingMaskIntoConstraints="NO" id="zOW-Eb-ccY">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="workingHoursIcon" translatesAutoresizingMaskIntoConstraints="NO" id="zOW-Eb-ccY">
                         <rect key="frame" x="9" y="51" width="35" height="35"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="35" id="6g3-uR-0P9"/>
@@ -104,14 +104,15 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="RestaurantPhoneNumber" destination="1i4-xg-1gc" id="IdA-KF-DA8"/>
                 <outlet property="rateView" destination="JH9-ZA-JAs" id="yUt-lJ-hWd"/>
                 <outlet property="restaurantOpeningHours" destination="43w-ov-nki" id="DTo-GX-KSW"/>
+                <outlet property="restaurantPhoneNumber" destination="1i4-xg-1gc" id="HxL-9V-3sT"/>
             </connections>
             <point key="canvasLocation" x="20.800000000000001" y="141.67916041979012"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="iconRestaurants" width="225" height="225"/>
+        <image name="phoneNumberIcon" width="410" height="368"/>
+        <image name="workingHoursIcon" width="340" height="362"/>
     </resources>
 </document>

@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="427" height="319.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconRestaurants" translatesAutoresizingMaskIntoConstraints="NO" id="9EJ-0u-b1q">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phoneNumberIcon" translatesAutoresizingMaskIntoConstraints="NO" id="9EJ-0u-b1q">
                         <rect key="frame" x="9" y="8" width="35" height="35"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="35" id="bIg-zw-qmT"/>
@@ -35,7 +35,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconRestaurants" translatesAutoresizingMaskIntoConstraints="NO" id="hmi-l2-EtS">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="workingHoursIcon" translatesAutoresizingMaskIntoConstraints="NO" id="hmi-l2-EtS">
                         <rect key="frame" x="9" y="51" width="35" height="35"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="35" id="j8S-G1-Gd7"/>
@@ -60,7 +60,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconRestaurants" translatesAutoresizingMaskIntoConstraints="NO" id="Xch-iy-Rsl">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hotelStarIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Xch-iy-Rsl">
                         <rect key="frame" x="9" y="94" width="35" height="35"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="35" id="BDl-oL-pwN"/>
@@ -185,6 +185,8 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="iconRestaurants" width="225" height="225"/>
+        <image name="hotelStarIcon" width="394" height="340"/>
+        <image name="phoneNumberIcon" width="410" height="368"/>
+        <image name="workingHoursIcon" width="340" height="362"/>
     </resources>
 </document>

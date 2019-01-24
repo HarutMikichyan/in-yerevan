@@ -12,10 +12,15 @@ import Firebase
 class HotelRestaurantImageTableViewCell: UITableViewCell {
     static let id = "HotelRestaurantImageTableViewCell"
     
+    //MARK:- Interface Builder Outlets
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    //MARK:- Other Properties
     var imagesUrl = [String]()
     var hotelRestaurantImages = [UIImage]()
-    var hotelRestaurants = UIViewController()
+    var isHotel: Bool!
+    var hotelViewController: HotelDescriptionViewController!
+    var restaurantViewController: RestaurantDescriptionViewController!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,6 +32,7 @@ class HotelRestaurantImageTableViewCell: UITableViewCell {
         collectionView.register(UINib(nibName: HotelRestaurantCollectionViewCell.id, bundle: nil), forCellWithReuseIdentifier: HotelRestaurantCollectionViewCell.id)
     }
     
+    //MARK:- Storage Private Method
     private func downloadImage(at urls: String, completion: @escaping (UIImage?) -> Void) {
         let ref = Storage.storage().reference(forURL: urls)
         let megaByte = Int64(1 * 1024 * 1024)
@@ -43,14 +49,25 @@ class HotelRestaurantImageTableViewCell: UITableViewCell {
     }
 }
 
+//MARK:- Images TableViewCell Delegate DataSource
 extension HotelRestaurantImageTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if isHotel {
+            hotelViewController.imageHotel.image = hotelRestaurantImages[indexPath.row]
+//            hotelViewController.imageHotel.contentMode = 
+        } else {
+            restaurantViewController.restaurantImage.image = hotelRestaurantImages[indexPath.row]
+            restaurantViewController.restaurantImage.contentMode = .scaleAspectFill
+        }
+    }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3 /////hotelImageCount
+        return 3
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

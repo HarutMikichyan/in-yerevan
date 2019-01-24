@@ -12,7 +12,10 @@ import Firebase
 class TopRestaurantTableViewCell: UITableViewCell {
     static let id = "TopRestaurantTableViewCell"
     
+    //MARK:- Interface Builder Outlets
     @IBOutlet weak var topRestaurantCollectionView: UICollectionView!
+    
+    //MARK:- Other Properties
     var parrentViewController: UIViewController!
     private var restaurants = [RestaurantsType]()
     var images = [UIImage]()
@@ -49,6 +52,7 @@ class TopRestaurantTableViewCell: UITableViewCell {
         }
     }
     
+    //MARK:- Storage Private Method
     private func downloadImage(at urls: String, completion: @escaping (UIImage?) -> Void) {
         let ref = Storage.storage().reference(forURL: urls)
         let megaByte = Int64(1 * 1024 * 1024)
@@ -67,6 +71,7 @@ class TopRestaurantTableViewCell: UITableViewCell {
     }
 }
 
+//MARK:- CollectionView Delegate DataSource
 extension TopRestaurantTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
