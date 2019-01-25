@@ -17,6 +17,7 @@ class RestaurantTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        selectionStyle = .none
         imageRestaurant.layer.cornerRadius = 12
         imageRestaurant.clipsToBounds = true
     }

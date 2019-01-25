@@ -88,6 +88,7 @@ class ReserveRegistrationViewController: UIViewController, UIImagePickerControll
             let hotLoc: (lat: Double, long: Double) = self.hotelLocation.getCoordinatesAsTuple()
             let rateSum: Double = 0.0
             let rateCount: Int = 0
+            let rate: Double = 0.0
             guard let priceHot = Double(priceHotel.text!) else { return }
             var urls: [String] = []
             
@@ -98,7 +99,7 @@ class ReserveRegistrationViewController: UIViewController, UIImagePickerControll
                         urls.append(url!.absoluteString)
                         if urls.count == self.images.count {
                             //RealTime Database
-                            let hotel: [String: Any] = ["id": keyHotel, "hotelName": self.hotelName.text! , "hotelStar": self.hotelStar.text! , "hotelPhoneNumber": self.hotelPhoneNumber.text! , "openingHoursHotel": self.openingHoursHotel.text!, "hotelLocationLong": hotLoc.long , "hotelLocationLat": hotLoc.lat, "priceHotel": priceHot, "rateSum": rateSum, "rateCount": rateCount, "imageUrls": urls]
+                            let hotel: [String: Any] = ["id": keyHotel, "hotelName": self.hotelName.text! , "hotelStar": self.hotelStar.text! , "hotelPhoneNumber": self.hotelPhoneNumber.text! , "openingHoursHotel": self.openingHoursHotel.text!, "hotelLocationLong": hotLoc.long , "hotelLocationLat": hotLoc.lat, "priceHotel": priceHot, "rateSum": rateSum, "rateCount": rateCount, "imageUrls": urls, "rate": rate]
                             UIApplication.appDelegate.refHotels.child(keyHotel).setValue(hotel)
                         }
                     }
@@ -115,6 +116,7 @@ class ReserveRegistrationViewController: UIViewController, UIImagePickerControll
             let resLoc: (lat: Double, long: Double) = self.restaurantLocation.getCoordinatesAsTuple()
             let rateSum: Double = 0.0
             let rateCount: Int = 0
+            let rate: Double = 0.0
             guard let priceRes = Double(priceRestaurant.text!) else { return }
             var urls: [String] = []
             
@@ -125,7 +127,7 @@ class ReserveRegistrationViewController: UIViewController, UIImagePickerControll
                         urls.append(url!.absoluteString)
                         if urls.count == self.images.count {
                             //RealTime database
-                            let restaurant: [String: Any] = ["id": keyRestaurant, "restaurantName": self.restaurantName.text!, "restaurantPhoneNumber": self.restaurantPhoneNumber.text!, "openingHoursRestaurant": self.openingHoursRestaurant.text!, "restaurantLocationLong": resLoc.long, "restaurantLocationLat": resLoc.lat, "priceRestaurant": priceRes, "rateSum": rateSum, "rateCount": rateCount , "imageUrls": urls]
+                            let restaurant: [String: Any] = ["id": keyRestaurant, "restaurantName": self.restaurantName.text!, "restaurantPhoneNumber": self.restaurantPhoneNumber.text!, "openingHoursRestaurant": self.openingHoursRestaurant.text!, "restaurantLocationLong": resLoc.long, "restaurantLocationLat": resLoc.lat, "priceRestaurant": priceRes, "rateSum": rateSum, "rateCount": rateCount , "imageUrls": urls, "rate": rate]
                             
                             UIApplication.appDelegate.refRestaurants.child(keyRestaurant).setValue(restaurant)
                         }

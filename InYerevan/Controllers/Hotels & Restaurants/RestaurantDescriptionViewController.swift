@@ -85,6 +85,7 @@ extension RestaurantDescriptionViewController: UITableViewDelegate, UITableViewD
             cell.resPrice = restaurant.priceRestaurant
             cell.restaurantRateCount = restaurant.restaurantRateCount
             cell.restaurantRatesSum = restaurant.restaurantRateSum
+            cell.restaurantRate = restaurant.restaurantRate
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: HotelRestaurantMapTableViewCell.id, for: indexPath) as! HotelRestaurantMapTableViewCell

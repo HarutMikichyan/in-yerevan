@@ -89,6 +89,7 @@ extension HotelDescriptionViewController: UITableViewDelegate, UITableViewDataSo
             cell.hotelId = hotel.id
             cell.hotelRateCount = hotel.hotelRateCount
             cell.hotelRatesSum = hotel.hotelRateSum
+            cell.hotelRate = hotel.hotelRate
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: HotelRestaurantMapTableViewCell.id, for: indexPath) as! HotelRestaurantMapTableViewCell
