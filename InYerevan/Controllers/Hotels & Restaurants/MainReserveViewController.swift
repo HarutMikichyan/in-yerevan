@@ -25,7 +25,7 @@ class MainReserveViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Main"
-        view.changeBackgroundToGradient(from: [.backgroundDarkSpruce, .backgroundDenimBlue])
+        view.changeBackgroundToGradient(from: [.black, .backgroundDarkSpruce, .backgroundDenimBlue])
         
         //register TableViewCell
         if User.isAdministration {
@@ -46,7 +46,6 @@ class MainReserveViewController: UIViewController {
     
     //MARK:- Main Image Animate Methods
     private func upDateView() {
-        tableView.backgroundColor = .white
         headerView = tableView.tableHeaderView
         tableView.tableHeaderView = nil
         tableView.addSubview(headerView)

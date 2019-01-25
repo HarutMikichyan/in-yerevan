@@ -25,9 +25,10 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hotels" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rov-NA-Caj">
                                 <rect key="frame" x="168" y="76" width="50" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hotelsIcon" translatesAutoresizingMaskIntoConstraints="NO" id="N9f-qi-PP0">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star-hotel" translatesAutoresizingMaskIntoConstraints="NO" id="N9f-qi-PP0">
                                 <rect key="frame" x="172" y="26" width="42" height="42"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="dyr-Qu-oXR"/>
@@ -35,7 +36,8 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="0.48402854709999998" green="0.36223100730000002" blue="0.69455901019999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="Rov-NA-Caj" firstAttribute="top" secondItem="N9f-qi-PP0" secondAttribute="bottom" constant="8" id="K9y-LX-HTa"/>
                             <constraint firstAttribute="height" constant="109" id="KQl-MV-F69"/>
@@ -50,26 +52,28 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Restaurants" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="87z-a9-70t">
                                 <rect key="frame" x="147" y="76" width="92" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bz4-YO-Uhg">
                                 <rect key="frame" x="26" y="0.0" width="334" height="2"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.48402854709999998" green="0.36223100730000002" blue="0.69455901019999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="334" id="SbH-H8-Rvg"/>
                                     <constraint firstAttribute="height" constant="2" id="raz-Lh-aOs"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconRestaurants" translatesAutoresizingMaskIntoConstraints="NO" id="gru-lq-duF">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cheers" translatesAutoresizingMaskIntoConstraints="NO" id="gru-lq-duF">
                                 <rect key="frame" x="172" y="26" width="42" height="42"/>
-                                <color key="tintColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                <color key="tintColor" red="0.534838339" green="0.44054401900000001" blue="0.69455901019999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="Mbn-lv-cKF"/>
                                     <constraint firstAttribute="width" constant="42" id="yvn-jC-4Vk"/>
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="0.48402854709999998" green="0.36223100730000002" blue="0.69455901019999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="87z-a9-70t" firstAttribute="top" secondItem="gru-lq-duF" secondAttribute="bottom" constant="8" id="BdN-5H-ORn"/>
                             <constraint firstItem="gru-lq-duF" firstAttribute="centerX" secondItem="GOU-W3-tWN" secondAttribute="centerX" id="QPB-jG-WqY"/>
@@ -82,7 +86,7 @@
                         </constraints>
                     </view>
                 </subviews>
-                <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="sdL-ZX-ydX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="A2F-DJ-wLr"/>
                     <constraint firstAttribute="trailing" secondItem="sdL-ZX-ydX" secondAttribute="trailing" id="HmD-sY-Lkk"/>
@@ -92,6 +96,7 @@
                     <constraint firstAttribute="trailing" secondItem="GOU-W3-tWN" secondAttribute="trailing" id="lPg-N2-ewq"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="addHotels" destination="sdL-ZX-ydX" id="beL-og-0Ij"/>
@@ -101,7 +106,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="hotelsIcon" width="322" height="364"/>
-        <image name="iconRestaurants" width="225" height="225"/>
+        <image name="cheers" width="160" height="160"/>
+        <image name="star-hotel" width="160" height="160"/>
     </resources>
 </document>

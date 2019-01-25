@@ -36,7 +36,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CvC-dh-qTl">
                                 <rect key="frame" x="0.0" y="64" width="375" height="559"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <viewLayoutGuide key="safeArea" id="rLk-fQ-rX0"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="cC8-YW-zuF">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="270"/>
@@ -44,9 +44,10 @@
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mainImage" translatesAutoresizingMaskIntoConstraints="NO" id="8RX-Ga-WCZ">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="270"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </imageView>
                                     </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="8RX-Ga-WCZ" secondAttribute="trailing" id="JIR-RR-mGB"/>
                                         <constraint firstItem="8RX-Ga-WCZ" firstAttribute="leading" secondItem="cC8-YW-zuF" secondAttribute="leading" id="Qah-oO-IZs"/>
@@ -64,13 +65,14 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top Hotels" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2dx-6J-xwP">
                                                     <rect key="frame" x="18" y="17" width="83" height="29.5"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" red="0.534838339" green="0.44054401900000001" blue="0.69455901019999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QBu-We-Jsr">
                                                     <rect key="frame" x="0.0" y="46.5" width="375" height="149"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="149" id="Pmm-Qx-9uk"/>
                                                     </constraints>
@@ -90,22 +92,25 @@
                                                                 <subviews>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GTR-05-BgU">
                                                                         <rect key="frame" x="4" y="4" width="125" height="100"/>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="100" id="WfH-BY-egl"/>
                                                                         </constraints>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1wI-L4-zIl">
                                                                         <rect key="frame" x="26.5" y="117" width="80" height="21"/>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="21" id="Ku0-7q-YcT"/>
                                                                             <constraint firstAttribute="width" constant="80" id="hCk-Ue-He5"/>
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                        <nil key="textColor"/>
+                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
                                                             </view>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="trailing" secondItem="GTR-05-BgU" secondAttribute="trailing" constant="4" id="0zF-Rp-o9P"/>
                                                                 <constraint firstItem="GTR-05-BgU" firstAttribute="leading" secondItem="QzB-FG-WM9" secondAttribute="leading" constant="4" id="iDn-Ge-vnH"/>
@@ -122,17 +127,21 @@
                                                 </collectionView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wI5-ho-UcR">
                                                     <rect key="frame" x="334" y="17.5" width="39" height="27"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="27" id="LW8-Ke-6uI"/>
                                                         <constraint firstAttribute="width" constant="39" id="fjf-Qx-rQI"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <state key="normal" title="See All"/>
+                                                    <state key="normal" title="See All">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
                                                     <connections>
                                                         <action selector="seeAllHotels:" destination="1Fm-Gh-tdk" eventType="touchUpInside" id="qoZ-g2-jGo"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="2dx-6J-xwP" firstAttribute="top" secondItem="o73-eS-rnJ" secondAttribute="topMargin" constant="6" id="1uR-UE-7cE"/>
                                                 <constraint firstAttribute="trailing" secondItem="QBu-We-Jsr" secondAttribute="trailing" id="3rU-8O-IJj"/>
@@ -145,6 +154,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="QBu-We-Jsr" secondAttribute="bottom" id="xWx-x7-BQd"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="topHotelCollectionView" destination="QBu-We-Jsr" id="As3-2W-bJN"/>
                                         </connections>
@@ -158,13 +168,14 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top Restaurant" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fge-5X-0Nh">
                                                     <rect key="frame" x="19" y="15" width="116" height="24.5"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" red="0.534838339" green="0.44054401900000001" blue="0.69455901019999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0yd-FG-9jX">
                                                     <rect key="frame" x="0.0" y="39.5" width="375" height="149"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="149" id="8v7-fD-uGr"/>
                                                     </constraints>
@@ -195,11 +206,12 @@
                                                                             <constraint firstAttribute="width" constant="80" id="tP0-Lt-jax"/>
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                        <nil key="textColor"/>
+                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
                                                             </view>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstItem="IAH-QZ-Uv0" firstAttribute="centerX" secondItem="QSQ-ZH-EgT" secondAttribute="centerX" id="1V8-63-s13"/>
                                                                 <constraint firstItem="tVn-We-qu6" firstAttribute="top" secondItem="QSQ-ZH-EgT" secondAttribute="top" constant="4" id="1dZ-lK-IZc"/>
@@ -216,17 +228,21 @@
                                                 </collectionView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F5X-HM-dXN">
                                                     <rect key="frame" x="336" y="11.5" width="37" height="26"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="26" id="83W-Ad-mAL"/>
                                                         <constraint firstAttribute="width" constant="37" id="Cn6-Wk-9x6"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                    <state key="normal" title="See All"/>
+                                                    <state key="normal" title="See All">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
                                                     <connections>
                                                         <action selector="seeAllRestaurants:" destination="1Fm-Gh-tdk" eventType="touchUpInside" id="MLv-b6-Cxz"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="0yd-FG-9jX" secondAttribute="bottom" id="M5V-fr-uUZ"/>
                                                 <constraint firstItem="0yd-FG-9jX" firstAttribute="top" secondItem="F5X-HM-dXN" secondAttribute="bottom" constant="2" id="RCO-pP-h1F"/>
@@ -238,6 +254,7 @@
                                                 <constraint firstItem="fge-5X-0Nh" firstAttribute="top" secondItem="hB1-eC-od4" secondAttribute="topMargin" constant="4" id="yet-ic-1zl"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="topRestaurantCollectionView" destination="0yd-FG-9jX" id="DAg-79-HVu"/>
                                         </connections>
@@ -258,7 +275,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fpJ-46-B2N"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Hotels/Restaurants" image="resort" id="HRl-NQ-yaU"/>
+                    <tabBarItem key="tabBarItem" title="Hotels/Restaurants" image="resort" id="HRl-NQ-yaU">
+                        <color key="badgeColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="6Ly-O7-aQd"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
@@ -926,8 +945,8 @@
         <image name="Restaurantimages" width="284" height="177"/>
         <image name="hotelImage1" width="550" height="366"/>
         <image name="mainImage" width="660" height="330"/>
-        <image name="priceIcon" width="396" height="396"/>
+        <image name="priceIcon" width="198" height="198"/>
         <image name="resort" width="33" height="33"/>
-        <image name="starIcon" width="56" height="54"/>
+        <image name="starIcon" width="28" height="27"/>
     </resources>
 </document>
