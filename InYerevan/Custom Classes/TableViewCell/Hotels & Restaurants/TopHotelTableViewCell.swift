@@ -25,7 +25,7 @@ class TopHotelTableViewCell: UITableViewCell {
         topHotelCollectionView.delegate = self
         topHotelCollectionView.dataSource = self
         self.backgroundColor = .clear
-        UIApplication.appDelegate.refHotels.observe(.value) { (snapshot) in
+        UIApplication.appDelegate.refHotels.queryOrdered(byChild: "rate").observe(.value) { (snapshot) in
             if snapshot.childrenCount > 0 {
                 self.hotels.removeAll()
                 for hot in snapshot.children.allObjects as! [DataSnapshot] {
@@ -41,8 +41,9 @@ class TopHotelTableViewCell: UITableViewCell {
                     let rateSum = hotelObject["rateSum"]
                     let rateCount = hotelObject["rateCount"]
                     let urls = hotelObject["imageUrls"]
-                    
-                    let hotels = HotelsType(id: id as! String, hotelName: name as! String, hotelStar: star as! String, hotelPhoneNumber: phoneNumber as! String, openingHoursHotel: openingHours as! String, hotelLocationLong: locationLong as! Double, hotelLocationLat: locationlat as! Double, priceHotel: price as! Double, hotelRateSum: rateSum as! Double, hotelRateCount: rateCount as! Int, hotelImageUrl: urls as! [String])
+                    let rate = hotelObject["rate"]
+
+                    let hotels = HotelsType(id: id as! String, hotelName: name as! String, hotelStar: star as! String, hotelPhoneNumber: phoneNumber as! String, openingHoursHotel: openingHours as! String, hotelLocationLong: locationLong as! Double, hotelLocationLat: locationlat as! Double, priceHotel: price as! Double, hotelRateSum: rateSum as! Double, hotelRateCount: rateCount as! Int, hotelImageUrl: urls as! [String], hotelRate: rate as! Double)
                     self.hotels.append(hotels)
                     if self.hotels.count == 10 {
                         break

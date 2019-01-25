@@ -25,7 +25,7 @@ class TopRestaurantTableViewCell: UITableViewCell {
         topRestaurantCollectionView.delegate = self
         topRestaurantCollectionView.dataSource = self
         
-        UIApplication.appDelegate.refRestaurants.observe(.value) { (snapshot) in
+        UIApplication.appDelegate.refRestaurants.queryOrdered(byChild: "rate").observe(.value) { (snapshot) in
             if snapshot.childrenCount > 0 {
                 self.restaurants.removeAll()
                 for res in snapshot.children.allObjects as! [DataSnapshot] {
@@ -40,8 +40,9 @@ class TopRestaurantTableViewCell: UITableViewCell {
                     let rateSum = restaurantObject["rateSum"]
                     let rateCount = restaurantObject["rateCount"]
                     let urls = restaurantObject["imageUrls"]
+                    let rate = restaurantObject["rate"]
                     
-                    let restaurants = RestaurantsType(id: id as! String, restaurantName: name as! String, restaurantPhoneNumber: phoneNumber as! String, openingHoursRestaurant: openingHours as! String, restaurantLocationLong: locationLong as! Double, restaurantLocationLat: locationlat as! Double, priceRestaurant: price as! Double, restaurantRateSum: rateSum as! Double, restaurantRateCount: rateCount as! Int, restaurantImageUrl: urls as! [String])
+                    let restaurants = RestaurantsType(id: id as! String, restaurantName: name as! String, restaurantPhoneNumber: phoneNumber as! String, openingHoursRestaurant: openingHours as! String, restaurantLocationLong: locationLong as! Double, restaurantLocationLat: locationlat as! Double, priceRestaurant: price as! Double, restaurantRateSum: rateSum as! Double, restaurantRateCount: rateCount as! Int, restaurantImageUrl: urls as! [String], restaurantRate: rate as! Double)
                     self.restaurants.append(restaurants)
                     if self.restaurants.count == 10 {
                         break

@@ -21,6 +21,7 @@ class RestaurantOverviewTableViewCell: UITableViewCell {
     var restaurantId: String!
     var restaurantRateCount: Int!
     var restaurantRatesSum: Double!
+    var restaurantRate: Double!
     
     //MARK:- Rate View
     lazy var cosmosView: CosmosView = {
@@ -64,8 +65,12 @@ class RestaurantOverviewTableViewCell: UITableViewCell {
             }
         })
         
-        UIApplication.appDelegate.refRestaurants.child(restaurantId).child("rateCount").setValue(restaurantRateCount + 1)
-        let ratesSum = (String)(format: "%.4f", restaurantRatesSum + cosmosView.rating)
-        UIApplication.appDelegate.refRestaurants.child(restaurantId).child("rateSum").setValue(Double(ratesSum))
+        UIApplication.appDelegate.refHotels.child(restaurantId).child("rateCount").setValue(restaurantRateCount + 1)
+        if restaurantRate == 0.0 {
+            UIApplication.appDelegate.refRestaurants.child(restaurantId).child("rate").setValue(cosmosView.rating)
+        } else {
+            let rateR = (String)(format: "%.4f", restaurantRate + cosmosView.rating / Double(2))
+            UIApplication.appDelegate.refRestaurants.child(restaurantId).child("rate").setValue(Double(rateR))
+        }
     }
 }

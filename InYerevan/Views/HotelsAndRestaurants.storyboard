@@ -406,7 +406,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Restaurantimages" translatesAutoresizingMaskIntoConstraints="NO" id="gDv-s7-coR">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gDv-s7-coR">
                                 <rect key="frame" x="0.0" y="20" width="375" height="240"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="240" id="ucC-WA-LzF"/>
@@ -888,16 +888,16 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EIk-lw-173">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="240"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="240" id="CS5-tV-bm2"/>
+                                            <constraint firstAttribute="height" constant="240" id="Ops-w1-7Ps"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="EIk-lw-173" secondAttribute="trailing" id="1FL-Hh-pgx"/>
-                                    <constraint firstItem="EIk-lw-173" firstAttribute="leading" secondItem="qah-5y-AOF" secondAttribute="leading" id="7NC-8e-i0V"/>
-                                    <constraint firstAttribute="bottom" secondItem="EIk-lw-173" secondAttribute="bottom" id="8Sf-ZV-uql"/>
-                                    <constraint firstItem="EIk-lw-173" firstAttribute="top" secondItem="qah-5y-AOF" secondAttribute="top" id="tPc-kM-8gM"/>
+                                    <constraint firstAttribute="trailing" secondItem="EIk-lw-173" secondAttribute="trailing" id="0UY-wU-Yiw"/>
+                                    <constraint firstItem="EIk-lw-173" firstAttribute="leading" secondItem="qah-5y-AOF" secondAttribute="leading" id="SCO-9n-xvR"/>
+                                    <constraint firstAttribute="bottom" secondItem="EIk-lw-173" secondAttribute="bottom" id="Wzf-sy-TbD"/>
+                                    <constraint firstItem="EIk-lw-173" firstAttribute="top" secondItem="qah-5y-AOF" secondAttribute="top" id="bxw-sg-eOL"/>
                                 </constraints>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="bDg-Fa-HZT">
@@ -942,7 +942,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Restaurantimages" width="284" height="177"/>
         <image name="hotelImage1" width="550" height="366"/>
         <image name="mainImage" width="660" height="330"/>
         <image name="priceIcon" width="198" height="198"/>

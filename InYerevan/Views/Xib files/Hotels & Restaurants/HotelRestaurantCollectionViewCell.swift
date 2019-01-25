@@ -12,4 +12,10 @@ class HotelRestaurantCollectionViewCell: UICollectionViewCell {
     static let id = "HotelRestaurantCollectionViewCell"
     
     @IBOutlet weak var cellImage: UIImageView!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        cellImage.layer.cornerRadius = 12
+        cellImage.clipsToBounds = true
+    }
 }
