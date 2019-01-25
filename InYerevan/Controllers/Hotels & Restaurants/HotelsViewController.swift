@@ -11,10 +11,14 @@ import Firebase
 
 class HotelsViewController: UIViewController {
     
+    //MARK:- Interface Builder Outlet
     @IBOutlet weak var tableView: UITableView!
+    
+    //MARK:- Other Properties
     var hotelsList = [HotelsType]()
     var images = [UIImage]()
     
+    //MARK:- View Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Hotels"
@@ -50,6 +54,7 @@ class HotelsViewController: UIViewController {
         navigationController?.isNavigationBarHidden = false
     }
     
+    //MARK:- Storage Private Method
     private func downloadImage(at urls: String, completion: @escaping (UIImage?) -> Void) {
         let ref = Storage.storage().reference(forURL: urls)
         let megaByte = Int64(1 * 1024 * 1024)
@@ -66,6 +71,7 @@ class HotelsViewController: UIViewController {
     }
 }
 
+//MARK:- TableView Delegate DataSource
 extension HotelsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

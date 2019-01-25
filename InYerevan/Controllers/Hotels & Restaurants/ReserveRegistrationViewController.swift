@@ -11,17 +11,14 @@ import Firebase
 
 class ReserveRegistrationViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    private let refStorage = Storage.storage().reference()
-    var images = [UIImage]()
-    
+    //MARK:- Interface Builder Outlets
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var imageButton: UIButton!
     @IBOutlet weak var registrationView: UIView!
     @IBOutlet var hotelRegistrationView: UIView!
     @IBOutlet var restaurantRegistrationView: UIView!
-    
-    //MARK: -TextField Outlet
-    // hotel outlet
+
+    //hotel outlets
     @IBOutlet weak var hotelName: UITextField!
     @IBOutlet weak var hotelStar: UITextField!
     @IBOutlet weak var hotelPhoneNumber: UITextField!
@@ -29,13 +26,18 @@ class ReserveRegistrationViewController: UIViewController, UIImagePickerControll
     @IBOutlet weak var priceHotel: UITextField!
     @IBOutlet weak var hotelLocation: UIMapInputTextField!
     
-    //restaurant outlet
+    //restaurant outlets
     @IBOutlet weak var restaurantName: UITextField!
     @IBOutlet weak var restaurantPhoneNumber: UITextField!
     @IBOutlet weak var openingHoursRestaurant: UITextField!
     @IBOutlet weak var priceRestaurant: UITextField!
     @IBOutlet weak var restaurantLocation: UIMapInputTextField!
     
+    //MARK:- Other Properties
+    private let refStorage = Storage.storage().reference()
+    private var images = [UIImage]()
+    
+    //MARK:- View Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         imageButton.layer.cornerRadius = 12
@@ -52,7 +54,6 @@ class ReserveRegistrationViewController: UIViewController, UIImagePickerControll
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear( animated )
-        
         //registration View layer
         registrationView.layer.cornerRadius = 12
         registrationView.clipsToBounds = true
@@ -60,6 +61,7 @@ class ReserveRegistrationViewController: UIViewController, UIImagePickerControll
         registrationView.layer.borderColor = UIColor.blue.cgColor
     }
     
+    // MARK:- Actions
     @IBAction func segmentControllRegistration(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
@@ -80,7 +82,6 @@ class ReserveRegistrationViewController: UIViewController, UIImagePickerControll
     @IBAction func addHotel(_ sender: Any) {
         if hotelName.text != "" && hotelStar.text != "" && hotelPhoneNumber.text != "" && openingHoursHotel.text != "" && hotelLocation.text != "" && priceHotel.text != "" && images.count > 0 {
     
-            
             //realTime Firebase
             let keyHotel: String = UIApplication.appDelegate.refHotels.childByAutoId().key!
             
@@ -103,20 +104,6 @@ class ReserveRegistrationViewController: UIViewController, UIImagePickerControll
                     }
                 }
             }
-        }
-    }
-    
-    private func downloadImage(at url: URL, completion: @escaping (UIImage?) -> Void) {
-        let ref = Storage.storage().reference(forURL: url.absoluteString)
-        let megaByte = Int64(1 * 1024 * 1024)
-        
-        ref.getData(maxSize: megaByte) { data, error in
-            guard let imageData = data else {
-                completion(nil)
-                return
-            }
-            
-            completion(UIImage(data: imageData))
         }
     }
     
@@ -148,8 +135,27 @@ class ReserveRegistrationViewController: UIViewController, UIImagePickerControll
         }
     }
     
+    @IBAction func addImage(_ sender: UIButton) {
+        let vc = ImagePickerViewController()
+        present(vc, animated: true, completion: nil)
+        vc.delegate = self
+    }
     
-    //MARK: - Save Storage
+    //MARK:- Storage Private Methods
+    private func downloadImage(at url: URL, completion: @escaping (UIImage?) -> Void) {
+        let ref = Storage.storage().reference(forURL: url.absoluteString)
+        let megaByte = Int64(1 * 1024 * 1024)
+        
+        ref.getData(maxSize: megaByte) { data, error in
+            guard let imageData = data else {
+                completion(nil)
+                return
+            }
+            
+            completion(UIImage(data: imageData))
+        }
+    }
+
     private func saveFirebaseStorage(_ image: UIImage, to hotelID: String?, completion: @escaping (URL?) -> Void) {
         guard let id = hotelID else {
             completion(nil)
@@ -178,18 +184,12 @@ class ReserveRegistrationViewController: UIViewController, UIImagePickerControll
                     guard let imageURL = url?.absoluteURL else { return }
                     completion(imageURL)
                 }
-                
             })
         }
     }
-    
-    @IBAction func addImage(_ sender: UIButton) {
-        let vc = ImagePickerViewController()
-        present(vc, animated: true, completion: nil)
-        vc.delegate = self
-    }
 }
 
+//MARK:- CollectionView Delegate
 extension ReserveRegistrationViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return images.count
@@ -202,6 +202,7 @@ extension ReserveRegistrationViewController: UICollectionViewDelegate, UICollect
     }
 }
 
+//MARK:- Image Picker Delegate
 extension ReserveRegistrationViewController: ImagePickerViewControllerDelegate {
     func didSelectedItem(image: UIImage?) {
         if image != nil {

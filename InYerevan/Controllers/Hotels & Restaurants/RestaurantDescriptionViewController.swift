@@ -10,12 +10,17 @@ import UIKit
 
 class RestaurantDescriptionViewController: UIViewController {
     
+    //MARK:- Interface Builder Outlets
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var restaurantImage: UIImageView!
+    
+    //MARK:- Other Properties
+    var restaurantImageCell: HotelRestaurantImageTableViewCell!
     var restaurant: RestaurantsType!
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear( animated )
-        navigationController?.isNavigationBarHidden = false
+    //MARK:- View Life Cycle Methods
+    override func viewDidLoad() {
+        super.viewDidLoad()
         view.changeBackgroundToGradient(from: [.backgroundDarkSpruce, .backgroundDenimBlue])
         
         //register TableViewCell
@@ -24,18 +29,25 @@ class RestaurantDescriptionViewController: UIViewController {
         tableView.register(UINib(nibName: HotelRestaurantMapTableViewCell.id, bundle: nil), forCellReuseIdentifier: HotelRestaurantMapTableViewCell.id)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear( animated )
+        navigationController?.isNavigationBarHidden = false
+    }
+    
+    //MARK:- Action
     @IBAction func segmentControll(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
             tableView.setContentOffset(.zero, animated: true)
         case 1:
-            tableView.setContentOffset(CGPoint(x: 0, y: 225), animated: true)
+            tableView.setContentOffset(CGPoint(x: 0, y: 355), animated: true)
         default:
             fatalError()
         }
     }
 }
 
+//MARK:- TableView Delgate DataSource
 extension RestaurantDescriptionViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -44,10 +56,8 @@ extension RestaurantDescriptionViewController: UITableViewDelegate, UITableViewD
             return 130
         case 1:
             return 225
-        case 2:
-            return 450
         default:
-            fatalError()
+            return 380
         }
     }
     
@@ -58,12 +68,23 @@ extension RestaurantDescriptionViewController: UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: HotelRestaurantImageTableViewCell.id, for: indexPath) as! HotelRestaurantImageTableViewCell
-            return cell
+            if restaurantImageCell == nil {
+                let cell = tableView.dequeueReusableCell(withIdentifier: HotelRestaurantImageTableViewCell.id, for: indexPath) as! HotelRestaurantImageTableViewCell
+                cell.selectionStyle = .none
+                cell.imagesUrl = self.restaurant.restaurantImageUrl
+                cell.isHotel = false
+                cell.restaurantViewController = self
+                restaurantImageCell = cell
+            }
+            return restaurantImageCell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: RestaurantOverviewTableViewCell.id, for: indexPath) as! RestaurantOverviewTableViewCell
             cell.restaurantPhoneNumber.text = restaurant.restaurantPhoneNumber
             cell.restaurantOpeningHours.text = restaurant.openingHoursRestaurant
+            cell.restaurantId = restaurant.id
+            cell.resPrice = restaurant.priceRestaurant
+            cell.restaurantRateCount = restaurant.restaurantRateCount
+            cell.restaurantRatesSum = restaurant.restaurantRateSum
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: HotelRestaurantMapTableViewCell.id, for: indexPath) as! HotelRestaurantMapTableViewCell

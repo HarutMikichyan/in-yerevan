@@ -36,7 +36,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CvC-dh-qTl">
                                 <rect key="frame" x="0.0" y="64" width="375" height="559"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <viewLayoutGuide key="safeArea" id="rLk-fQ-rX0"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="cC8-YW-zuF">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="270"/>
@@ -293,7 +293,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YNv-yU-BCj">
                                                     <rect key="frame" x="15" y="11" width="345" height="267"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Restaurantimages" translatesAutoresizingMaskIntoConstraints="NO" id="iSy-gx-hbn">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iSy-gx-hbn">
                                                             <rect key="frame" x="8" y="8" width="329" height="200"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="200" id="hGF-EV-y9U"/>
@@ -388,13 +388,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Restaurantimages" translatesAutoresizingMaskIntoConstraints="NO" id="gDv-s7-coR">
-                                <rect key="frame" x="0.0" y="20" width="375" height="200"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="240"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="ovu-7z-ZFE"/>
+                                    <constraint firstAttribute="height" constant="240" id="ucC-WA-LzF"/>
                                 </constraints>
                             </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ykj-Mx-TM4">
+                                <rect key="frame" x="0.0" y="288" width="375" height="379"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="JtH-Yi-Qqh" id="d2b-Ig-f4E"/>
+                                    <outlet property="delegate" destination="JtH-Yi-Qqh" id="a4T-MI-m37"/>
+                                </connections>
+                            </tableView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="rCR-lU-fte">
-                                <rect key="frame" x="0.0" y="220" width="375" height="29"/>
+                                <rect key="frame" x="0.0" y="260" width="375" height="29"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <segments>
                                     <segment title="Overview"/>
                                     <segment title="Map"/>
@@ -403,14 +412,6 @@
                                     <action selector="segmentControll:" destination="JtH-Yi-Qqh" eventType="valueChanged" id="o2Y-AQ-HVq"/>
                                 </connections>
                             </segmentedControl>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ykj-Mx-TM4">
-                                <rect key="frame" x="0.0" y="248" width="375" height="419"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="JtH-Yi-Qqh" id="d2b-Ig-f4E"/>
-                                    <outlet property="delegate" destination="JtH-Yi-Qqh" id="a4T-MI-m37"/>
-                                </connections>
-                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -420,8 +421,8 @@
                             <constraint firstItem="TTQ-03-dcW" firstAttribute="trailing" secondItem="rCR-lU-fte" secondAttribute="trailing" id="P20-FR-LZn"/>
                             <constraint firstItem="gDv-s7-coR" firstAttribute="leading" secondItem="TTQ-03-dcW" secondAttribute="leading" id="R1Q-XY-2zT"/>
                             <constraint firstItem="rCR-lU-fte" firstAttribute="leading" secondItem="TTQ-03-dcW" secondAttribute="leading" id="WtW-on-hjH"/>
-                            <constraint firstItem="rCR-lU-fte" firstAttribute="top" secondItem="gDv-s7-coR" secondAttribute="bottom" id="Xpj-qE-lx1"/>
-                            <constraint firstItem="Ykj-Mx-TM4" firstAttribute="top" secondItem="rCR-lU-fte" secondAttribute="bottom" id="gee-BA-Sx6"/>
+                            <constraint firstItem="rCR-lU-fte" firstAttribute="top" secondItem="gDv-s7-coR" secondAttribute="bottom" id="fGC-U4-szQ"/>
+                            <constraint firstItem="Ykj-Mx-TM4" firstAttribute="top" secondItem="rCR-lU-fte" secondAttribute="bottom" id="gwh-Bh-Fpw"/>
                             <constraint firstItem="TTQ-03-dcW" firstAttribute="trailing" secondItem="gDv-s7-coR" secondAttribute="trailing" id="lpV-nA-Uel"/>
                             <constraint firstItem="Ykj-Mx-TM4" firstAttribute="leading" secondItem="TTQ-03-dcW" secondAttribute="leading" id="npS-j6-QIA"/>
                         </constraints>
@@ -429,12 +430,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="Description" largeTitleDisplayMode="never" id="ZGG-d1-VrT"/>
                     <connections>
+                        <outlet property="restaurantImage" destination="gDv-s7-coR" id="Fjb-Xx-k1x"/>
                         <outlet property="tableView" destination="Ykj-Mx-TM4" id="rZG-yd-LFZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qBG-M0-Ply" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1541" y="506"/>
+            <point key="canvasLocation" x="1540" y="505.99700149925042"/>
         </scene>
         <!--Reserve Registration View Controller-->
         <scene sceneID="Y2q-6i-0NL">
@@ -794,7 +796,6 @@
                                                             </constraints>
                                                         </imageView>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstItem="iQf-0y-3AH" firstAttribute="top" secondItem="so1-i7-p7L" secondAttribute="top" id="240-mH-LJJ"/>
                                                         <constraint firstItem="qQW-Y6-Gn3" firstAttribute="top" secondItem="CVO-cx-jxr" secondAttribute="top" constant="8" id="3UB-wx-whb"/>
@@ -855,18 +856,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6l3-x0-5Dh">
-                                <rect key="frame" x="0.0" y="248" width="375" height="419"/>
+                                <rect key="frame" x="0.0" y="288" width="375" height="379"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="419" id="YhA-b4-AHo"/>
-                                </constraints>
                                 <connections>
                                     <outlet property="dataSource" destination="Paq-nk-25C" id="y0w-BK-ptn"/>
                                     <outlet property="delegate" destination="Paq-nk-25C" id="PrF-1h-QOA"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qah-5y-AOF">
+                                <rect key="frame" x="0.0" y="20" width="375" height="240"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EIk-lw-173">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="240"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="240" id="CS5-tV-bm2"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="EIk-lw-173" secondAttribute="trailing" id="1FL-Hh-pgx"/>
+                                    <constraint firstItem="EIk-lw-173" firstAttribute="leading" secondItem="qah-5y-AOF" secondAttribute="leading" id="7NC-8e-i0V"/>
+                                    <constraint firstAttribute="bottom" secondItem="EIk-lw-173" secondAttribute="bottom" id="8Sf-ZV-uql"/>
+                                    <constraint firstItem="EIk-lw-173" firstAttribute="top" secondItem="qah-5y-AOF" secondAttribute="top" id="tPc-kM-8gM"/>
+                                </constraints>
+                            </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="bDg-Fa-HZT">
-                                <rect key="frame" x="0.0" y="220" width="375" height="29"/>
+                                <rect key="frame" x="0.0" y="260" width="375" height="29"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="rm0-KL-XVa"/>
@@ -879,40 +895,25 @@
                                     <action selector="segmentControl:" destination="Paq-nk-25C" eventType="valueChanged" id="0XK-aP-KMV"/>
                                 </connections>
                             </segmentedControl>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qah-5y-AOF">
-                                <rect key="frame" x="0.0" y="20" width="375" height="200"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hotelImage1" translatesAutoresizingMaskIntoConstraints="NO" id="EIk-lw-173">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="EIk-lw-173" secondAttribute="trailing" id="1FL-Hh-pgx"/>
-                                    <constraint firstItem="EIk-lw-173" firstAttribute="leading" secondItem="qah-5y-AOF" secondAttribute="leading" id="7NC-8e-i0V"/>
-                                    <constraint firstAttribute="bottom" secondItem="EIk-lw-173" secondAttribute="bottom" id="8Sf-ZV-uql"/>
-                                    <constraint firstAttribute="height" constant="200" id="sqh-9N-WHY"/>
-                                    <constraint firstItem="EIk-lw-173" firstAttribute="top" secondItem="qah-5y-AOF" secondAttribute="top" id="tPc-kM-8gM"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="6l3-x0-5Dh" firstAttribute="top" secondItem="bDg-Fa-HZT" secondAttribute="bottom" id="9Bp-Az-UHp"/>
                             <constraint firstItem="qah-5y-AOF" firstAttribute="leading" secondItem="2vh-wk-Fp4" secondAttribute="leading" id="Av8-jq-wAX"/>
                             <constraint firstItem="bDg-Fa-HZT" firstAttribute="leading" secondItem="2vh-wk-Fp4" secondAttribute="leading" id="CeG-Vm-rp2"/>
                             <constraint firstItem="6l3-x0-5Dh" firstAttribute="bottom" secondItem="2vh-wk-Fp4" secondAttribute="bottom" id="ERq-WI-H30"/>
+                            <constraint firstItem="bDg-Fa-HZT" firstAttribute="top" secondItem="qah-5y-AOF" secondAttribute="bottom" id="RWy-UI-bOb"/>
                             <constraint firstItem="2vh-wk-Fp4" firstAttribute="trailing" secondItem="bDg-Fa-HZT" secondAttribute="trailing" id="RYs-o0-diE"/>
-                            <constraint firstItem="bDg-Fa-HZT" firstAttribute="top" secondItem="qah-5y-AOF" secondAttribute="bottom" id="Uzx-tT-FHd"/>
                             <constraint firstItem="qah-5y-AOF" firstAttribute="top" secondItem="2vh-wk-Fp4" secondAttribute="top" id="k5G-xa-Np0"/>
                             <constraint firstItem="6l3-x0-5Dh" firstAttribute="leading" secondItem="2vh-wk-Fp4" secondAttribute="leading" id="pm6-Rl-qJX"/>
                             <constraint firstItem="6l3-x0-5Dh" firstAttribute="trailing" secondItem="2vh-wk-Fp4" secondAttribute="trailing" id="qe8-D0-FtX"/>
                             <constraint firstItem="2vh-wk-Fp4" firstAttribute="trailing" secondItem="qah-5y-AOF" secondAttribute="trailing" id="yTm-xk-KR6"/>
-                            <constraint firstItem="6l3-x0-5Dh" firstAttribute="top" secondItem="bDg-Fa-HZT" secondAttribute="bottom" id="yai-2V-j91"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2vh-wk-Fp4"/>
                     </view>
                     <navigationItem key="navigationItem" title="Description" largeTitleDisplayMode="never" id="s2s-GM-Qdk"/>
                     <connections>
+                        <outlet property="imageHotel" destination="EIk-lw-173" id="h4L-Ze-58V"/>
                         <outlet property="tableView" destination="6l3-x0-5Dh" id="u2h-Rl-2SD"/>
                     </connections>
                 </viewController>

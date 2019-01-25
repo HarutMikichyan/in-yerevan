@@ -11,11 +11,17 @@ import Firebase
 
 class HotelDescriptionViewController: UIViewController {
     
+    //MARK:- Interface Builder Outlets
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var imageHotel: UIImageView!
+    
+    
+    //MARK:- Other Properties
     weak var hotelImagesCell: HotelRestaurantImageTableViewCell!
     var hotel: HotelsType!
     var images = [UIImage]()
     
+    //MARK:- View Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         view.changeBackgroundToGradient(from: [.backgroundDarkSpruce, .backgroundDenimBlue])
@@ -31,18 +37,20 @@ class HotelDescriptionViewController: UIViewController {
         navigationController?.isNavigationBarHidden = false
     }
     
+    //MARK:- Action
     @IBAction func segmentControl(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
             tableView.setContentOffset(.zero, animated: true)
         case 1:
-            tableView.setContentOffset(CGPoint(x: 0, y: 300), animated: true)
+            tableView.setContentOffset(CGPoint(x: 0, y: 430), animated: true)
         default:
             fatalError()
         }
     }
 }
 
+//MARK:- TableView Delgate DataSource
 extension HotelDescriptionViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -52,7 +60,7 @@ extension HotelDescriptionViewController: UITableViewDelegate, UITableViewDataSo
         case 1:
             return 300
         default:
-            return 450
+            return 380
         }
     }
     
@@ -67,7 +75,8 @@ extension HotelDescriptionViewController: UITableViewDelegate, UITableViewDataSo
                 let cell = tableView.dequeueReusableCell(withIdentifier: HotelRestaurantImageTableViewCell.id, for: indexPath) as! HotelRestaurantImageTableViewCell
                 cell.selectionStyle = .none
                 cell.imagesUrl = self.hotel.hotelImageUrl
-                cell.hotelRestaurants = self
+                cell.isHotel = true
+                cell.hotelViewController = self
                 hotelImagesCell = cell
             }
             return hotelImagesCell
@@ -78,6 +87,8 @@ extension HotelDescriptionViewController: UITableViewDelegate, UITableViewDataSo
             cell.hotPrice = hotel.priceHotel
             cell.openingHours.text = hotel.openingHoursHotel
             cell.hotelId = hotel.id
+            cell.hotelRateCount = hotel.hotelRateCount
+            cell.hotelRatesSum = hotel.hotelRateSum
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: HotelRestaurantMapTableViewCell.id, for: indexPath) as! HotelRestaurantMapTableViewCell
