@@ -26,6 +26,7 @@ class HotelOverviewTableViewCell: UITableViewCell {
     var hotelId: String!
     var hotelRateCount: Int!
     var hotelRatesSum: Double!
+    var hotelRate: Double!
     
     lazy var cosmosView: CosmosView = {
         let view = CosmosView()
@@ -81,7 +82,11 @@ class HotelOverviewTableViewCell: UITableViewCell {
         })
         
         UIApplication.appDelegate.refHotels.child(hotelId).child("rateCount").setValue(hotelRateCount + 1)
-        let ratesSum = (String)(format: "%.4f", hotelRatesSum + cosmosView.rating)
-        UIApplication.appDelegate.refHotels.child(hotelId).child("rateSum").setValue(Double(ratesSum))
+        if hotelRate == 0.0 {
+            UIApplication.appDelegate.refHotels.child(hotelId).child("rate").setValue(cosmosView.rating)
+        } else {
+            let rateH = (String)(format: "%.4f", Double(hotelRate + cosmosView.rating) / Double(2))
+            UIApplication.appDelegate.refHotels.child(hotelId).child("rate").setValue(Double(rateH))
+        }
     }
 }
