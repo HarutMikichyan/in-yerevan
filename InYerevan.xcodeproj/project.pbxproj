@@ -61,7 +61,6 @@
 		86D1EF7A21E4C31400738187 /* EventCategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D1EF7521E4C31400738187 /* EventCategoriesViewController.swift */; };
 		86D1EF7F21E4C41300738187 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D1EF7C21E4C41200738187 /* HomeViewController.swift */; };
 		86D1EF8021E4C41300738187 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D1EF7D21E4C41200738187 /* ProfileViewController.swift */; };
-		86D1EF8121E4C41300738187 /* LoginRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D1EF7E21E4C41300738187 /* LoginRegistrationViewController.swift */; };
 		86D1EF8421E4C4C300738187 /* MainReserveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D1EF8321E4C4C300738187 /* MainReserveViewController.swift */; };
 		86D1EF8921E4C4D800738187 /* RestaurantDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D1EF8521E4C4D600738187 /* RestaurantDescriptionViewController.swift */; };
 		86D1EF8A21E4C4D800738187 /* HotelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D1EF8621E4C4D700738187 /* HotelsViewController.swift */; };
@@ -152,7 +151,6 @@
 		86D1EF7521E4C31400738187 /* EventCategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCategoriesViewController.swift; sourceTree = "<group>"; };
 		86D1EF7C21E4C41200738187 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		86D1EF7D21E4C41200738187 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		86D1EF7E21E4C41300738187 /* LoginRegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginRegistrationViewController.swift; sourceTree = "<group>"; };
 		86D1EF8321E4C4C300738187 /* MainReserveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainReserveViewController.swift; sourceTree = "<group>"; };
 		86D1EF8521E4C4D600738187 /* RestaurantDescriptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDescriptionViewController.swift; sourceTree = "<group>"; };
 		86D1EF8621E4C4D700738187 /* HotelsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotelsViewController.swift; sourceTree = "<group>"; };
@@ -463,7 +461,6 @@
 			children = (
 				D4E3835021EB2B3E00A5A89C /* RegistrationViewConrroller.swift */,
 				86D1EF7C21E4C41200738187 /* HomeViewController.swift */,
-				86D1EF7E21E4C41300738187 /* LoginRegistrationViewController.swift */,
 				86D1EF7D21E4C41200738187 /* ProfileViewController.swift */,
 			);
 			path = Home;
@@ -809,7 +806,6 @@
 				70E7072621E78E6F007CE603 /* HotelRestaurantImageTableViewCell.swift in Sources */,
 				708A692121E5421900932BFA /* HotelRestaurantMapTableViewCell.swift in Sources */,
 				D4C17DA121EC1348008FCA61 /* UIButton+RoundedCustomization.swift in Sources */,
-				86D1EF8121E4C41300738187 /* LoginRegistrationViewController.swift in Sources */,
 				708A692421E551FC00932BFA /* HotelTableViewCell.swift in Sources */,
 				D4C8F9DA21E4DB1500EF213C /* ChatViewController.swift in Sources */,
 				D484C16321ED3150006260B3 /* UIView+makeCircular.swift in Sources */,

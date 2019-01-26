@@ -65,8 +65,8 @@ class RestaurantOverviewTableViewCell: UITableViewCell {
             }
         })
         
-        UIApplication.appDelegate.refHotels.child(restaurantId).child("rateCount").setValue(restaurantRateCount + 1)
-        if restaurantRate == 0.0 {
+        UIApplication.appDelegate.refRestaurants.child(restaurantId).child("rateCount").setValue(restaurantRateCount + 1)
+        if restaurantRateCount == 0 {
             UIApplication.appDelegate.refRestaurants.child(restaurantId).child("rate").setValue(cosmosView.rating)
         } else {
             let rateR = (String)(format: "%.4f", restaurantRate + cosmosView.rating / Double(2))

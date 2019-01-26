@@ -40,25 +40,20 @@ class ReserveRegistrationViewController: UIViewController, UIImagePickerControll
     //MARK:- View Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.changeBackgroundToGradient(from: [.backgroundDarkSpruce, .backgroundDenimBlue])
         imageButton.layer.cornerRadius = 12
         imageButton.clipsToBounds = true
         registrationView.addSubview(hotelRegistrationView)
         hotelRegistrationView.frame = registrationView.bounds
-        
-        //registration View layer
-        registrationView.layer.cornerRadius = 12
-        registrationView.clipsToBounds = true
-        registrationView.layer.borderWidth = 2
-        registrationView.layer.borderColor = UIColor.blue.cgColor
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear( animated )
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         //registration View layer
         registrationView.layer.cornerRadius = 12
         registrationView.clipsToBounds = true
         registrationView.layer.borderWidth = 2
-        registrationView.layer.borderColor = UIColor.blue.cgColor
+        registrationView.layer.borderColor = UIColor.outgoingLavender.cgColor
     }
     
     // MARK:- Actions
