@@ -29,9 +29,9 @@ class RestaurantOverviewTableViewCell: UITableViewCell {
         view.settings.starSize = 32
         view.settings.starMargin = 8.8
         view.settings.fillMode = .precise
-        view.settings.filledBorderColor = .blue
-        view.settings.emptyBorderColor = .blue
-        view.settings.filledColor = .blue
+        view.settings.filledBorderColor = .outgoingLavender
+        view.settings.emptyBorderColor = .outgoingLavender
+        view.settings.filledColor = .outgoingLavender
         return view
     }()
     

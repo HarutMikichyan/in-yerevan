@@ -24,8 +24,10 @@ class MainReserveViewController: UIViewController {
     //MARK:- View Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Main"
-        view.changeBackgroundToGradient(from: [.black, .backgroundDarkSpruce, .backgroundDenimBlue])
+        title = "Resorts"
+        navigationController?.navigationBar.barStyle = .black
+        navigationController?.navigationBar.tintColor = .outgoingLavender
+        view.changeBackgroundToGradient(from: [.backgroundDarkSpruce, .backgroundDenimBlue])
         
         //register TableViewCell
         if User.isAdministration {

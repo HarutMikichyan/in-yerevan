@@ -17,6 +17,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="DDd-dc-V6t">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.4941176471" green="0.46274509800000002" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </navigationBar>
                     <connections>
                         <segue destination="1Fm-Gh-tdk" kind="relationship" relationship="rootViewController" id="CYQ-Aw-39x"/>
@@ -300,9 +301,10 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mzg-rg-Qry">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RestaurantTableViewCell" rowHeight="289" id="N7e-Sf-5a7" customClass="RestaurantTableViewCell" customModule="InYerevan" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RestaurantTableViewCell" rowHeight="289" id="N7e-Sf-5a7" customClass="RestaurantTableViewCell" customModule="InYerevan" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="289"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="N7e-Sf-5a7" id="Wjx-Ij-IZ1">
@@ -314,38 +316,42 @@
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iSy-gx-hbn">
                                                             <rect key="frame" x="8" y="8" width="329" height="200"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="200" id="hGF-EV-y9U"/>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="    " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mKn-ff-kzd">
                                                             <rect key="frame" x="8" y="220" width="200" height="32"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="32" id="R9u-CP-LVS"/>
                                                                 <constraint firstAttribute="width" constant="200" id="cep-z0-ls3"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                            <nil key="textColor"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ovp-TV-N7x">
                                                             <rect key="frame" x="257" y="220" width="80" height="30"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="30" id="Nzo-iV-1ev"/>
                                                                 <constraint firstAttribute="width" constant="80" id="XIO-HC-7ab"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                            <nil key="textColor"/>
+                                                            <color key="textColor" red="0.57109951972961426" green="0.42677909135818481" blue="0.64709573984146118" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="priceIcon" translatesAutoresizingMaskIntoConstraints="NO" id="tzQ-g3-YFj">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dram" translatesAutoresizingMaskIntoConstraints="NO" id="tzQ-g3-YFj">
                                                             <rect key="frame" x="218" y="220" width="31" height="30"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="31" id="pFk-dT-eL8"/>
                                                             </constraints>
                                                         </imageView>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstItem="tzQ-g3-YFj" firstAttribute="bottom" secondItem="Ovp-TV-N7x" secondAttribute="bottom" id="81Y-Lo-bSb"/>
                                                         <constraint firstItem="mKn-ff-kzd" firstAttribute="top" secondItem="iSy-gx-hbn" secondAttribute="bottom" constant="12" id="Bi0-gD-wU4"/>
@@ -360,6 +366,7 @@
                                                     </constraints>
                                                 </view>
                                             </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" secondItem="YNv-yU-BCj" secondAttribute="trailing" id="Gjx-fG-XSR"/>
                                                 <constraint firstItem="YNv-yU-BCj" firstAttribute="leading" secondItem="Wjx-Ij-IZ1" secondAttribute="leadingMargin" id="M9G-P1-QnR"/>
@@ -367,6 +374,7 @@
                                                 <constraint firstAttribute="bottomMargin" secondItem="YNv-yU-BCj" secondAttribute="bottom" id="ghr-lG-n3a"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="imageRestaurant" destination="iSy-gx-hbn" id="pW3-kM-HGm"/>
                                             <outlet property="nameRestaurant" destination="mKn-ff-kzd" id="GtI-n7-IZy"/>
@@ -380,7 +388,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="mzg-rg-Qry" firstAttribute="leading" secondItem="Kqe-6B-Jy4" secondAttribute="leading" id="DH5-pk-fah"/>
                             <constraint firstItem="Kqe-6B-Jy4" firstAttribute="trailing" secondItem="mzg-rg-Qry" secondAttribute="trailing" id="Ghw-aJ-Xcz"/>
@@ -408,13 +416,15 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Restaurantimages" translatesAutoresizingMaskIntoConstraints="NO" id="gDv-s7-coR">
                                 <rect key="frame" x="0.0" y="20" width="375" height="240"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="240" id="ucC-WA-LzF"/>
                                 </constraints>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ykj-Mx-TM4">
                                 <rect key="frame" x="0.0" y="288" width="375" height="379"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="JtH-Yi-Qqh" id="d2b-Ig-f4E"/>
                                     <outlet property="delegate" destination="JtH-Yi-Qqh" id="a4T-MI-m37"/>
@@ -422,17 +432,18 @@
                             </tableView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="rCR-lU-fte">
                                 <rect key="frame" x="0.0" y="260" width="375" height="29"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <segments>
                                     <segment title="Overview"/>
                                     <segment title="Map"/>
                                 </segments>
+                                <color key="tintColor" red="0.4941176471" green="0.46274509800000002" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <connections>
                                     <action selector="segmentControll:" destination="JtH-Yi-Qqh" eventType="valueChanged" id="o2Y-AQ-HVq"/>
                                 </connections>
                             </segmentedControl>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="gDv-s7-coR" firstAttribute="top" secondItem="TTQ-03-dcW" secondAttribute="top" id="1Og-ah-bc2"/>
                             <constraint firstItem="TTQ-03-dcW" firstAttribute="bottom" secondItem="Ykj-Mx-TM4" secondAttribute="bottom" id="Cc8-bu-mOO"/>
@@ -943,10 +954,11 @@
     </scenes>
     <resources>
         <image name="Restaurantimages" width="284" height="177"/>
+        <image name="dram" width="160" height="160"/>
         <image name="hotelImage1" width="550" height="366"/>
         <image name="mainImage" width="660" height="330"/>
-        <image name="priceIcon" width="198" height="198"/>
         <image name="resort" width="33" height="33"/>
         <image name="starIcon" width="28" height="27"/>
     </resources>
+    <color key="tintColor" red="0.534838339" green="0.44054401900000001" blue="0.69455901019999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
 </document>
