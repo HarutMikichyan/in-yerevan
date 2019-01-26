@@ -33,9 +33,9 @@ class HotelOverviewTableViewCell: UITableViewCell {
         view.settings.starSize = 32
         view.settings.starMargin = 8.8
         view.settings.fillMode = .precise
-        view.settings.filledBorderColor = .blue
-        view.settings.emptyBorderColor = .blue
-        view.settings.filledColor = .blue
+        view.settings.filledBorderColor = .outgoingLavender
+        view.settings.emptyBorderColor = .outgoingLavender
+        view.settings.filledColor = .outgoingLavender
         return view
     }()
     
@@ -81,8 +81,8 @@ class HotelOverviewTableViewCell: UITableViewCell {
             }
         })
         
-        UIApplication.appDelegate.refHotels.child(hotelId).child("rateCount").setValue(hotelRateCount + 1)
-        if hotelRate == 0.0 {
+        UIApplication.appDelegate.refHotels.child(hotelId).child("rateCount").setValue(hotelRateCount! + 1)
+        if hotelRateCount == 0 {
             UIApplication.appDelegate.refHotels.child(hotelId).child("rate").setValue(cosmosView.rating)
         } else {
             let rateH = (String)(format: "%.4f", Double(hotelRate + cosmosView.rating) / Double(2))

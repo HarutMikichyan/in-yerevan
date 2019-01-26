@@ -21,7 +21,7 @@
                 <subviews>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="ixa-F5-rqm">
                         <rect key="frame" x="0.0" y="8.5" width="451" height="130"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="130" id="qmG-gp-5Tk"/>
                         </constraints>
@@ -33,13 +33,14 @@
                         </collectionViewFlowLayout>
                     </collectionView>
                 </subviews>
-                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="ixa-F5-rqm" secondAttribute="trailing" id="XzQ-Ud-lPa"/>
                     <constraint firstItem="ixa-F5-rqm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="agu-Ve-Je5"/>
                     <constraint firstAttribute="bottom" secondItem="ixa-F5-rqm" secondAttribute="bottom" id="tzw-ch-FMg"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="collectionView" destination="ixa-F5-rqm" id="VIy-Gy-rpk"/>

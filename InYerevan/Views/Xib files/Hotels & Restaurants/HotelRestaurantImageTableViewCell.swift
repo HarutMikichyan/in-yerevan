@@ -55,10 +55,8 @@ extension HotelRestaurantImageTableViewCell: UICollectionViewDelegate, UICollect
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if isHotel {
             hotelViewController.imageHotel.image = hotelRestaurantImages[indexPath.row]
-//            hotelViewController.imageHotel.contentMode = 
         } else {
             restaurantViewController.restaurantImage.image = hotelRestaurantImages[indexPath.row]
-            restaurantViewController.restaurantImage.contentMode = .scaleAspectFill
         }
     }
     
