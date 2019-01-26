@@ -24,9 +24,9 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <visualEffectView opaque="NO" alpha="0.59999999999999998" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ngs-UV-Kv6">
-                    <rect key="frame" x="0.0" y="10" width="375" height="647"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="TM8-58-mgb">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </view>
                     <blurEffect style="light"/>
@@ -46,7 +46,7 @@
                         </button>
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="kgi-nj-kve">
                             <rect key="frame" x="0.0" y="388" width="375" height="259"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="backgroundColor" red="0.066666666666666666" green="0.10980392156862745" blue="0.1803921568627451" alpha="0.60501391267123283" colorSpace="custom" customColorSpace="sRGB"/>
                             <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="pr5-ol-Pf1">
                                 <size key="itemSize" width="50" height="50"/>
                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -75,13 +75,13 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="VFj-XL-CPn" secondAttribute="trailing" id="0r8-Lm-1FD"/>
                 <constraint firstAttribute="bottom" secondItem="VFj-XL-CPn" secondAttribute="bottom" id="2Q6-4T-b7M"/>
-                <constraint firstItem="Ngs-UV-Kv6" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="EKb-n0-OPh"/>
                 <constraint firstItem="VFj-XL-CPn" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="GAG-z3-skY"/>
                 <constraint firstItem="kgi-nj-kve" firstAttribute="height" secondItem="fnl-2z-Ty3" secondAttribute="height" multiplier="1/2.5" id="QIH-cL-DsH"/>
-                <constraint firstItem="Ngs-UV-Kv6" firstAttribute="width" secondItem="fnl-2z-Ty3" secondAttribute="width" id="eWS-hA-i6k"/>
+                <constraint firstItem="Ngs-UV-Kv6" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="YYh-FZ-8Mk"/>
+                <constraint firstItem="Ngs-UV-Kv6" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="fZp-eP-td9"/>
                 <constraint firstItem="VFj-XL-CPn" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="kNN-s6-27t"/>
-                <constraint firstItem="Ngs-UV-Kv6" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="pzJ-ox-Yid"/>
-                <constraint firstItem="Ngs-UV-Kv6" firstAttribute="height" secondItem="fnl-2z-Ty3" secondAttribute="height" id="qpR-cg-MCc"/>
+                <constraint firstItem="Ngs-UV-Kv6" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="stQ-r9-EqT"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Ngs-UV-Kv6" secondAttribute="bottom" id="w8h-Gh-S9M"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
         </view>

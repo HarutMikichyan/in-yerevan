@@ -27,6 +27,7 @@ class DatePickerInputTextField: UITextField {
         disableUserManuallyInput()
         inputView = datePicker
         let doneButton = DoneButton()
+        
         doneButton.addTarget(self, action: #selector(endEditing(_:)), for: .touchUpInside)
         inputAccessoryView = doneButton
         datePicker.datePickerMode = .dateAndTime

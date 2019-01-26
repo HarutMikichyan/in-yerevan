@@ -50,7 +50,7 @@ class TopHotelTableViewCell: UITableViewCell {
                     }
                     self.topHotelCollectionView.reloadData()
                 }
-            }
+            } 
         }
     }
     

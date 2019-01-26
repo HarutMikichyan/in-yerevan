@@ -15,6 +15,7 @@ class EventsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.changeBackgroundToGradient(from: [.backgroundDarkSpruce, .backgroundDenimBlue])
 //        if let result = UIApplication.appDelegate.dataManager.fetchAllEventsFromNowTill(date: Date(), for: Category(context: NSManagedObjectContext())) {
 //            events = result
 //        } else {

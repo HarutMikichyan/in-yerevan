@@ -16,12 +16,19 @@ class EventCategoiresViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Categories"
-    
+        navigationController?.navigationBar.tintColor = .outgoingLavender
+        navigationController?.navigationBar.barStyle = .black 
+        view.changeBackgroundToGradient(from: [.backgroundDarkSpruce, .backgroundDenimBlue])
+        collectionView.backgroundColor = .clear
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.isNavigationBarHidden = true 
+        if !User.isAdministration {
+            navigationController?.isNavigationBarHidden = true 
+        } else {
+            navigationController?.isNavigationBarHidden = false 
+        }
         // Won't show category with unavailable events 
         guard let categories = UIApplication.dataManager.fetchCategories() else {
             let alert = UIAlertController(title: "Sorry", message: "No available Data, try again", preferredStyle: .alert)
@@ -33,11 +40,18 @@ class EventCategoiresViewController: UIViewController {
         for category in categories {
             if category.events!.count > 0 {
                 eventCategories.append(category)
-                collectionView.reloadData()
+               
             }
         } 
+         collectionView.reloadData()
        
     }
+    
+    @IBAction func addNewEvent() {
+        let vc = storyboard?.instantiateViewController(withIdentifier: NewEventViewController.id)
+        navigationController?.pushViewController(vc!, animated: true)
+    }
+    
     
 }
 extension EventCategoiresViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -48,7 +62,7 @@ extension EventCategoiresViewController: UICollectionViewDelegate, UICollectionV
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let count: CGFloat = 2
         let width: CGFloat =  collectionView.bounds.width / count - 16
-        var height: CGFloat = (collectionView.bounds.width / count - 16 ) * 1.5
+        let height: CGFloat = (collectionView.bounds.width / count - 16 ) * 1.5
         return CGSize(width: width, height: height)
     }
     
@@ -56,10 +70,24 @@ extension EventCategoiresViewController: UICollectionViewDelegate, UICollectionV
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EventCategoryCollectionViewCell.id, for: indexPath) as! EventCategoryCollectionViewCell
         let category = eventCategories[indexPath.row]
         //TODO: Fetch Picture from first event and show it!
-        //let picture = (category.events?.allObjects.first as? Event)?.pictureURL
-        cell.prepareCellWith(label: category.name!, background: #imageLiteral(resourceName: "Technology"))
-        return cell
+        if let  firstEvent = (category.events!.allObjects.first as? Event) {
+            if let images = firstEvent.images?.allObjects as? [String] {
+                if let imageURL = images.first {
+                    UIApplication.dataManager.downloadImage(at: URL.init(string: imageURL)!, in: firstEvent) { (image) in
+                        if let image = image {
+                            cell.prepareCellWith(label: category.name!, background: image)
+                        } else { 
+                            cell.prepareCellWith(label: category.name!, background: #imageLiteral(resourceName: "Main-Yerevan"))
+                        }
+                    }
+                }
+            }
+        }
         
+         
+       
+        
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

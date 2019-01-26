@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 import Firebase
-import FirebaseFirestore
+//import FirebaseFirestore
 
 class DataManager {
     private let persistentController: PersistentController
@@ -26,10 +26,15 @@ class DataManager {
     }
     
     // MARK: - Event
-    func saveEvent(title: String, date: Date, category: String, pictureURLs: [String], details: String, coordinates: (lat: Double, long: Double)) {
-        let fireBaseEvent = FirebaseEvent(date: date, details: details, pictureURLs: pictureURLs, title: title, company: User.email, visitorsCount: 0, latitude: coordinates.lat, longitude: coordinates.long, category: category)
-        saveEventsInServer(event: fireBaseEvent)
-        fetchEventsFromServerSide()
+    func saveEvent(title: String, date: Date, category: String, pictures: [UIImage], details: String, coordinates: (lat: Double, long: Double)) {
+        
+        saveEventImages(pictures, title: title) { (urls) in
+            guard let urls = urls else {return}
+            let fireBaseEvent = FirebaseEvent(date: date, details: details, pictureURLs: urls, title: title, company: User.email, visitorsCount: 0, latitude: coordinates.lat, longitude: coordinates.long, category: category)
+            saveEventsInServer(event: fireBaseEvent)
+            fetchEventsFromServerSide()
+        }
+        
     }
     
     func fetchAllEventsFromNowTill(date: Date, for category: Category) -> [Event] {
@@ -67,6 +72,28 @@ class DataManager {
         
     }
     
+    func newCategoryWith(name:String, completion: (Category) -> Void) {
+        let context = persistentController.viewContext 
+        let category = requestCategoryWith(name: name, in: context)
+        completion(category)
+    }
+    
+    func downloadImage(at url: URL, in event: Event, completion: @escaping (UIImage?) -> Void) {
+        let storageReferance = Storage.storage().reference().child("event/\(User.email)")
+        let ref = Storage.storage().reference(forURL: url.absoluteString)
+        let megaByte = Int64(1 * 1024 * 1024)
+        
+        
+        ref.getData(maxSize: megaByte) { data, error in
+            guard let imageData = data else {
+                completion(nil)
+                return
+            }
+            
+            completion(UIImage(data: imageData))
+        }
+    }
+    
     //Private Interface
     //  Write only functions which will support your public functions 
     
@@ -80,6 +107,7 @@ class DataManager {
         }
         let category = Category(context: context)
         category.name = name 
+        persistentController.saveContext(context)
         return category
     }
     
@@ -136,8 +164,41 @@ class DataManager {
         event.location = location
         event.category = requestCategoryWith(name: category, in: context)
         event.organizer = requestOrganizerWith(name: company, in: context)
+        for url in pictureURLs {
+            let pictureURL = Picture(context: context)
+            pictureURL.url = url
+            pictureURL.event = event
+        }
         persistentController.saveContext(context)
         persistentController.viewContext.refreshAllObjects()
+    }
+    
+    private func saveEventImages(_ images: [UIImage], title: String, completion: ([String]?) -> Void ) {
+        let storageReferance = Storage.storage().reference().child("event/\(User.email)")
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/jpeg"
+        var urls = [String]()
+        
+        for index in 0..<images.count {
+            guard let scaledImage = images[index].scaledToSafeUploadSize,
+                let data = scaledImage.jpegData(compressionQuality: 0.4) else {
+                    completion(nil)
+                    return
+            }
+            storageReferance.child(title).child("\(index)").putData(data, metadata: metadata) { (metadata, error) in
+                if error == nil {
+                    storageReferance.downloadURL { (url, error) in
+                        guard let downloadURL = url else {
+                            return
+                        }
+                        urls.append(downloadURL.absoluteString)
+                    }
+                } else {
+                    print(error)
+                }   
+            }           
+        }
+        completion(urls)
     }
     
     private func eraseLocalCache() {
@@ -162,6 +223,6 @@ class DataManager {
             print("Error while erasing data DataManager row 134")
         }
     }
-
+    
     
 }
