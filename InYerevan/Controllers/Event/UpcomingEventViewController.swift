@@ -38,7 +38,7 @@ extension UpcomingEventViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: UpcomingTableViewCell.id, for: indexPath) as! UpcomingTableViewCell
-        cell.prepareCellWith(label: timeGroup[indexPath.row], background: #imageLiteral(resourceName: "Activity"))
+        cell.prepareCellWith(label: timeGroup[indexPath.row], background: #imageLiteral(resourceName: "Cinema"))
         return cell
         
     }

@@ -11,6 +11,7 @@ import UIKit
 class EventCategoiresViewController: UIViewController {
     static let id = "EventCategoiresViewController"
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var addEventButton: UIBarButtonItem!
     var eventCategories = [Category]()
     
     override func viewDidLoad() {
@@ -25,9 +26,11 @@ class EventCategoiresViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if !User.isAdministration {
-            navigationController?.isNavigationBarHidden = true 
+            addEventButton.isEnabled = false 
+            addEventButton.tintColor = .clear
         } else {
-            navigationController?.isNavigationBarHidden = false 
+            addEventButton.isEnabled = true 
+            addEventButton.tintColor = UIColor.outgoingLavender
         }
         // Won't show category with unavailable events 
         guard let categories = UIApplication.dataManager.fetchCategories() else {
@@ -77,7 +80,7 @@ extension EventCategoiresViewController: UICollectionViewDelegate, UICollectionV
                         if let image = image {
                             cell.prepareCellWith(label: category.name!, background: image)
                         } else { 
-                            cell.prepareCellWith(label: category.name!, background: #imageLiteral(resourceName: "Main-Yerevan"))
+                            cell.prepareCellWith(label: category.name!, background: #imageLiteral(resourceName: "Activity"))
                         }
                     }
                 }

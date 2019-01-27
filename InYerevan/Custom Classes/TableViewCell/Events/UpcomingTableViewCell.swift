@@ -14,9 +14,12 @@ static let id = "UpcomingTableViewCell"
     
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var whenLabel: UILabel!
+    @IBOutlet weak var blur: UIVisualEffectView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        blur.layer.cornerRadius = 12
+        blur.layer.masksToBounds = true
         backgroundImageView.layer.cornerRadius = 12
         backgroundImageView.layer.masksToBounds = true
     }
