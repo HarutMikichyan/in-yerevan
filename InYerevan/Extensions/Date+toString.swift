@@ -51,4 +51,24 @@ extension Date {
         return self + (60 * 60 * 24 * 30 * 12)
     }
     
+    static func weeakdayByString(numberDay: Int) -> String {
+        switch numberDay {
+        case 1:
+            return "Sun"
+        case 2:
+            return "Mon"
+        case 3:
+            return "Tue"
+        case 4:
+            return "Wed"
+        case 5:
+            return "Thu"
+        case 6:
+            return "Fri"
+        case 7:
+            return "Sut"
+        default:
+            return ""
+        }
+    }
 }

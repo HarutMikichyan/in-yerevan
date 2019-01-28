@@ -9,42 +9,76 @@
 import UIKit
 import Firebase
 import FirebaseFirestore
+import GoogleMobileAds
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource  {
 
     // MARK:- INTERFACE BUILDER OUTLETS
 
     @IBOutlet weak var courseUSD: UILabel!
     @IBOutlet weak var courseRUR: UILabel!
     @IBOutlet weak var courseEUR: UILabel!
+    @IBOutlet weak var weatherIcon: UIImageView!
     @IBOutlet weak var weatherYerevan: UILabel!
+    @IBOutlet weak var weatherTemperature: UILabel!
     @IBOutlet weak var profileButton: UIButton!
     @IBOutlet weak var onlineSupportButton: UIButton!
-    
-    // MARK:- OTHER PROPERTIES
+    @IBOutlet weak var eventCollection: UICollectionView!
+    @IBOutlet var bannerView: GADBannerView!
 
+    // MARK:- OTHER PROPERTIES
+    
+    private var imageHotels = [UIImage]()
+    private var imageEvents = [UIImage]()
+    private var imageRestaurants = [UIImage]()
     private var name = User.email
     private var channels = [Channel]()
+    private var hotels = [HotelsType]()
     private let db = Firestore.firestore()
     private var channelListener: ListenerRegistration?
     private var channelReference: CollectionReference {
         return db.collection("channels")
     }
-
+    
+    
     // MARK:- VIEW LIFE CYCLE METHODS
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        // In this case, we instantiate the banner with desired ad size.
+        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
+        
+        DataProvider.object.getWeather { (weather, bool) in
+            if bool {
+                DispatchQueue.main.async {
+                    let weekday = Calendar.current.component(.weekday, from: Date())
+                    
+                    self.weatherTemperature.text = "\(Int(weather!.temperatureC!))"
+                    self.weatherIcon.image = weather!.icon
+                    self.weatherYerevan.text = "C \(Date.weeakdayByString(numberDay: weekday))"
+                }
+            } else {
+                print("Error Object is Nil")
+            }
+        }
+        
         navigationItem.largeTitleDisplayMode = .never
         navigationController?.navigationBar.barStyle = .black
         navigationController?.navigationBar.tintColor = .outgoingLavender
-
+        
+        //        eventCollection.delegate = self
+        //        eventCollection.dataSource = self
+        //        eventCollection.backgroundColor = UIColor.clear
+        
         profileButton.layer.cornerRadius = 12
         profileButton.layer.masksToBounds = true
-
+        
         onlineSupportButton.layer.cornerRadius = 12
         onlineSupportButton.layer.masksToBounds = true
-
+        
         view.changeBackgroundToGradient(from: [.backgroundDarkSpruce, .backgroundDenimBlue])
         
         channelListener = channelReference.addSnapshotListener { querySnapshot, error in
@@ -60,7 +94,7 @@ class HomeViewController: UIViewController {
     }
     
     // MARK:- ACTIONS
-
+    
     @IBAction func onlineSupportAction() {
         let sb = UIStoryboard(name: "Home", bundle: nil)
         if User.isAdministration {
@@ -83,8 +117,34 @@ class HomeViewController: UIViewController {
         }
     }
     
+    // MARK:- UICollectionViewDelegate AND UICollectionViewDataSource METHODS
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = UICollectionViewCell()
+        return cell
+    }
+    
     // MARK:- PRIVATE METHODS
-
+    
+    private func downloadImage(at urls: String, completion: @escaping (UIImage?) -> Void) {
+        let ref = Storage.storage().reference(forURL: urls)
+        let megaByte = Int64(1 * 1024 * 1024)
+        ref.getData(maxSize: megaByte) { data, error in
+            guard let imageData = data else {
+                completion(nil)
+                return
+            }
+            
+            DispatchQueue.main.async {
+                completion(UIImage(data: imageData))
+            }
+        }
+    }
+    
     private func addChannelToTable(_ channel: Channel) {
         guard !channels.contains(channel) else { return }
         channels.append(channel)

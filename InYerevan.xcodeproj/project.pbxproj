@@ -90,6 +90,9 @@
 		D4C8F9E321E4DBFE00EF213C /* String+Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C8F9E021E4DBFE00EF213C /* String+Emoji.swift */; };
 		D4C8F9E421E4DBFE00EF213C /* UIImage+Scaling.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C8F9E121E4DBFE00EF213C /* UIImage+Scaling.swift */; };
 		D4E3835121EB2B3E00A5A89C /* RegistrationViewConrroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E3835021EB2B3E00A5A89C /* RegistrationViewConrroller.swift */; };
+		F952233321FF0FB500F98C82 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F952233221FF0FB500F98C82 /* DataProvider.swift */; };
+		F952233521FF111000F98C82 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = F952233421FF111000F98C82 /* Weather.swift */; };
+		F952233821FF11E200F98C82 /* HomeTodayEventCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F952233721FF11E200F98C82 /* HomeTodayEventCollectionViewCell.swift */; };
 		F9E58D8F21E604F700D0A88C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E58D8E21E604F700D0A88C /* User.swift */; };
 /* End PBXBuildFile section */
 
@@ -181,6 +184,9 @@
 		D4C8F9E021E4DBFE00EF213C /* String+Emoji.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Emoji.swift"; sourceTree = "<group>"; };
 		D4C8F9E121E4DBFE00EF213C /* UIImage+Scaling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Scaling.swift"; sourceTree = "<group>"; };
 		D4E3835021EB2B3E00A5A89C /* RegistrationViewConrroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewConrroller.swift; sourceTree = "<group>"; };
+		F952233221FF0FB500F98C82 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
+		F952233421FF111000F98C82 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		F952233721FF11E200F98C82 /* HomeTodayEventCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTodayEventCollectionViewCell.swift; sourceTree = "<group>"; };
 		F9E58D8E21E604F700D0A88C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F9E58D9021E605F300D0A88C /* InYerevan.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = InYerevan.entitlements; sourceTree = "<group>"; };
 		FB310A817D54909FA5104329 /* Pods-InYerevan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InYerevan.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InYerevan/Pods-InYerevan.debug.xcconfig"; sourceTree = "<group>"; };
@@ -247,6 +253,7 @@
 				F9E58D9021E605F300D0A88C /* InYerevan.entitlements */,
 				86D1EF1E21E4B5C900738187 /* AppDelegate.swift */,
 				86D1EF1D21E4B5C900738187 /* DataManager.swift */,
+				F952233221FF0FB500F98C82 /* DataProvider.swift */,
 				86D1EF9F21E4D06600738187 /* In_Yerevan.xcdatamodeld */,
 				86D1EF0D21E4B48E00738187 /* Controllers */,
 				86D1EF1121E4B4E400738187 /* Custom Classes */,
@@ -292,6 +299,7 @@
 				D4C8F9D121E4DAD300EF213C /* Message.swift */,
 				708A692721E6AFD100932BFA /* HotelsRestaurants.swift */,
 				F9E58D8E21E604F700D0A88C /* User.swift */,
+				F952233421FF111000F98C82 /* Weather.swift */,
 				86043CBF21EA1ADF001C78F3 /* Event */,
 			);
 			path = Models;
@@ -442,6 +450,7 @@
 		86D1EF6821E4C08100738187 /* CollectionViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				F952233621FF11B800F98C82 /* Home */,
 				86D1EF9221E4C68000738187 /* Hotels & Restaurants */,
 				86D1EF6F21E4C0BF00738187 /* Events */,
 			);
@@ -557,6 +566,14 @@
 				D4C8F9D921E4DB1400EF213C /* UserListViewController.swift */,
 			);
 			path = "Customer Support";
+			sourceTree = "<group>";
+		};
+		F952233621FF11B800F98C82 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				F952233721FF11E200F98C82 /* HomeTodayEventCollectionViewCell.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -753,6 +770,7 @@
 				708A692621E557F600932BFA /* RestaurantTableViewCell.swift in Sources */,
 				86D1EF1B21E4B57100738187 /* MapInputTextField.swift in Sources */,
 				86D1EF3821E4B83000738187 /* PHPhotoLibrary+ AuthRequest.swift in Sources */,
+				F952233821FF11E200F98C82 /* HomeTodayEventCollectionViewCell.swift in Sources */,
 				86DD3AB221FC5B63005CD785 /* Date+toString.swift in Sources */,
 				86D1EF1F21E4B5CA00738187 /* DataManager.swift in Sources */,
 				86D1EF3A21E4B83000738187 /* CLLocationManager+ AuthRequest.swift in Sources */,
@@ -778,6 +796,7 @@
 				D484C15B21EC961E006260B3 /* UIView+GradientBackground.swift in Sources */,
 				86D1EFA121E4D06700738187 /* In_Yerevan.xcdatamodeld in Sources */,
 				D4C17D9B21EC07DF008FCA61 /* UIView+Constraints.swift in Sources */,
+				F952233321FF0FB500F98C82 /* DataProvider.swift in Sources */,
 				D4C8F9D521E4DAD400EF213C /* Channel.swift in Sources */,
 				86D1EF6E21E4C0B500738187 /* NewEventCollectionViewCellWithPicture.swift in Sources */,
 				70E7072E21E79034007CE603 /* HotelRestaurantCollectionViewCell.swift in Sources */,
@@ -795,6 +814,7 @@
 				86D1EF9E21E4D00400738187 /* PersistentController.swift in Sources */,
 				86D1EF6D21E4C0B500738187 /* EventPictureCollectionViewCell.swift in Sources */,
 				D4C8F9E321E4DBFE00EF213C /* String+Emoji.swift in Sources */,
+				F952233521FF111000F98C82 /* Weather.swift in Sources */,
 				F9E58D8F21E604F700D0A88C /* User.swift in Sources */,
 				86D1EF8B21E4C4D800738187 /* RestaurantsViewController.swift in Sources */,
 				86D1EF8421E4C4C300738187 /* MainReserveViewController.swift in Sources */,
@@ -959,16 +979,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4EJQ3DNKGU;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/InYerevan/Supporting FIles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = lllloqshGroup.InYerevan;
+				PRODUCT_BUNDLE_IDENTIFIER = loqshGroup.InYerevan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ENABLE_BATCH_MODE = No;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
@@ -982,16 +1003,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4EJQ3DNKGU;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/InYerevan/Supporting FIles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = lllloqshGroup.InYerevan;
+				PRODUCT_BUNDLE_IDENTIFIER = loqshGroup.InYerevan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ENABLE_BATCH_MODE = No;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
