@@ -13,6 +13,7 @@ class RestaurantDescriptionViewController: UIViewController {
     //MARK:- Interface Builder Outlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var restaurantImage: UIImageView!
+    @IBOutlet weak var restaurantName: UILabel!
     
     //MARK:- Other Properties
     var restaurantImageCell: HotelRestaurantImageTableViewCell!
@@ -22,6 +23,7 @@ class RestaurantDescriptionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.changeBackgroundToGradient(from: [.backgroundDarkSpruce, .backgroundDenimBlue])
+        restaurantName.text = restaurant.restaurantName
         
         //register TableViewCell
         tableView.register(UINib(nibName: HotelRestaurantImageTableViewCell.id, bundle: nil), forCellReuseIdentifier: HotelRestaurantImageTableViewCell.id)

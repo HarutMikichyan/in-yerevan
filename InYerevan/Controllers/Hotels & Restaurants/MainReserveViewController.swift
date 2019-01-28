@@ -127,7 +127,7 @@ extension MainReserveViewController: UITableViewDelegate, UITableViewDataSource 
             return 200
         default:
             if User.isAdministration {
-                return 60
+                return 81
             }
             return 0
         }
@@ -176,7 +176,7 @@ extension MainReserveViewController: UITableViewDelegate, UITableViewDataSource 
         tableView.deselectRow(at: indexPath, animated: true)
         if User.isAdministration {
             switch indexPath.row {
-            case 1:
+            case 3:
                 let storyboard = UIStoryboard(name: "HotelsAndRestaurants", bundle: nil)
                 let vc =  storyboard.instantiateViewController(withIdentifier: "ReserveRegistrationViewControllerID")
                 

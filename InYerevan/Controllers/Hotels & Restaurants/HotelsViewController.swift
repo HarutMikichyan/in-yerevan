@@ -24,7 +24,7 @@ class HotelsViewController: UIViewController {
         title = "Hotels"
         view.changeBackgroundToGradient(from: [.backgroundDarkSpruce, .backgroundDenimBlue])
         
-        UIApplication.appDelegate.refHotels.queryOrdered(byChild: "rate").observe(.value) { (snapshot) in
+        UIApplication.appDelegate.refHotels.observe(.value) { (snapshot) in
             if snapshot.childrenCount > 0 {
                 self.hotelsList.removeAll()
                 for hot in snapshot.children.allObjects as! [DataSnapshot] {
@@ -46,6 +46,7 @@ class HotelsViewController: UIViewController {
                     self.hotelsList.append(hotels)
                 }
             }
+            self.hotelsList.sort()
             self.tableView.reloadData()
         }
     }
@@ -86,7 +87,7 @@ extension HotelsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 270
+        return 275
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -24,7 +24,7 @@ class RestaurantsViewController: UIViewController {
         title = "Restaurants"
         view.changeBackgroundToGradient(from: [.backgroundDarkSpruce, .backgroundDenimBlue])
         
-        UIApplication.appDelegate.refRestaurants.queryOrdered(byChild: "rate").observe(.value) { (snapshot) in
+        UIApplication.appDelegate.refRestaurants.observe(.value) { (snapshot) in
             if snapshot.childrenCount > 0 {
                 self.restaurantsList.removeAll()
                 for res in snapshot.children.allObjects as! [DataSnapshot] {
@@ -45,8 +45,9 @@ class RestaurantsViewController: UIViewController {
                     self.restaurantsList.append(restaurants)
                 }
             }
-            self.tableView.reloadData()
         }
+        self.restaurantsList.sort()
+        self.tableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -84,7 +85,7 @@ extension RestaurantsViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 270
+        return 275
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -25,7 +25,7 @@ class TopHotelTableViewCell: UITableViewCell {
         topHotelCollectionView.delegate = self
         topHotelCollectionView.dataSource = self
         self.backgroundColor = .clear
-        UIApplication.appDelegate.refHotels.queryOrdered(byChild: "rate").observe(.value) { (snapshot) in
+        UIApplication.appDelegate.refHotels.observe(.value) { (snapshot) in
             if snapshot.childrenCount > 0 {
                 self.hotels.removeAll()
                 for hot in snapshot.children.allObjects as! [DataSnapshot] {
@@ -48,9 +48,10 @@ class TopHotelTableViewCell: UITableViewCell {
                     if self.hotels.count == 10 {
                         break
                     }
-                    self.topHotelCollectionView.reloadData()
                 }
-            } 
+            }
+            self.hotels.sort()
+            self.topHotelCollectionView.reloadData()
         }
     }
     

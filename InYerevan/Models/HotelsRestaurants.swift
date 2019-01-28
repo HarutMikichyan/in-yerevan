@@ -35,3 +35,15 @@ struct RestaurantsType {
     var restaurantImageUrl: [String]
     var restaurantRate: Double
 }
+
+extension HotelsType: Comparable {
+    static func < (lhs: HotelsType, rhs: HotelsType) -> Bool {
+        return lhs.hotelRate > rhs.hotelRate
+    }
+}
+
+extension RestaurantsType: Comparable {
+    static func < (lhs: RestaurantsType, rhs: RestaurantsType) -> Bool {
+        return lhs.restaurantRate > rhs.restaurantRate
+    }
+}

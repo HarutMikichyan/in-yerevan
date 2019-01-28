@@ -17,10 +17,10 @@ class HotelRestaurantImageTableViewCell: UITableViewCell {
     
     //MARK:- Other Properties
     var imagesUrl = [String]()
-    var hotelRestaurantImages = [UIImage]()
     var isHotel: Bool!
     var hotelViewController: HotelDescriptionViewController!
     var restaurantViewController: RestaurantDescriptionViewController!
+    var hotelRestaurantImages = [UIImage]()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -65,7 +65,7 @@ extension HotelRestaurantImageTableViewCell: UICollectionViewDelegate, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+            return 3
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

@@ -83,7 +83,8 @@ class HotelOverviewTableViewCell: UITableViewCell {
         
         UIApplication.appDelegate.refHotels.child(hotelId).child("rateCount").setValue(hotelRateCount! + 1)
         if hotelRateCount == 0 {
-            UIApplication.appDelegate.refHotels.child(hotelId).child("rate").setValue(cosmosView.rating)
+            let rateH = (String)(format: "%.4f", cosmosView.rating)
+            UIApplication.appDelegate.refHotels.child(hotelId).child("rate").setValue(Double(rateH))
         } else {
             let rateH = (String)(format: "%.4f", Double(hotelRate + cosmosView.rating) / Double(2))
             UIApplication.appDelegate.refHotels.child(hotelId).child("rate").setValue(Double(rateH))

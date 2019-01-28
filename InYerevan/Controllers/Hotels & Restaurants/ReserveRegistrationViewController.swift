@@ -36,6 +36,7 @@ class ReserveRegistrationViewController: UIViewController, UIImagePickerControll
     //MARK:- Other Properties
     private let refStorage = Storage.storage().reference()
     private var images = [UIImage]()
+    private var isSubView = true
     
     //MARK:- View Life Cycle Methods
     override func viewDidLoad() {
@@ -43,8 +44,6 @@ class ReserveRegistrationViewController: UIViewController, UIImagePickerControll
         view.changeBackgroundToGradient(from: [.backgroundDarkSpruce, .backgroundDenimBlue])
         imageButton.layer.cornerRadius = 12
         imageButton.clipsToBounds = true
-        registrationView.addSubview(hotelRegistrationView)
-        hotelRegistrationView.frame = registrationView.bounds
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -54,6 +53,15 @@ class ReserveRegistrationViewController: UIViewController, UIImagePickerControll
         registrationView.clipsToBounds = true
         registrationView.layer.borderWidth = 2
         registrationView.layer.borderColor = UIColor.outgoingLavender.cgColor
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if isSubView {
+            registrationView.addSubview(hotelRegistrationView)
+            hotelRegistrationView.frame = registrationView.bounds
+            isSubView = false
+        }
     }
     
     // MARK:- Actions
