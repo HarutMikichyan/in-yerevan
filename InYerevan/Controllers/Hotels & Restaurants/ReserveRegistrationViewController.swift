@@ -131,7 +131,6 @@ class ReserveRegistrationViewController: UIViewController, UIImagePickerControll
                         if urls.count == self.images.count {
                             //RealTime database
                             let restaurant: [String: Any] = ["id": keyRestaurant, "restaurantName": self.restaurantName.text!, "restaurantPhoneNumber": self.restaurantPhoneNumber.text!, "openingHoursRestaurant": self.openingHoursRestaurant.text!, "restaurantLocationLong": resLoc.long, "restaurantLocationLat": resLoc.lat, "priceRestaurant": priceRes, "rateSum": rateSum, "rateCount": rateCount , "imageUrls": urls, "rate": rate]
-                            
                             UIApplication.appDelegate.refRestaurants.child(keyRestaurant).setValue(restaurant)
                         }
                     }
