@@ -32,7 +32,7 @@ final class DataProvider {
                                 let wobjectWather = ((object["weather"] as! [Any])[0] as! [String: Any])
                                 
                                 weather.temperatureK = objectMain["temp"] as? Double
-                                weather.temperatureC = 273.15 - weather.temperatureK!
+                                weather.temperatureC = weather.temperatureK! - 273.15
                                 weather.icon = self.getWeatherIcon(iconName: wobjectWather["icon"] as! String)
                                 weather.weatherDescription = wobjectWather["description"] as? String
                                 

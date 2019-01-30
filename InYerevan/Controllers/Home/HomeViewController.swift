@@ -40,6 +40,14 @@ class HomeViewController: UIViewController {
         return db.collection("channels")
     }
     
+    // MARK:- ALERT PROPERTIES
+    
+    var errorTextField: UITextField!
+    var newPassrodTextField: UITextField!
+    var oldPasswordTextField: UITextField!
+    var repeatNewPasswordTextField: UITextField!
+    var alertChangeButton: UIAlertAction!
+
     // MARK:- VIEW LIFE CYCLE METHODS
 
     override func viewDidLoad() {
@@ -106,21 +114,53 @@ class HomeViewController: UIViewController {
     
     @IBAction func changePasswordAction(_ sender: Any) {
         let blurredSubview = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+        if alertChangeButton != nil {
+            alertChangeButton.isEnabled = false
+        }
         
         let alert = UIAlertController(title: "Reset Password Error", message: "Text field is empty", preferredStyle: .alert)
         alert.view.tintColor = .outgoingLavender
         alert.view.backgroundColor = .black
         alert.addTextField { (UITextField) in
-            
+            self.oldPasswordTextField = UITextField
+            self.oldPasswordTextField.delegate = self
+            UITextField.backgroundColor = UIColor.clear
+            UITextField.placeholder = "Old Password"
         }
-        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {(UIAlertAction) in
-            
-            // TO DO:-
+        alert.addTextField { (UITextField) in
+            self.newPassrodTextField = UITextField
+            self.newPassrodTextField.delegate = self
+            UITextField.isSecureTextEntry = true
 
-        }))
+            UITextField.backgroundColor = UIColor.clear
+            UITextField.placeholder = "New Password"
+        }
+        alert.addTextField { (UITextField) in
+            self.repeatNewPasswordTextField = UITextField
+            self.repeatNewPasswordTextField.delegate = self
+            UITextField.isSecureTextEntry = true
+
+            UITextField.backgroundColor = UIColor.clear
+            UITextField.placeholder = "Repeat New Password"
+        }
+        alertChangeButton = UIAlertAction(title: "Change", style: .default, handler: {(UIAlertAction) in
+            
+            // TO DO:
+    
+        })
+        alert.addAction(alertChangeButton)
+        alertChangeButton.isEnabled = false
         alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: {(_) in
             blurredSubview.removeFromSuperview()
         }))
+        
+        alert.addTextField { (UITextField) in
+            UITextField.backgroundColor = UIColor.clear
+            UITextField.isHidden = true
+            UITextField.isEnabled = false
+            UITextField.textColor = UIColor.red
+            self.errorTextField = UITextField
+        }
         
         UIApplication.shared.keyWindow!.rootViewController?.present(alert, animated: true, completion: nil)
     }
@@ -185,7 +225,59 @@ class HomeViewController: UIViewController {
     }
 }
 
-extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource  {
+extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UITextFieldDelegate  {
+    // MARK:- UITextFieldDelegate
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if textField == oldPasswordTextField {
+            if oldPasswordTextField.text!.isEmpty {
+                errorTextField.isHidden = false
+                errorTextField.text = "Old password field is empty"
+                return false
+            }
+            alertChangButtonEnabled()
+            return true
+        }
+        
+        if textField == newPassrodTextField {
+            if newPassrodTextField.text!.isEmpty {
+                errorTextField.isHidden = false
+                errorTextField.text = "New password field is empty"
+                return false
+            }
+            alertChangButtonEnabled()
+            return true
+        }
+        
+        if textField == repeatNewPasswordTextField {
+            if repeatNewPasswordTextField.text!.isEmpty {
+                errorTextField.isHidden = false
+                errorTextField.text = "Repeat New password field is empty"
+                return false
+            }
+            alertChangButtonEnabled()
+            return false
+        }
+        return true
+    }
+    
+    func alertChangButtonEnabled() {
+        if repeatNewPasswordTextField.text!.isEmpty || newPassrodTextField.text!.isEmpty || oldPasswordTextField.text!.isEmpty {
+            errorTextField.text = ""
+            return
+        }
+        
+        if newPassrodTextField.text! != repeatNewPasswordTextField.text! {
+            errorTextField.isHidden = false
+            errorTextField.text = "Password do not match"
+        } else {
+            alertChangeButton.isEnabled = true
+            errorTextField.isHidden = false
+            errorTextField.text = ""
+        }
+    }
+    
     // MARK:- UICollectionViewDelegate AND UICollectionViewDataSource METHODS
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
