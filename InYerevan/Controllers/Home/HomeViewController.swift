@@ -21,7 +21,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var weatherIcon: UIImageView!
     @IBOutlet weak var weatherYerevan: UILabel!
     @IBOutlet weak var weatherTemperature: UILabel!
-    @IBOutlet weak var profileButton: UIButton!
     @IBOutlet weak var onlineSupportButton: UIButton!
     @IBOutlet weak var eventCollection: UICollectionView!
     @IBOutlet var bannerView: GADBannerView!
@@ -40,8 +39,25 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         return db.collection("channels")
     }
     
+//    User.email = ""
+//    User.isAdministration = false
+//
+//    let myStoryboard = UIStoryboard.init(name: "Main", bundle: nil)
+//    let vc = myStoryboard.instantiateViewController(withIdentifier: "registrationvc")
+//
+//    UIApplication.shared.keyWindow?.rootViewController = vc
     
     // MARK:- VIEW LIFE CYCLE METHODS
+    
+    @IBAction func signOutAction(_ sender: Any) {
+        User.email = ""
+        User.isAdministration = false
+        
+        let myStoryboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let vc = myStoryboard.instantiateViewController(withIdentifier: "registrationvc")
+        
+        UIApplication.shared.keyWindow?.rootViewController = vc
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,9 +88,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         //        eventCollection.delegate = self
         //        eventCollection.dataSource = self
         //        eventCollection.backgroundColor = UIColor.clear
-        
-        profileButton.layer.cornerRadius = 12
-        profileButton.layer.masksToBounds = true
         
         onlineSupportButton.layer.cornerRadius = 12
         onlineSupportButton.layer.masksToBounds = true

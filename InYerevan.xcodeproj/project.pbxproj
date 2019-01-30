@@ -53,7 +53,6 @@
 		86D1EF6D21E4C0B500738187 /* EventPictureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D1EF6A21E4C0B400738187 /* EventPictureCollectionViewCell.swift */; };
 		86D1EF6E21E4C0B500738187 /* NewEventCollectionViewCellWithPicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D1EF6B21E4C0B500738187 /* NewEventCollectionViewCellWithPicture.swift */; };
 		86D1EF7F21E4C41300738187 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D1EF7C21E4C41200738187 /* HomeViewController.swift */; };
-		86D1EF8021E4C41300738187 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D1EF7D21E4C41200738187 /* ProfileViewController.swift */; };
 		86D1EF8421E4C4C300738187 /* MainReserveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D1EF8321E4C4C300738187 /* MainReserveViewController.swift */; };
 		86D1EF8921E4C4D800738187 /* RestaurantDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D1EF8521E4C4D600738187 /* RestaurantDescriptionViewController.swift */; };
 		86D1EF8A21E4C4D800738187 /* HotelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D1EF8621E4C4D700738187 /* HotelsViewController.swift */; };
@@ -147,7 +146,6 @@
 		86D1EF6A21E4C0B400738187 /* EventPictureCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventPictureCollectionViewCell.swift; sourceTree = "<group>"; };
 		86D1EF6B21E4C0B500738187 /* NewEventCollectionViewCellWithPicture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewEventCollectionViewCellWithPicture.swift; sourceTree = "<group>"; };
 		86D1EF7C21E4C41200738187 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		86D1EF7D21E4C41200738187 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		86D1EF8321E4C4C300738187 /* MainReserveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainReserveViewController.swift; sourceTree = "<group>"; };
 		86D1EF8521E4C4D600738187 /* RestaurantDescriptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantDescriptionViewController.swift; sourceTree = "<group>"; };
 		86D1EF8621E4C4D700738187 /* HotelsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotelsViewController.swift; sourceTree = "<group>"; };
@@ -472,7 +470,6 @@
 			children = (
 				D4E3835021EB2B3E00A5A89C /* RegistrationViewConrroller.swift */,
 				86D1EF7C21E4C41200738187 /* HomeViewController.swift */,
-				86D1EF7D21E4C41200738187 /* ProfileViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -791,7 +788,6 @@
 				86D1EF1921E4B57100738187 /* DoneButton.swift in Sources */,
 				86D1EF8A21E4C4D800738187 /* HotelsViewController.swift in Sources */,
 				7014E65C21ECB4A00058433D /* HotelRestaurantImagePickerCollectionViewCell.swift in Sources */,
-				86D1EF8021E4C41300738187 /* ProfileViewController.swift in Sources */,
 				D4C0AAEA21F0AEF9003C5B59 /* ChannelCell.swift in Sources */,
 				D484C15B21EC961E006260B3 /* UIView+GradientBackground.swift in Sources */,
 				86D1EFA121E4D06700738187 /* In_Yerevan.xcdatamodeld in Sources */,
