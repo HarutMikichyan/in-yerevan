@@ -167,7 +167,39 @@ class RegistrationViewController: UIViewController {
     }
     
     private func resetPassword() {
-        //
+        let blurredSubview = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+
+        if emailTextField.text!.isEmpty {
+            let alert = UIAlertController(title: "Reset Password Error", message: "Text field is empty", preferredStyle: .alert)
+            alert.view.tintColor = .outgoingLavender
+            alert.view.backgroundColor = .black
+            alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: {(_) in
+                blurredSubview.removeFromSuperview()
+            }))
+            UIApplication.shared.keyWindow!.rootViewController?.present(alert, animated: true, completion: nil)
+            return
+        }
+        
+        Auth.auth().sendPasswordReset(withEmail: emailTextField.text!) { (error) in
+            if error != nil {
+                let alert = UIAlertController(title: "Success", message: "You have received an e-mail ", preferredStyle: .alert)
+                alert.view.tintColor = .outgoingLavender
+                alert.view.backgroundColor = .black
+                alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: {(_) in
+                    blurredSubview.removeFromSuperview()
+                }))
+                UIApplication.shared.keyWindow!.rootViewController?.present(alert, animated: true, completion: nil)
+            } else {
+                let alert = UIAlertController(title: "Reset Password Error", message: error?.localizedDescription, preferredStyle: .alert)
+                alert.view.tintColor = .outgoingLavender
+                alert.view.backgroundColor = .black
+                alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: {(_) in
+                    blurredSubview.removeFromSuperview()
+                }))
+                UIApplication.shared.keyWindow!.rootViewController?.present(alert, animated: true, completion: nil)
+            }
+        }
+        clean()
     }
     
     private func clean() {

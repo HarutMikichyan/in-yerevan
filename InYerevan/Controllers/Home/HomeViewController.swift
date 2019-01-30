@@ -22,6 +22,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var weatherYerevan: UILabel!
     @IBOutlet weak var weatherTemperature: UILabel!
     @IBOutlet weak var onlineSupportButton: UIButton!
+    @IBOutlet weak var changePasswordButton: UIButton!
     @IBOutlet weak var eventCollection: UICollectionView!
     @IBOutlet var bannerView: GADBannerView!
 
@@ -40,17 +41,7 @@ class HomeViewController: UIViewController {
     }
     
     // MARK:- VIEW LIFE CYCLE METHODS
-    
-    @IBAction func signOutAction(_ sender: Any) {
-        User.email = ""
-        User.isAdministration = false
-        
-        let myStoryboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let vc = myStoryboard.instantiateViewController(withIdentifier: "registrationvc")
-        
-        UIApplication.shared.keyWindow?.rootViewController = vc
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // In this case, we instantiate the banner with desired ad size.
@@ -84,6 +75,9 @@ class HomeViewController: UIViewController {
         onlineSupportButton.layer.cornerRadius = 12
         onlineSupportButton.layer.masksToBounds = true
         
+        changePasswordButton.layer.cornerRadius = 12
+        changePasswordButton.layer.masksToBounds = true
+        
         view.changeBackgroundToGradient(from: [.backgroundDarkSpruce, .backgroundDenimBlue])
         
         channelListener = channelReference.addSnapshotListener { querySnapshot, error in
@@ -100,6 +94,37 @@ class HomeViewController: UIViewController {
     
     // MARK:- ACTIONS
     
+    @IBAction func signOutAction(_ sender: Any) {
+        User.email = ""
+        User.isAdministration = false
+        
+        let myStoryboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let vc = myStoryboard.instantiateViewController(withIdentifier: "registrationvc")
+        
+        UIApplication.shared.keyWindow?.rootViewController = vc
+    }
+    
+    @IBAction func changePasswordAction(_ sender: Any) {
+        let blurredSubview = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+        
+        let alert = UIAlertController(title: "Reset Password Error", message: "Text field is empty", preferredStyle: .alert)
+        alert.view.tintColor = .outgoingLavender
+        alert.view.backgroundColor = .black
+        alert.addTextField { (UITextField) in
+            
+        }
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {(UIAlertAction) in
+            
+            // TO DO:-
+
+        }))
+        alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: {(_) in
+            blurredSubview.removeFromSuperview()
+        }))
+        
+        UIApplication.shared.keyWindow!.rootViewController?.present(alert, animated: true, completion: nil)
+    }
+
     @IBAction func onlineSupportAction() {
         let sb = UIStoryboard(name: "Home", bundle: nil)
         if User.isAdministration {
@@ -169,8 +194,21 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeTodayEventCollectionViewCell.id, for: indexPath) as! HomeTodayEventCollectionViewCell
-        cell.todayEentName.text = "Hamalir"
-        cell.todayEventImage.image = UIImage(named: "guestPNG")
+        switch indexPath.row {
+        case 0:
+            cell.todayEentName.text = "Hamalir"
+        case 1:
+            cell.todayEentName.text = "Cascade"
+        case 2:
+            cell.todayEentName.text = "Brusov"
+        case 3:
+            cell.todayEentName.text = "Matenadaran"
+        case 4:
+            cell.todayEentName.text = "Hamalir"
+        default:
+            cell.todayEentName.text = "Name"
+        }
+        cell.todayEventImage.image = UIImage(named: "picture")
         
         return cell
     }
