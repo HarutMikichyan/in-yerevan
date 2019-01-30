@@ -11,7 +11,7 @@ import Firebase
 import FirebaseFirestore
 import GoogleMobileAds
 
-class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource  {
+class HomeViewController: UIViewController {
 
     // MARK:- INTERFACE BUILDER OUTLETS
 
@@ -21,7 +21,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var weatherIcon: UIImageView!
     @IBOutlet weak var weatherYerevan: UILabel!
     @IBOutlet weak var weatherTemperature: UILabel!
-    @IBOutlet weak var profileButton: UIButton!
     @IBOutlet weak var onlineSupportButton: UIButton!
     @IBOutlet weak var eventCollection: UICollectionView!
     @IBOutlet var bannerView: GADBannerView!
@@ -40,8 +39,17 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         return db.collection("channels")
     }
     
-    
     // MARK:- VIEW LIFE CYCLE METHODS
+    
+    @IBAction func signOutAction(_ sender: Any) {
+        User.email = ""
+        User.isAdministration = false
+        
+        let myStoryboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let vc = myStoryboard.instantiateViewController(withIdentifier: "registrationvc")
+        
+        UIApplication.shared.keyWindow?.rootViewController = vc
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,12 +77,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         navigationController?.navigationBar.barStyle = .black
         navigationController?.navigationBar.tintColor = .outgoingLavender
         
-        //        eventCollection.delegate = self
-        //        eventCollection.dataSource = self
-        //        eventCollection.backgroundColor = UIColor.clear
-        
-        profileButton.layer.cornerRadius = 12
-        profileButton.layer.masksToBounds = true
+        eventCollection.delegate = self
+        eventCollection.dataSource = self
+        eventCollection.backgroundColor = UIColor.clear
         
         onlineSupportButton.layer.cornerRadius = 12
         onlineSupportButton.layer.masksToBounds = true
@@ -117,17 +122,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }
     }
     
-    // MARK:- UICollectionViewDelegate AND UICollectionViewDataSource METHODS
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = UICollectionViewCell()
-        return cell
-    }
-    
     // MARK:- PRIVATE METHODS
     
     private func downloadImage(at urls: String, completion: @escaping (UIImage?) -> Void) {
@@ -163,5 +157,21 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     deinit {
         channelListener?.remove()
+    }
+}
+
+extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource  {
+    // MARK:- UICollectionViewDelegate AND UICollectionViewDataSource METHODS
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeTodayEventCollectionViewCell.id, for: indexPath) as! HomeTodayEventCollectionViewCell
+        cell.todayEentName.text = "Hamalir"
+        cell.todayEventImage.image = UIImage(named: "guestPNG")
+        
+        return cell
     }
 }
