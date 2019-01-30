@@ -49,7 +49,7 @@ class RegistrationViewController: UIViewController {
         confirmPasswordTextField.isHidden = isResettingPassword
         sender.isHidden = isResettingPassword
         isSigningUp = true
-        additionalButtons[1].setTitle("Create Account", for: .normal)
+        additionalButtons[1].setTitle("Log In", for: .normal)
         loginButton.setTitle("RESET PASSWORD", for: .normal)
         
     }

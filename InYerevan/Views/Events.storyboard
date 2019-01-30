@@ -386,7 +386,7 @@
             </objects>
             <point key="canvasLocation" x="1743" y="-356"/>
         </scene>
-        <!--Categories-->
+        <!--Events-->
         <scene sceneID="icq-WP-y9V">
             <objects>
                 <viewController storyboardIdentifier="EventCategoiresViewController" id="qYB-e1-obd" customClass="EventCategoiresViewController" customModule="InYerevan" customModuleProvider="target" sceneMemberID="viewController">
@@ -470,8 +470,8 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bYe-JE-rXG"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Categories" id="sLC-UG-suj">
-                        <barButtonItem key="backBarButtonItem" title="Categories" id="ZUE-Xm-FNy"/>
+                    <navigationItem key="navigationItem" title="Events" id="sLC-UG-suj">
+                        <barButtonItem key="backBarButtonItem" title="Events" id="ZUE-Xm-FNy"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ASK-rn-wEt">
                             <connections>
                                 <action selector="addNewEvent" destination="qYB-e1-obd" id="OTB-gG-YYn"/>
