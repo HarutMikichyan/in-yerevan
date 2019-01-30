@@ -36,6 +36,13 @@ struct RestaurantsType {
     var restaurantRate: Double
 }
 
+struct CurrencyType {
+    var id: String
+    var currencyEUR: Double
+    var currencyUSD: Double
+    var currencyRUR: Double
+}
+
 extension HotelsType: Comparable {
     static func < (lhs: HotelsType, rhs: HotelsType) -> Bool {
         return lhs.hotelRate > rhs.hotelRate

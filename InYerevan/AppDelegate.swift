@@ -18,9 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var persistentController: PersistentController!
     let queue = DispatchQueue(label: "FetchQueue")
     
-    // HotelsRestaurants Databse reference
+    // HotelsRestaurants and Currency Databse reference
     var refHotels: DatabaseReference!
     var refRestaurants: DatabaseReference!
+    var refCurrency: DatabaseReference!   ///
 
     override init() {
         FirebaseApp.configure()
@@ -30,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  
         refHotels = Database.database().reference().child("Hotels")
         refRestaurants = Database.database().reference().child("Restaurants")
+        refCurrency = Database.database().reference().child("Currency")
         
         persistentController = PersistentController()
         dataManager = DataManager(persistentController)

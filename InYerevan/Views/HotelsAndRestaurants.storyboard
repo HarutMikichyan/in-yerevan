@@ -27,7 +27,7 @@
             </objects>
             <point key="canvasLocation" x="-607" y="243"/>
         </scene>
-        <!--Hotels/Restaurants-->
+        <!--Resorts-->
         <scene sceneID="Tbu-yY-Hid">
             <objects>
                 <viewController id="1Fm-Gh-tdk" customClass="MainReserveViewController" customModule="InYerevan" customModuleProvider="target" sceneMemberID="viewController">
@@ -275,7 +275,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fpJ-46-B2N"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Hotels/Restaurants" image="resort" id="HRl-NQ-yaU">
+                    <tabBarItem key="tabBarItem" title="Resorts" image="resort" id="HRl-NQ-yaU">
                         <color key="badgeColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
                     <toolbarItems/>

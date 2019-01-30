@@ -45,9 +45,9 @@ class RestaurantsViewController: UIViewController {
                     self.restaurantsList.append(restaurants)
                 }
             }
+            self.restaurantsList.sort()
+            self.tableView.reloadData()
         }
-        self.restaurantsList.sort()
-        self.tableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -96,7 +96,7 @@ extension RestaurantsViewController: UITableViewDelegate, UITableViewDataSource 
         let cell = tableView.dequeueReusableCell(withIdentifier: RestaurantTableViewCell.id, for: indexPath) as! RestaurantTableViewCell
         if restaurantsList.count != 0 {
             cell.nameRestaurant.text = restaurantsList[indexPath.row].restaurantName
-            cell.priceRestaurant.text = String(restaurantsList[indexPath.row].priceRestaurant)
+            cell.priceRestaurant.text = String(0)
             if self.images.count <= indexPath.row {
                 DispatchQueue.main.async {
                     self.downloadImage(at: self.restaurantsList[indexPath.row].restaurantImageUrl[0], completion: { (image) in
