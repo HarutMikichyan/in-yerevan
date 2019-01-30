@@ -94,6 +94,8 @@ extension RestaurantDescriptionViewController: UITableViewDelegate, UITableViewD
             cell.textMap.text = "Restaurant Location"
             cell.locationLat = restaurant.restaurantLocationLat
             cell.locationLong = restaurant.restaurantLocationLong
+            cell.name = restaurant.restaurantName
+            cell.openingHours = restaurant.openingHoursRestaurant
             return cell
         default:
             fatalError()
