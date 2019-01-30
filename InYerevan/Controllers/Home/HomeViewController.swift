@@ -11,7 +11,7 @@ import Firebase
 import FirebaseFirestore
 import GoogleMobileAds
 
-class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource  {
+class HomeViewController: UIViewController {
 
     // MARK:- INTERFACE BUILDER OUTLETS
 
@@ -38,14 +38,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     private var channelReference: CollectionReference {
         return db.collection("channels")
     }
-    
-//    User.email = ""
-//    User.isAdministration = false
-//
-//    let myStoryboard = UIStoryboard.init(name: "Main", bundle: nil)
-//    let vc = myStoryboard.instantiateViewController(withIdentifier: "registrationvc")
-//
-//    UIApplication.shared.keyWindow?.rootViewController = vc
     
     // MARK:- VIEW LIFE CYCLE METHODS
     
@@ -85,9 +77,9 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         navigationController?.navigationBar.barStyle = .black
         navigationController?.navigationBar.tintColor = .outgoingLavender
         
-        //        eventCollection.delegate = self
-        //        eventCollection.dataSource = self
-        //        eventCollection.backgroundColor = UIColor.clear
+        eventCollection.delegate = self
+        eventCollection.dataSource = self
+        eventCollection.backgroundColor = UIColor.clear
         
         onlineSupportButton.layer.cornerRadius = 12
         onlineSupportButton.layer.masksToBounds = true
@@ -130,17 +122,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }
     }
     
-    // MARK:- UICollectionViewDelegate AND UICollectionViewDataSource METHODS
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = UICollectionViewCell()
-        return cell
-    }
-    
     // MARK:- PRIVATE METHODS
     
     private func downloadImage(at urls: String, completion: @escaping (UIImage?) -> Void) {
@@ -176,5 +157,21 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     deinit {
         channelListener?.remove()
+    }
+}
+
+extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource  {
+    // MARK:- UICollectionViewDelegate AND UICollectionViewDataSource METHODS
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeTodayEventCollectionViewCell.id, for: indexPath) as! HomeTodayEventCollectionViewCell
+        cell.todayEentName.text = "Hamalir"
+        cell.todayEventImage.image = UIImage(named: "guestPNG")
+        
+        return cell
     }
 }

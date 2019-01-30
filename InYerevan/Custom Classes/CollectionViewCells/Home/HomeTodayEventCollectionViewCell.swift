@@ -10,8 +10,11 @@ import UIKit
 
 class HomeTodayEventCollectionViewCell: UICollectionViewCell {
   
+    static let id = "HomeTodayEventCollectionViewCell"
+    
     @IBOutlet weak var todayEventImage: UIImageView!
     @IBOutlet weak var todayEentName: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         todayEventImage.layer.cornerRadius = 12
