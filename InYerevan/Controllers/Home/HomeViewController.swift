@@ -39,6 +39,13 @@ class HomeViewController: UIViewController {
     private var channelReference: CollectionReference {
         return db.collection("channels")
     }
+    private var currency: CurrencyType! {
+        didSet {
+            courseEUR.text = " EUR| \(currency.currencyEUR) AMD"
+            courseUSD.text = " USD| \(currency.currencyUSD) AMD"
+            courseRUR.text = "RUR|   \(currency.currencyRUR) AMD"
+        }
+    }
     
     // MARK:- ALERT PROPERTIES
     
@@ -57,6 +64,21 @@ class HomeViewController: UIViewController {
         bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
+        
+        UIApplication.appDelegate.refCurrency.observe(.value) { (snapshot) in
+            if snapshot.childrenCount > 0 {
+                for curr in snapshot.children.allObjects as! [DataSnapshot] {
+                    let currencyObject = curr.value  as! [String: AnyObject]
+                    let id = currencyObject["id"]
+                    let eur = currencyObject["currencyEUR"]
+                    let usa = currencyObject["currencyUSD"]
+                    let rur = currencyObject["currencyRUR"]
+                    
+                    let currency = CurrencyType(id: id as! String, currencyEUR: eur as! Double, currencyUSD: usa as! Double, currencyRUR: rur as! Double)
+                    self.currency = currency
+                }
+            }
+        }
         
         DataProvider.object.getWeather { (weather, bool) in
             if bool {
