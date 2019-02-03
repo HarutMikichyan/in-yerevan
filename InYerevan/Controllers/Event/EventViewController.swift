@@ -18,20 +18,21 @@ static let id = "EventViewController"
     @IBOutlet weak var dayLabel: UILabel!
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var detailsTextView: UITextView!
-    @IBOutlet weak var visitorsLabel: UILabel!
+
     
     var event: Event! 
     
     
-    var imagesForEvent = [#imageLiteral(resourceName: "Trades"),#imageLiteral(resourceName: "City"),#imageLiteral(resourceName: "Technology"),#imageLiteral(resourceName: "Trades"),#imageLiteral(resourceName: "Cinema")]
+    var imagesForEvent = [UIImage]()
+    
     override func viewDidLoad() {
+        view.changeBackgroundToGradient(from: [.backgroundDarkSpruce, .backgroundDenimBlue])
         super.viewDidLoad()
         view.changeBackgroundToGradient(from: [.backgroundDarkSpruce, .backgroundDenimBlue])
         let dateTuple = event.date!.toString()
         dayLabel.text = dateTuple.day
         monthLabel.text = dateTuple.month
         title = event.title!
-        visitorsLabel.text = "We have \(event.visitorsCount) visitors"
         detailsTextView.text = event.details
         detailsTextView.isEditable = false
         let locationManager = CLLocationManager()
@@ -41,7 +42,11 @@ static let id = "EventViewController"
             let region =  MKCoordinateRegion(center: location.coordinate, latitudinalMeters: 20000.0, longitudinalMeters: 20000.0)
             mapView.setRegion(region, animated: true)
         }
-        // Do any additional setup after loading the view.
+        mapView.layer.borderWidth = 1 
+        mapView.layer.borderColor = UIColor.outgoingLavender.cgColor
+        mapView.clipsToBounds = true
+        
+        event.images
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -59,9 +64,7 @@ static let id = "EventViewController"
     
     @IBAction func addToCalendarAction() {
         // TODO: - functionality to interact with native Calendar
-        event.visitorsCount += 1 
         UIApplication.appDelegate.dataManager.saveViewContext()
-        visitorsLabel.text = "We have \(event.visitorsCount) visitors"
     }
     
 }

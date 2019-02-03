@@ -22,6 +22,8 @@ static let id = "UpcomingTableViewCell"
         blur.layer.masksToBounds = true
         backgroundImageView.layer.cornerRadius = 12
         backgroundImageView.layer.masksToBounds = true
+        backgroundImageView.layer.borderColor = UIColor.outgoingLavender.cgColor
+        backgroundImageView.layer.borderWidth = 1
     }
     
     override func layoutSubviews() {    

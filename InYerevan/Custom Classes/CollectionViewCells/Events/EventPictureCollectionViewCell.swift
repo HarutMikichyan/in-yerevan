@@ -15,6 +15,11 @@ class EventPictureCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        backgroundImageView.layer.cornerRadius = 8
+        backgroundImageView.layer.borderColor = UIColor.outgoingLavender.cgColor
+        backgroundImageView.layer.borderWidth = 1
+        backgroundImageView.clipsToBounds = true
+        
     }
     
     func prepareCellWith(background: UIImage) {

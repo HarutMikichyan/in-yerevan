@@ -20,6 +20,9 @@ class EventTableViewCell: UITableViewCell {
         super.awakeFromNib()
         backgroundImageView.layer.cornerRadius = 12
         backgroundImageView.layer.masksToBounds = true
+        backgroundImageView.layer.borderColor = UIColor.outgoingLavender.cgColor
+        backgroundImageView.layer.borderWidth = 1
+
     }
     override func layoutSubviews() {    
         super.layoutSubviews()

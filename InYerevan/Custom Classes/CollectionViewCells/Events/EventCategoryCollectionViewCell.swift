@@ -19,7 +19,9 @@ class EventCategoryCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         layer.cornerRadius = 12
         layer.masksToBounds = true
-        
+        backgroundImageView.layer.borderColor = UIColor.outgoingLavender.cgColor
+        backgroundImageView.layer.borderWidth = 1
+    
     }
     
     func prepareCellWith(label: String, background: UIImage) {
