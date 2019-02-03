@@ -36,4 +36,6 @@ class User {
             UserDefaults.standard.set(value, forKey: "isAdministration")
         }
     }
+    
+    private init(){ }
 }

@@ -36,7 +36,6 @@ class UIMapInputTextField: UITextField, UITextFieldDelegate {
         prepareMap()
     }
     
-    // MARK: - Unarchive 
     override func awakeFromNib() {
         super.awakeFromNib() 
         prepareMap()

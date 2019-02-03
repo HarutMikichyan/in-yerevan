@@ -120,6 +120,12 @@ class HomeViewController: UIViewController {
                 self.handleDocumentChange(change)
             }
         }
+
+        if User.email == "guest" {
+            onlineSupportButton.isEnabled = false
+            onlineSupportButton.setTitleColor(UIColor.white, for: .normal)
+            onlineSupportButton.backgroundColor = UIColor.white
+        }
     }
     
     // MARK:- ACTIONS

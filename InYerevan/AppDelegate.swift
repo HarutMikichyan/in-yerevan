@@ -45,6 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             FirebaseApp.configure()
         }
 
+
         if !User.email.isEmpty {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "TabBarController")

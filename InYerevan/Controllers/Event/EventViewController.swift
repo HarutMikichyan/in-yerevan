@@ -62,6 +62,19 @@ static let id = "EventViewController"
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let location = event.location
+        let coordinates = CLLocationCoordinate2D(latitude: CLLocationDegrees(exactly: location!.latitude)!, longitude: CLLocationDegrees(exactly: location!.longitude)!)
+        let region = MKCoordinateRegion(center: coordinates, latitudinalMeters: 200.0, longitudinalMeters: 200.0)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = coordinates
+        mapView.addAnnotation(annotation)
+        mapView.setRegion(region, animated: true)
+        
+        
+    }
+    
     @IBAction func addToCalendarAction() {
         // TODO: - functionality to interact with native Calendar
         UIApplication.appDelegate.dataManager.saveViewContext()
