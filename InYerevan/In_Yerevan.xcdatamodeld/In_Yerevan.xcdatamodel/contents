@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="17G3025" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18C54" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Category" representedClassName="Category" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="pictureURL" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="category" inverseEntity="Event" syncable="YES"/>
     </entity>
     <entity name="Company" representedClassName="Company" syncable="YES" codeGenerationType="class">
@@ -30,7 +29,7 @@
         <relationship name="event" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="images" inverseEntity="Event" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Category" positionX="6336.96484375" positionY="-8319.546875" width="128" height="90"/>
+        <element name="Category" positionX="6341.5234375" positionY="-8330.66015625" width="128" height="73"/>
         <element name="Company" positionX="6341.37109375" positionY="-8039.7265625" width="128" height="75"/>
         <element name="Coordinates" positionX="6342.86328125" positionY="-8136.88671875" width="128" height="90"/>
         <element name="Event" positionX="6540.81640625" positionY="-8236.6953125" width="128" height="180"/>
