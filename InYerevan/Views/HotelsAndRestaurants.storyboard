@@ -321,17 +321,16 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="    " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mKn-ff-kzd">
-                                                            <rect key="frame" x="8" y="220" width="200" height="32"/>
+                                                            <rect key="frame" x="8" y="220" width="329" height="32"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="32" id="R9u-CP-LVS"/>
-                                                                <constraint firstAttribute="width" constant="200" id="cep-z0-ls3"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ovp-TV-N7x">
+                                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ovp-TV-N7x">
                                                             <rect key="frame" x="257" y="220" width="80" height="30"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
@@ -342,7 +341,7 @@
                                                             <color key="textColor" red="0.57109951972961426" green="0.42677909135818481" blue="0.64709573984146118" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dram" translatesAutoresizingMaskIntoConstraints="NO" id="tzQ-g3-YFj">
+                                                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dram" translatesAutoresizingMaskIntoConstraints="NO" id="tzQ-g3-YFj">
                                                             <rect key="frame" x="218" y="220" width="31" height="30"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
@@ -359,6 +358,7 @@
                                                         <constraint firstItem="mKn-ff-kzd" firstAttribute="leading" secondItem="iSy-gx-hbn" secondAttribute="leading" id="SeT-ZM-dU6"/>
                                                         <constraint firstItem="iSy-gx-hbn" firstAttribute="top" secondItem="YNv-yU-BCj" secondAttribute="top" constant="8" id="Uzj-hH-pF7"/>
                                                         <constraint firstAttribute="trailing" secondItem="iSy-gx-hbn" secondAttribute="trailing" constant="8" id="XE0-UV-ZtM"/>
+                                                        <constraint firstAttribute="trailing" secondItem="mKn-ff-kzd" secondAttribute="trailing" constant="8" id="q7r-EO-P5d"/>
                                                         <constraint firstItem="tzQ-g3-YFj" firstAttribute="top" secondItem="Ovp-TV-N7x" secondAttribute="top" id="qo1-Il-UQG"/>
                                                         <constraint firstItem="iSy-gx-hbn" firstAttribute="leading" secondItem="YNv-yU-BCj" secondAttribute="leading" constant="8" id="z2q-st-ZHo"/>
                                                         <constraint firstItem="Ovp-TV-N7x" firstAttribute="trailing" secondItem="iSy-gx-hbn" secondAttribute="trailing" id="z5P-KQ-YiM"/>
@@ -413,7 +413,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gDv-s7-coR">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gDv-s7-coR">
                                 <rect key="frame" x="0.0" y="20" width="375" height="240"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
@@ -957,7 +957,7 @@
                                     <action selector="segmentControl:" destination="Paq-nk-25C" eventType="valueChanged" id="0XK-aP-KMV"/>
                                 </connections>
                             </segmentedControl>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EIk-lw-173">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EIk-lw-173">
                                 <rect key="frame" x="0.0" y="20" width="375" height="240"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>

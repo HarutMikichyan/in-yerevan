@@ -152,7 +152,8 @@ final class ChatViewController: MessagesViewController {
         messageInputBar.backgroundView.backgroundColor = .inputBarDarkCerulian
         messageInputBar.shouldAutoUpdateMaxTextViewHeight = false
         messageInputBar.maxTextViewHeight = 100
-            
+        messageInputBar.tintColor = .outgoingLavender
+        
         // Configuring camera item
         let cameraItem = InputBarButtonItem(type: .system)
         cameraItem.setSize(CGSize(width: 60, height: 30), animated: false)

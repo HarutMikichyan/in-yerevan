@@ -230,7 +230,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         default:
             cell.todayEentName.text = "Name"
         }
-        cell.todayEventImage.image = UIImage(named: "picture")
+        cell.todayEventImage.image = UIImage(named: "image-placeholder")
         
         return cell
     }
