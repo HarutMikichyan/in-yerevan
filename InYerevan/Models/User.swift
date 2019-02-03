@@ -1,3 +1,11 @@
+//
+//  Weather.swift
+//  InYerevan
+//
+//  Created by Gev Darbinyan on 22/12/2018.
+//  Copyright © 2019 InYerevan.am. All rights reserved.
+//
+
 import Foundation
 
 class User {

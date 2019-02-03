@@ -24,7 +24,7 @@ class RestaurantsViewController: UIViewController {
         title = "Restaurants"
         view.changeBackgroundToGradient(from: [.backgroundDarkSpruce, .backgroundDenimBlue])
         
-        UIApplication.appDelegate.refRestaurants.queryOrdered(byChild: "rate").observe(.value) { (snapshot) in
+        UIApplication.appDelegate.refRestaurants.observe(.value) { (snapshot) in
             if snapshot.childrenCount > 0 {
                 self.restaurantsList.removeAll()
                 for res in snapshot.children.allObjects as! [DataSnapshot] {
@@ -45,6 +45,7 @@ class RestaurantsViewController: UIViewController {
                     self.restaurantsList.append(restaurants)
                 }
             }
+            self.restaurantsList.sort()
             self.tableView.reloadData()
         }
     }
@@ -84,7 +85,7 @@ extension RestaurantsViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 270
+        return 275
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -95,7 +96,7 @@ extension RestaurantsViewController: UITableViewDelegate, UITableViewDataSource 
         let cell = tableView.dequeueReusableCell(withIdentifier: RestaurantTableViewCell.id, for: indexPath) as! RestaurantTableViewCell
         if restaurantsList.count != 0 {
             cell.nameRestaurant.text = restaurantsList[indexPath.row].restaurantName
-            cell.priceRestaurant.text = String(restaurantsList[indexPath.row].priceRestaurant)
+            cell.priceRestaurant.text = String(0)
             if self.images.count <= indexPath.row {
                 DispatchQueue.main.async {
                     self.downloadImage(at: self.restaurantsList[indexPath.row].restaurantImageUrl[0], completion: { (image) in

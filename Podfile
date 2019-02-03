@@ -16,6 +16,7 @@ pod 'Firebase/Storage'
 pod 'MessageInputBar'
 pod 'MessageKit'
 pod 'MBProgressHUD'
+pod 'Google-Mobile-Ads-SDK'
 
 # pod 'ChameleonFramework' // framework which can help to work with colors :) https://github.com/viccalexander/Chameleon https://github.com/viccalexander/Chameleon
 

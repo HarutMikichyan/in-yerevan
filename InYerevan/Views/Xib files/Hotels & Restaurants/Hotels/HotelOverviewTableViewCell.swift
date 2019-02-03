@@ -22,11 +22,15 @@ class HotelOverviewTableViewCell: UITableViewCell {
     @IBOutlet weak var rateView: UIView!
     
     //MARK:- Other Properties
-    var hotPrice: Double!
     var hotelId: String!
     var hotelRateCount: Int!
     var hotelRatesSum: Double!
     var hotelRate: Double!
+    var hotPrice: Double! {
+        didSet {
+            hotelPrice.text = "AMD \(hotPrice!)"
+        }
+    }
     
     lazy var cosmosView: CosmosView = {
         let view = CosmosView()
@@ -42,7 +46,6 @@ class HotelOverviewTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
-        hotelPrice.text = "AMD"
         contentView.addSubview(cosmosView)
         cosmosConstraint()
         
@@ -60,10 +63,12 @@ class HotelOverviewTableViewCell: UITableViewCell {
         if fromDateField.text != "" && toDateField.text != "" {
             let timeInterval: Double = toDateField.getValue().timeIntervalSince(fromDateField.getValue())
             if timeInterval > 0.0 {
-                let day = timeInterval / 1440.0 * 60.0
+                let minute = timeInterval / 60.0
+                let hourse = minute / 60.0
+                let day = hourse / 24.0
                 
                 let dayPrice = (String)(format: "%.2f", day * hotPrice)
-                hotelPrice.text = dayPrice
+                hotelPrice.text = "AMD \(dayPrice)"
             }
         }
     }
@@ -83,7 +88,8 @@ class HotelOverviewTableViewCell: UITableViewCell {
         
         UIApplication.appDelegate.refHotels.child(hotelId).child("rateCount").setValue(hotelRateCount! + 1)
         if hotelRateCount == 0 {
-            UIApplication.appDelegate.refHotels.child(hotelId).child("rate").setValue(cosmosView.rating)
+            let rateH = (String)(format: "%.4f", cosmosView.rating)
+            UIApplication.appDelegate.refHotels.child(hotelId).child("rate").setValue(Double(rateH))
         } else {
             let rateH = (String)(format: "%.4f", Double(hotelRate + cosmosView.rating) / Double(2))
             UIApplication.appDelegate.refHotels.child(hotelId).child("rate").setValue(Double(rateH))

@@ -177,4 +177,5 @@
         <image name="home" width="33.333332061767578" height="33.333332061767578"/>
         <image name="resort" width="33.333332061767578" height="33.333332061767578"/>
     </resources>
+    <color key="tintColor" red="0.62270265820000004" green="0.51273083689999999" blue="0.75298458339999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
 </document>

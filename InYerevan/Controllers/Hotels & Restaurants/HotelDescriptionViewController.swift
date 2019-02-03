@@ -14,6 +14,7 @@ class HotelDescriptionViewController: UIViewController {
     //MARK:- Interface Builder Outlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var imageHotel: UIImageView!
+    @IBOutlet weak var nameHotel: UILabel!
     
     
     //MARK:- Other Properties
@@ -25,6 +26,7 @@ class HotelDescriptionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.changeBackgroundToGradient(from: [.backgroundDarkSpruce, .backgroundDenimBlue])
+        nameHotel.text = hotel.hotelName
         
         //register TableViewCell
         tableView.register(UINib(nibName: HotelRestaurantImageTableViewCell.id, bundle: nil), forCellReuseIdentifier: HotelRestaurantImageTableViewCell.id)

@@ -16,7 +16,7 @@ class EventCategoiresViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Categories"
+        title = "Events"
         navigationController?.navigationBar.tintColor = .outgoingLavender
         navigationController?.navigationBar.barStyle = .black 
         view.changeBackgroundToGradient(from: [.backgroundDarkSpruce, .backgroundDenimBlue])

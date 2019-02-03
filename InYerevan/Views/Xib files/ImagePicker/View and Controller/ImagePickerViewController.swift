@@ -73,7 +73,7 @@ class ImagePickerViewController: UIViewController {
             let imageManager = PHImageManager.default()
             let requestOptions = PHImageRequestOptions()
             requestOptions.isSynchronous = false
-            requestOptions.deliveryMode = .fastFormat // with larger format makes memmory leak
+            requestOptions.deliveryMode = .highQualityFormat  // with larger format makes memmory leak
             let fetchOptions = PHFetchOptions()
             fetchOptions.sortDescriptors = [NSSortDescriptor(key:"creationDate", ascending: false)]
             let fetchResult = PHAsset.fetchAssets(with: .image, options: fetchOptions)

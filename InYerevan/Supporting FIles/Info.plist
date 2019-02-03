@@ -52,6 +52,11 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Used to send photos from the Camera.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>

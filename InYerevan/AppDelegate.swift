@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,9 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var persistentController: PersistentController!
     let queue = DispatchQueue(label: "FetchQueue")
     
-    // HotelsRestaurants Databse reference
+    // HotelsRestaurants and Currency Databse reference
     var refHotels: DatabaseReference!
     var refRestaurants: DatabaseReference!
+    var refCurrency: DatabaseReference!   ///
 
     override init() {
         FirebaseApp.configure()
@@ -29,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  
         refHotels = Database.database().reference().child("Hotels")
         refRestaurants = Database.database().reference().child("Restaurants")
+        refCurrency = Database.database().reference().child("Currency")
         
         persistentController = PersistentController()
         dataManager = DataManager(persistentController)
@@ -50,6 +53,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.makeKeyAndVisible()
 
         }
+        
+        // Initialize the Google Mobile Ads SDK.
+        GADMobileAds.configure(withApplicationID: "ca-app-pub-8835408910987382~7140944451")
         
       return true
     }

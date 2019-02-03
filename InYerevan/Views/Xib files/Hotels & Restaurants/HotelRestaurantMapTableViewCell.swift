@@ -63,16 +63,16 @@ class HotelRestaurantMapTableViewCell: UITableViewCell, MKMapViewDelegate, CLLoc
     
     func showLocation() {
         let pin = MKPointAnnotation()
-        pin.title = "Title: \(name!), Opening Hours: \(openingHours!)"
-                    pin.coordinate = CLLocationCoordinate2DMake(locationLat, locationLong)
-        mapView.addAnnotation(pin)
-        pin.coordinate = CLLocationCoordinate2D(latitude: locationLat, longitude: locationLong)
+        pin.title = "Title: \(self.name!), Opening Hours: \(self.openingHours!)"
+        pin.coordinate = CLLocationCoordinate2DMake(self.locationLat, self.locationLong)
+        self.mapView.addAnnotation(pin)
+        pin.coordinate = CLLocationCoordinate2D(latitude: self.locationLat, longitude: self.locationLong)
         let pinAnnotationView = MKPinAnnotationView(annotation: pin, reuseIdentifier: nil)
-        mapView.centerCoordinate = pin.coordinate
-        mapView.addAnnotation(pinAnnotationView.annotation!)
+        self.mapView.centerCoordinate = pin.coordinate
+        self.mapView.addAnnotation(pinAnnotationView.annotation!)
         
-        let region = MKCoordinateRegion(center: pin.coordinate, latitudinalMeters: 1000.0, longitudinalMeters: 1000.0)
-        mapView.setRegion(region, animated: true)
+        let region = MKCoordinateRegion(center: pin.coordinate, latitudinalMeters: 200.0, longitudinalMeters: 200.0)
+        self.mapView.setRegion(region, animated: true)
     }
 }
 
