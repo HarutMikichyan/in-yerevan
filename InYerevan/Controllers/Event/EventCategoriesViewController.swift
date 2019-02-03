@@ -46,14 +46,14 @@ class EventCategoiresViewController: UIViewController {
                
             }
         }
-//        collectionView.reloadData()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.collectionView.reloadData()
-            let  firstEvent = (categories.first!.events?.allObjects as! [Event]).first
-            let image = firstEvent?.images?.allObjects as! [Picture]
-            //let bbb = asd.allObjects //.first?.url
-            print( firstEvent)
-        }
+        collectionView.reloadData()
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//            self.collectionView.reloadData()
+//            let  firstEvent = (categories[3].events?.allObjects as! [Event]).first
+//            let image = firstEvent?.images?.allObjects as! [Picture]
+//            //let bbb = asd.allObjects //.first?.url
+//            print( firstEvent)
+//        }
         
     }
     
