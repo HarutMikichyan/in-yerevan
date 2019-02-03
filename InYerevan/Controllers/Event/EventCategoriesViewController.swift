@@ -42,9 +42,16 @@ class EventCategoiresViewController: UIViewController {
                 eventCategories.append(category)
                
             }
-        } 
-         collectionView.reloadData()
-       
+        }
+//        collectionView.reloadData()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.collectionView.reloadData()
+            let  firstEvent = (categories.first!.events?.allObjects as! [Event]).first
+            let image = firstEvent?.images?.allObjects as! [Picture]
+            //let bbb = asd.allObjects //.first?.url
+            print( firstEvent)
+        }
+        
     }
     
     @IBAction func addNewEvent() {
@@ -83,9 +90,6 @@ extension EventCategoiresViewController: UICollectionViewDelegate, UICollectionV
                 }
             }
         }
-        
-         
-       
         
         return cell
     }

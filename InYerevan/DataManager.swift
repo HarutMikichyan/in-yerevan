@@ -13,7 +13,7 @@ import Firebase
 
 class DataManager {
     private let persistentController: PersistentController
-    
+    private let collectionReference = Firestore.firestore().collection("Events")
     init(_ persistentController: PersistentController) {
         self.persistentController = persistentController
     }
@@ -27,13 +27,30 @@ class DataManager {
     
     // MARK: - Event
     func saveEvent(title: String, date: Date, category: String, pictures: [UIImage], details: String, coordinates: (lat: Double, long: Double)) {
-        
-        saveEventImages(pictures, title: title) { (urls) in
-            guard let urls = urls else {return}
-            let fireBaseEvent = FirebaseEvent(date: date, details: details, pictureURLs: urls, title: title, company: User.email, visitorsCount: 0, latitude: coordinates.lat, longitude: coordinates.long, category: category)
-            saveEventsInServer(event: fireBaseEvent)
-            fetchEventsFromServerSide()
+        var urls = [String]()
+        for index in 0..<pictures.count {
+            saveEventImages(pictures[index], index: index, title: title) { (url) in
+                
+                guard let url = url else {return}
+                urls.append(url)
+                if index == pictures.count - 1 {
+                    let _ = self.collectionReference.whereField("date", isEqualTo: date).getDocuments { (querySnapshot, error) in
+                        if error == nil {
+                            for document in querySnapshot!.documents {
+                                self.collectionReference.document(document.documentID).setData(["pictureURLs": urls], merge: true)
+                            }
+                            self.fetchEventsFromServerSide()
+                        }
+                    }
+                    
+                }
+                
+            }
         }
+        
+        let fireBaseEvent = FirebaseEvent(date: date, details: details, pictureURLs: urls, title: title, company: User.email, visitorsCount: 0, latitude: coordinates.lat, longitude: coordinates.long, category: category)
+        saveEventsInServer(event: fireBaseEvent)
+        
         
     }
     
@@ -60,7 +77,7 @@ class DataManager {
     }
     
     func fetchEventsFromServerSide() {
-        let _ = Firestore.firestore().collection("Events").whereField("date", isGreaterThan: Date()).getDocuments { (querySnapshot, error) in
+        let _ = collectionReference.whereField("date", isGreaterThan: Date()).getDocuments { (querySnapshot, error) in
             if error == nil {
                 self.eraseLocalCache()
                 for document in querySnapshot!.documents {
@@ -125,8 +142,7 @@ class DataManager {
     }
     
     private func saveEventsInServer(event: FirebaseEvent) {
-        let referance = Firestore.firestore().collection("Events")
-        referance.addDocument(data: event.representation) { error in 
+        collectionReference.addDocument(data: event.representation) { error in
             if let error = error {
                 print(error)
             }
@@ -134,7 +150,7 @@ class DataManager {
     }
     
     private func saveEventLocally(from data: QueryDocumentSnapshot) {
-        guard let date = data["date"] as? Date else { print("date") 
+        guard let date = data["date"] as? Date else { print("date")
             return}
         guard let details = data["details"] as? String else {print("detai")
             return}
@@ -162,43 +178,51 @@ class DataManager {
         location.latitude = latitude
         location.longitude = longitude
         event.location = location
-        event.category = requestCategoryWith(name: category, in: context)
+        let currentCategory = requestCategoryWith(name: category, in: context)
+        event.category = currentCategory
+        currentCategory.events?.adding(event)
         event.organizer = requestOrganizerWith(name: company, in: context)
+        var newPictures = [Picture]()
+        
         for url in pictureURLs {
-            let pictureURL = Picture(context: context)
-            pictureURL.url = url
-            pictureURL.event = event
+            let picture = Picture(context: context)
+            picture.url = url
+            newPictures.append(picture)
         }
+        event.images = NSSet.init(array: newPictures)
         persistentController.saveContext(context)
         persistentController.viewContext.refreshAllObjects()
     }
     
-    private func saveEventImages(_ images: [UIImage], title: String, completion: ([String]?) -> Void ) {
+    private func saveEventImages(_ images: UIImage, index: Int, title: String, completion: @escaping (String?) -> Void ) {
         let storageReferance = Storage.storage().reference().child("event/\(User.email)")
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpeg"
-        var urls = [String]()
         
-        for index in 0..<images.count {
-            guard let scaledImage = images[index].scaledToSafeUploadSize,
-                let data = scaledImage.jpegData(compressionQuality: 0.4) else {
-                    completion(nil)
-                    return
-            }
-            storageReferance.child(title).child("\(index)").putData(data, metadata: metadata) { (metadata, error) in
-                if error == nil {
-                    storageReferance.downloadURL { (url, error) in
-                        guard let downloadURL = url else {
-                            return
-                        }
-                        urls.append(downloadURL.absoluteString)
-                    }
-                } else {
-                    print(error)
-                }   
-            }           
+        guard let scaledImage = images.scaledToSafeUploadSize,
+            let data = scaledImage.jpegData(compressionQuality: 0.4) else {
+                completion(nil)
+                return
         }
-        completion(urls)
+        
+        storageReferance.child(title).child("\(index)").putData(data, metadata: metadata) { (metadata, error) in
+            if let error = error {
+                print(error)
+            }
+            
+            storageReferance.child(title).child("\(index)").downloadURL(completion: { (url, error) in
+                if error != nil {
+                    print(error as Any)
+                } else {
+                    guard let downloadURL = url?.absoluteString else {
+                        return
+                    }
+                    DispatchQueue.main.async {
+                        completion(downloadURL)
+                    }
+                }
+            })
+        }
     }
     
     private func eraseLocalCache() {
@@ -207,14 +231,16 @@ class DataManager {
         let requestForPicture = NSFetchRequest<NSFetchRequestResult>(entityName: "Picture")
         let requestForCoordinate = NSFetchRequest<NSFetchRequestResult>(entityName: "Coordinates")
         let requestForCompany = NSFetchRequest<NSFetchRequestResult>(entityName: "Company")
-        
+        let requestCategory = NSFetchRequest<NSFetchRequestResult>(entityName: "Category")
         
         let deleteRequestForEvent = NSBatchDeleteRequest(fetchRequest: requestForEvent)
         let deleteRequestForPicture = NSBatchDeleteRequest(fetchRequest: requestForPicture)
         let deleteRequestForCoordinate = NSBatchDeleteRequest(fetchRequest: requestForCoordinate)
         let deleteRequestForCompany = NSBatchDeleteRequest(fetchRequest: requestForCompany)
+        let deleteRequestForCategory = NSBatchDeleteRequest(fetchRequest: requestCategory)
         
         do {
+         //   try context.execute(deleteRequestForCategory)
             try context.execute(deleteRequestForEvent)
             try context.execute(deleteRequestForPicture)
             try context.execute(deleteRequestForCoordinate)
