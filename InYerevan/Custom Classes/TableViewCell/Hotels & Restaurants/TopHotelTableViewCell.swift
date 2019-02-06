@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SDWebImage
 
 class TopHotelTableViewCell: UITableViewCell {
     static let id = "TopHotelTableViewCell"
@@ -17,7 +18,6 @@ class TopHotelTableViewCell: UITableViewCell {
     
     //MARK:- Other Properties
     var parrentViewController: UIViewController!
-    var images = [UIImage]()
     private var hotels = [HotelsType]()
    
     override func awakeFromNib() {
@@ -54,22 +54,6 @@ class TopHotelTableViewCell: UITableViewCell {
             self.topHotelCollectionView.reloadData()
         }
     }
-    
-    //MARK:- Storage Private Method
-    private func downloadImage(at urls: String, completion: @escaping (UIImage?) -> Void) {
-        let ref = Storage.storage().reference(forURL: urls)
-        let megaByte = Int64(1 * 1024 * 1024)
-        ref.getData(maxSize: megaByte) { data, error in
-            guard let imageData = data else {
-                completion(nil)
-                return
-            }
-            
-            DispatchQueue.main.async {
-                completion(UIImage(data: imageData))
-            }
-        }
-    }
 }
 
 //MARK:- CollectionView Delegate DataSource
@@ -85,24 +69,21 @@ extension TopHotelTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return hotels.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopHotelCollectionViewCell.id, for: indexPath) as! TopHotelCollectionViewCell
         if hotels.count != 0 {
+            let url = URL(string: hotels[indexPath.row].hotelImageUrl[0])
+
             cell.topHotelsName.text = hotels[indexPath.row].hotelName
-            if self.images.count <= indexPath.row {
-                DispatchQueue.main.async {
-                    self.downloadImage(at: self.hotels[indexPath.row].hotelImageUrl[0], completion: { (image) in
-                        guard let image = image else { return }
-                        
-                        cell.topHotelsImage.image = image
-                        self.images.append(image)
-                    })
+            cell.topHotelsImage.sd_setIndicatorStyle(.white)
+            cell.topHotelsImage.sd_setShowActivityIndicatorView(true)
+            cell.topHotelsImage!.sd_setImage(with: url) { (_, error, _, _) in
+                if error == nil {
+                    cell.topHotelsImage.sd_setShowActivityIndicatorView(false)
                 }
-            } else {
-                cell.topHotelsImage.image = self.images[indexPath.row]
             }
         }
         return cell

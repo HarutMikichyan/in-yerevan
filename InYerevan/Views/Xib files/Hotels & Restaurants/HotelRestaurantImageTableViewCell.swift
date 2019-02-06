@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SDWebImage
 
 class HotelRestaurantImageTableViewCell: UITableViewCell {
     static let id = "HotelRestaurantImageTableViewCell"
@@ -30,22 +31,6 @@ class HotelRestaurantImageTableViewCell: UITableViewCell {
         
         //register TableViewCell
         collectionView.register(UINib(nibName: HotelRestaurantCollectionViewCell.id, bundle: nil), forCellWithReuseIdentifier: HotelRestaurantCollectionViewCell.id)
-    }
-    
-    //MARK:- Storage Private Method
-    private func downloadImage(at urls: String, completion: @escaping (UIImage?) -> Void) {
-        let ref = Storage.storage().reference(forURL: urls)
-        let megaByte = Int64(1 * 1024 * 1024)
-        ref.getData(maxSize: megaByte) { data, error in
-            guard let imageData = data else {
-                completion(nil)
-                return
-            }
-            
-            DispatchQueue.main.async {
-                completion(UIImage(data: imageData))
-            }
-        }
     }
 }
 
@@ -80,17 +65,15 @@ extension HotelRestaurantImageTableViewCell: UICollectionViewDelegate, UICollect
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HotelRestaurantCollectionViewCell.id, for: indexPath) as! HotelRestaurantCollectionViewCell
         if imagesUrl.count != 0 {
-            if self.hotelRestaurantImages.count <= indexPath.row {
-                DispatchQueue.main.async {
-                    self.downloadImage(at: self.imagesUrl[indexPath.row], completion: { (image) in
-                        guard let image = image else { return }
-                        
-                        cell.cellImage.image = image
-                        self.hotelRestaurantImages.append(image)
-                    })
+            let url = URL(string: imagesUrl[indexPath.row])
+            
+            cell.image.sd_setIndicatorStyle(.white)
+            cell.image.sd_setShowActivityIndicatorView(true)
+            cell.image!.sd_setImage(with: url) { (image, error, _, _) in
+                if error == nil {
+                    cell.image.sd_setShowActivityIndicatorView(false)
                 }
-            } else {
-                cell.cellImage.image = self.hotelRestaurantImages[indexPath.row]
+                self.hotelRestaurantImages.append(image!)
             }
         }
         return cell
