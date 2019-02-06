@@ -17,6 +17,7 @@ pod 'MessageInputBar'
 pod 'MessageKit'
 pod 'MBProgressHUD'
 pod 'Google-Mobile-Ads-SDK'
+pod 'SDWebImage', '~> 4.0'
 
 # pod 'ChameleonFramework' // framework which can help to work with colors :) https://github.com/viccalexander/Chameleon https://github.com/viccalexander/Chameleon
 
