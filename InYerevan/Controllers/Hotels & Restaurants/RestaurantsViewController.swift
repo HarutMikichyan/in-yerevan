@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SDWebImage
 
 class RestaurantsViewController: UIViewController {
 
@@ -16,7 +17,6 @@ class RestaurantsViewController: UIViewController {
     
     //MARK:- Other Properties
     var restaurantsList = [RestaurantsType]()
-    var images = [UIImage]()
     
     //MARK:- View Life Cycle Methods
     override func viewDidLoad() {
@@ -54,22 +54,6 @@ class RestaurantsViewController: UIViewController {
         super.viewWillAppear( animated )
         navigationController?.isNavigationBarHidden = false
     }
-    
-    //MARK:- Storage Private Method
-    private func downloadImage(at urls: String, completion: @escaping (UIImage?) -> Void) {
-        let ref = Storage.storage().reference(forURL: urls)
-        let megaByte = Int64(1 * 1024 * 1024)
-        ref.getData(maxSize: megaByte) { data, error in
-            guard let imageData = data else {
-                completion(nil)
-                return
-            }
-            
-            DispatchQueue.main.async {
-                completion(UIImage(data: imageData))
-            }
-        }
-    }
 }
 
 //MARk:- TableView Delegate DataSource
@@ -95,19 +79,16 @@ extension RestaurantsViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: RestaurantTableViewCell.id, for: indexPath) as! RestaurantTableViewCell
         if restaurantsList.count != 0 {
+            let url = URL(string: restaurantsList[indexPath.row].restaurantImageUrl[0])
+            
             cell.nameRestaurant.text = restaurantsList[indexPath.row].restaurantName
             cell.priceRestaurant.text = String(0)
-            if self.images.count <= indexPath.row {
-                DispatchQueue.main.async {
-                    self.downloadImage(at: self.restaurantsList[indexPath.row].restaurantImageUrl[0], completion: { (image) in
-                        guard let image = image else { return }
-                        
-                        cell.imageRestaurant.image = image
-                        self.images.append(image)
-                    })
+            cell.imageRestaurant.sd_setIndicatorStyle(.white)
+            cell.imageRestaurant.sd_setShowActivityIndicatorView(true)
+            cell.imageRestaurant.sd_setImage(with: url) { (_, error, _, _) in
+                if error == nil {
+                    cell.imageRestaurant.sd_setShowActivityIndicatorView(false)
                 }
-            } else {
-                cell.imageRestaurant.image = self.images[indexPath.row]
             }
         }
         return cell
