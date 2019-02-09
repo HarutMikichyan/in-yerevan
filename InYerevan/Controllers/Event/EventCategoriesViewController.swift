@@ -39,21 +39,15 @@ class EventCategoiresViewController: UIViewController {
             present(alert, animated: true)
             return
         }
+
         eventCategories.removeAll()
         for category in categories {
             if category.events!.count > 0 {
                 eventCategories.append(category)
-               
             }
         }
         collectionView.reloadData()
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//            self.collectionView.reloadData()
-//            let  firstEvent = (categories[3].events?.allObjects as! [Event]).first
-//            let image = firstEvent?.images?.allObjects as! [Picture]
-//            //let bbb = asd.allObjects //.first?.url
-//            print( firstEvent)
-//        }
+       
         
     }
     
@@ -80,9 +74,11 @@ extension EventCategoiresViewController: UICollectionViewDelegate, UICollectionV
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EventCategoryCollectionViewCell.id, for: indexPath) as! EventCategoryCollectionViewCell
         let category = eventCategories[indexPath.row]
         //TODO: Fetch Picture from first event and show it!
-        if let  firstEvent = (category.events!.allObjects.first as? Event) {
-            if let images = firstEvent.images?.allObjects as? [String] {
-                if let imageURL = images.first {
+        cell.prepareCellWith(label: category.name!, background: #imageLiteral(resourceName: "calendar"))
+        
+        if let  firstEvent = (category.events?.allObjects as? [Event])?.first {
+            if let images = firstEvent.images?.allObjects as? [Picture] {
+                if let imageURL =  images.first?.url {
                     UIApplication.dataManager.downloadImage(at: URL.init(string: imageURL)!, in: firstEvent) { (image) in
                         if let image = image {
                             cell.prepareCellWith(label: category.name!, background: image)
@@ -92,6 +88,17 @@ extension EventCategoiresViewController: UICollectionViewDelegate, UICollectionV
                     }
                 }
             }
+//            if let images = firstEvent.images?.allObjects as? [String] {
+//                if let imageURL = images.first {
+//                    UIApplication.dataManager.downloadImage(at: URL.init(string: imageURL)!, in: firstEvent) { (image) in
+//                        if let image = image {
+//                            cell.prepareCellWith(label: category.name!, background: image)
+//                        } else { 
+//                            cell.prepareCellWith(label: category.name!, background: #imageLiteral(resourceName: "Activity"))
+//                        }
+//                    }
+//                }
+//            }
         }
         
         return cell

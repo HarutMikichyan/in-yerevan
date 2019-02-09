@@ -14,6 +14,7 @@ import Firebase
 class DataManager {
     private let persistentController: PersistentController
     private let collectionReference = Firestore.firestore().collection("Events")
+     var urls = [String]()
     init(_ persistentController: PersistentController) {
         self.persistentController = persistentController
     }
@@ -27,17 +28,20 @@ class DataManager {
     
     // MARK: - Event
     func saveEvent(title: String, date: Date, category: String, pictures: [UIImage], details: String, coordinates: (lat: Double, long: Double)) {
-        var urls = [String]()
+       
+        let fireBaseEvent = FirebaseEvent(date: date, details: details, pictureURLs: urls, title: title, company: User.email, visitorsCount: 0, latitude: coordinates.lat, longitude: coordinates.long, category: category)
+        saveEventsInServer(event: fireBaseEvent)
         for index in 0..<pictures.count {
             saveEventImages(pictures[index], index: index, title: title) { (url) in
                 
                 guard let url = url else {return}
-                urls.append(url)
+                self.urls.append(url)
                 if index == pictures.count - 1 {
                     let _ = self.collectionReference.whereField("date", isEqualTo: date).getDocuments { (querySnapshot, error) in
                         if error == nil {
                             for document in querySnapshot!.documents {
-                                self.collectionReference.document(document.documentID).setData(["pictureURLs": urls], merge: true)
+                                self.collectionReference.document(document.documentID).setData(["pictureURLs": self.urls], merge: true)
+                                self.urls.removeAll()
                             }
                             self.fetchEventsFromServerSide()
                         }
@@ -47,10 +51,6 @@ class DataManager {
                 
             }
         }
-        
-        let fireBaseEvent = FirebaseEvent(date: date, details: details, pictureURLs: urls, title: title, company: User.email, visitorsCount: 0, latitude: coordinates.lat, longitude: coordinates.long, category: category)
-        saveEventsInServer(event: fireBaseEvent)
-        
         
     }
     
@@ -200,7 +200,7 @@ class DataManager {
         metadata.contentType = "image/jpeg"
         
         guard let scaledImage = images.scaledToSafeUploadSize,
-            let data = scaledImage.jpegData(compressionQuality: 0.4) else {
+            let data = scaledImage.jpegData(compressionQuality: 1) else {
                 completion(nil)
                 return
         }
@@ -240,7 +240,7 @@ class DataManager {
         let deleteRequestForCategory = NSBatchDeleteRequest(fetchRequest: requestCategory)
         
         do {
-         //   try context.execute(deleteRequestForCategory)
+               try context.execute(deleteRequestForCategory)
             try context.execute(deleteRequestForEvent)
             try context.execute(deleteRequestForPicture)
             try context.execute(deleteRequestForCoordinate)
