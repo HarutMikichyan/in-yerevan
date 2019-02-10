@@ -88,17 +88,6 @@ extension EventCategoiresViewController: UICollectionViewDelegate, UICollectionV
                     }
                 }
             }
-//            if let images = firstEvent.images?.allObjects as? [String] {
-//                if let imageURL = images.first {
-//                    UIApplication.dataManager.downloadImage(at: URL.init(string: imageURL)!, in: firstEvent) { (image) in
-//                        if let image = image {
-//                            cell.prepareCellWith(label: category.name!, background: image)
-//                        } else { 
-//                            cell.prepareCellWith(label: category.name!, background: #imageLiteral(resourceName: "Activity"))
-//                        }
-//                    }
-//                }
-//            }
         }
         
         return cell

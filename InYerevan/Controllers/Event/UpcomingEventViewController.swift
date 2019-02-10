@@ -15,9 +15,17 @@ class UpcomingEventViewController: UIViewController {
     
     var category: Category!
     private var timeGroup = ["Today", "This Week", "This Month", "All Events"]
+    private var todayEvents = [Event]()
+    private var thisWeekEvents = [Event]()
+    private var thisMonthEvents = [Event]()
+    private var allEvents = [Event]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        todayEvents = UIApplication.dataManager.fetchAllEventsFromNowTill(date: Date().endOfDay, for: category)
+        thisWeekEvents = UIApplication.dataManager.fetchAllEventsFromNowTill(date: Date().endOfWeek, for: category)
+        thisMonthEvents = UIApplication.dataManager.fetchAllEventsFromNowTill(date: Date().endOfMonth, for: category)
+        allEvents = UIApplication.dataManager.fetchAllEventsFromNowTill(date: Date().duringOneYear, for: category)
         view.changeBackgroundToGradient(from: [.backgroundDarkSpruce, .backgroundDenimBlue])
         title = "Upcoming Events"
     }
@@ -26,9 +34,7 @@ class UpcomingEventViewController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = false
     }
-    
 }
-
 
 extension UpcomingEventViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -38,9 +44,27 @@ extension UpcomingEventViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: UpcomingTableViewCell.id, for: indexPath) as! UpcomingTableViewCell
+        var firstEvent: Event!
         cell.prepareCellWith(label: timeGroup[indexPath.row], background: #imageLiteral(resourceName: "Cinema"))
-        return cell
         
+        switch indexPath.row {
+        case 0: firstEvent = todayEvents.first
+        case 1: firstEvent = thisWeekEvents.first
+        case 2: firstEvent = thisMonthEvents.first
+        default: firstEvent = allEvents.first
+        }
+        
+        if let images = firstEvent?.images?.allObjects as? [Picture] {
+            if let imageURL =  images.first?.url {
+                UIApplication.dataManager.downloadImage(at: URL.init(string: imageURL)!, in: firstEvent) { (image) in
+                    if let image = image {
+                        cell.prepareCellWith(label: self.timeGroup[indexPath.row], background: image)
+                    } 
+                }
+            }
+        }
+        
+        return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -57,16 +81,14 @@ extension UpcomingEventViewController: UITableViewDelegate, UITableViewDataSourc
         
         switch indexPath.row {
         case 0 : 
-            goToEventsVCWith(events: UIApplication.dataManager.fetchAllEventsFromNowTill(date: Date().endOfDay, for: category))
-            
+            goToEventsVCWith(events: todayEvents)
         case 1:
-            goToEventsVCWith(events: UIApplication.dataManager.fetchAllEventsFromNowTill(date: Date().endOfWeek, for: category))
+            goToEventsVCWith(events: thisWeekEvents)
         case 2: 
-            goToEventsVCWith(events: UIApplication.dataManager.fetchAllEventsFromNowTill(date: Date().endOfMonth, for: category))
+            goToEventsVCWith(events: thisMonthEvents)
         default: 
-            goToEventsVCWith(events: UIApplication.dataManager.fetchAllEventsFromNowTill(date: Date().duringOneYear, for: category))
+            goToEventsVCWith(events: allEvents)
         }
-        
-        
+    
     }
 }

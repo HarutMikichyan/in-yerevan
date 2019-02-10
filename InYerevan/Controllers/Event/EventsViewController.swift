@@ -10,24 +10,16 @@ import UIKit
 
 class EventsViewController: UIViewController {
     static let id = "EventsViewController"
-
+    
     var events = [Event]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.changeBackgroundToGradient(from: [.backgroundDarkSpruce, .backgroundDenimBlue])
-//        if let result = UIApplication.appDelegate.dataManager.fetchAllEventsFromNowTill(date: Date(), for: Category(context: NSManagedObjectContext())) {
-//            events = result
-//        } else {
-//            let alert = UIAlertController(title: "OOPS", message: "No found events try again", preferredStyle: .alert)
-//            alert.addAction(UIAlertAction(title: "ok", style: .destructive, handler: nil))
-//            present(alert, animated: true)
-//        }
         title = "Events"
-        // Do any additional setup after loading the view.
     }
     
-
+    
 }
 
 extension EventsViewController: UITableViewDelegate, UITableViewDataSource {
@@ -41,8 +33,19 @@ extension EventsViewController: UITableViewDelegate, UITableViewDataSource {
         cell.prepareCellWith(title: events[indexPath.row].title!,
                              background: #imageLiteral(resourceName: "Technology") ,
                              date: events[indexPath.row].date!)
-        return cell
         
+        if let images = events[indexPath.row].images?.allObjects as? [Picture] {
+            if let imageURL =  images.first?.url {
+                UIApplication.dataManager.downloadImage(at: URL.init(string: imageURL)!, in: events[indexPath.row]) { (image) in
+                    if let image = image {
+                        cell.prepareCellWith(title: self.events[indexPath.row].title!,
+                                             background: image ,
+                                             date: self.events[indexPath.row].date!)
+                    } 
+                }
+            }
+        }
+        return cell
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

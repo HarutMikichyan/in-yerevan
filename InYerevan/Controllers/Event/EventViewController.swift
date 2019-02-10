@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import SDWebImage
 
 class EventViewController: UIViewController {
 static let id = "EventViewController"
@@ -34,6 +35,7 @@ static let id = "EventViewController"
         monthLabel.text = dateTuple.month
         title = event.title!
         detailsTextView.text = event.details
+        
         detailsTextView.isEditable = false
         let locationManager = CLLocationManager()
         locationManager.requestWhenInUseIfNeeded()
