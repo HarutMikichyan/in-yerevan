@@ -61,7 +61,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         // In this case, we instantiate the banner with desired ad size.
         bannerView = GADBannerView(adSize: kGADAdSizeBanner)
-        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerView.adUnitID = "ca-app-pub-3940256099942544/3986624511"
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
         
@@ -84,8 +84,11 @@ class HomeViewController: UIViewController {
             if bool {
                 DispatchQueue.main.async {
                     let weekday = Calendar.current.component(.weekday, from: Date())
-                    
-                    self.weatherTemperature.text = "\(Int(weather!.temperatureC!))"
+                    if weather!.temperatureC! > 0 {
+                        self.weatherTemperature.text = "+\(Int(weather!.temperatureC!))"
+                    } else {
+                        self.weatherTemperature.text = "\(Int(weather!.temperatureC!))"
+                    }
                     self.weatherIcon.image = weather!.icon
                     self.weatherYerevan.text = "C \(Date.weeakdayByString(numberDay: weekday))"
                 }
@@ -190,7 +193,7 @@ class HomeViewController: UIViewController {
             self.errorTextField = UITextField
         }
         
-        UIApplication.shared.keyWindow!.rootViewController?.present(alert, animated: true, completion: nil)
+        UIApplication.shared.keyWindow!.rootViewController?.present(alert, animated: true, completion: nil)        
     }
 
     @IBAction func onlineSupportAction() {
