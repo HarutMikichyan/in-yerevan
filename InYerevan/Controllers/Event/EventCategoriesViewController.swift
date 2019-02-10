@@ -74,7 +74,7 @@ extension EventCategoiresViewController: UICollectionViewDelegate, UICollectionV
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EventCategoryCollectionViewCell.id, for: indexPath) as! EventCategoryCollectionViewCell
         let category = eventCategories[indexPath.row]
         //TODO: Fetch Picture from first event and show it!
-        cell.prepareCellWith(label: category.name!, background: #imageLiteral(resourceName: "calendar"))
+        cell.prepareCellWith(label: category.name!, background: #imageLiteral(resourceName: "bgLogin"))
         
         if let  firstEvent = (category.events?.allObjects as? [Event])?.first {
             if let images = firstEvent.images?.allObjects as? [Picture] {
@@ -82,9 +82,7 @@ extension EventCategoiresViewController: UICollectionViewDelegate, UICollectionV
                     UIApplication.dataManager.downloadImage(at: URL.init(string: imageURL)!, in: firstEvent) { (image) in
                         if let image = image {
                             cell.prepareCellWith(label: category.name!, background: image)
-                        } else { 
-                            cell.prepareCellWith(label: category.name!, background: #imageLiteral(resourceName: "Activity"))
-                        }
+                        } 
                     }
                 }
             }

@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import GoogleMobileAds
+import SDWebImage
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -35,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         persistentController = PersistentController()
         dataManager = DataManager(persistentController)
-        
+        SDWebImageManager.shared().imageCache?.config.maxCacheSize = 100 * 1024 * 1024 
         //FetchEvents and replace CoreData
         queue.async {
             self.dataManager.fetchEventsFromServerSide()

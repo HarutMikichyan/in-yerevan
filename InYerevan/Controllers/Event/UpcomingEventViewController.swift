@@ -8,6 +8,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class UpcomingEventViewController: UIViewController {
     static let id = "UpcomingEventViewController"
@@ -46,22 +47,36 @@ extension UpcomingEventViewController: UITableViewDelegate, UITableViewDataSourc
         let cell = tableView.dequeueReusableCell(withIdentifier: UpcomingTableViewCell.id, for: indexPath) as! UpcomingTableViewCell
         var firstEvent: Event!
         cell.prepareCellWith(label: timeGroup[indexPath.row], background: #imageLiteral(resourceName: "Cinema"))
-        
+        var randomIndex = 0 
         switch indexPath.row {
-        case 0: firstEvent = todayEvents.first
-        case 1: firstEvent = thisWeekEvents.first
-        case 2: firstEvent = thisMonthEvents.first
-        default: firstEvent = allEvents.first
+        case 0: 
+            if todayEvents.count > 0 {
+                randomIndex = Int.random(in: 0..<todayEvents.count)
+                firstEvent = todayEvents[randomIndex]
+            }
+        case 1: 
+            if thisWeekEvents.count > 0 {
+                randomIndex = Int.random(in: 0..<thisWeekEvents.count)
+                firstEvent = thisWeekEvents[randomIndex]
+            }
+        case 2:  
+            if thisMonthEvents.count > 0 {
+                randomIndex = Int.random(in: 0..<thisMonthEvents.count)
+                firstEvent = thisMonthEvents[randomIndex]
+            }
+        default: 
+            if allEvents.count > 0 {
+
+                randomIndex = Int.random(in: 0..<allEvents.count)
+                firstEvent = allEvents[randomIndex]
+            }
         }
         
         if let images = firstEvent?.images?.allObjects as? [Picture] {
-            if let imageURL =  images.first?.url {
-                UIApplication.dataManager.downloadImage(at: URL.init(string: imageURL)!, in: firstEvent) { (image) in
-                    if let image = image {
-                        cell.prepareCellWith(label: self.timeGroup[indexPath.row], background: image)
-                    } 
-                }
-            }
+            if images.count > 0 {
+                let randomNumber = Int.random(in: 0..<images.count) 
+                cell.backgroundImageView.sd_setImage(with: URL.init(string: images[randomNumber].url!))
+            } 
         }
         
         return cell

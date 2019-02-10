@@ -21,9 +21,5 @@ class EventPictureCollectionViewCell: UICollectionViewCell {
         backgroundImageView.clipsToBounds = true
         
     }
-    
-    func prepareCellWith(background: UIImage) {
-        backgroundImageView.image = background
-    } 
-    
+       
 }

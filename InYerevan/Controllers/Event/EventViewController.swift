@@ -24,13 +24,15 @@ static let id = "EventViewController"
     var event: Event! 
     
     
-    var imagesForEvent = [UIImage]()
+    var urls = [String]()
     
     override func viewDidLoad() {
-        view.changeBackgroundToGradient(from: [.backgroundDarkSpruce, .backgroundDenimBlue])
         super.viewDidLoad()
         view.changeBackgroundToGradient(from: [.backgroundDarkSpruce, .backgroundDenimBlue])
         let dateTuple = event.date!.toString()
+        for image in (event.images?.allObjects as! [Picture]) {
+            urls.append(image.url!)
+        }
         dayLabel.text = dateTuple.day
         monthLabel.text = dateTuple.month
         title = event.title!
@@ -74,12 +76,17 @@ static let id = "EventViewController"
 extension EventViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-       return imagesForEvent.count
+       return urls.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EventPictureCollectionViewCell.id, for: indexPath) as! EventPictureCollectionViewCell
-        cell.prepareCellWith(background: imagesForEvent[indexPath.row])
+    
+        cell.backgroundImageView.sd_setImage(with: URL(string: urls[indexPath.row])) { (image, _, _, _) in
+            DispatchQueue.main.async {
+                cell.backgroundImageView.image = image
+            }
+        }
         return cell
     }
     

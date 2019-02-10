@@ -389,7 +389,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xdp-fQ-m4c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1743" y="-356"/>
+            <point key="canvasLocation" x="1836" y="-356"/>
         </scene>
         <!--Events-->
         <scene sceneID="icq-WP-y9V">
@@ -415,16 +415,16 @@
                                             <rect key="frame" x="0.0" y="0.0" width="171" height="235"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thisMonth" translatesAutoresizingMaskIntoConstraints="NO" id="rNb-OF-Go4">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thisMonth" translatesAutoresizingMaskIntoConstraints="NO" id="rNb-OF-Go4">
                                                     <rect key="frame" x="0.0" y="0.0" width="171" height="235"/>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r8d-Mi-fIW" customClass="GradientView" customModule="InYerevan" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="128" width="171" height="107"/>
+                                                    <rect key="frame" x="0.0" y="138" width="171" height="107"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;Category&gt;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.34999999999999998" translatesAutoresizingMaskIntoConstraints="NO" id="CUI-3h-QXX">
                                                             <rect key="frame" x="0.0" y="46" width="171" height="51"/>
                                                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="37"/>
-                                                            <color key="textColor" red="0.92941176469999998" green="0.94901960780000005" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -452,7 +452,7 @@
                                             <constraint firstItem="rNb-OF-Go4" firstAttribute="top" secondItem="kkr-SP-y6a" secondAttribute="top" id="pNK-Qx-6oF"/>
                                             <constraint firstAttribute="bottom" secondItem="rNb-OF-Go4" secondAttribute="bottom" id="qGq-SK-4Tf"/>
                                             <constraint firstAttribute="trailing" secondItem="rNb-OF-Go4" secondAttribute="trailing" id="wQs-pt-RbV"/>
-                                            <constraint firstAttribute="bottom" secondItem="r8d-Mi-fIW" secondAttribute="bottom" id="y1a-A1-1Lf"/>
+                                            <constraint firstAttribute="bottom" secondItem="r8d-Mi-fIW" secondAttribute="bottom" constant="-10" id="waR-Pc-hcU"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="backgroundImageView" destination="rNb-OF-Go4" id="dvV-2j-eJl"/>
@@ -667,15 +667,16 @@
                                             <rect key="frame" x="0.0" y="0.0" width="141" height="107"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="O1M-gp-eZW">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="O1M-gp-eZW">
                                                     <rect key="frame" x="0.0" y="0.0" width="141" height="107"/>
                                                 </imageView>
                                             </subviews>
                                         </view>
                                         <constraints>
                                             <constraint firstItem="O1M-gp-eZW" firstAttribute="top" secondItem="OOJ-Ow-wjc" secondAttribute="top" id="IM2-Xc-oEo"/>
-                                            <constraint firstItem="O1M-gp-eZW" firstAttribute="leading" secondItem="OOJ-Ow-wjc" secondAttribute="leading" id="Spb-WR-Hx3"/>
-                                            <constraint firstAttribute="trailing" secondItem="O1M-gp-eZW" secondAttribute="trailing" id="TF5-FF-Ba3"/>
+                                            <constraint firstAttribute="trailing" secondItem="O1M-gp-eZW" secondAttribute="trailing" id="OZt-DW-hGd"/>
+                                            <constraint firstItem="O1M-gp-eZW" firstAttribute="leading" secondItem="OOJ-Ow-wjc" secondAttribute="leading" id="r9v-8m-v4D"/>
+                                            <constraint firstItem="O1M-gp-eZW" firstAttribute="centerX" secondItem="OOJ-Ow-wjc" secondAttribute="centerX" id="viT-Yd-nZp"/>
                                             <constraint firstAttribute="bottom" secondItem="O1M-gp-eZW" secondAttribute="bottom" id="zwa-6c-Nj7"/>
                                         </constraints>
                                         <connections>
@@ -698,7 +699,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PRT-tg-jgo" customClass="GradientView" customModule="InYerevan" customModuleProvider="target">
-                                        <rect key="frame" x="332" y="0.0" width="82" height="63"/>
+                                        <rect key="frame" x="322" y="0.0" width="82" height="63"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="-8" translatesAutoresizingMaskIntoConstraints="NO" id="Jf8-Mu-Ciz">
                                                 <rect key="frame" x="0.0" y="0.0" width="82" height="63"/>
@@ -706,13 +707,13 @@
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;22&gt;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sfV-cy-klD">
                                                         <rect key="frame" x="0.0" y="0.0" width="82" height="49.5"/>
                                                         <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="39"/>
-                                                        <color key="textColor" red="0.92941176469999998" green="0.94901960780000005" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;Dec&gt;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ykd-2c-IZB">
                                                         <rect key="frame" x="0.0" y="41.5" width="82" height="21.5"/>
                                                         <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="17"/>
-                                                        <color key="textColor" red="0.92941176469999998" green="0.94901960780000005" blue="0.64705882349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -734,9 +735,10 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="aRX-61-bnL">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="aRX-61-bnL">
                                         <rect key="frame" x="0.0" y="63" width="414" height="217"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="scrollIndicatorInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -773,7 +775,7 @@
                                     <constraint firstItem="aRX-61-bnL" firstAttribute="top" secondItem="PRT-tg-jgo" secondAttribute="bottom" id="ePt-FY-kS3"/>
                                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="PRT-tg-jgo" secondAttribute="bottom" id="pyl-Oc-BZJ"/>
                                     <constraint firstAttribute="trailing" secondItem="eQ4-TB-7Ge" secondAttribute="trailing" id="wZL-uO-6q1"/>
-                                    <constraint firstAttribute="trailing" secondItem="PRT-tg-jgo" secondAttribute="trailing" id="xqe-Fy-TLx"/>
+                                    <constraint firstAttribute="trailing" secondItem="PRT-tg-jgo" secondAttribute="trailing" constant="10" id="xqe-Fy-TLx"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -838,6 +840,6 @@
         <image name="Activity" width="275" height="183"/>
         <image name="calendar" width="33" height="33"/>
         <image name="thisMonth" width="1920" height="942"/>
-        <image name="today" width="3300" height="2200"/>
+        <image name="today" width="270" height="186"/>
     </resources>
 </document>

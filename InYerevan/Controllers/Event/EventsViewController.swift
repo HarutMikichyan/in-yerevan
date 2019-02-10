@@ -35,15 +35,10 @@ extension EventsViewController: UITableViewDelegate, UITableViewDataSource {
                              date: events[indexPath.row].date!)
         
         if let images = events[indexPath.row].images?.allObjects as? [Picture] {
-            if let imageURL =  images.first?.url {
-                UIApplication.dataManager.downloadImage(at: URL.init(string: imageURL)!, in: events[indexPath.row]) { (image) in
-                    if let image = image {
-                        cell.prepareCellWith(title: self.events[indexPath.row].title!,
-                                             background: image ,
-                                             date: self.events[indexPath.row].date!)
-                    } 
-                }
-            }
+            if images.count > 0 {
+                let randomNumber = Int.random(in: 0..<images.count) 
+                cell.backgroundImageView.sd_setImage(with: URL.init(string: images[randomNumber].url!))
+            } 
         }
         return cell
     }
