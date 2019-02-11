@@ -16,7 +16,6 @@ class HotelDescriptionViewController: UIViewController {
     @IBOutlet weak var imageHotel: UIImageView!
     @IBOutlet weak var nameHotel: UILabel!
     
-    
     //MARK:- Other Properties
     weak var hotelImagesCell: HotelRestaurantImageTableViewCell!
     var hotel: HotelsType!
