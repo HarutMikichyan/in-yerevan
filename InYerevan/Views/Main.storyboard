@@ -172,10 +172,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bgLogin" width="1706.6666259765625" height="1066.6666259765625"/>
-        <image name="calendar" width="33.333332061767578" height="33.333332061767578"/>
-        <image name="home" width="33.333332061767578" height="33.333332061767578"/>
-        <image name="resort" width="33.333332061767578" height="33.333332061767578"/>
+        <image name="bgLogin" width="1706" height="1066"/>
+        <image name="calendar" width="33" height="33"/>
+        <image name="home" width="33" height="33"/>
+        <image name="resort" width="33" height="33"/>
     </resources>
     <color key="tintColor" red="0.62270265820000004" green="0.51273083689999999" blue="0.75298458339999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
 </document>

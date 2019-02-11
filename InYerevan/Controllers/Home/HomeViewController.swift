@@ -18,13 +18,12 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var courseUSD: UILabel!
     @IBOutlet weak var courseRUR: UILabel!
     @IBOutlet weak var courseEUR: UILabel!
-    @IBOutlet weak var weatherIcon: UIImageView!
     @IBOutlet weak var weatherYerevan: UILabel!
+    @IBOutlet weak var imageInHome: UIImageView!
+    @IBOutlet weak var weatherIcon: UIImageView!
     @IBOutlet weak var weatherTemperature: UILabel!
     @IBOutlet weak var onlineSupportButton: UIButton!
     @IBOutlet weak var changePasswordButton: UIButton!
-    @IBOutlet weak var eventCollection: UICollectionView!
-    @IBOutlet var bannerView: GADBannerView!
 
     // MARK:- OTHER PROPERTIES
     
@@ -39,11 +38,19 @@ class HomeViewController: UIViewController {
     private var channelReference: CollectionReference {
         return db.collection("channels")
     }
+    
+    private var yerevanImages: [UIImage] = [] {
+        willSet(newImage) {
+            if yerevanImages.count < 1 {
+                imageInHome.image = newImage[0]
+            }
+        }
+    }
     private var currency: CurrencyType! {
         didSet {
             courseEUR.text = " EUR| \(currency.currencyEUR) AMD"
             courseUSD.text = " USD| \(currency.currencyUSD) AMD"
-            courseRUR.text = "RUR|   \(currency.currencyRUR) AMD"
+            courseRUR.text = " RUR|   \(currency.currencyRUR) AMD"
         }
     }
     
@@ -59,11 +66,6 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // In this case, we instantiate the banner with desired ad size.
-        bannerView = GADBannerView(adSize: kGADAdSizeBanner)
-        bannerView.adUnitID = "ca-app-pub-3940256099942544/3986624511"
-        bannerView.rootViewController = self
-        bannerView.load(GADRequest())
         
         UIApplication.appDelegate.refCurrency.observe(.value) { (snapshot) in
             if snapshot.childrenCount > 0 {
@@ -97,13 +99,16 @@ class HomeViewController: UIViewController {
             }
         }
         
+        DataProvider.object.getYerevanImagesInfo { (image, bool) in
+            if bool {
+                DispatchQueue.main.async {
+                    self.yerevanImages.append(image!)
+                }
+            }
+        }
         navigationItem.largeTitleDisplayMode = .never
         navigationController?.navigationBar.barStyle = .black
         navigationController?.navigationBar.tintColor = .outgoingLavender
-        
-        eventCollection.delegate = self
-        eventCollection.dataSource = self
-        eventCollection.backgroundColor = UIColor.clear
         
         onlineSupportButton.layer.cornerRadius = 12
         onlineSupportButton.layer.masksToBounds = true
@@ -134,13 +139,27 @@ class HomeViewController: UIViewController {
     // MARK:- ACTIONS
     
     @IBAction func signOutAction(_ sender: Any) {
-        User.email = ""
-        User.isAdministration = false
+        let blurredSubview = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+        let alert = UIAlertController(title: "Do you really want to leave?", message: "", preferredStyle: .alert)
         
-        let myStoryboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let vc = myStoryboard.instantiateViewController(withIdentifier: "registrationvc")
+        alert.view.tintColor = .outgoingLavender
+        alert.view.backgroundColor = .black
+
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: {(UIAlertAction) in
+            User.email = ""
+            User.isAdministration = false
+            
+            let myStoryboard = UIStoryboard.init(name: "Main", bundle: nil)
+            let vc = myStoryboard.instantiateViewController(withIdentifier: "registrationvc")
+            
+            UIApplication.shared.keyWindow?.rootViewController = vc
+            blurredSubview.removeFromSuperview()
+        }))
+        alert.addAction(UIAlertAction(title: "Close", style: .cancel, handler: {(_) in
+            blurredSubview.removeFromSuperview()
+        }))
         
-        UIApplication.shared.keyWindow?.rootViewController = vc
+        UIApplication.shared.keyWindow!.rootViewController?.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func changePasswordAction(_ sender: Any) {
@@ -220,21 +239,6 @@ class HomeViewController: UIViewController {
     
     // MARK:- PRIVATE METHODS
     
-    private func downloadImage(at urls: String, completion: @escaping (UIImage?) -> Void) {
-        let ref = Storage.storage().reference(forURL: urls)
-        let megaByte = Int64(1 * 1024 * 1024)
-        ref.getData(maxSize: megaByte) { data, error in
-            guard let imageData = data else {
-                completion(nil)
-                return
-            }
-            
-            DispatchQueue.main.async {
-                completion(UIImage(data: imageData))
-            }
-        }
-    }
-    
     private func addChannelToTable(_ channel: Channel) {
         guard !channels.contains(channel) else { return }
         channels.append(channel)
@@ -256,7 +260,7 @@ class HomeViewController: UIViewController {
     }
 }
 
-extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UITextFieldDelegate  {
+extension HomeViewController: UITextFieldDelegate  {
     // MARK:- UITextFieldDelegate
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -307,32 +311,5 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             errorTextField.isHidden = false
             errorTextField.text = ""
         }
-    }
-    
-    // MARK:- UICollectionViewDelegate AND UICollectionViewDataSource METHODS
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeTodayEventCollectionViewCell.id, for: indexPath) as! HomeTodayEventCollectionViewCell
-        switch indexPath.row {
-        case 0:
-            cell.todayEentName.text = "Hamalir"
-        case 1:
-            cell.todayEentName.text = "Cascade"
-        case 2:
-            cell.todayEentName.text = "Brusov"
-        case 3:
-            cell.todayEentName.text = "Matenadaran"
-        case 4:
-            cell.todayEentName.text = "Hamalir"
-        default:
-            cell.todayEentName.text = "Name"
-        }
-        cell.todayEventImage.image = UIImage(named: "image-placeholder")
-        
-        return cell
     }
 }
