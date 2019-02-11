@@ -64,7 +64,6 @@ extension RestaurantsViewController: UITableViewDelegate, UITableViewDataSource 
         let storyboard = UIStoryboard(name: "HotelsAndRestaurants", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "RestaurantDescriptionViewControllerID") as! RestaurantDescriptionViewController
         vc.restaurant = restaurantsList[indexPath.row]
-        
         navigationController?.pushViewController(vc, animated: true)
     }
     

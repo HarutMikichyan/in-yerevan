@@ -56,15 +56,14 @@ class MainReserveViewController: UIViewController {
         newHeaderLayer.fillColor = UIColor.black.cgColor
         headerView.layer.mask = newHeaderLayer
         
-        let newHeight = headerHeight - headerHeight / 10
+        let newHeight = headerHeight - headerHeight/10
         tableView.contentInset = UIEdgeInsets(top: newHeight, left: 0, bottom: 0, right: 0)
         tableView.contentOffset = CGPoint(x: 0, y: -newHeight)
-        
         setupNewView()
     }
     
     private func setupNewView() {
-        let newheight = headerHeight - headerHeight / 10
+        let newheight = headerHeight - headerHeight/10
         var getHeaderFrame = CGRect(x: 0, y: -newheight, width: tableView.bounds.width, height: headerHeight)
         if tableView.contentOffset.y < newheight {
             getHeaderFrame.origin.y = tableView.contentOffset.y
@@ -82,7 +81,7 @@ class MainReserveViewController: UIViewController {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        self.setupNewView()
+        setupNewView()
     }
     
     //MARK:- Actions
@@ -179,7 +178,6 @@ extension MainReserveViewController: UITableViewDelegate, UITableViewDataSource 
             case 3:
                 let storyboard = UIStoryboard(name: "HotelsAndRestaurants", bundle: nil)
                 let vc =  storyboard.instantiateViewController(withIdentifier: "ReserveRegistrationViewControllerID")
-                
                 navigationController?.present(vc, animated: true, completion: nil)
             default:
                 break
