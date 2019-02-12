@@ -39,10 +39,14 @@ class HomeViewController: UIViewController {
         return db.collection("channels")
     }
     
+    private var yerevanImageIndex = 1
     private var yerevanImages: [UIImage] = [] {
         willSet(newImage) {
             if yerevanImages.count < 1 {
                 imageInHome.image = newImage[0]
+                imageInHomeGestureRecognzer()
+                
+                self.perform(#selector(changeImage), with: nil, afterDelay: 10)
             }
         }
     }
@@ -237,6 +241,37 @@ class HomeViewController: UIViewController {
         }
     }
     
+    // MARK:- GestureRecognizer
+    
+    func imageInHomeGestureRecognzer() {
+        let imageGestureRecognzer = UITapGestureRecognizer(target: self, action: #selector(pushHotels))
+        imageGestureRecognzer.numberOfTapsRequired = 1
+        imageInHome.isUserInteractionEnabled = true
+        imageInHome.addGestureRecognizer(imageGestureRecognzer)
+    }
+    
+    @objc func pushHotels() {
+        if yerevanImages.count > yerevanImageIndex {
+            imageInHome.image = yerevanImages[yerevanImageIndex]
+            yerevanImageIndex = yerevanImageIndex + 1
+        } else {
+            imageInHome.image = yerevanImages[0]
+            yerevanImageIndex = 1
+        }
+    }
+    
+    @objc func changeImage() {
+        if yerevanImages.count > yerevanImageIndex {
+            imageInHome.image = yerevanImages[yerevanImageIndex]
+            yerevanImageIndex = yerevanImageIndex + 1
+        } else {
+            imageInHome.image = yerevanImages[0]
+            yerevanImageIndex = 1
+        }
+        
+        self.perform(#selector(changeImage), with: nil, afterDelay: 10)
+    }
+
     // MARK:- PRIVATE METHODS
     
     private func addChannelToTable(_ channel: Channel) {

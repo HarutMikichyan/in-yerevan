@@ -69,46 +69,47 @@ final class DataProvider {
         let clientID = "b8c48448dcf4da7bbee5a8d59c8618ee4ccfa89d85edaf1fb0a7951104728719"
         let api = "https://api.unsplash.com/search/photos?query=\(apiQuery)&client_id=\(clientID)"
         
-        let url = URL(string: api)
-        
-        if url != nil {
-            let task = session.dataTask(with: url!) { (data, response, error) in
-                if error == nil {
-                    if (response as! HTTPURLResponse).statusCode == 200 {
-                        if data != nil {
-                            if let object = (try? JSONSerialization.jsonObject(with: data!, options: .allowFragments)) as? [String: Any] {
-                                let results = object["results"] as! [[String: Any]]
-                                
-                                for item in results {
-                                    let urls = item["urls"] as! [String: String]
-                                    let image = self.getImage(imageUrl: urls["small"]!)
-                                    
-                                    if image != nil {
-                                        callBack(image!, true)
+        for i in 1...4 {
+            let url = URL(string: "\(api)&page=\(i)")
+
+            if url != nil {
+                let task = session.dataTask(with: url!) { (data, response, error) in
+                    if error == nil {
+                        if (response as! HTTPURLResponse).statusCode == 200 {
+                            if data != nil {
+                                if let object = (try? JSONSerialization.jsonObject(with: data!, options: .allowFragments)) as? [String: Any] {
+                                    let results = object["results"] as! [[String: Any]]
+
+                                    for item in results {
+                                        let urls = item["urls"] as! [String: String]
+                                        let image = self.getImage(imageUrl: urls["small"]!)
+                                        
+                                        if image != nil {
+                                            callBack(image!, true)
+                                        }
                                     }
+                                } else {
+                                    callBack(nil, false)
+                                    print("Object error")
                                 }
-                                
                             } else {
                                 callBack(nil, false)
-                                print("Object error")
+                                print("Data nil")
                             }
                         } else {
                             callBack(nil, false)
-                            print("Data nil")
+                            print("Response error \((response as! HTTPURLResponse).statusCode)")
                         }
                     } else {
                         callBack(nil, false)
-                        print("Response error \((response as! HTTPURLResponse).statusCode)")
+                        print(error!.localizedDescription)
                     }
-                } else {
-                    callBack(nil, false)
-                    print(error!.localizedDescription)
                 }
+                task.resume()
+            } else {
+                callBack(nil, false)
+                print("Url nil")
             }
-            task.resume()
-        } else {
-            callBack(nil, false)
-            print("Url nil")
         }
     }
     
