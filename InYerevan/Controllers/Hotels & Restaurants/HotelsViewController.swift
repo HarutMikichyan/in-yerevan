@@ -62,12 +62,12 @@ extension HotelsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        let storyboard = UIStoryboard(name: "HotelsAndRestaurants", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "HotelDescriptionViewControllerID") as! HotelDescriptionViewController
-        vc.hotel = hotelsList[indexPath.row]
-        
-        navigationController?.pushViewController(vc, animated: true)
+        if !hotelsList.isEmpty {
+            let storyboard = UIStoryboard(name: "HotelsAndRestaurants", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "HotelDescriptionViewControllerID") as! HotelDescriptionViewController
+            vc.hotel = hotelsList[indexPath.row]
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -87,10 +87,11 @@ extension HotelsViewController: UITableViewDelegate, UITableViewDataSource {
             cell.starHotel.text = hotelsList[indexPath.row].hotelStar
             cell.imageHotel.sd_setIndicatorStyle(.white)
             cell.imageHotel.sd_setShowActivityIndicatorView(true)
-            cell.imageHotel.sd_setImage(with: url) { (_, error, _, _) in
-                if error == nil {
+            cell.imageHotel.sd_setImage(with: url) { (image, error, _, _) in
+                if error == nil && image != nil {
                     cell.imageHotel.sd_setShowActivityIndicatorView(false)
                 }
+                
             }
         }
         return cell

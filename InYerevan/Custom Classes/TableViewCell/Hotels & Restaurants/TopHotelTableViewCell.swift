@@ -61,11 +61,12 @@ extension TopHotelTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        let storyboard = UIStoryboard(name: "HotelsAndRestaurants", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "HotelDescriptionViewControllerID") as! HotelDescriptionViewController
-        vc.hotel = hotels[indexPath.row]
-        
-        parrentViewController.navigationController?.pushViewController(vc, animated: true)
+        if !hotels.isEmpty {
+            let storyboard = UIStoryboard(name: "HotelsAndRestaurants", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "HotelDescriptionViewControllerID") as! HotelDescriptionViewController
+            vc.hotel = hotels[indexPath.row]
+            parrentViewController.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

@@ -161,13 +161,10 @@ class ReserveRegistrationViewController: UIViewController, UIImagePickerControll
     }
 
     private func saveFirebaseStorage(_ image: UIImage, to hotelID: String?, completion: @escaping (URL?) -> Void) {
-        guard let id = hotelID else {
-            completion(nil)
-            return
-        }
         
         guard let scaledImage = image.scaledToSafeUploadSize,
-            let data = scaledImage.jpegData(compressionQuality: 0.4) else {
+              let data = scaledImage.jpegData(compressionQuality: 0.4),
+              let id  = hotelID else {
                 completion(nil)
                 return
         }
@@ -195,6 +192,7 @@ class ReserveRegistrationViewController: UIViewController, UIImagePickerControll
 
 //MARK:- CollectionView Delegate
 extension ReserveRegistrationViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return images.count
     }
@@ -208,6 +206,7 @@ extension ReserveRegistrationViewController: UICollectionViewDelegate, UICollect
 
 //MARK:- Image Picker Delegate
 extension ReserveRegistrationViewController: ImagePickerViewControllerDelegate {
+    
     func didSelectedItem(image: UIImage?) {
         if image != nil {
             images.append(image!)

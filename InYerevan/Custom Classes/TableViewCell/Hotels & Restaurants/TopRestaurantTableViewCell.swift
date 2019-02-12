@@ -60,11 +60,12 @@ extension TopRestaurantTableViewCell: UICollectionViewDelegate, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        let storyboard = UIStoryboard(name: "HotelsAndRestaurants", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "RestaurantDescriptionViewControllerID") as! RestaurantDescriptionViewController
-        vc.restaurant = restaurants[indexPath.row]
-        
-        parrentViewController.navigationController?.pushViewController(vc, animated: true)
+        if !restaurants.isEmpty {
+            let storyboard = UIStoryboard(name: "HotelsAndRestaurants", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "RestaurantDescriptionViewControllerID") as! RestaurantDescriptionViewController
+            vc.restaurant = restaurants[indexPath.row]
+            parrentViewController.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
