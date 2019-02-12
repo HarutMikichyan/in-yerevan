@@ -36,7 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         persistentController = PersistentController()
         dataManager = DataManager(persistentController)
-        SDWebImageManager.shared().imageCache?.config.maxCacheSize = 100 * 1024 * 1024 
+        SDWebImageManager.shared().imageCache?.config.maxCacheSize = 100 * 1024 * 1024
+        SDWebImageManager.shared().imageCache?.config.maxCacheAge = 60 * 60 * 24 * 10
         //FetchEvents and replace CoreData
         queue.async {
             self.dataManager.fetchEventsFromServerSide()

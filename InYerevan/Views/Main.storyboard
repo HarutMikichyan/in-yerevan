@@ -96,7 +96,7 @@
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.46000000000000002" colorSpace="custom" customColorSpace="displayP3"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="password"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" returnKeyType="next" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="password"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qLn-YA-3ZL" userLabel="Log In">
                                         <rect key="frame" x="0.0" y="0.0" width="129" height="0.0"/>
@@ -172,10 +172,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bgLogin" width="1706.6666259765625" height="1066.6666259765625"/>
-        <image name="calendar" width="33.333332061767578" height="33.333332061767578"/>
-        <image name="home" width="33.333332061767578" height="33.333332061767578"/>
-        <image name="resort" width="33.333332061767578" height="33.333332061767578"/>
+        <image name="bgLogin" width="1706" height="1066"/>
+        <image name="calendar" width="33" height="33"/>
+        <image name="home" width="33" height="33"/>
+        <image name="resort" width="33" height="33"/>
     </resources>
     <color key="tintColor" red="0.62270265820000004" green="0.51273083689999999" blue="0.75298458339999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
 </document>
