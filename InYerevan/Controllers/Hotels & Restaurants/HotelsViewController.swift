@@ -87,10 +87,11 @@ extension HotelsViewController: UITableViewDelegate, UITableViewDataSource {
             cell.starHotel.text = hotelsList[indexPath.row].hotelStar
             cell.imageHotel.sd_setIndicatorStyle(.white)
             cell.imageHotel.sd_setShowActivityIndicatorView(true)
-            cell.imageHotel.sd_setImage(with: url) { (_, error, _, _) in
-                if error == nil {
+            cell.imageHotel.sd_setImage(with: url) { (image, error, _, _) in
+                if error == nil && image != nil {
                     cell.imageHotel.sd_setShowActivityIndicatorView(false)
                 }
+                
             }
         }
         return cell
